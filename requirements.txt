@@ -10,3 +10,4 @@ xgboost>=2.0
 # (a plain `pip install torch` gives the CPU build, which also works, slower)
 torch>=2.2
 pytest>=7
+matplotlib>=3.7

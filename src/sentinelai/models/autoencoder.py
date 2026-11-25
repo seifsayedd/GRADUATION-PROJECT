@@ -78,7 +78,7 @@ class Autoencoder:
                 loss = ((self.net_(x) - x) ** 2).mean()
                 loss.backward()
                 opt.step()
-                total += float(loss) * len(x)
+                total += loss.item() * len(x)
             val_loss = float(self._errors(Xva).mean())
             self.history_.append({"epoch": ep + 1, "train_mse": total / len(Xtr), "val_mse": val_loss})
             if val_loss < best - 1e-6:
