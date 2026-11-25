@@ -1,0 +1,306 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SentinelAI alert explanation",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "alert_id",
+    "flow",
+    "model",
+    "decision",
+    "caveats",
+    "summary"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "enum": [
+        "1.0"
+      ]
+    },
+    "alert_id": {
+      "type": "string"
+    },
+    "flow": {
+      "type": "object",
+      "required": [
+        "src",
+        "dst",
+        "protocol",
+        "start_ms"
+      ],
+      "properties": {
+        "src": {
+          "type": "string"
+        },
+        "src_port": {
+          "type": "number"
+        },
+        "dst": {
+          "type": "string"
+        },
+        "dst_port": {
+          "type": "number"
+        },
+        "protocol": {
+          "type": "string"
+        },
+        "start_ms": {
+          "type": "number"
+        },
+        "dataset": {
+          "type": "string"
+        }
+      }
+    },
+    "ground_truth": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "number"
+        },
+        "attack": {
+          "type": "string"
+        },
+        "tactic": {
+          "type": "string"
+        }
+      }
+    },
+    "model": {
+      "type": "object",
+      "required": [
+        "stage",
+        "name",
+        "feature_set",
+        "git_commit"
+      ],
+      "properties": {
+        "stage": {
+          "type": "number"
+        },
+        "name": {
+          "type": "string"
+        },
+        "feature_set": {
+          "type": "string"
+        },
+        "git_commit": {
+          "type": "string"
+        }
+      }
+    },
+    "decision": {
+      "type": "object",
+      "required": [
+        "score",
+        "score_kind",
+        "threshold",
+        "operating_point",
+        "flagged"
+      ],
+      "properties": {
+        "score": {
+          "type": "number"
+        },
+        "score_kind": {
+          "type": "string"
+        },
+        "threshold": {
+          "type": "number"
+        },
+        "operating_point": {
+          "type": "string"
+        },
+        "flagged": {
+          "type": "boolean"
+        }
+      }
+    },
+    "tactic": {
+      "type": "object",
+      "required": [
+        "predicted",
+        "confidence"
+      ],
+      "properties": {
+        "predicted": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "number"
+        },
+        "taxonomy_note": {
+          "type": "string"
+        }
+      }
+    },
+    "contributions": {
+      "type": "object",
+      "required": [
+        "space",
+        "base_value",
+        "output",
+        "items",
+        "rest",
+        "additivity_error"
+      ],
+      "properties": {
+        "space": {
+          "type": "string",
+          "enum": [
+            "log-odds",
+            "margin",
+            "probability",
+            "squared error"
+          ]
+        },
+        "base_value": {
+          "type": "number"
+        },
+        "output": {
+          "type": "number"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "feature",
+              "value",
+              "contribution",
+              "direction"
+            ],
+            "properties": {
+              "feature": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "contribution": {
+                "type": "number"
+              },
+              "direction": {
+                "type": "string",
+                "enum": [
+                  "towards attack",
+                  "towards benign",
+                  "towards this tactic",
+                  "against this tactic",
+                  "abnormal"
+                ]
+              }
+            }
+          }
+        },
+        "rest": {
+          "type": "number"
+        },
+        "additivity_error": {
+          "type": "number"
+        }
+      }
+    },
+    "tactic_contributions": {
+      "type": "object",
+      "required": [
+        "space",
+        "base_value",
+        "output",
+        "items",
+        "rest",
+        "additivity_error"
+      ],
+      "properties": {
+        "space": {
+          "type": "string",
+          "enum": [
+            "log-odds",
+            "margin",
+            "probability",
+            "squared error"
+          ]
+        },
+        "base_value": {
+          "type": "number"
+        },
+        "output": {
+          "type": "number"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "feature",
+              "value",
+              "contribution",
+              "direction"
+            ],
+            "properties": {
+              "feature": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "contribution": {
+                "type": "number"
+              },
+              "direction": {
+                "type": "string",
+                "enum": [
+                  "towards attack",
+                  "towards benign",
+                  "towards this tactic",
+                  "against this tactic",
+                  "abnormal"
+                ]
+              }
+            }
+          }
+        },
+        "rest": {
+          "type": "number"
+        },
+        "additivity_error": {
+          "type": "number"
+        }
+      }
+    },
+    "attention": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "offset",
+          "weight"
+        ],
+        "properties": {
+          "offset": {
+            "type": "number"
+          },
+          "weight": {
+            "type": "number"
+          },
+          "occlusion_delta": {
+            "type": "number"
+          },
+          "flow": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "caveats": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "summary": {
+      "type": "string"
+    }
+  }
+}

@@ -18,6 +18,7 @@ dependencies = [
     "xgboost>=2.0",
     "torch>=2.2",
     "matplotlib>=3.7",
+    "shap>=0.46",
 ]
 
 [project.optional-dependencies]

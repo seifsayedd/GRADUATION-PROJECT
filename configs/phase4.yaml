@@ -1,0 +1,29 @@
+# Phase 4 explainability settings. configs/phase2.yaml is loaded first.
+base_config: configs/phase2.yaml
+
+phase4:
+  reports_dir: reports/phase4
+  per_tactic: 150          # XGBoost: flagged test flows explained per true tactic (Benign = false alarms)
+  rf_per_tactic: 40        # Random Forest SHAP is slower: smaller sample
+  stage3_per_tactic: 100
+  stage2_per_tactic: 100
+  holdout_rows: 400        # per held-out class
+  reference_rows: 20000    # benign training flows that define "typical benign" for the deletion test
+  deletion_k: [1, 3, 5]
+  top_k: 8
+  # Caveats copied into every explanation. Each one restates a measured result (Phase 2/3).
+  caveats:
+    stage1:
+      - "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+      - "SHAP values explain this model's output, not the attacker's intent."
+    holdout:
+      - "This attack class was never in training (Phase 2 holdout)."
+    lab_xgboost:
+      - "On the real lab, this model flagged 47 of 53 benign conversations (Phase 2)."
+    lab_random_forest:
+      - "On the real lab, this model flagged 16 of 53 benign conversations (Phase 2)."
+    stage2:
+      - "Test windows come from the same capture days as training, so Stage 2 scores are somewhat optimistic (Phase 2)."
+      - "Attention shows where the model looked, which is not always what changed its decision; see occlusion_delta."
+    stage3:
+      - "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
