@@ -51,9 +51,15 @@ def assert_no_synthetic(*frames: pd.DataFrame) -> None:
             raise SyntheticLeakError(f"frame {i} contains {n} synthetic rows; synthetic data is train-only")
 
 
-def _two_way(df, test_size, by, label_col, group_col, seed):
+def _two_way(df, test_size, by, label_col, group_col, seed, strata=None):
     if len(df) == 0 or test_size == 0:
         return df, df.iloc[0:0]
+    if by == "temporal" and strata:
+        # time cut inside each stratum, so every class keeps an early part in train
+        # and a later part in test (no stratum ends up test-only)
+        parts = [_two_way(g, test_size, by, label_col, group_col, seed)
+                 for _, g in df.groupby(strata, sort=False)]
+        return pd.concat([a for a, _ in parts]), pd.concat([b for _, b in parts])
     if by == "group":
         gss = GroupShuffleSplit(n_splits=1, test_size=test_size, random_state=seed)
         a, b = next(gss.split(df, groups=df[group_col]))
@@ -69,14 +75,17 @@ def _two_way(df, test_size, by, label_col, group_col, seed):
 def make_splits(df: pd.DataFrame, *, by: str = "stratified", label_col: str = "Attack",
                 group_col: str | None = None, val_size: float = 0.15, test_size: float = 0.15,
                 holdout_attacks: list[str] | None = None, attack_col: str = "Attack",
-                id_col: str = "row_id", source_col: str = "source_row", seed: int = 42) -> Splits:
+                id_col: str = "row_id", source_col: str = "source_row", seed: int = 42,
+                temporal_strata: list[str] | None = None) -> Splits:
     """Split ``df`` into train/val/test (+ holdout) before any resampling.
 
     ``by``:
       * ``"stratified"`` random rows, stratified on ``label_col`` when every class has >= 2 rows
       * ``"group"``      no group (``group_col``, e.g. ``session_id``) spans two splits
       * ``"temporal"``   ordered by ``group_col`` (e.g. ``FLOW_START_MILLISECONDS``):
-                         train is earliest, test is latest
+                         train is earliest, test is latest. With ``temporal_strata``
+                         (e.g. ``["source", "Attack"]``) the cut is made inside each
+                         stratum, so no class or source becomes test-only.
     ``val_size`` and ``test_size`` are fractions of the non-holdout real rows.
     """
     if by not in ("stratified", "group", "temporal"):
@@ -92,9 +101,9 @@ def make_splits(df: pd.DataFrame, *, by: str = "stratified", label_col: str = "A
     hold_mask = real[attack_col].isin(holdout_attacks) if holdout_attacks else pd.Series(False, index=real.index)
     holdout, pool = real[hold_mask], real[~hold_mask]
 
-    rest, test = _two_way(pool, test_size, by, label_col, group_col, seed)
+    rest, test = _two_way(pool, test_size, by, label_col, group_col, seed, temporal_strata)
     rel_val = val_size / (1 - test_size) if test_size < 1 else 0
-    train, val = _two_way(rest, rel_val, by, label_col, group_col, seed + 1)
+    train, val = _two_way(rest, rel_val, by, label_col, group_col, seed + 1, temporal_strata)
 
     if len(synth):
         if id_col not in df or source_col not in df:

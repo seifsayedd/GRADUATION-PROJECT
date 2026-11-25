@@ -72,3 +72,25 @@ def bigflow_files(tmp_path, bigflow_df):
     bigflow_df.iloc[:half].to_parquet(pq_dir / "part-0.parquet", index=False)
     bigflow_df.iloc[half:].to_parquet(pq_dir / "part-1.parquet", index=False)
     return {"csv": csv / "bigflow.csv", "csv_dir": csv, "parquet_dir": pq_dir}
+
+
+def make_labeled_fixture(n: int = 1200, seed: int = 0) -> pd.DataFrame:
+    """BigFlow-shaped TEST FIXTURE with tactic/source columns and a planted signal
+    (attack rows send more bytes), so tiny models have something to learn.
+    Not data; never used for any reported number."""
+    from sentinelai.data.taxonomy import TAXONOMY
+    rng = np.random.default_rng(seed)
+    df = make_bigflow_fixture(n, seed)
+    attacks = ["Benign"] * 6 + ["DDoS", "scanning", "password", "Bot"]
+    df["Attack"] = rng.choice(attacks, n)
+    df["Label"] = (df.Attack != "Benign").astype(int)
+    df.loc[df.Label == 1, "IN_BYTES"] *= 50
+    df.loc[df.Attack == "scanning", "OUT_PKTS"] = 0
+    df["tactic"] = df.Attack.map({k: v.tactic for k, v in TAXONOMY.items()})
+    df["source"] = "ToN-IoT"
+    return df
+
+
+@pytest.fixture
+def labeled_df() -> pd.DataFrame:
+    return make_labeled_fixture()

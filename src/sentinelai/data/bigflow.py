@@ -87,17 +87,19 @@ def load_bigflow(path: str | Path, nrows: int | None = None, columns: Sequence[s
 
 def sample_bigflow(path: str | Path, per_class_cap: int, class_col: str = ATTACK_COL, seed: int = 42,
                    columns: Sequence[str] | None = None, chunksize: int = 500_000,
-                   validate: bool = True) -> pd.DataFrame:
+                   validate: bool = True, class_caps: dict | None = None) -> pd.DataFrame:
     """Class-stratified sample: up to ``per_class_cap`` rows per value of ``class_col``.
 
     One pass, bounded memory. Every row gets a random key and, per class, the
-    ``per_class_cap`` rows with the smallest keys are kept. That is a uniform
-    sample without replacement within each class, so rare classes are kept in
-    full and large classes are capped. The result is unchanged for a given seed
-    and chunk size.
+    rows with the smallest keys are kept. That is a uniform sample without
+    replacement within each class, so rare classes are kept in full and large
+    classes are capped. ``class_caps`` overrides the cap for named classes
+    (e.g. a larger cap for ``Benign`` to keep a realistic base rate). The
+    result is unchanged for a given seed and chunk size.
     """
-    if per_class_cap <= 0:
-        raise ValueError("per_class_cap must be positive")
+    caps = dict(class_caps or {})
+    if per_class_cap <= 0 or any(v <= 0 for v in caps.values()):
+        raise ValueError("caps must be positive")
     rng = np.random.default_rng(seed)
     kept: dict[object, pd.DataFrame] = {}
     for chunk in iter_bigflow(path, columns=columns, chunksize=chunksize, validate=validate):
@@ -106,6 +108,6 @@ def sample_bigflow(path: str | Path, per_class_cap: int, class_col: str = ATTACK
         chunk = chunk.assign(_key=rng.random(len(chunk)))
         for cls, g in chunk.groupby(class_col, sort=False):
             merged = g if cls not in kept else pd.concat([kept[cls], g])
-            kept[cls] = merged.nsmallest(per_class_cap, "_key")
+            kept[cls] = merged.nsmallest(caps.get(cls, per_class_cap), "_key")
     out = pd.concat(kept.values()).sort_values("_key").drop(columns="_key")
     return out.reset_index(drop=True)
