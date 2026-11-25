@@ -15,7 +15,7 @@
       "stage": 1,
       "name": "xgboost_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "1346e03"
+      "git_commit": "52c7f1e"
     },
     "ground_truth": {
       "label": 1.0,
@@ -23,7 +23,7 @@
       "tactic": "Impact"
     },
     "decision": {
-      "score": 0.997951,
+      "score": 0.989391,
       "score_kind": "probability of attack",
       "threshold": 0.5,
       "operating_point": "default",
@@ -31,126 +31,126 @@
     },
     "contributions": {
       "space": "log-odds",
-      "base_value": 0.050097,
-      "output": 6.188362,
+      "base_value": 0.01906,
+      "output": 4.53535,
       "items": [
-        {
-          "feature": "SRC_TO_DST_AVG_THROUGHPUT",
-          "value": "480,000",
-          "contribution": 2.063456,
-          "direction": "towards attack"
-        },
         {
           "feature": "L4_DST_PORT",
           "value": "80 (well-known)",
-          "contribution": 1.183019,
-          "direction": "towards attack"
-        },
-        {
-          "feature": "OUT_BYTES",
-          "value": "52",
-          "contribution": 0.941113,
-          "direction": "towards attack"
-        },
-        {
-          "feature": "IN_BYTES",
-          "value": "60",
-          "contribution": 0.745145,
+          "contribution": 1.508036,
           "direction": "towards attack"
         },
         {
           "feature": "PROTOCOL",
           "value": "6 (TCP)",
-          "contribution": 0.687221,
+          "contribution": 0.979301,
+          "direction": "towards attack"
+        },
+        {
+          "feature": "SRC_TO_DST_AVG_THROUGHPUT",
+          "value": "480,000",
+          "contribution": 0.925556,
           "direction": "towards attack"
         },
         {
           "feature": "L4_SRC_PORT",
           "value": "37780 (registered)",
-          "contribution": 0.429502,
+          "contribution": 0.432597,
+          "direction": "towards attack"
+        },
+        {
+          "feature": "IN_BYTES",
+          "value": "60",
+          "contribution": 0.334565,
+          "direction": "towards attack"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "52",
+          "contribution": 0.221405,
+          "direction": "towards attack"
+        },
+        {
+          "feature": "IN_PKTS",
+          "value": "1",
+          "contribution": 0.181379,
           "direction": "towards attack"
         },
         {
           "feature": "FLOW_DURATION_MILLISECONDS",
           "value": "1",
-          "contribution": -0.141756,
+          "contribution": -0.177067,
           "direction": "towards benign"
-        },
-        {
-          "feature": "OUT_PKTS",
-          "value": "1",
-          "contribution": 0.09876,
-          "direction": "towards attack"
         }
       ],
-      "rest": 0.131807,
-      "additivity_error": 4.76837158203125e-06
+      "rest": 0.110517,
+      "additivity_error": 1.430511474609375e-06
     },
     "tactic": {
       "predicted": "Initial Access",
-      "confidence": 0.633275
+      "confidence": 0.632473
     },
     "tactic_contributions": {
       "space": "margin",
-      "base_value": 0.076364,
-      "output": 1.991183,
+      "base_value": 0.075546,
+      "output": 1.895976,
       "items": [
-        {
-          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
-          "value": "416,000",
-          "contribution": 1.443193,
-          "direction": "towards this tactic"
-        },
         {
           "feature": "OUT_BYTES",
           "value": "52",
-          "contribution": 1.182006,
+          "contribution": 1.337549,
+          "direction": "towards this tactic"
+        },
+        {
+          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
+          "value": "416,000",
+          "contribution": 1.008053,
           "direction": "towards this tactic"
         },
         {
           "feature": "SRC_TO_DST_AVG_THROUGHPUT",
           "value": "480,000",
-          "contribution": -0.649986,
+          "contribution": -0.579131,
           "direction": "against this tactic"
         },
         {
           "feature": "IN_BYTES",
           "value": "60",
-          "contribution": -0.506029,
+          "contribution": -0.504055,
           "direction": "against this tactic"
+        },
+        {
+          "feature": "L4_DST_PORT",
+          "value": "80 (well-known)",
+          "contribution": 0.237666,
+          "direction": "towards this tactic"
         },
         {
           "feature": "L4_SRC_PORT",
           "value": "37780 (registered)",
-          "contribution": 0.182312,
+          "contribution": 0.170209,
           "direction": "towards this tactic"
         },
         {
           "feature": "IN_PKTS",
           "value": "1",
-          "contribution": 0.17246,
+          "contribution": 0.140146,
           "direction": "towards this tactic"
         },
         {
-          "feature": "L4_DST_PORT",
-          "value": "80 (well-known)",
-          "contribution": 0.077949,
-          "direction": "towards this tactic"
-        },
-        {
-          "feature": "FLOW_DURATION_MILLISECONDS",
-          "value": "1",
-          "contribution": 0.067661,
-          "direction": "towards this tactic"
+          "feature": "DURATION_IN",
+          "value": "0",
+          "contribution": -0.073743,
+          "direction": "against this tactic"
         }
       ],
-      "rest": -0.054748,
-      "additivity_error": 1.430511474609375e-06
+      "rest": 0.083736,
+      "additivity_error": 1.9073486328125e-06
     },
     "caveats": [
       "This attack class was never in training (Phase 2 holdout)."
     ],
-    "summary": "Stage 1 (xgboost_temporal_lab) flagged the TCP flow 18.217.165.70:37780 -> 172.31.69.25:80 (score 0.998, threshold 0.500, probability of attack). Predicted tactic: Initial Access (confidence 0.633). Strongest evidence for attack (log-odds): SRC_TO_DST_AVG_THROUGHPUT = 480,000 (+2.063); L4_DST_PORT = 80 (well-known) (+1.183); OUT_BYTES = 52 (+0.941). Strongest evidence against (log-odds): FLOW_DURATION_MILLISECONDS = 1 (-0.142). Caveat: This attack class was never in training (Phase 2 holdout)."
+    "summary": "Stage 1 (xgboost_temporal_lab) flagged the TCP flow 18.217.165.70:37780 -> 172.31.69.25:80 (score 0.989, threshold 0.500, probability of attack). Predicted tactic: Initial Access (confidence 0.632). Strongest evidence for attack (log-odds): L4_DST_PORT = 80 (well-known) (+1.508); PROTOCOL = 6 (TCP) (+0.979); SRC_TO_DST_AVG_THROUGHPUT = 480,000 (+0.926). Strongest evidence against (log-odds): FLOW_DURATION_MILLISECONDS = 1 (-0.177). Caveat: This attack class was never in training (Phase 2 holdout)."
   },
   {
     "schema_version": "1.0",
@@ -168,7 +168,7 @@
       "stage": 1,
       "name": "xgboost_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "1346e03"
+      "git_commit": "52c7f1e"
     },
     "ground_truth": {
       "label": 1.0,
@@ -176,7 +176,7 @@
       "tactic": "Impact"
     },
     "decision": {
-      "score": 0.988448,
+      "score": 0.848646,
       "score_kind": "probability of attack",
       "threshold": 0.5,
       "operating_point": "default",
@@ -184,125 +184,125 @@
     },
     "contributions": {
       "space": "log-odds",
-      "base_value": 0.050097,
-      "output": 4.449277,
+      "base_value": 0.01906,
+      "output": 1.724018,
       "items": [
-        {
-          "feature": "OUT_PKTS",
-          "value": "4",
-          "contribution": 1.367705,
-          "direction": "towards attack"
-        },
         {
           "feature": "L4_DST_PORT",
           "value": "80 (well-known)",
-          "contribution": 0.989056,
+          "contribution": 0.809021,
           "direction": "towards attack"
         },
         {
-          "feature": "OUT_BYTES",
-          "value": "724",
-          "contribution": 0.928275,
+          "feature": "L4_SRC_PORT",
+          "value": "38084 (registered)",
+          "contribution": 0.764415,
           "direction": "towards attack"
         },
         {
-          "feature": "DST_TO_SRC_SECOND_BYTES",
-          "value": "0",
-          "contribution": -0.696208,
+          "feature": "DURATION_OUT",
+          "value": "2,557",
+          "contribution": -0.65389,
           "direction": "towards benign"
-        },
-        {
-          "feature": "FLOW_DURATION_MILLISECONDS",
-          "value": "2,593",
-          "contribution": 0.456033,
-          "direction": "towards attack"
         },
         {
           "feature": "IN_BYTES",
           "value": "232",
-          "contribution": 0.422025,
+          "contribution": 0.56187,
           "direction": "towards attack"
         },
         {
           "feature": "PROTOCOL",
           "value": "6 (TCP)",
-          "contribution": 0.379789,
+          "contribution": 0.322557,
           "direction": "towards attack"
         },
         {
-          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
-          "value": "2,232",
-          "contribution": 0.358037,
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "80",
+          "contribution": -0.307463,
+          "direction": "towards benign"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "4",
+          "contribution": 0.20023,
+          "direction": "towards attack"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "724",
+          "contribution": 0.159354,
           "direction": "towards attack"
         }
       ],
-      "rest": 0.194469,
-      "additivity_error": 4.76837158203125e-06
+      "rest": -0.151136,
+      "additivity_error": 1.430511474609375e-06
     },
     "tactic": {
-      "predicted": "Credential Access",
-      "confidence": 0.546572
+      "predicted": "Initial Access",
+      "confidence": 0.43375
     },
     "tactic_contributions": {
       "space": "margin",
-      "base_value": 0.048677,
-      "output": 0.279908,
+      "base_value": 0.075546,
+      "output": 0.355195,
       "items": [
         {
           "feature": "OUT_BYTES",
           "value": "724",
-          "contribution": -0.693087,
+          "contribution": 0.638584,
+          "direction": "towards this tactic"
+        },
+        {
+          "feature": "FLOW_DURATION_MILLISECONDS",
+          "value": "2,593",
+          "contribution": -0.49191,
           "direction": "against this tactic"
         },
         {
-          "feature": "DST_TO_SRC_SECOND_BYTES",
-          "value": "0",
-          "contribution": 0.595299,
-          "direction": "towards this tactic"
-        },
-        {
-          "feature": "DURATION_OUT",
-          "value": "2,557",
-          "contribution": 0.553555,
-          "direction": "towards this tactic"
-        },
-        {
-          "feature": "SRC_TO_DST_SECOND_BYTES",
-          "value": "0",
-          "contribution": 0.423438,
-          "direction": "towards this tactic"
-        },
-        {
-          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
-          "value": "2,232",
-          "contribution": -0.388862,
-          "direction": "against this tactic"
-        },
-        {
-          "feature": "ICMP_TYPE",
-          "value": "20480",
-          "contribution": -0.295813,
+          "feature": "IN_PKTS",
+          "value": "5",
+          "contribution": -0.314013,
           "direction": "against this tactic"
         },
         {
           "feature": "SRC_TO_DST_AVG_THROUGHPUT",
           "value": "715",
-          "contribution": 0.250137,
+          "contribution": 0.286307,
+          "direction": "towards this tactic"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "20480",
+          "contribution": 0.285553,
           "direction": "towards this tactic"
         },
         {
           "feature": "OUT_PKTS",
           "value": "4",
-          "contribution": -0.178184,
+          "contribution": -0.247039,
+          "direction": "against this tactic"
+        },
+        {
+          "feature": "IN_BYTES",
+          "value": "232",
+          "contribution": 0.203007,
+          "direction": "towards this tactic"
+        },
+        {
+          "feature": "DURATION_IN",
+          "value": "2,593",
+          "contribution": -0.132196,
           "direction": "against this tactic"
         }
       ],
-      "rest": -0.035253,
-      "additivity_error": 1.430511474609375e-06
+      "rest": 0.051355,
+      "additivity_error": 1.9073486328125e-06
     },
     "caveats": [
       "This attack class was never in training (Phase 2 holdout)."
     ],
-    "summary": "Stage 1 (xgboost_temporal_lab) flagged the TCP flow 18.217.165.70:38084 -> 172.31.69.25:80 (score 0.988, threshold 0.500, probability of attack). Predicted tactic: Credential Access (confidence 0.547). Strongest evidence for attack (log-odds): OUT_PKTS = 4 (+1.368); L4_DST_PORT = 80 (well-known) (+0.989); OUT_BYTES = 724 (+0.928). Strongest evidence against (log-odds): DST_TO_SRC_SECOND_BYTES = 0 (-0.696). Caveat: This attack class was never in training (Phase 2 holdout)."
+    "summary": "Stage 1 (xgboost_temporal_lab) flagged the TCP flow 18.217.165.70:38084 -> 172.31.69.25:80 (score 0.849, threshold 0.500, probability of attack). Predicted tactic: Initial Access (confidence 0.434). Strongest evidence for attack (log-odds): L4_DST_PORT = 80 (well-known) (+0.809); L4_SRC_PORT = 38084 (registered) (+0.764); IN_BYTES = 232 (+0.562). Strongest evidence against (log-odds): DURATION_OUT = 2,557 (-0.654); ICMP_IPV4_TYPE = 80 (-0.307). Caveat: This attack class was never in training (Phase 2 holdout)."
   }
 ]

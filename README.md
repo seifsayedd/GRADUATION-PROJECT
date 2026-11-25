@@ -134,7 +134,7 @@ python scripts/train_phase2.py --stage 2 --lab # GRU + attention, then score the
 | 2 | GRU (or LSTM) + attention | Labels each flow from that host's previous 31 flows plus the time gaps between them |
 | 3 | Autoencoder | Trained on benign flows only. Flags flows it reconstructs badly; threshold set for a 1% false-positive rate on benign validation traffic |
 
-Each model is trained twice: on the **full** feature set, and on the **lab** set (the 16 features our lab sensor can fill). Only the lab set can score lab flows. Three attack classes (`SSH-Bruteforce`, `DoS_attacks-Slowloris`, `Backdoor`) are held out of training completely, to test detection of unseen attacks.
+Each model is trained twice: on the **full** feature set, and on the **lab** set (the 14 model inputs our lab sensor can fill; 16 before the Phase 4 mapping fix). Only the lab set can score lab flows. Three attack classes (`SSH-Bruteforce`, `DoS_attacks-Slowloris`, `Backdoor`) are held out of training completely, to test detection of unseen attacks.
 
 Models are saved in `models/` (git-ignored). Metrics go to `reports/phase2/`, and **[`summary.md`](reports/phase2/summary.md)** lists every number, including the weak ones.
 
@@ -177,6 +177,8 @@ python scripts/explain_phase4.py --only lab      # just the real lab conversatio
 | Stage 3 | Each feature's share of the reconstruction error |
 | Trust checks | Deletion test (top-k features vs random k), stability across near-identical flows |
 | Explanation object | One JSON object per alert ([schema](docs/schema/explanation.schema.json)) with flow, model, decision, top features, attention and caveats, plus a template summary with no LLM |
+
+Phase 4 found that the lab's bytes-per-second features didn't match BigFlow's definition, and that lab throughput was divided by the wrong duration. The mapping was fixed and the lab-feature models were retrained (`python scripts/train_phase2.py --stage 1 --feature-set lab`, then `--stage 3` and `--stage 2 --lab` the same way). Phases 3 and 4 were rerun for the lab set (`python scripts/evaluate_phase3.py --force --only predict eval combined lab`, then `--only loso stage3 figures report --feature-sets lab`).
 
 Results are in **[`reports/phase4/report.md`](reports/phase4/report.md)**, with example objects in `reports/phase4/examples/` and every lab conversation explained in `reports/phase4/lab/`. The written findings are in [`docs/phase4-findings.md`](docs/phase4-findings.md).
 

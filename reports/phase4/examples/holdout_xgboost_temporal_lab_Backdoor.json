@@ -15,7 +15,7 @@
       "stage": 1,
       "name": "xgboost_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "1346e03"
+      "git_commit": "52c7f1e"
     },
     "ground_truth": {
       "label": 1.0,
@@ -23,73 +23,135 @@
       "tactic": "Command and Control"
     },
     "decision": {
-      "score": 0.102931,
+      "score": 0.79828,
       "score_kind": "probability of attack",
       "threshold": 0.5,
       "operating_point": "default",
-      "flagged": false
+      "flagged": true
     },
     "contributions": {
       "space": "log-odds",
-      "base_value": 0.050097,
-      "output": -2.165069,
+      "base_value": 0.01906,
+      "output": 1.375579,
       "items": [
         {
           "feature": "L4_DST_PORT",
           "value": "8080 (registered)",
-          "contribution": -1.572095,
+          "contribution": -0.904516,
           "direction": "towards benign"
         },
         {
-          "feature": "SRC_TO_DST_SECOND_BYTES",
-          "value": "0",
-          "contribution": -0.930153,
-          "direction": "towards benign"
+          "feature": "ICMP_TYPE",
+          "value": "36864",
+          "contribution": 0.627419,
+          "direction": "towards attack"
         },
         {
           "feature": "FLOW_DURATION_MILLISECONDS",
           "value": "1,531",
-          "contribution": 0.704855,
-          "direction": "towards attack"
-        },
-        {
-          "feature": "DST_TO_SRC_SECOND_BYTES",
-          "value": "0",
-          "contribution": -0.693362,
-          "direction": "towards benign"
-        },
-        {
-          "feature": "OUT_PKTS",
-          "value": "6",
-          "contribution": -0.370662,
-          "direction": "towards benign"
-        },
-        {
-          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
-          "value": "1,253",
-          "contribution": 0.244473,
+          "contribution": 0.57205,
           "direction": "towards attack"
         },
         {
           "feature": "IN_BYTES",
           "value": "288",
-          "contribution": 0.222637,
+          "contribution": 0.515204,
+          "direction": "towards attack"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "240",
+          "contribution": 0.392109,
+          "direction": "towards attack"
+        },
+        {
+          "feature": "DURATION_OUT",
+          "value": "1,530",
+          "contribution": -0.299312,
+          "direction": "towards benign"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "6",
+          "contribution": 0.245414,
           "direction": "towards attack"
         },
         {
           "feature": "PROTOCOL",
           "value": "6 (TCP)",
-          "contribution": 0.205287,
+          "contribution": 0.221762,
           "direction": "towards attack"
         }
       ],
-      "rest": -0.026147,
-      "additivity_error": 4.76837158203125e-06
+      "rest": -0.013611,
+      "additivity_error": 2.384185791015625e-06
+    },
+    "tactic": {
+      "predicted": "Reconnaissance/Discovery",
+      "confidence": 0.461953,
+      "taxonomy_note": "Reconnaissance and Discovery are one merged class (see docs/attack-taxonomy.md)."
+    },
+    "tactic_contributions": {
+      "space": "margin",
+      "base_value": 0.053347,
+      "output": 1.561031,
+      "items": [
+        {
+          "feature": "L4_DST_PORT",
+          "value": "8080 (registered)",
+          "contribution": 0.382316,
+          "direction": "towards this tactic"
+        },
+        {
+          "feature": "IN_PKTS",
+          "value": "6",
+          "contribution": 0.247648,
+          "direction": "towards this tactic"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "144",
+          "contribution": 0.193233,
+          "direction": "towards this tactic"
+        },
+        {
+          "feature": "L4_SRC_PORT",
+          "value": "57540 (dynamic)",
+          "contribution": 0.189687,
+          "direction": "towards this tactic"
+        },
+        {
+          "feature": "DURATION_OUT",
+          "value": "1,530",
+          "contribution": 0.16577,
+          "direction": "towards this tactic"
+        },
+        {
+          "feature": "FLOW_DURATION_MILLISECONDS",
+          "value": "1,531",
+          "contribution": -0.163575,
+          "direction": "against this tactic"
+        },
+        {
+          "feature": "SRC_TO_DST_AVG_THROUGHPUT",
+          "value": "1,503",
+          "contribution": 0.160669,
+          "direction": "towards this tactic"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "240",
+          "contribution": 0.157078,
+          "direction": "towards this tactic"
+        }
+      ],
+      "rest": 0.174859,
+      "additivity_error": 1.9073486328125e-06
     },
     "caveats": [
       "This attack class was never in training (Phase 2 holdout)."
     ],
-    "summary": "Stage 1 (xgboost_temporal_lab) did not flag the TCP flow 192.168.1.193:57540 -> 192.168.1.33:8080 (score 0.103, threshold 0.500, probability of attack). Strongest evidence for attack (log-odds): FLOW_DURATION_MILLISECONDS = 1,531 (+0.705); DST_TO_SRC_AVG_THROUGHPUT = 1,253 (+0.244); IN_BYTES = 288 (+0.223). Strongest evidence against (log-odds): L4_DST_PORT = 8080 (registered) (-1.572); SRC_TO_DST_SECOND_BYTES = 0 (-0.930). Caveat: This attack class was never in training (Phase 2 holdout)."
+    "summary": "Stage 1 (xgboost_temporal_lab) flagged the TCP flow 192.168.1.193:57540 -> 192.168.1.33:8080 (score 0.798, threshold 0.500, probability of attack). Predicted tactic: Reconnaissance/Discovery (confidence 0.462). Strongest evidence for attack (log-odds): ICMP_TYPE = 36864 (+0.627); FLOW_DURATION_MILLISECONDS = 1,531 (+0.572); IN_BYTES = 288 (+0.515). Strongest evidence against (log-odds): L4_DST_PORT = 8080 (registered) (-0.905); DURATION_OUT = 1,530 (-0.299). Caveat: This attack class was never in training (Phase 2 holdout)."
   },
   {
     "schema_version": "1.0",
@@ -107,7 +169,7 @@
       "stage": 1,
       "name": "xgboost_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "1346e03"
+      "git_commit": "52c7f1e"
     },
     "ground_truth": {
       "label": 1.0,
@@ -115,72 +177,134 @@
       "tactic": "Command and Control"
     },
     "decision": {
-      "score": 0.102931,
+      "score": 0.79828,
       "score_kind": "probability of attack",
       "threshold": 0.5,
       "operating_point": "default",
-      "flagged": false
+      "flagged": true
     },
     "contributions": {
       "space": "log-odds",
-      "base_value": 0.050097,
-      "output": -2.165069,
+      "base_value": 0.01906,
+      "output": 1.375579,
       "items": [
         {
           "feature": "L4_DST_PORT",
           "value": "8080 (registered)",
-          "contribution": -1.570927,
+          "contribution": -0.921892,
           "direction": "towards benign"
         },
         {
-          "feature": "SRC_TO_DST_SECOND_BYTES",
-          "value": "0",
-          "contribution": -0.930153,
-          "direction": "towards benign"
+          "feature": "ICMP_TYPE",
+          "value": "36864",
+          "contribution": 0.628603,
+          "direction": "towards attack"
         },
         {
           "feature": "FLOW_DURATION_MILLISECONDS",
           "value": "1,501",
-          "contribution": 0.704724,
-          "direction": "towards attack"
-        },
-        {
-          "feature": "DST_TO_SRC_SECOND_BYTES",
-          "value": "0",
-          "contribution": -0.693362,
-          "direction": "towards benign"
-        },
-        {
-          "feature": "OUT_PKTS",
-          "value": "6",
-          "contribution": -0.371466,
-          "direction": "towards benign"
-        },
-        {
-          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
-          "value": "1,278",
-          "contribution": 0.247424,
+          "contribution": 0.572206,
           "direction": "towards attack"
         },
         {
           "feature": "IN_BYTES",
           "value": "288",
-          "contribution": 0.223831,
+          "contribution": 0.520931,
+          "direction": "towards attack"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "240",
+          "contribution": 0.392578,
+          "direction": "towards attack"
+        },
+        {
+          "feature": "DURATION_OUT",
+          "value": "1,501",
+          "contribution": -0.294181,
+          "direction": "towards benign"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "6",
+          "contribution": 0.245232,
           "direction": "towards attack"
         },
         {
           "feature": "PROTOCOL",
           "value": "6 (TCP)",
-          "contribution": 0.205061,
+          "contribution": 0.220025,
           "direction": "towards attack"
         }
       ],
-      "rest": -0.0303,
-      "additivity_error": 4.76837158203125e-06
+      "rest": -0.006983,
+      "additivity_error": 2.384185791015625e-06
+    },
+    "tactic": {
+      "predicted": "Reconnaissance/Discovery",
+      "confidence": 0.461953,
+      "taxonomy_note": "Reconnaissance and Discovery are one merged class (see docs/attack-taxonomy.md)."
+    },
+    "tactic_contributions": {
+      "space": "margin",
+      "base_value": 0.053347,
+      "output": 1.561031,
+      "items": [
+        {
+          "feature": "L4_DST_PORT",
+          "value": "8080 (registered)",
+          "contribution": 0.382316,
+          "direction": "towards this tactic"
+        },
+        {
+          "feature": "IN_PKTS",
+          "value": "6",
+          "contribution": 0.247648,
+          "direction": "towards this tactic"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "144",
+          "contribution": 0.193233,
+          "direction": "towards this tactic"
+        },
+        {
+          "feature": "L4_SRC_PORT",
+          "value": "54027 (dynamic)",
+          "contribution": 0.189687,
+          "direction": "towards this tactic"
+        },
+        {
+          "feature": "DURATION_OUT",
+          "value": "1,501",
+          "contribution": 0.16577,
+          "direction": "towards this tactic"
+        },
+        {
+          "feature": "FLOW_DURATION_MILLISECONDS",
+          "value": "1,501",
+          "contribution": -0.163575,
+          "direction": "against this tactic"
+        },
+        {
+          "feature": "SRC_TO_DST_AVG_THROUGHPUT",
+          "value": "1,533",
+          "contribution": 0.160669,
+          "direction": "towards this tactic"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "240",
+          "contribution": 0.157078,
+          "direction": "towards this tactic"
+        }
+      ],
+      "rest": 0.174859,
+      "additivity_error": 1.9073486328125e-06
     },
     "caveats": [
       "This attack class was never in training (Phase 2 holdout)."
     ],
-    "summary": "Stage 1 (xgboost_temporal_lab) did not flag the TCP flow 192.168.1.193:54027 -> 192.168.1.37:8080 (score 0.103, threshold 0.500, probability of attack). Strongest evidence for attack (log-odds): FLOW_DURATION_MILLISECONDS = 1,501 (+0.705); DST_TO_SRC_AVG_THROUGHPUT = 1,278 (+0.247); IN_BYTES = 288 (+0.224). Strongest evidence against (log-odds): L4_DST_PORT = 8080 (registered) (-1.571); SRC_TO_DST_SECOND_BYTES = 0 (-0.930). Caveat: This attack class was never in training (Phase 2 holdout)."
+    "summary": "Stage 1 (xgboost_temporal_lab) flagged the TCP flow 192.168.1.193:54027 -> 192.168.1.37:8080 (score 0.798, threshold 0.500, probability of attack). Predicted tactic: Reconnaissance/Discovery (confidence 0.462). Strongest evidence for attack (log-odds): ICMP_TYPE = 36864 (+0.629); FLOW_DURATION_MILLISECONDS = 1,501 (+0.572); IN_BYTES = 288 (+0.521). Strongest evidence against (log-odds): L4_DST_PORT = 8080 (registered) (-0.922); DURATION_OUT = 1,501 (-0.294). Caveat: This attack class was never in training (Phase 2 holdout)."
   }
 ]

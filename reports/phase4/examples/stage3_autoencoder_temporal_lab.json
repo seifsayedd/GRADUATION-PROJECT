@@ -15,7 +15,7 @@
       "stage": 3,
       "name": "autoencoder_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "1346e03"
+      "git_commit": "52c7f1e"
     },
     "ground_truth": {
       "label": 1.0,
@@ -23,73 +23,73 @@
       "tactic": "Impact"
     },
     "decision": {
-      "score": 0.048149,
+      "score": 0.037298,
       "score_kind": "reconstruction error",
-      "threshold": 0.019438,
+      "threshold": 0.022058,
       "operating_point": "1% of benign validation flagged",
       "flagged": true
     },
     "contributions": {
       "space": "squared error",
       "base_value": 0.0,
-      "output": 0.048149,
+      "output": 0.037298,
       "items": [
         {
           "feature": "ICMP_IPV4_TYPE",
           "value": "60",
-          "contribution": 0.017905,
+          "contribution": 0.014191,
           "direction": "abnormal"
         },
         {
           "feature": "ICMP_TYPE",
           "value": "15360",
-          "contribution": 0.017336,
+          "contribution": 0.013766,
           "direction": "abnormal"
         },
         {
-          "feature": "OUT_PKTS",
-          "value": "59",
-          "contribution": 0.004132,
-          "direction": "abnormal"
-        },
-        {
-          "feature": "PROTOCOL",
-          "value": "6 (TCP)",
-          "contribution": 0.001854,
-          "direction": "abnormal"
-        },
-        {
-          "feature": "IN_BYTES",
-          "value": "7,537",
-          "contribution": 0.001743,
+          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
+          "value": "2,340",
+          "contribution": 0.003184,
           "direction": "abnormal"
         },
         {
           "feature": "L4_DST_PORT",
           "value": "80 (well-known)",
-          "contribution": 0.001584,
+          "contribution": 0.002241,
           "direction": "abnormal"
         },
         {
-          "feature": "L4_SRC_PORT",
-          "value": "44342 (registered)",
-          "contribution": 0.001232,
+          "feature": "OUT_BYTES",
+          "value": "14,384",
+          "contribution": 0.001103,
           "direction": "abnormal"
         },
         {
-          "feature": "DURATION_OUT",
+          "feature": "PROTOCOL",
+          "value": "6 (TCP)",
+          "contribution": 0.000983,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "SRC_TO_DST_AVG_THROUGHPUT",
+          "value": "1,226",
+          "contribution": 0.000816,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DURATION_IN",
           "value": "49,174",
-          "contribution": 0.000928,
+          "contribution": 0.000648,
           "direction": "abnormal"
         }
       ],
-      "rest": 0.001435,
+      "rest": 0.000365,
       "additivity_error": 1.1175870895385742e-08
     },
     "caveats": [
       "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
     ],
-    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the TCP flow 18.219.193.20:44342 -> 172.31.69.25:80 (score 0.048, threshold 0.019, reconstruction error). Most abnormal features (squared error): ICMP_IPV4_TYPE = 60 (+0.018); ICMP_TYPE = 15360 (+0.017); OUT_PKTS = 59 (+0.004). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the TCP flow 18.219.193.20:44342 -> 172.31.69.25:80 (score 0.037, threshold 0.022, reconstruction error). Most abnormal features (squared error): ICMP_IPV4_TYPE = 60 (+0.014); ICMP_TYPE = 15360 (+0.014); DST_TO_SRC_AVG_THROUGHPUT = 2,340 (+0.003). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
   },
   {
     "schema_version": "1.0",
@@ -107,7 +107,7 @@
       "stage": 3,
       "name": "autoencoder_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "1346e03"
+      "git_commit": "52c7f1e"
     },
     "ground_truth": {
       "label": 0.0,
@@ -115,73 +115,73 @@
       "tactic": "Benign"
     },
     "decision": {
-      "score": 0.024478,
+      "score": 0.024212,
       "score_kind": "reconstruction error",
-      "threshold": 0.019438,
+      "threshold": 0.022058,
       "operating_point": "1% of benign validation flagged",
       "flagged": true
     },
     "contributions": {
       "space": "squared error",
       "base_value": 0.0,
-      "output": 0.024478,
+      "output": 0.024212,
       "items": [
-        {
-          "feature": "ICMP_TYPE",
-          "value": "12800",
-          "contribution": 0.012062,
-          "direction": "abnormal"
-        },
         {
           "feature": "ICMP_IPV4_TYPE",
           "value": "50",
-          "contribution": 0.011874,
+          "contribution": 0.011958,
           "direction": "abnormal"
         },
         {
-          "feature": "OUT_PKTS",
-          "value": "18",
-          "contribution": 0.000128,
+          "feature": "ICMP_TYPE",
+          "value": "12800",
+          "contribution": 0.011654,
           "direction": "abnormal"
         },
         {
           "feature": "L4_SRC_PORT",
           "value": "25330 (registered)",
-          "contribution": 9.9e-05,
-          "direction": "abnormal"
-        },
-        {
-          "feature": "DURATION_IN",
-          "value": "17",
-          "contribution": 7e-05,
-          "direction": "abnormal"
-        },
-        {
-          "feature": "L4_DST_PORT",
-          "value": "6881 (registered)",
-          "contribution": 6e-05,
+          "contribution": 0.000154,
           "direction": "abnormal"
         },
         {
           "feature": "PROTOCOL",
           "value": "6 (TCP)",
-          "contribution": 5.3e-05,
+          "contribution": 0.0001,
           "direction": "abnormal"
         },
         {
-          "feature": "SRC_TO_DST_AVG_THROUGHPUT",
-          "value": "684,444",
-          "contribution": 4.8e-05,
+          "feature": "L4_DST_PORT",
+          "value": "6881 (registered)",
+          "contribution": 8.8e-05,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DURATION_IN",
+          "value": "17",
+          "contribution": 8.5e-05,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "FLOW_DURATION_MILLISECONDS",
+          "value": "17",
+          "contribution": 6.6e-05,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DURATION_OUT",
+          "value": "17",
+          "contribution": 6.1e-05,
           "direction": "abnormal"
         }
       ],
-      "rest": 8.5e-05,
+      "rest": 4.7e-05,
       "additivity_error": 1.1175870895385742e-08
     },
     "caveats": [
       "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
     ],
-    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the TCP flow 59.166.0.7:25330 -> 149.171.126.3:6881 (score 0.024, threshold 0.019, reconstruction error). Most abnormal features (squared error): ICMP_TYPE = 12800 (+0.012); ICMP_IPV4_TYPE = 50 (+0.012); OUT_PKTS = 18 (+0.000). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the TCP flow 59.166.0.7:25330 -> 149.171.126.3:6881 (score 0.024, threshold 0.022, reconstruction error). Most abnormal features (squared error): ICMP_IPV4_TYPE = 50 (+0.012); ICMP_TYPE = 12800 (+0.012); L4_SRC_PORT = 25330 (registered) (+0.000). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
   },
   {
     "schema_version": "1.0",
@@ -199,7 +199,7 @@
       "stage": 3,
       "name": "autoencoder_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "1346e03"
+      "git_commit": "52c7f1e"
     },
     "ground_truth": {
       "label": 0.0,
@@ -207,72 +207,72 @@
       "tactic": "Benign"
     },
     "decision": {
-      "score": 0.020034,
+      "score": 0.02713,
       "score_kind": "reconstruction error",
-      "threshold": 0.019438,
+      "threshold": 0.022058,
       "operating_point": "1% of benign validation flagged",
       "flagged": true
     },
     "contributions": {
       "space": "squared error",
       "base_value": 0.0,
-      "output": 0.020034,
+      "output": 0.02713,
       "items": [
-        {
-          "feature": "ICMP_TYPE",
-          "value": "10496",
-          "contribution": 0.00941,
-          "direction": "abnormal"
-        },
         {
           "feature": "ICMP_IPV4_TYPE",
           "value": "41",
-          "contribution": 0.008926,
+          "contribution": 0.013532,
           "direction": "abnormal"
         },
         {
-          "feature": "PROTOCOL",
-          "value": "6 (TCP)",
-          "contribution": 0.000294,
-          "direction": "abnormal"
-        },
-        {
-          "feature": "DURATION_IN",
-          "value": "20,129",
-          "contribution": 0.000224,
-          "direction": "abnormal"
-        },
-        {
-          "feature": "OUT_PKTS",
-          "value": "12",
-          "contribution": 0.000212,
-          "direction": "abnormal"
-        },
-        {
-          "feature": "SRC_TO_DST_SECOND_BYTES",
-          "value": "0",
-          "contribution": 0.000203,
+          "feature": "ICMP_TYPE",
+          "value": "10496",
+          "contribution": 0.013258,
           "direction": "abnormal"
         },
         {
           "feature": "L4_SRC_PORT",
           "value": "51307 (dynamic)",
-          "contribution": 0.000182,
+          "contribution": 0.0001,
           "direction": "abnormal"
         },
         {
-          "feature": "OUT_BYTES",
-          "value": "4,704",
-          "contribution": 0.000125,
+          "feature": "PROTOCOL",
+          "value": "6 (TCP)",
+          "contribution": 8.5e-05,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DURATION_IN",
+          "value": "20,129",
+          "contribution": 5.1e-05,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "IN_PKTS",
+          "value": "11",
+          "contribution": 3.8e-05,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "FLOW_DURATION_MILLISECONDS",
+          "value": "20,164",
+          "contribution": 2e-05,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "IN_BYTES",
+          "value": "1,585",
+          "contribution": 1.6e-05,
           "direction": "abnormal"
         }
       ],
-      "rest": 0.000458,
+      "rest": 3.1e-05,
       "additivity_error": 1.1175870895385742e-08
     },
     "caveats": [
       "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
     ],
-    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the TCP flow 172.31.65.56:51307 -> 23.227.55.162:443 (score 0.020, threshold 0.019, reconstruction error). Most abnormal features (squared error): ICMP_TYPE = 10496 (+0.009); ICMP_IPV4_TYPE = 41 (+0.009); PROTOCOL = 6 (TCP) (+0.000). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the TCP flow 172.31.65.56:51307 -> 23.227.55.162:443 (score 0.027, threshold 0.022, reconstruction error). Most abnormal features (squared error): ICMP_IPV4_TYPE = 41 (+0.014); ICMP_TYPE = 10496 (+0.013); L4_SRC_PORT = 51307 (dynamic) (+0.000). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
   }
 ]

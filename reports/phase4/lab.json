@@ -1,14 +1,14 @@
 {
-  "git_commit": "1346e03",
+  "git_commit": "52c7f1e",
   "lab": {
     "rows": 54,
     "attacks": 1,
     "xgboost_temporal_lab": {
-      "flagged": 48,
-      "false_alarms": 47,
-      "attack_flagged": true,
+      "flagged": 14,
+      "false_alarms": 14,
+      "attack_flagged": false,
       "additivity": {
-        "binary": 6.67572021484375e-06,
+        "binary": 2.384185791015625e-06,
         "tactic": 9.5367431640625e-07,
         "space": {
           "binary": "log-odds",
@@ -16,33 +16,22 @@
         }
       },
       "false_alarm_drivers": {
-        "SRC_TO_DST_SECOND_BYTES": 1.656661,
-        "FLOW_DURATION_MILLISECONDS": 1.415429,
-        "L4_DST_PORT": -1.399343,
-        "PROTOCOL": -0.73181,
-        "DST_TO_SRC_AVG_THROUGHPUT": 0.701383,
-        "OUT_BYTES": 0.436955,
-        "IN_BYTES": -0.281133,
-        "SRC_TO_DST_AVG_THROUGHPUT": 0.243787,
-        "IN_PKTS": 0.241933,
-        "ICMP_TYPE": 0.206098
+        "FLOW_DURATION_MILLISECONDS": 3.624076,
+        "L4_DST_PORT": -0.758705,
+        "PROTOCOL": -0.691681,
+        "IN_PKTS": 0.342828,
+        "OUT_BYTES": 0.321732,
+        "IN_BYTES": -0.28839,
+        "DST_TO_SRC_AVG_THROUGHPUT": -0.285676,
+        "L4_SRC_PORT": 0.115129,
+        "DURATION_IN": 0.097637,
+        "OUT_PKTS": 0.082064
       },
       "value_comparison": {
-        "SRC_TO_DST_SECOND_BYTES": {
-          "lab_false_alarm_median": 92.32544720138488,
-          "bigflow_benign_median": 0.0,
-          "lab_median_percentile_in_bigflow_benign": 91.91652677964439,
-          "per_source_benign_median": {
-            "BoT-IoT": 0.0,
-            "CSE-CIC-IDS2018": 0.0,
-            "ToN-IoT": 0.0,
-            "UNSW-NB15": 162.0
-          }
-        },
         "FLOW_DURATION_MILLISECONDS": {
-          "lab_false_alarm_median": 1202.0,
+          "lab_false_alarm_median": 0.0,
           "bigflow_benign_median": 1.0,
-          "lab_median_percentile_in_bigflow_benign": 83.41375333599876,
+          "lab_median_percentile_in_bigflow_benign": 0.0,
           "per_source_benign_median": {
             "BoT-IoT": 0.0,
             "CSE-CIC-IDS2018": 32.0,
@@ -72,15 +61,15 @@
             "UNSW-NB15": 6.0
           }
         },
-        "DST_TO_SRC_AVG_THROUGHPUT": {
-          "lab_false_alarm_median": 0.0,
-          "bigflow_benign_median": 6583.0,
-          "lab_median_percentile_in_bigflow_benign": 0.0,
+        "IN_PKTS": {
+          "lab_false_alarm_median": 2.0,
+          "bigflow_benign_median": 1.0,
+          "lab_median_percentile_in_bigflow_benign": 66.46449804494956,
           "per_source_benign_median": {
-            "BoT-IoT": 320000.0,
-            "CSE-CIC-IDS2018": 13925.0,
-            "ToN-IoT": 0.0,
-            "UNSW-NB15": 712000.0
+            "BoT-IoT": 1.0,
+            "CSE-CIC-IDS2018": 2.0,
+            "ToN-IoT": 1.0,
+            "UNSW-NB15": 19.0
           }
         },
         "OUT_BYTES": {
@@ -95,9 +84,9 @@
           }
         },
         "IN_BYTES": {
-          "lab_false_alarm_median": 160.0,
+          "lab_false_alarm_median": 134.0,
           "bigflow_benign_median": 67.0,
-          "lab_median_percentile_in_bigflow_benign": 69.35384464385463,
+          "lab_median_percentile_in_bigflow_benign": 67.40716577586419,
           "per_source_benign_median": {
             "BoT-IoT": 40.0,
             "CSE-CIC-IDS2018": 120.0,
@@ -105,68 +94,79 @@
             "UNSW-NB15": 1684.0
           }
         },
-        "SRC_TO_DST_AVG_THROUGHPUT": {
-          "lab_false_alarm_median": 738.603577611079,
-          "bigflow_benign_median": 352000.0,
-          "lab_median_percentile_in_bigflow_benign": 7.221057098442454,
+        "DST_TO_SRC_AVG_THROUGHPUT": {
+          "lab_false_alarm_median": 0.0,
+          "bigflow_benign_median": 6583.0,
+          "lab_median_percentile_in_bigflow_benign": 0.0,
           "per_source_benign_median": {
             "BoT-IoT": 320000.0,
-            "CSE-CIC-IDS2018": 27368.0,
-            "ToN-IoT": 352000.0,
-            "UNSW-NB15": 579612.5
+            "CSE-CIC-IDS2018": 13925.0,
+            "ToN-IoT": 0.0,
+            "UNSW-NB15": 712000.0
           }
         },
-        "IN_PKTS": {
-          "lab_false_alarm_median": 4.0,
-          "bigflow_benign_median": 1.0,
-          "lab_median_percentile_in_bigflow_benign": 72.91306123803984,
+        "L4_SRC_PORT": {
+          "lab_false_alarm_median": 5353.0,
+          "bigflow_benign_median": 50497.0,
+          "lab_median_percentile_in_bigflow_benign": 16.004999848445703,
           "per_source_benign_median": {
-            "BoT-IoT": 1.0,
-            "CSE-CIC-IDS2018": 2.0,
-            "ToN-IoT": 1.0,
-            "UNSW-NB15": 19.0
+            "BoT-IoT": 6487.0,
+            "CSE-CIC-IDS2018": 53238.0,
+            "ToN-IoT": 40101.0,
+            "UNSW-NB15": 32908.5
           }
         },
-        "ICMP_TYPE": {
+        "DURATION_IN": {
           "lab_false_alarm_median": 0.0,
           "bigflow_benign_median": 0.0,
           "lab_median_percentile_in_bigflow_benign": 0.0,
           "per_source_benign_median": {
             "BoT-IoT": 0.0,
-            "CSE-CIC-IDS2018": 0.0,
+            "CSE-CIC-IDS2018": 18.0,
             "ToN-IoT": 0.0,
-            "UNSW-NB15": 21248.0
+            "UNSW-NB15": 26.0
+          }
+        },
+        "OUT_PKTS": {
+          "lab_false_alarm_median": 0.0,
+          "bigflow_benign_median": 1.0,
+          "lab_median_percentile_in_bigflow_benign": 0.0,
+          "per_source_benign_median": {
+            "BoT-IoT": 1.0,
+            "CSE-CIC-IDS2018": 1.0,
+            "ToN-IoT": 0.0,
+            "UNSW-NB15": 20.0
           }
         }
       },
       "tactic_given_to_false_alarms": {
-        "Reconnaissance/Discovery": 30,
-        "Initial Access": 17
+        "Initial Access": 10,
+        "Reconnaissance/Discovery": 4
       }
     },
     "random_forest_temporal_lab": {
-      "flagged": 17,
-      "false_alarms": 16,
-      "attack_flagged": true,
+      "flagged": 15,
+      "false_alarms": 15,
+      "attack_flagged": false,
       "additivity": {
-        "binary": 2.5979218776228663e-14,
-        "tactic": 5.162537064506978e-15,
+        "binary": 2.2037927038809357e-14,
+        "tactic": 8.326672684688674e-15,
         "space": {
           "binary": "probability",
           "tactic": "probability"
         }
       },
       "false_alarm_drivers": {
-        "FLOW_DURATION_MILLISECONDS": 0.238229,
-        "L4_DST_PORT": -0.09425,
-        "L4_SRC_PORT": 0.043209,
-        "PROTOCOL": -0.032939,
-        "IN_PKTS": 0.021398,
-        "SRC_TO_DST_AVG_THROUGHPUT": -0.020439,
-        "OUT_BYTES": 0.017268,
-        "DURATION_IN": 0.017045,
-        "IN_BYTES": -0.015904,
-        "OUT_PKTS": 0.012221
+        "FLOW_DURATION_MILLISECONDS": 0.215045,
+        "L4_DST_PORT": -0.119646,
+        "L4_SRC_PORT": 0.053301,
+        "IN_BYTES": -0.031224,
+        "PROTOCOL": -0.02838,
+        "SRC_TO_DST_AVG_THROUGHPUT": -0.027292,
+        "IN_PKTS": 0.020293,
+        "OUT_BYTES": 0.012853,
+        "OUT_PKTS": 0.01071,
+        "DURATION_IN": 0.010667
       },
       "value_comparison": {
         "FLOW_DURATION_MILLISECONDS": {
@@ -202,6 +202,17 @@
             "UNSW-NB15": 32908.5
           }
         },
+        "IN_BYTES": {
+          "lab_false_alarm_median": 134.0,
+          "bigflow_benign_median": 67.0,
+          "lab_median_percentile_in_bigflow_benign": 67.40716577586419,
+          "per_source_benign_median": {
+            "BoT-IoT": 40.0,
+            "CSE-CIC-IDS2018": 120.0,
+            "ToN-IoT": 44.0,
+            "UNSW-NB15": 1684.0
+          }
+        },
         "PROTOCOL": {
           "lab_false_alarm_median": 17.0,
           "bigflow_benign_median": 6.0,
@@ -211,17 +222,6 @@
             "CSE-CIC-IDS2018": 6.0,
             "ToN-IoT": 6.0,
             "UNSW-NB15": 6.0
-          }
-        },
-        "IN_PKTS": {
-          "lab_false_alarm_median": 2.0,
-          "bigflow_benign_median": 1.0,
-          "lab_median_percentile_in_bigflow_benign": 66.46449804494956,
-          "per_source_benign_median": {
-            "BoT-IoT": 1.0,
-            "CSE-CIC-IDS2018": 2.0,
-            "ToN-IoT": 1.0,
-            "UNSW-NB15": 19.0
           }
         },
         "SRC_TO_DST_AVG_THROUGHPUT": {
@@ -235,6 +235,17 @@
             "UNSW-NB15": 579612.5
           }
         },
+        "IN_PKTS": {
+          "lab_false_alarm_median": 2.0,
+          "bigflow_benign_median": 1.0,
+          "lab_median_percentile_in_bigflow_benign": 66.46449804494956,
+          "per_source_benign_median": {
+            "BoT-IoT": 1.0,
+            "CSE-CIC-IDS2018": 2.0,
+            "ToN-IoT": 1.0,
+            "UNSW-NB15": 19.0
+          }
+        },
         "OUT_BYTES": {
           "lab_false_alarm_median": 0.0,
           "bigflow_benign_median": 76.0,
@@ -244,28 +255,6 @@
             "CSE-CIC-IDS2018": 162.0,
             "ToN-IoT": 0.0,
             "UNSW-NB15": 2512.0
-          }
-        },
-        "DURATION_IN": {
-          "lab_false_alarm_median": 0.0,
-          "bigflow_benign_median": 0.0,
-          "lab_median_percentile_in_bigflow_benign": 0.0,
-          "per_source_benign_median": {
-            "BoT-IoT": 0.0,
-            "CSE-CIC-IDS2018": 18.0,
-            "ToN-IoT": 0.0,
-            "UNSW-NB15": 26.0
-          }
-        },
-        "IN_BYTES": {
-          "lab_false_alarm_median": 134.0,
-          "bigflow_benign_median": 67.0,
-          "lab_median_percentile_in_bigflow_benign": 67.40716577586419,
-          "per_source_benign_median": {
-            "BoT-IoT": 40.0,
-            "CSE-CIC-IDS2018": 120.0,
-            "ToN-IoT": 44.0,
-            "UNSW-NB15": 1684.0
           }
         },
         "OUT_PKTS": {
@@ -278,26 +267,37 @@
             "ToN-IoT": 0.0,
             "UNSW-NB15": 20.0
           }
+        },
+        "DURATION_IN": {
+          "lab_false_alarm_median": 0.0,
+          "bigflow_benign_median": 0.0,
+          "lab_median_percentile_in_bigflow_benign": 0.0,
+          "per_source_benign_median": {
+            "BoT-IoT": 0.0,
+            "CSE-CIC-IDS2018": 18.0,
+            "ToN-IoT": 0.0,
+            "UNSW-NB15": 26.0
+          }
         }
       },
       "tactic_given_to_false_alarms": {
-        "Other": 10,
-        "Reconnaissance/Discovery": 6
+        "Other": 11,
+        "Reconnaissance/Discovery": 4
       }
     },
     "autoencoder_temporal_lab": {
-      "flagged": 54,
+      "flagged": 17,
       "mean_error_share_top": {
-        "SRC_TO_DST_SECOND_BYTES": 0.4572,
-        "DST_TO_SRC_SECOND_BYTES": 0.0984,
-        "SRC_TO_DST_AVG_THROUGHPUT": 0.096,
-        "FLOW_DURATION_MILLISECONDS": 0.095,
-        "PROTOCOL": 0.0409,
-        "DST_TO_SRC_AVG_THROUGHPUT": 0.0349,
-        "OUT_PKTS": 0.0296,
-        "OUT_BYTES": 0.029,
-        "IN_BYTES": 0.0277,
-        "ICMP_IPV4_TYPE": 0.025
+        "FLOW_DURATION_MILLISECONDS": 0.3295,
+        "SRC_TO_DST_AVG_THROUGHPUT": 0.2906,
+        "DURATION_IN": 0.0901,
+        "IN_BYTES": 0.0603,
+        "PROTOCOL": 0.0566,
+        "OUT_PKTS": 0.0335,
+        "ICMP_IPV4_TYPE": 0.0289,
+        "L4_SRC_PORT": 0.0228,
+        "ICMP_TYPE": 0.0224,
+        "L4_DST_PORT": 0.0219
       }
     }
   }

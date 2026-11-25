@@ -11,11 +11,11 @@ All numbers come from [`reports/phase2/summary.md`](../reports/phase2/summary.md
 ## Stage 1: Random Forest / XGBoost
 
 - The **temporal** split (train on earlier flows, test on later ones) is the honest setting. It gives binary F1 ≈ 0.91 and a **false-positive rate ≈ 6–7%**. The random **stratified** split gives F1 ≈ 0.95 and a false-positive rate ≈ 2%, because near-identical neighbouring flows end up on both sides of the split.
-- The **lab feature set** (16 features) costs little on BigFlow. For XGBoost on the temporal split, binary F1 is 0.913 vs 0.910, and tactic macro-F1 is 0.815 vs 0.832.
+- The **lab feature set** (14 inputs since the Phase 4 mapping fix; 16 before) costs little on BigFlow. For XGBoost on the temporal split, binary F1 is 0.910 with lab features (0.913 before the fix) vs 0.910 with all features, and tactic macro-F1 is 0.813 vs 0.832.
 - **Unseen attack classes:**
   - `SSH-Bruteforce`: detected (100% with all features), but the tactic is almost never right. The model calls it something other than Credential Access.
   - `DoS_attacks-Slowloris`: 88–100% detected, and the tactic is right about half the time.
-  - `Backdoor` (C2): **mostly missed** (4–34% detected).
+  - `Backdoor` (C2): **mostly missed with all features** (4–14% detected). After the Phase 4 mapping fix, the lab-feature models catch 90–94% of it (they caught 13–34% before).
 - XGBoost files are 3–9 MB. Random Forest files are 53–74 MB, above the 50 MB commit limit; they stay in git-ignored `models/`.
 
 ## Stage 2: GRU + attention
@@ -25,7 +25,7 @@ Test = random 5-minute blocks covering 15% of each day's rows, with every tactic
 | Features | F1 | FPR | Tactic macro-F1 |
 |---|---|---|---|
 | full | 0.922 | 6.6% | 0.939 |
-| lab | 0.897 | 11.5% | 0.922 |
+| lab | 0.896 | 11.9% | 0.920 |
 
 - `Bot` beaconing and slow DoS are detected almost perfectly (recall 1.00, false-positive rate ≈ 0). On the two ToN-IoT days the benign false-positive rate is **23–44%**. Those days have only 9–11 source hosts, so there's little variety in benign behaviour to learn from.
 - Two earlier split designs were rejected, because both left whole attack classes out of train or out of test: one time cut per day, then 15-minute random blocks. See the docstring in [`sequence.py`](../src/sentinelai/models/sequence.py).
@@ -44,9 +44,11 @@ Test = random 5-minute blocks covering 15% of each day's rows, with every tactic
 
 | Model | Flagged | Caught the attack | False alarms |
 |---|---|---|---|
-| Stage 1 RF | 17 | yes | 16 |
-| Stage 1 XGBoost | 48 | yes | 47 |
+| Stage 1 RF | 15 | no | 15 |
+| Stage 1 XGBoost | 14 | no | 14 |
 | Stage 2 GRU | 0 | no | 0 |
-| Stage 3 autoencoder | 54 | yes | 53 |
+| Stage 3 autoencoder | 17 | no | 17 |
 
-**The BigFlow-trained models don't transfer to the lab traffic.** The lab's benign traffic (mDNS, IGMP, SSDP, connectivity pings) looks nothing like BigFlow's benign traffic, so most of it is flagged. The one attack is an ICMP ping that's almost identical to the benign pings in the same capture, so catching it says little. Closing this gap needs more and more varied lab captures (see [feature-mapping.md](feature-mapping.md)), and probably fine-tuning or recalibrating on real lab benign traffic. Synthetic rows stay out of evaluation.
+These are the results **after the Phase 4 mapping fix** (the lab's two bytes-per-second features were dropped, and throughput now divides by whole-flow duration, as BigFlow does). Before the fix the same models flagged 17, 48, 0 and 54 conversations, and every model except the GRU "caught" the attack. That catch came from the broken feature, which made nearly every lab flow look like an attack. See [phase4-findings.md](phase4-findings.md).
+
+**The BigFlow-trained models still don't transfer to the lab traffic.** No model catches the lab attack, and 14–17 of the 53 benign conversations are still flagged, mostly zero-duration single-packet multicast flows (mDNS). The one attack is an ICMP ping that's almost identical to the benign pings in the same capture, so catching it says little. Closing this gap needs more and more varied lab captures (see [feature-mapping.md](feature-mapping.md)), and probably fine-tuning or recalibrating on real lab benign traffic. Synthetic rows stay out of evaluation.

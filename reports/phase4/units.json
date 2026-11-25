@@ -1,5 +1,5 @@
 {
-  "git_commit": "1346e03",
+  "git_commit": "52c7f1e",
   "units": {
     "BoT-IoT": {
       "rows": 36336,
@@ -12,9 +12,13 @@
         "median_ratio": 0.9945181547619049,
         "share_within_5pct": 0.905217965653897
       },
-      "AVG_THROUGHPUT vs IN_BYTES*8 / DURATION_IN_s (lab mapping)": {
+      "AVG_THROUGHPUT vs IN_BYTES*8 / DURATION_IN_s (old lab mapping)": {
         "median_ratio": 0.9944156994047619,
         "share_within_5pct": 0.728258476442096
+      },
+      "DST_TO_SRC_AVG_THROUGHPUT vs OUT_BYTES*8 / FLOW_DURATION_s": {
+        "median_ratio": 0.9711980113636365,
+        "share_within_5pct": 0.7180529612130535
       }
     },
     "CSE-CIC-IDS2018": {
@@ -28,9 +32,13 @@
         "median_ratio": 0.9992415123456788,
         "share_within_5pct": 0.8023578759389715
       },
-      "AVG_THROUGHPUT vs IN_BYTES*8 / DURATION_IN_s (lab mapping)": {
+      "AVG_THROUGHPUT vs IN_BYTES*8 / DURATION_IN_s (old lab mapping)": {
         "median_ratio": 0.9,
         "share_within_5pct": 0.4336996641246736
+      },
+      "DST_TO_SRC_AVG_THROUGHPUT vs OUT_BYTES*8 / FLOW_DURATION_s": {
+        "median_ratio": 0.9994139081687133,
+        "share_within_5pct": 0.7915913027797662
       }
     },
     "ToN-IoT": {
@@ -44,9 +52,13 @@
         "median_ratio": 1.0,
         "share_within_5pct": 0.8293931384256216
       },
-      "AVG_THROUGHPUT vs IN_BYTES*8 / DURATION_IN_s (lab mapping)": {
+      "AVG_THROUGHPUT vs IN_BYTES*8 / DURATION_IN_s (old lab mapping)": {
         "median_ratio": 0.0,
         "share_within_5pct": 0.21573573412405575
+      },
+      "DST_TO_SRC_AVG_THROUGHPUT vs OUT_BYTES*8 / FLOW_DURATION_s": {
+        "median_ratio": 0.9967166666666667,
+        "share_within_5pct": 0.6979422987767911
       }
     },
     "UNSW-NB15": {
@@ -60,9 +72,13 @@
         "median_ratio": 0.9978190146579805,
         "share_within_5pct": 0.8117063401756861
       },
-      "AVG_THROUGHPUT vs IN_BYTES*8 / DURATION_IN_s (lab mapping)": {
+      "AVG_THROUGHPUT vs IN_BYTES*8 / DURATION_IN_s (old lab mapping)": {
         "median_ratio": 0.9738943965517242,
         "share_within_5pct": 0.6118519867097537
+      },
+      "DST_TO_SRC_AVG_THROUGHPUT vs OUT_BYTES*8 / FLOW_DURATION_s": {
+        "median_ratio": 0.9977554729887677,
+        "share_within_5pct": 0.8120259526638034
       }
     }
   }

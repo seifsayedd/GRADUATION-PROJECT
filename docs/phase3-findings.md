@@ -2,6 +2,8 @@
 
 All numbers come from [`reports/phase3/report.md`](../reports/phase3/report.md) and the JSON files next to it. Every threshold and choice was made on **validation** data; test and holdout were only scored. Intervals are 95% bootstrap intervals that resample whole (source, 5-minute) blocks, so they are wider, and more honest, than row-level intervals.
 
+**Update after Phase 4:** Phase 4 found a lab feature-mapping bug (see [phase4-findings.md](phase4-findings.md)). The lab-feature models were retrained on 14 corrected inputs, and every lab-feature number below is from that rerun. All-feature results are unchanged.
+
 ## Check first: the evaluation reproduces Phase 2
 
 Re-scoring the 12 saved models from disk gives exactly the test F1 each Phase 2 run recorded (`reproduces_phase2 = true` for every model in `models.json`).
@@ -41,11 +43,11 @@ XGBoost trained on three source datasets and tested on every flow of the fourth:
 | ToN-IoT | 0.715 [0.664, 0.766] | 0.167 | 0.752 | 0.810 |
 | UNSW-NB15 | 0.577 [0.553, 0.599] | 0.356 | 0.472 | 1.000 |
 
-With lab features, F1 is 0.43–0.81.
+With lab features, F1 is 0.45–0.79.
 
 **This is the central result of Phase 3.** On a network it has not seen, Stage 1 loses most of its skill. On BoT-IoT and UNSW-NB15 its ranking of flows is worse than random (ROC-AUC below 0.5), and false alarms reach 17–64%. A threshold from validation does not fix this, because validation comes from the training networks.
 
-This matches the Phase 2 lab result (48 of 54 lab conversations flagged). The models learn what each benchmark network looks like, not what an attack looks like in general. Some tactics also exist in only one source (Exfiltration only in BoT-IoT, Command and Control only in CSE-CIC-IDS2018, Other only in UNSW-NB15), so leaving out that source removes the tactic from training entirely.
+This matches the lab result: even after the mapping fix, the lab-feature models flag 14–17 of 53 benign lab conversations and miss the one attack. The models learn what each benchmark network looks like, not what an attack looks like in general. Some tactics also exist in only one source (Exfiltration only in BoT-IoT, Command and Control only in CSE-CIC-IDS2018, Other only in UNSW-NB15), so leaving out that source removes the tactic from training entirely.
 
 ## 4. Option B: per-source Stage 3
 
@@ -57,12 +59,12 @@ This matches the Phase 2 lab result (48 of 54 lab conversations flagged). The mo
 
 - Per-source models cut BoT-IoT benign false alarms from 57% to 13%, and catch 94% of unseen Backdoor flows and all UNSW-NB15 attacks.
 - **Trade-off:** ToN-IoT benign false alarms rise from 4% to 16%. Every variant hits about 1% on validation, so the rise is drift over time, not a selection error.
-- With lab features, the per-source model is also best (test recall 0.041, false-positive rate 0.024, Backdoor 92%). Stage 3 is still a weak general detector.
+- With lab features, the per-source model is also best (test recall 0.032, false-positive rate 0.019, Backdoor 92%). Stage 3 is still a weak general detector.
 - It needs to know which network a flow comes from. In deployment that means one model per site, trained on that site's benign traffic. For the lab, that means a real benign lab capture.
 
 ## 5. Real lab flows
 
-At the validation-chosen threshold, XGBoost flags 46 of 54 conversations instead of 48, and the autoencoder still flags all 54. The false alarms are spread across ICMP (6/6), IGMP (14/15) and UDP (26/33). With one attack, this is a description, not a precision or recall estimate.
+After the mapping fix, the validation-chosen threshold changes nothing on the lab: XGBoost flags 14 of 54 conversations, Random Forest 15 and the autoencoder 17. None of them flags the attack. Stage 1's false alarms are all UDP (14 or 15 of 33 UDP conversations; no ICMP or IGMP), while the autoencoder also flags 3 of the 6 ICMP conversations. Before the fix, XGBoost flagged 48 and the autoencoder all 54. With one attack, this is a description, not a precision or recall estimate.
 
 ## What this means for the project
 

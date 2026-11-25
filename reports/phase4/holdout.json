@@ -1,5 +1,5 @@
 {
-  "git_commit": "1346e03",
+  "git_commit": "52c7f1e",
   "holdout": {
     "xgboost_temporal_full": {
       "Backdoor": {
@@ -117,140 +117,128 @@
     "xgboost_temporal_lab": {
       "Backdoor": {
         "rows": 400,
-        "detected": 0.31,
+        "detected": 0.9175,
         "binary_mean_shap_all": {
-          "L4_DST_PORT": -0.640109,
-          "SRC_TO_DST_SECOND_BYTES": -0.633808,
-          "DST_TO_SRC_SECOND_BYTES": -0.570894,
-          "FLOW_DURATION_MILLISECONDS": 0.559889,
-          "PROTOCOL": 0.283029,
-          "DST_TO_SRC_AVG_THROUGHPUT": 0.263841,
-          "OUT_PKTS": -0.222442,
-          "OUT_BYTES": -0.19556,
-          "SRC_TO_DST_AVG_THROUGHPUT": -0.12084,
-          "IN_BYTES": 0.077229
+          "FLOW_DURATION_MILLISECONDS": 0.445837,
+          "ICMP_TYPE": 0.402874,
+          "L4_DST_PORT": -0.383529,
+          "IN_BYTES": 0.321639,
+          "PROTOCOL": 0.298121,
+          "DURATION_OUT": -0.240099,
+          "OUT_PKTS": 0.131244,
+          "OUT_BYTES": 0.123343,
+          "DST_TO_SRC_AVG_THROUGHPUT": -0.109281,
+          "IN_PKTS": -0.042591
         },
         "binary_mean_shap_missed": {
-          "L4_DST_PORT": -1.267815,
-          "SRC_TO_DST_SECOND_BYTES": -0.785471,
-          "DST_TO_SRC_SECOND_BYTES": -0.618172,
-          "FLOW_DURATION_MILLISECONDS": 0.510358,
-          "OUT_PKTS": -0.252939,
-          "PROTOCOL": 0.233805,
-          "DST_TO_SRC_AVG_THROUGHPUT": 0.216441,
-          "SRC_TO_DST_AVG_THROUGHPUT": -0.16809,
-          "L4_SRC_PORT": 0.143038,
-          "OUT_BYTES": -0.134579
+          "IN_BYTES": -1.140925,
+          "DST_TO_SRC_AVG_THROUGHPUT": -0.309393,
+          "SRC_TO_DST_AVG_THROUGHPUT": -0.300827,
+          "OUT_BYTES": -0.270572,
+          "PROTOCOL": 0.260202,
+          "DURATION_OUT": -0.170721,
+          "IN_PKTS": -0.137727,
+          "L4_SRC_PORT": -0.102209,
+          "L4_DST_PORT": 0.090811,
+          "DURATION_IN": -0.069012
         },
         "tactic_given": {
-          "Reconnaissance/Discovery": 96,
+          "Reconnaissance/Discovery": 238,
+          "Initial Access": 108,
           "Credential Access": 18,
-          "Initial Access": 7,
           "Other": 2,
           "Impact": 1
         },
         "tactic_mean_shap_flagged": {
-          "OUT_BYTES": 0.322445,
-          "L4_SRC_PORT": 0.258929,
-          "ICMP_IPV4_TYPE": 0.189363,
-          "SRC_TO_DST_AVG_THROUGHPUT": 0.173343,
-          "DURATION_OUT": 0.135961,
-          "DST_TO_SRC_SECOND_BYTES": 0.131598,
-          "FLOW_DURATION_MILLISECONDS": -0.123054,
-          "IN_BYTES": 0.098772,
-          "OUT_PKTS": 0.096135,
-          "DURATION_IN": 0.08667
+          "SRC_TO_DST_AVG_THROUGHPUT": 0.334823,
+          "L4_DST_PORT": 0.32416,
+          "ICMP_IPV4_TYPE": 0.167949,
+          "IN_PKTS": 0.163438,
+          "L4_SRC_PORT": 0.125899,
+          "DURATION_OUT": 0.122761,
+          "OUT_PKTS": 0.089008,
+          "DST_TO_SRC_AVG_THROUGHPUT": 0.08706,
+          "ICMP_TYPE": 0.073114,
+          "IN_BYTES": 0.060786
         }
       },
       "DoS_attacks-Slowloris": {
         "rows": 400,
-        "detected": 0.88,
+        "detected": 0.8975,
         "binary_mean_shap_all": {
-          "L4_DST_PORT": 1.094887,
-          "IN_BYTES": 1.028639,
-          "SRC_TO_DST_AVG_THROUGHPUT": 0.817835,
-          "PROTOCOL": 0.597687,
-          "OUT_BYTES": 0.593338,
-          "IN_PKTS": 0.469752,
-          "OUT_PKTS": 0.437186,
-          "L4_SRC_PORT": 0.387727,
-          "DST_TO_SRC_SECOND_BYTES": -0.372431,
-          "FLOW_DURATION_MILLISECONDS": 0.145113
+          "L4_DST_PORT": 1.140615,
+          "PROTOCOL": 0.731018,
+          "IN_BYTES": 0.579799,
+          "L4_SRC_PORT": 0.446406,
+          "OUT_BYTES": 0.320888,
+          "SRC_TO_DST_AVG_THROUGHPUT": 0.30306,
+          "OUT_PKTS": 0.297181,
+          "IN_PKTS": 0.284277,
+          "ICMP_TYPE": -0.164157,
+          "FLOW_DURATION_MILLISECONDS": -0.092766
         },
         "binary_mean_shap_missed": {
-          "L4_DST_PORT": 0.94839,
-          "DST_TO_SRC_AVG_THROUGHPUT": -0.788138,
-          "SRC_TO_DST_AVG_THROUGHPUT": -0.763726,
-          "FLOW_DURATION_MILLISECONDS": 0.603456,
-          "DST_TO_SRC_SECOND_BYTES": -0.564689,
-          "DURATION_IN": -0.44338,
-          "SRC_TO_DST_SECOND_BYTES": -0.43995,
-          "ICMP_TYPE": -0.343236,
-          "OUT_PKTS": 0.324756,
-          "ICMP_IPV4_TYPE": -0.315018
+          "ICMP_TYPE": -1.059624,
+          "L4_DST_PORT": 0.924791,
+          "ICMP_IPV4_TYPE": -0.386448,
+          "IN_PKTS": -0.384595,
+          "OUT_BYTES": -0.369603,
+          "DST_TO_SRC_AVG_THROUGHPUT": -0.284131,
+          "L4_SRC_PORT": 0.257298,
+          "SRC_TO_DST_AVG_THROUGHPUT": -0.252102,
+          "PROTOCOL": 0.23243,
+          "DURATION_IN": -0.192854
         },
         "tactic_given": {
-          "Impact": 205,
-          "Initial Access": 137,
-          "Credential Access": 5,
-          "Reconnaissance/Discovery": 5
+          "Impact": 211,
+          "Initial Access": 139,
+          "Credential Access": 7,
+          "Reconnaissance/Discovery": 2
         },
         "tactic_mean_shap_flagged": {
-          "DST_TO_SRC_AVG_THROUGHPUT": 0.62373,
-          "OUT_BYTES": 0.294197,
-          "FLOW_DURATION_MILLISECONDS": 0.266056,
-          "L4_DST_PORT": 0.253142,
-          "DURATION_IN": 0.203991,
-          "SRC_TO_DST_SECOND_BYTES": 0.198511,
-          "IN_BYTES": -0.180127,
-          "IN_PKTS": 0.172569,
-          "SRC_TO_DST_AVG_THROUGHPUT": 0.16868,
-          "PROTOCOL": 0.082706
+          "DST_TO_SRC_AVG_THROUGHPUT": 0.524149,
+          "OUT_BYTES": 0.522841,
+          "SRC_TO_DST_AVG_THROUGHPUT": 0.336888,
+          "L4_DST_PORT": 0.312678,
+          "DURATION_IN": 0.284882,
+          "FLOW_DURATION_MILLISECONDS": 0.260363,
+          "IN_BYTES": -0.158292,
+          "IN_PKTS": 0.144981,
+          "OUT_PKTS": 0.137989,
+          "DURATION_OUT": 0.127016
         }
       },
       "SSH-Bruteforce": {
         "rows": 400,
-        "detected": 0.655,
+        "detected": 1.0,
         "binary_mean_shap_all": {
-          "OUT_PKTS": -2.330354,
-          "IN_BYTES": 1.649187,
-          "IN_PKTS": -0.735454,
-          "OUT_BYTES": 0.700003,
-          "DURATION_OUT": 0.584963,
-          "L4_DST_PORT": 0.504468,
-          "DST_TO_SRC_AVG_THROUGHPUT": -0.437308,
-          "L4_SRC_PORT": 0.418804,
-          "ICMP_TYPE": 0.38518,
-          "SRC_TO_DST_SECOND_BYTES": 0.233532
+          "IN_BYTES": 1.443562,
+          "OUT_PKTS": -1.239075,
+          "L4_DST_PORT": 0.730872,
+          "DST_TO_SRC_AVG_THROUGHPUT": -0.428518,
+          "OUT_BYTES": 0.346697,
+          "L4_SRC_PORT": 0.304762,
+          "IN_PKTS": -0.182126,
+          "DURATION_OUT": 0.120554,
+          "PROTOCOL": 0.113814,
+          "FLOW_DURATION_MILLISECONDS": 0.07775
         },
-        "binary_mean_shap_missed": {
-          "OUT_PKTS": -2.365267,
-          "IN_BYTES": 1.659561,
-          "IN_PKTS": -0.683031,
-          "DURATION_OUT": 0.536308,
-          "DST_TO_SRC_AVG_THROUGHPUT": -0.457251,
-          "L4_DST_PORT": 0.456033,
-          "OUT_BYTES": 0.393748,
-          "ICMP_TYPE": 0.292531,
-          "PROTOCOL": 0.278135,
-          "SRC_TO_DST_AVG_THROUGHPUT": -0.238446
-        },
+        "binary_mean_shap_missed": null,
         "tactic_given": {
-          "Credential Access": 243,
-          "Reconnaissance/Discovery": 18,
+          "Credential Access": 399,
           "Initial Access": 1
         },
         "tactic_mean_shap_flagged": {
-          "IN_BYTES": -1.526309,
-          "IN_PKTS": 0.503287,
-          "OUT_BYTES": 0.41173,
-          "ICMP_TYPE": 0.395934,
-          "L4_DST_PORT": 0.184377,
-          "L4_SRC_PORT": 0.147846,
-          "OUT_PKTS": -0.055873,
-          "SRC_TO_DST_SECOND_BYTES": -0.054765,
-          "DURATION_IN": -0.053323,
-          "FLOW_DURATION_MILLISECONDS": 0.046936
+          "IN_BYTES": -1.645047,
+          "IN_PKTS": 0.726203,
+          "OUT_BYTES": 0.593338,
+          "ICMP_TYPE": 0.471921,
+          "L4_DST_PORT": 0.262095,
+          "ICMP_IPV4_TYPE": 0.136043,
+          "SRC_TO_DST_AVG_THROUGHPUT": 0.108451,
+          "OUT_PKTS": 0.101499,
+          "FLOW_DURATION_MILLISECONDS": 0.096153,
+          "DURATION_OUT": -0.063792
         }
       }
     }
