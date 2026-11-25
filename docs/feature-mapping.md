@@ -50,14 +50,14 @@ Status: **mapped** = direct copy or exact derivation · **derived** = computed f
 | SHORTEST_FLOW_PKT | missing | as above |
 | MIN_IP_PKT_LEN | missing | as above |
 | MAX_IP_PKT_LEN | missing | as above |
-| SRC_TO_DST_SECOND_BYTES | derived | IN_BYTES / fwd dur (bytes/s); 0 if dur = 0. **Verify the unit against BigFlow** |
-| DST_TO_SRC_SECOND_BYTES | derived | OUT_BYTES / rev dur (bytes/s); 0 if dur = 0. **Verify the unit** |
+| SRC_TO_DST_SECOND_BYTES | missing | **Not filled.** BigFlow's value is 0 for 50–62% of flows in three sources and matches bytes/s for 0% of flows, so its definition is unknown (Phase 4 check, `reports/phase4/units.json`). Lab v1 filled it with bytes/s, which caused false alarms |
+| DST_TO_SRC_SECOND_BYTES | missing | as above |
 | RETRANSMITTED_IN_BYTES | missing | retrans fields empty |
 | RETRANSMITTED_IN_PKTS | missing | as above |
 | RETRANSMITTED_OUT_BYTES | missing | as above |
 | RETRANSMITTED_OUT_PKTS | missing | as above |
-| SRC_TO_DST_AVG_THROUGHPUT | derived | IN_BYTES × 8 / fwd dur (bit/s); equals Argus `sload` |
-| DST_TO_SRC_AVG_THROUGHPUT | derived | OUT_BYTES × 8 / rev dur (bit/s) |
+| SRC_TO_DST_AVG_THROUGHPUT | derived | IN_BYTES × 8 / **whole-flow** duration (bit/s), as BigFlow computes it (checked in Phase 4); 0 if duration = 0 |
+| DST_TO_SRC_AVG_THROUGHPUT | derived | OUT_BYTES × 8 / whole-flow duration (bit/s), as BigFlow |
 | NUM_PKTS_UP_TO_128_BYTES | missing | needs per-packet sizes |
 | NUM_PKTS_128_TO_256_BYTES | missing | as above |
 | NUM_PKTS_256_TO_512_BYTES | missing | as above |
@@ -80,7 +80,7 @@ Status: **mapped** = direct copy or exact derivation · **derived** = computed f
 | DST_TO_SRC_IAT_AVG | missing | as above |
 | DST_TO_SRC_IAT_STDDEV | missing | as above |
 
-**Totals: 20 mapped/derived (4 of them identifiers, so 16 usable model inputs), 33 missing.**
+**Totals: 18 mapped/derived (4 of them identifiers, so 14 usable model inputs), 35 missing.** Until Phase 4 the two `*_SECOND_BYTES` features were filled with bytes/s, giving 16 inputs; the Phase 2 and 3 results for lab-feature models before that fix used those 16.
 
 ## Labels
 
@@ -93,6 +93,6 @@ Lab-only columns (`session_id`, `attack_type`, `tool`, `label_method`, `capture_
 
 ## What this means for the models
 
-1. **A "lab-compatible" model is needed.** To score lab flows, train on the 16 features both datasets share. A model trained on all of BigFlow's features can't be fairly scored on lab data: imputing 33 features would mean scoring invented values. Phase 2 will train both and report them separately.
+1. **A "lab-compatible" model is needed.** To score lab flows, train on the 14 features both datasets share. A model trained on all of BigFlow's features can't be fairly scored on lab data: imputing 33 features would mean scoring invented values. Phase 2 will train both and report them separately.
 2. **Closing the gap is a sensor problem, not a code problem.** Most gaps (TTL, TCP flags, inter-arrival times, packet-size bins, L7) disappear if the planned 5-hour capture uses a collector that emits NetFlow-v3 fields directly (e.g. nProbe, the tool the NF-v3 datasets were built with), or a working Argus with the extended metrics in `docs/ai-team-data-requirements.md` §4.2. Raw PCAP from the session would also let us regenerate any of them.
 3. **Lab v1 is too small to judge accuracy.** 54 conversations with 1 attack can show the pipeline runs end to end. It cannot support a recall or precision claim. Metrics on it will be reported with that caveat.

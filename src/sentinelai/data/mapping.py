@@ -44,14 +44,17 @@ FEATURE_MAP: dict[str, tuple[str, str]] = {
     "SHORTEST_FLOW_PKT": ("missing", "as LONGEST_FLOW_PKT"),
     "MIN_IP_PKT_LEN": ("missing", "as LONGEST_FLOW_PKT"),
     "MAX_IP_PKT_LEN": ("missing", "as LONGEST_FLOW_PKT"),
-    "SRC_TO_DST_SECOND_BYTES": ("derived", "IN_BYTES / fwd.dur (bytes/s); 0 if dur == 0. Unit to verify against BigFlow"),
-    "DST_TO_SRC_SECOND_BYTES": ("derived", "OUT_BYTES / rev.dur (bytes/s); 0 if dur == 0. Unit to verify against BigFlow"),
+    # Phase 4 check (reports/phase4/units.json): BigFlow's SECOND_BYTES is 0 for 50-62% of flows in three
+    # sources and matches bytes/s for 0% of flows, so a lab bytes/s value is not the same feature. Left NaN.
+    "SRC_TO_DST_SECOND_BYTES": ("missing", "BigFlow's definition is unknown and does not match bytes/s (Phase 4 check); not filled"),
+    "DST_TO_SRC_SECOND_BYTES": ("missing", "as SRC_TO_DST_SECOND_BYTES"),
     "RETRANSMITTED_IN_BYTES": ("missing", "retrans fields empty"),
     "RETRANSMITTED_IN_PKTS": ("missing", "retrans fields empty"),
     "RETRANSMITTED_OUT_BYTES": ("missing", "retrans fields empty"),
     "RETRANSMITTED_OUT_PKTS": ("missing", "retrans fields empty"),
-    "SRC_TO_DST_AVG_THROUGHPUT": ("derived", "IN_BYTES * 8 / fwd.dur (bit/s, = Argus sload); 0 if dur == 0"),
-    "DST_TO_SRC_AVG_THROUGHPUT": ("derived", "OUT_BYTES * 8 / rev.dur (bit/s); 0 if dur == 0"),
+    # Phase 4 check: BigFlow divides by the WHOLE-flow duration (ratio ~1.0 for 70-91% of flows), not one direction's.
+    "SRC_TO_DST_AVG_THROUGHPUT": ("derived", "IN_BYTES * 8 / FLOW_DURATION seconds (bit/s, as BigFlow); 0 if duration == 0"),
+    "DST_TO_SRC_AVG_THROUGHPUT": ("derived", "OUT_BYTES * 8 / FLOW_DURATION seconds (bit/s, as BigFlow); 0 if duration == 0"),
     "NUM_PKTS_UP_TO_128_BYTES": ("missing", "needs per-packet sizes"),
     "NUM_PKTS_128_TO_256_BYTES": ("missing", "needs per-packet sizes"),
     "NUM_PKTS_256_TO_512_BYTES": ("missing", "needs per-packet sizes"),
@@ -130,10 +133,9 @@ def map_lab_to_bigflow(biflows: pd.DataFrame) -> pd.DataFrame:
     out["OUT_BYTES"], out["OUT_PKTS"] = b.rev_bytes.fillna(0), b.rev_pkts.fillna(0)
     out["DURATION_IN"] = b.fwd_dur * 1000
     out["DURATION_OUT"] = rev_dur * 1000
-    out["SRC_TO_DST_SECOND_BYTES"] = _per_second(b.fwd_bytes, b.fwd_dur)
-    out["DST_TO_SRC_SECOND_BYTES"] = _per_second(out.OUT_BYTES, rev_dur)
-    out["SRC_TO_DST_AVG_THROUGHPUT"] = _per_second(b.fwd_bytes * 8, b.fwd_dur)
-    out["DST_TO_SRC_AVG_THROUGHPUT"] = _per_second(out.OUT_BYTES * 8, rev_dur)
+    flow_s = out.FLOW_DURATION_MILLISECONDS / 1000
+    out["SRC_TO_DST_AVG_THROUGHPUT"] = _per_second(b.fwd_bytes * 8, flow_s)
+    out["DST_TO_SRC_AVG_THROUGHPUT"] = _per_second(out.OUT_BYTES * 8, flow_s)
 
     tc = b.apply(lambda r: _icmp_type_code(r) if r.proto == "icmp" else (0, 0), axis=1)
     out["ICMP_IPV4_TYPE"] = [t for t, _ in tc]

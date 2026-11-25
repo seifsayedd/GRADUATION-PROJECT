@@ -56,3 +56,16 @@ def test_udp_ports_and_zero_duration(lab_full_path):
     assert len(mdns)
     assert (mdns.SRC_TO_DST_AVG_THROUGHPUT == 0).all()   # defined as 0, not inf
     assert (mdns.ICMP_TYPE == 0).all()
+
+
+def test_rate_features_follow_bigflow_definitions(lab_full_path):
+    """Phase 4 check: BigFlow throughput = bytes * 8 / whole-flow seconds; SECOND_BYTES cannot be reproduced."""
+    m = lab_to_bigflow(lab_full_path)
+    assert m.SRC_TO_DST_SECOND_BYTES.isna().all() and m.DST_TO_SRC_SECOND_BYTES.isna().all()
+    assert "SRC_TO_DST_SECOND_BYTES" not in available_features()
+    s = m.FLOW_DURATION_MILLISECONDS / 1000
+    ok = s > 0
+    assert ok.any()
+    assert np.allclose(m.SRC_TO_DST_AVG_THROUGHPUT[ok], (m.IN_BYTES * 8 / s)[ok])
+    assert np.allclose(m.DST_TO_SRC_AVG_THROUGHPUT[ok], (m.OUT_BYTES * 8 / s)[ok])
+    assert (m.SRC_TO_DST_AVG_THROUGHPUT[~ok] == 0).all()
