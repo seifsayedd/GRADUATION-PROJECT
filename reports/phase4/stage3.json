@@ -1,0 +1,179 @@
+{
+  "git_commit": "1346e03",
+  "stage3": {
+    "autoencoder_temporal_full": {
+      "rows": 800,
+      "flagged": 112,
+      "error_share_by_true_tactic": {
+        "Benign": {
+          "L7_PROTO": 0.1373,
+          "L4_SRC_PORT": 0.09,
+          "SERVER_TCP_FLAGS": 0.0854,
+          "DNS_QUERY_TYPE": 0.0685,
+          "L4_DST_PORT": 0.0636,
+          "CLIENT_TCP_FLAGS": 0.0466,
+          "ICMP_TYPE": 0.0462,
+          "ICMP_IPV4_TYPE": 0.043
+        },
+        "Command and Control": {
+          "L4_DST_PORT": 0.3568,
+          "SERVER_TCP_FLAGS": 0.1104,
+          "L4_SRC_PORT": 0.1101,
+          "LONGEST_FLOW_PKT": 0.0529,
+          "MAX_IP_PKT_LEN": 0.0471,
+          "DST_TO_SRC_SECOND_BYTES": 0.0308,
+          "SRC_TO_DST_SECOND_BYTES": 0.0273,
+          "TCP_FLAGS": 0.0263
+        },
+        "Credential Access": {
+          "L7_PROTO": 0.4499,
+          "L4_DST_PORT": 0.0589,
+          "TCP_WIN_MAX_IN": 0.0429,
+          "TCP_FLAGS": 0.0328,
+          "SERVER_TCP_FLAGS": 0.0313,
+          "CLIENT_TCP_FLAGS": 0.0285,
+          "SHORTEST_FLOW_PKT": 0.0274,
+          "L4_SRC_PORT": 0.0227
+        },
+        "Exfiltration": {
+          "TCP_WIN_MAX_IN": 0.2939,
+          "CLIENT_TCP_FLAGS": 0.0926,
+          "TCP_FLAGS": 0.0886,
+          "MAX_IP_PKT_LEN": 0.0657,
+          "LONGEST_FLOW_PKT": 0.062,
+          "L7_PROTO": 0.0593,
+          "PROTOCOL": 0.0581,
+          "FLOW_DURATION_MILLISECONDS": 0.039
+        },
+        "Impact": {
+          "L7_PROTO": 0.2046,
+          "SERVER_TCP_FLAGS": 0.0841,
+          "CLIENT_TCP_FLAGS": 0.0652,
+          "TCP_WIN_MAX_IN": 0.0545,
+          "L4_DST_PORT": 0.0514,
+          "SRC_TO_DST_IAT_STDDEV": 0.0431,
+          "TCP_FLAGS": 0.0404,
+          "SHORTEST_FLOW_PKT": 0.0348
+        },
+        "Initial Access": {
+          "L4_DST_PORT": 0.0982,
+          "L7_PROTO": 0.0856,
+          "CLIENT_TCP_FLAGS": 0.0705,
+          "SERVER_TCP_FLAGS": 0.0705,
+          "SHORTEST_FLOW_PKT": 0.0635,
+          "TCP_FLAGS": 0.0493,
+          "L4_SRC_PORT": 0.0491,
+          "DNS_QUERY_TYPE": 0.035
+        },
+        "Other": {
+          "MIN_TTL": 0.1881,
+          "MAX_TTL": 0.1812,
+          "L7_PROTO": 0.0862,
+          "DNS_QUERY_TYPE": 0.0757,
+          "SERVER_TCP_FLAGS": 0.0349,
+          "TCP_FLAGS": 0.0348,
+          "SRC_TO_DST_IAT_MIN": 0.0286,
+          "CLIENT_TCP_FLAGS": 0.0262
+        },
+        "Reconnaissance/Discovery": {
+          "L7_PROTO": 0.1281,
+          "CLIENT_TCP_FLAGS": 0.0692,
+          "L4_DST_PORT": 0.0682,
+          "TCP_FLAGS": 0.0617,
+          "TCP_WIN_MAX_IN": 0.0578,
+          "SERVER_TCP_FLAGS": 0.0502,
+          "L4_SRC_PORT": 0.046,
+          "FLOW_DURATION_MILLISECONDS": 0.0399
+        }
+      },
+      "max_additivity_error": 7.450580596923828e-08
+    },
+    "autoencoder_temporal_lab": {
+      "rows": 800,
+      "flagged": 9,
+      "error_share_by_true_tactic": {
+        "Benign": {
+          "ICMP_IPV4_TYPE": 0.1747,
+          "ICMP_TYPE": 0.1705,
+          "SRC_TO_DST_SECOND_BYTES": 0.083,
+          "L4_SRC_PORT": 0.0805,
+          "L4_DST_PORT": 0.0723,
+          "OUT_PKTS": 0.0686,
+          "PROTOCOL": 0.0555,
+          "DST_TO_SRC_AVG_THROUGHPUT": 0.0547
+        },
+        "Command and Control": {
+          "OUT_PKTS": 0.3237,
+          "L4_SRC_PORT": 0.1411,
+          "SRC_TO_DST_SECOND_BYTES": 0.1313,
+          "ICMP_IPV4_TYPE": 0.119,
+          "ICMP_TYPE": 0.1083,
+          "IN_PKTS": 0.0544,
+          "DST_TO_SRC_SECOND_BYTES": 0.0241,
+          "SRC_TO_DST_AVG_THROUGHPUT": 0.0212
+        },
+        "Credential Access": {
+          "DST_TO_SRC_SECOND_BYTES": 0.2087,
+          "OUT_BYTES": 0.1858,
+          "SRC_TO_DST_SECOND_BYTES": 0.1209,
+          "ICMP_IPV4_TYPE": 0.085,
+          "ICMP_TYPE": 0.0774,
+          "OUT_PKTS": 0.0523,
+          "L4_SRC_PORT": 0.0462,
+          "L4_DST_PORT": 0.0435
+        },
+        "Exfiltration": {
+          "FLOW_DURATION_MILLISECONDS": 0.4443,
+          "DST_TO_SRC_SECOND_BYTES": 0.1266,
+          "IN_BYTES": 0.1101,
+          "SRC_TO_DST_AVG_THROUGHPUT": 0.0917,
+          "ICMP_IPV4_TYPE": 0.053,
+          "ICMP_TYPE": 0.0462,
+          "OUT_BYTES": 0.0451,
+          "DURATION_OUT": 0.0229
+        },
+        "Impact": {
+          "ICMP_IPV4_TYPE": 0.1239,
+          "ICMP_TYPE": 0.1212,
+          "OUT_BYTES": 0.1062,
+          "SRC_TO_DST_SECOND_BYTES": 0.098,
+          "DST_TO_SRC_SECOND_BYTES": 0.0924,
+          "L4_SRC_PORT": 0.0852,
+          "DST_TO_SRC_AVG_THROUGHPUT": 0.0749,
+          "PROTOCOL": 0.0517
+        },
+        "Initial Access": {
+          "ICMP_IPV4_TYPE": 0.1607,
+          "ICMP_TYPE": 0.1452,
+          "OUT_PKTS": 0.1124,
+          "SRC_TO_DST_SECOND_BYTES": 0.1094,
+          "DST_TO_SRC_SECOND_BYTES": 0.072,
+          "IN_PKTS": 0.0676,
+          "L4_SRC_PORT": 0.0654,
+          "DURATION_IN": 0.0449
+        },
+        "Other": {
+          "IN_PKTS": 0.1908,
+          "IN_BYTES": 0.1504,
+          "DST_TO_SRC_SECOND_BYTES": 0.1142,
+          "ICMP_TYPE": 0.0764,
+          "ICMP_IPV4_TYPE": 0.0722,
+          "FLOW_DURATION_MILLISECONDS": 0.071,
+          "DURATION_IN": 0.0577,
+          "PROTOCOL": 0.0382
+        },
+        "Reconnaissance/Discovery": {
+          "ICMP_IPV4_TYPE": 0.1691,
+          "ICMP_TYPE": 0.1552,
+          "L4_SRC_PORT": 0.0751,
+          "FLOW_DURATION_MILLISECONDS": 0.0714,
+          "DST_TO_SRC_SECOND_BYTES": 0.0708,
+          "OUT_BYTES": 0.069,
+          "OUT_PKTS": 0.0551,
+          "SRC_TO_DST_SECOND_BYTES": 0.052
+        }
+      },
+      "max_additivity_error": 1.1175870895385742e-08
+    }
+  }
+}

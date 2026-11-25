@@ -1,0 +1,341 @@
+[
+  {
+    "schema_version": "1.0",
+    "alert_id": "s2-gru_w32_lab-913529",
+    "flow": {
+      "src": "172.31.69.10",
+      "dst": "18.219.211.138",
+      "protocol": "6 (TCP)",
+      "start_ms": 1520000497497.0,
+      "src_port": 50902.0,
+      "dst_port": 8080.0,
+      "dataset": "CSE-CIC-IDS2018"
+    },
+    "model": {
+      "stage": 2,
+      "name": "gru_w32_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 1.0,
+      "attack": "Bot",
+      "tactic": "Command and Control"
+    },
+    "decision": {
+      "score": 1.0,
+      "score_kind": "1 - P(Benign)",
+      "threshold": 0.7676451802253723,
+      "operating_point": "1% of benign validation flagged (Phase 3)",
+      "flagged": true
+    },
+    "attention": [
+      {
+        "offset": -2.0,
+        "weight": 0.055315,
+        "occlusion_delta": 0.0,
+        "flow": "TCP to 18.219.211.138:8080, 2.0 s before the labelled flow"
+      },
+      {
+        "offset": -8.0,
+        "weight": 0.055095,
+        "occlusion_delta": 0.0,
+        "flow": "TCP to 18.219.211.138:8080, 8.1 s before the labelled flow"
+      },
+      {
+        "offset": -6.0,
+        "weight": 0.054327,
+        "occlusion_delta": 0.0,
+        "flow": "TCP to 18.219.211.138:8080, 6.0 s before the labelled flow"
+      },
+      {
+        "offset": -4.0,
+        "weight": 0.053372,
+        "occlusion_delta": 0.0,
+        "flow": "TCP to 18.219.211.138:8080, 4.0 s before the labelled flow"
+      },
+      {
+        "offset": -14.0,
+        "weight": 0.052939,
+        "occlusion_delta": 0.0,
+        "flow": "TCP to 18.219.211.138:8080, 14.1 s before the labelled flow"
+      }
+    ],
+    "caveats": [
+      "Test windows come from the same capture days as training, so Stage 2 scores are somewhat optimistic (Phase 2).",
+      "Attention shows where the model looked, which is not always what changed its decision; see occlusion_delta."
+    ],
+    "summary": "Stage 2 (gru_w32_lab) flagged the TCP flow 172.31.69.10:50902 -> 18.219.211.138:8080 (score 1.000, threshold 0.768, 1 - P(Benign)). Most attended earlier flow: 2 flows back (weight 0.055, removing it moves the attack probability by 0.000). Caveat: Test windows come from the same capture days as training, so Stage 2 scores are somewhat optimistic (Phase 2)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "s2-gru_w32_lab-1601789",
+    "flow": {
+      "src": "13.59.126.31",
+      "dst": "172.31.69.25",
+      "protocol": "6 (TCP)",
+      "start_ms": 1518792619847.0,
+      "src_port": 47928.0,
+      "dst_port": 21.0,
+      "dataset": "CSE-CIC-IDS2018"
+    },
+    "model": {
+      "stage": 2,
+      "name": "gru_w32_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 1.0,
+      "attack": "DoS_attacks-SlowHTTPTest",
+      "tactic": "Impact"
+    },
+    "decision": {
+      "score": 0.999987,
+      "score_kind": "1 - P(Benign)",
+      "threshold": 0.7676451802253723,
+      "operating_point": "1% of benign validation flagged (Phase 3)",
+      "flagged": true
+    },
+    "attention": [
+      {
+        "offset": -5.0,
+        "weight": 0.036968,
+        "occlusion_delta": 2.2e-05,
+        "flow": "TCP to 172.31.69.25:21, 0.0 s before the labelled flow"
+      },
+      {
+        "offset": -22.0,
+        "weight": 0.036915,
+        "occlusion_delta": 4e-06,
+        "flow": "TCP to 172.31.69.25:21, 0.3 s before the labelled flow"
+      },
+      {
+        "offset": -21.0,
+        "weight": 0.036797,
+        "occlusion_delta": 5e-06,
+        "flow": "TCP to 172.31.69.25:21, 0.3 s before the labelled flow"
+      },
+      {
+        "offset": -23.0,
+        "weight": 0.036694,
+        "occlusion_delta": 4e-06,
+        "flow": "TCP to 172.31.69.25:21, 0.3 s before the labelled flow"
+      },
+      {
+        "offset": -20.0,
+        "weight": 0.036402,
+        "occlusion_delta": 5e-06,
+        "flow": "TCP to 172.31.69.25:21, 0.3 s before the labelled flow"
+      }
+    ],
+    "caveats": [
+      "Test windows come from the same capture days as training, so Stage 2 scores are somewhat optimistic (Phase 2).",
+      "Attention shows where the model looked, which is not always what changed its decision; see occlusion_delta."
+    ],
+    "summary": "Stage 2 (gru_w32_lab) flagged the TCP flow 13.59.126.31:47928 -> 172.31.69.25:21 (score 1.000, threshold 0.768, 1 - P(Benign)). Most attended earlier flow: 5 flows back (weight 0.037, removing it moves the attack probability by 0.000). Caveat: Test windows come from the same capture days as training, so Stage 2 scores are somewhat optimistic (Phase 2)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "s2-gru_w32_lab-5576230",
+    "flow": {
+      "src": "192.168.1.38",
+      "dst": "192.168.1.190",
+      "protocol": "6 (TCP)",
+      "start_ms": 1556248665786.0,
+      "src_port": 60588.0,
+      "dst_port": 80.0,
+      "dataset": "ToN-IoT"
+    },
+    "model": {
+      "stage": 2,
+      "name": "gru_w32_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.99968,
+      "score_kind": "1 - P(Benign)",
+      "threshold": 0.7676451802253723,
+      "operating_point": "1% of benign validation flagged (Phase 3)",
+      "flagged": true
+    },
+    "attention": [
+      {
+        "offset": -1.0,
+        "weight": 0.065891,
+        "occlusion_delta": 0.000119,
+        "flow": "TCP to 192.168.1.190:80, 0.0 s before the labelled flow"
+      },
+      {
+        "offset": -24.0,
+        "weight": 0.037887,
+        "occlusion_delta": 7e-06,
+        "flow": "TCP to 192.168.1.190:80, 0.0 s before the labelled flow"
+      },
+      {
+        "offset": -2.0,
+        "weight": 0.035557,
+        "occlusion_delta": 0.000119,
+        "flow": "TCP to 192.168.1.190:80, 0.0 s before the labelled flow"
+      },
+      {
+        "offset": -3.0,
+        "weight": 0.035209,
+        "occlusion_delta": 4.7e-05,
+        "flow": "TCP to 192.168.1.190:80, 0.0 s before the labelled flow"
+      },
+      {
+        "offset": -4.0,
+        "weight": 0.035059,
+        "occlusion_delta": 3.1e-05,
+        "flow": "TCP to 192.168.1.190:80, 0.0 s before the labelled flow"
+      }
+    ],
+    "caveats": [
+      "Test windows come from the same capture days as training, so Stage 2 scores are somewhat optimistic (Phase 2).",
+      "Attention shows where the model looked, which is not always what changed its decision; see occlusion_delta."
+    ],
+    "summary": "Stage 2 (gru_w32_lab) flagged the TCP flow 192.168.1.38:60588 -> 192.168.1.190:80 (score 1.000, threshold 0.768, 1 - P(Benign)). Most attended earlier flow: 1 flows back (weight 0.066, removing it moves the attack probability by 0.000). Caveat: Test windows come from the same capture days as training, so Stage 2 scores are somewhat optimistic (Phase 2)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "s2-gru_w32_lab-4821770",
+    "flow": {
+      "src": "192.168.1.30",
+      "dst": "192.168.1.195",
+      "protocol": "6 (TCP)",
+      "start_ms": 1556287893234.0,
+      "src_port": 43536.0,
+      "dst_port": 80.0,
+      "dataset": "ToN-IoT"
+    },
+    "model": {
+      "stage": 2,
+      "name": "gru_w32_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 1.0,
+      "attack": "password",
+      "tactic": "Credential Access"
+    },
+    "decision": {
+      "score": 0.997466,
+      "score_kind": "1 - P(Benign)",
+      "threshold": 0.7676451802253723,
+      "operating_point": "1% of benign validation flagged (Phase 3)",
+      "flagged": true
+    },
+    "attention": [
+      {
+        "offset": -9.0,
+        "weight": 0.355536,
+        "occlusion_delta": 0.002006,
+        "flow": "TCP to 192.168.1.194:21, 1.4 s before the labelled flow"
+      },
+      {
+        "offset": -3.0,
+        "weight": 0.123479,
+        "occlusion_delta": 0.000721,
+        "flow": "TCP to 192.168.1.195:80, 0.1 s before the labelled flow"
+      },
+      {
+        "offset": -6.0,
+        "weight": 0.072059,
+        "occlusion_delta": 0.000283,
+        "flow": "TCP to 192.168.1.195:80, 0.1 s before the labelled flow"
+      },
+      {
+        "offset": 0.0,
+        "weight": 0.064682,
+        "flow": "the labelled flow itself"
+      },
+      {
+        "offset": -1.0,
+        "weight": 0.047013,
+        "occlusion_delta": 0.000945,
+        "flow": "TCP to 192.168.1.195:80, 0.0 s before the labelled flow"
+      }
+    ],
+    "caveats": [
+      "Test windows come from the same capture days as training, so Stage 2 scores are somewhat optimistic (Phase 2).",
+      "Attention shows where the model looked, which is not always what changed its decision; see occlusion_delta."
+    ],
+    "summary": "Stage 2 (gru_w32_lab) flagged the TCP flow 192.168.1.30:43536 -> 192.168.1.195:80 (score 0.997, threshold 0.768, 1 - P(Benign)). Most attended earlier flow: 9 flows back (weight 0.356, removing it moves the attack probability by 0.002). Caveat: Test windows come from the same capture days as training, so Stage 2 scores are somewhat optimistic (Phase 2)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "s2-gru_w32_lab-3185172",
+    "flow": {
+      "src": "192.168.1.30",
+      "dst": "192.168.35.152",
+      "protocol": "6 (TCP)",
+      "start_ms": 1556028909228.0,
+      "src_port": 37505.0,
+      "dst_port": 80.0,
+      "dataset": "ToN-IoT"
+    },
+    "model": {
+      "stage": 2,
+      "name": "gru_w32_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 1.0,
+      "attack": "scanning",
+      "tactic": "Reconnaissance/Discovery"
+    },
+    "decision": {
+      "score": 0.893038,
+      "score_kind": "1 - P(Benign)",
+      "threshold": 0.7676451802253723,
+      "operating_point": "1% of benign validation flagged (Phase 3)",
+      "flagged": true
+    },
+    "attention": [
+      {
+        "offset": -30.0,
+        "weight": 0.080268,
+        "occlusion_delta": 0.004684,
+        "flow": "TCP to 192.168.1.193:55055, 0.0 s before the labelled flow"
+      },
+      {
+        "offset": -29.0,
+        "weight": 0.076891,
+        "occlusion_delta": 0.008309,
+        "flow": "TCP to 192.168.1.194:13722, 0.0 s before the labelled flow"
+      },
+      {
+        "offset": -4.0,
+        "weight": 0.076122,
+        "occlusion_delta": 0.039003,
+        "flow": "ICMP to 192.168.35.98:0, 0.0 s before the labelled flow"
+      },
+      {
+        "offset": -31.0,
+        "weight": 0.064655,
+        "occlusion_delta": 0.034134,
+        "flow": "TCP to 192.168.1.190:8083, 0.0 s before the labelled flow"
+      },
+      {
+        "offset": -28.0,
+        "weight": 0.056322,
+        "occlusion_delta": 0.002748,
+        "flow": "TCP to 192.168.1.195:3998, 0.0 s before the labelled flow"
+      }
+    ],
+    "caveats": [
+      "Test windows come from the same capture days as training, so Stage 2 scores are somewhat optimistic (Phase 2).",
+      "Attention shows where the model looked, which is not always what changed its decision; see occlusion_delta."
+    ],
+    "summary": "Stage 2 (gru_w32_lab) flagged the TCP flow 192.168.1.30:37505 -> 192.168.35.152:80 (score 0.893, threshold 0.768, 1 - P(Benign)). Most attended earlier flow: 30 flows back (weight 0.080, removing it moves the attack probability by 0.005). Caveat: Test windows come from the same capture days as training, so Stage 2 scores are somewhat optimistic (Phase 2)."
+  }
+]

@@ -1,0 +1,186 @@
+[
+  {
+    "schema_version": "1.0",
+    "alert_id": "ho-xgboost_temporal_full-102166",
+    "flow": {
+      "src": "192.168.1.193",
+      "dst": "192.168.1.33",
+      "protocol": "6 (TCP)",
+      "start_ms": 1556487205403.0,
+      "src_port": 57540.0,
+      "dst_port": 8080.0,
+      "dataset": "ToN-IoT"
+    },
+    "model": {
+      "stage": 1,
+      "name": "xgboost_temporal_full",
+      "feature_set": "full",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 1.0,
+      "attack": "Backdoor",
+      "tactic": "Command and Control"
+    },
+    "decision": {
+      "score": 0.01593,
+      "score_kind": "probability of attack",
+      "threshold": 0.5,
+      "operating_point": "default",
+      "flagged": false
+    },
+    "contributions": {
+      "space": "log-odds",
+      "base_value": 0.063059,
+      "output": -4.123514,
+      "items": [
+        {
+          "feature": "LONGEST_FLOW_PKT",
+          "value": "48",
+          "contribution": -1.114177,
+          "direction": "towards benign"
+        },
+        {
+          "feature": "TCP_WIN_MAX_IN",
+          "value": "8,192",
+          "contribution": -0.963271,
+          "direction": "towards benign"
+        },
+        {
+          "feature": "L7_PROTO",
+          "value": "131",
+          "contribution": -0.467019,
+          "direction": "towards benign"
+        },
+        {
+          "feature": "MAX_TTL",
+          "value": "128",
+          "contribution": -0.303958,
+          "direction": "towards benign"
+        },
+        {
+          "feature": "L4_DST_PORT",
+          "value": "8080 (registered)",
+          "contribution": -0.279285,
+          "direction": "towards benign"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": -0.259531,
+          "direction": "towards benign"
+        },
+        {
+          "feature": "SERVER_TCP_FLAGS",
+          "value": "RST|ACK (0x14)",
+          "contribution": -0.165724,
+          "direction": "towards benign"
+        },
+        {
+          "feature": "IN_BYTES",
+          "value": "288",
+          "contribution": -0.157875,
+          "direction": "towards benign"
+        }
+      ],
+      "rest": -0.475732,
+      "additivity_error": 1.430511474609375e-06
+    },
+    "caveats": [
+      "This attack class was never in training (Phase 2 holdout)."
+    ],
+    "summary": "Stage 1 (xgboost_temporal_full) did not flag the TCP flow 192.168.1.193:57540 -> 192.168.1.33:8080 (score 0.016, threshold 0.500, probability of attack). Strongest evidence against (log-odds): LONGEST_FLOW_PKT = 48 (-1.114); TCP_WIN_MAX_IN = 8,192 (-0.963). Caveat: This attack class was never in training (Phase 2 holdout)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "ho-xgboost_temporal_full-114211",
+    "flow": {
+      "src": "192.168.1.193",
+      "dst": "192.168.1.37",
+      "protocol": "6 (TCP)",
+      "start_ms": 1556466483400.0,
+      "src_port": 54027.0,
+      "dst_port": 8080.0,
+      "dataset": "ToN-IoT"
+    },
+    "model": {
+      "stage": 1,
+      "name": "xgboost_temporal_full",
+      "feature_set": "full",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 1.0,
+      "attack": "Backdoor",
+      "tactic": "Command and Control"
+    },
+    "decision": {
+      "score": 0.01593,
+      "score_kind": "probability of attack",
+      "threshold": 0.5,
+      "operating_point": "default",
+      "flagged": false
+    },
+    "contributions": {
+      "space": "log-odds",
+      "base_value": 0.063059,
+      "output": -4.123514,
+      "items": [
+        {
+          "feature": "LONGEST_FLOW_PKT",
+          "value": "48",
+          "contribution": -1.114177,
+          "direction": "towards benign"
+        },
+        {
+          "feature": "TCP_WIN_MAX_IN",
+          "value": "8,192",
+          "contribution": -0.963274,
+          "direction": "towards benign"
+        },
+        {
+          "feature": "L7_PROTO",
+          "value": "131",
+          "contribution": -0.466967,
+          "direction": "towards benign"
+        },
+        {
+          "feature": "MAX_TTL",
+          "value": "128",
+          "contribution": -0.30412,
+          "direction": "towards benign"
+        },
+        {
+          "feature": "L4_DST_PORT",
+          "value": "8080 (registered)",
+          "contribution": -0.279515,
+          "direction": "towards benign"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": -0.259531,
+          "direction": "towards benign"
+        },
+        {
+          "feature": "SERVER_TCP_FLAGS",
+          "value": "RST|ACK (0x14)",
+          "contribution": -0.165724,
+          "direction": "towards benign"
+        },
+        {
+          "feature": "IN_BYTES",
+          "value": "288",
+          "contribution": -0.157875,
+          "direction": "towards benign"
+        }
+      ],
+      "rest": -0.475389,
+      "additivity_error": 1.430511474609375e-06
+    },
+    "caveats": [
+      "This attack class was never in training (Phase 2 holdout)."
+    ],
+    "summary": "Stage 1 (xgboost_temporal_full) did not flag the TCP flow 192.168.1.193:54027 -> 192.168.1.37:8080 (score 0.016, threshold 0.500, probability of attack). Strongest evidence against (log-odds): LONGEST_FLOW_PKT = 48 (-1.114); TCP_WIN_MAX_IN = 8,192 (-0.963). Caveat: This attack class was never in training (Phase 2 holdout)."
+  }
+]

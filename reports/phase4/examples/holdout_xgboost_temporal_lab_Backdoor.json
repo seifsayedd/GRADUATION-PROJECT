@@ -1,0 +1,186 @@
+[
+  {
+    "schema_version": "1.0",
+    "alert_id": "ho-xgboost_temporal_lab-102166",
+    "flow": {
+      "src": "192.168.1.193",
+      "dst": "192.168.1.33",
+      "protocol": "6 (TCP)",
+      "start_ms": 1556487205403.0,
+      "src_port": 57540.0,
+      "dst_port": 8080.0,
+      "dataset": "ToN-IoT"
+    },
+    "model": {
+      "stage": 1,
+      "name": "xgboost_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 1.0,
+      "attack": "Backdoor",
+      "tactic": "Command and Control"
+    },
+    "decision": {
+      "score": 0.102931,
+      "score_kind": "probability of attack",
+      "threshold": 0.5,
+      "operating_point": "default",
+      "flagged": false
+    },
+    "contributions": {
+      "space": "log-odds",
+      "base_value": 0.050097,
+      "output": -2.165069,
+      "items": [
+        {
+          "feature": "L4_DST_PORT",
+          "value": "8080 (registered)",
+          "contribution": -1.572095,
+          "direction": "towards benign"
+        },
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "0",
+          "contribution": -0.930153,
+          "direction": "towards benign"
+        },
+        {
+          "feature": "FLOW_DURATION_MILLISECONDS",
+          "value": "1,531",
+          "contribution": 0.704855,
+          "direction": "towards attack"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": -0.693362,
+          "direction": "towards benign"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "6",
+          "contribution": -0.370662,
+          "direction": "towards benign"
+        },
+        {
+          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
+          "value": "1,253",
+          "contribution": 0.244473,
+          "direction": "towards attack"
+        },
+        {
+          "feature": "IN_BYTES",
+          "value": "288",
+          "contribution": 0.222637,
+          "direction": "towards attack"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "6 (TCP)",
+          "contribution": 0.205287,
+          "direction": "towards attack"
+        }
+      ],
+      "rest": -0.026147,
+      "additivity_error": 4.76837158203125e-06
+    },
+    "caveats": [
+      "This attack class was never in training (Phase 2 holdout)."
+    ],
+    "summary": "Stage 1 (xgboost_temporal_lab) did not flag the TCP flow 192.168.1.193:57540 -> 192.168.1.33:8080 (score 0.103, threshold 0.500, probability of attack). Strongest evidence for attack (log-odds): FLOW_DURATION_MILLISECONDS = 1,531 (+0.705); DST_TO_SRC_AVG_THROUGHPUT = 1,253 (+0.244); IN_BYTES = 288 (+0.223). Strongest evidence against (log-odds): L4_DST_PORT = 8080 (registered) (-1.572); SRC_TO_DST_SECOND_BYTES = 0 (-0.930). Caveat: This attack class was never in training (Phase 2 holdout)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "ho-xgboost_temporal_lab-114211",
+    "flow": {
+      "src": "192.168.1.193",
+      "dst": "192.168.1.37",
+      "protocol": "6 (TCP)",
+      "start_ms": 1556466483400.0,
+      "src_port": 54027.0,
+      "dst_port": 8080.0,
+      "dataset": "ToN-IoT"
+    },
+    "model": {
+      "stage": 1,
+      "name": "xgboost_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 1.0,
+      "attack": "Backdoor",
+      "tactic": "Command and Control"
+    },
+    "decision": {
+      "score": 0.102931,
+      "score_kind": "probability of attack",
+      "threshold": 0.5,
+      "operating_point": "default",
+      "flagged": false
+    },
+    "contributions": {
+      "space": "log-odds",
+      "base_value": 0.050097,
+      "output": -2.165069,
+      "items": [
+        {
+          "feature": "L4_DST_PORT",
+          "value": "8080 (registered)",
+          "contribution": -1.570927,
+          "direction": "towards benign"
+        },
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "0",
+          "contribution": -0.930153,
+          "direction": "towards benign"
+        },
+        {
+          "feature": "FLOW_DURATION_MILLISECONDS",
+          "value": "1,501",
+          "contribution": 0.704724,
+          "direction": "towards attack"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": -0.693362,
+          "direction": "towards benign"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "6",
+          "contribution": -0.371466,
+          "direction": "towards benign"
+        },
+        {
+          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
+          "value": "1,278",
+          "contribution": 0.247424,
+          "direction": "towards attack"
+        },
+        {
+          "feature": "IN_BYTES",
+          "value": "288",
+          "contribution": 0.223831,
+          "direction": "towards attack"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "6 (TCP)",
+          "contribution": 0.205061,
+          "direction": "towards attack"
+        }
+      ],
+      "rest": -0.0303,
+      "additivity_error": 4.76837158203125e-06
+    },
+    "caveats": [
+      "This attack class was never in training (Phase 2 holdout)."
+    ],
+    "summary": "Stage 1 (xgboost_temporal_lab) did not flag the TCP flow 192.168.1.193:54027 -> 192.168.1.37:8080 (score 0.103, threshold 0.500, probability of attack). Strongest evidence for attack (log-odds): FLOW_DURATION_MILLISECONDS = 1,501 (+0.705); DST_TO_SRC_AVG_THROUGHPUT = 1,278 (+0.247); IN_BYTES = 288 (+0.224). Strongest evidence against (log-odds): L4_DST_PORT = 8080 (registered) (-1.571); SRC_TO_DST_SECOND_BYTES = 0 (-0.930). Caveat: This attack class was never in training (Phase 2 holdout)."
+  }
+]

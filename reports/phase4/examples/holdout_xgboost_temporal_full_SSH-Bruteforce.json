@@ -1,0 +1,308 @@
+[
+  {
+    "schema_version": "1.0",
+    "alert_id": "ho-xgboost_temporal_full-29346",
+    "flow": {
+      "src": "13.58.98.64",
+      "dst": "172.31.69.25",
+      "protocol": "6 (TCP)",
+      "start_ms": 1518631510988.0,
+      "src_port": 50748.0,
+      "dst_port": 22.0,
+      "dataset": "CSE-CIC-IDS2018"
+    },
+    "model": {
+      "stage": 1,
+      "name": "xgboost_temporal_full",
+      "feature_set": "full",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 1.0,
+      "attack": "SSH-Bruteforce",
+      "tactic": "Credential Access"
+    },
+    "decision": {
+      "score": 0.964085,
+      "score_kind": "probability of attack",
+      "threshold": 0.5,
+      "operating_point": "default",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "log-odds",
+      "base_value": 0.063059,
+      "output": 3.290016,
+      "items": [
+        {
+          "feature": "TCP_WIN_MAX_IN",
+          "value": "26,883",
+          "contribution": 2.591342,
+          "direction": "towards attack"
+        },
+        {
+          "feature": "L7_PROTO",
+          "value": "92",
+          "contribution": -1.290381,
+          "direction": "towards benign"
+        },
+        {
+          "feature": "MAX_TTL",
+          "value": "63",
+          "contribution": 0.607504,
+          "direction": "towards attack"
+        },
+        {
+          "feature": "NUM_PKTS_UP_TO_128_BYTES",
+          "value": "35",
+          "contribution": 0.330966,
+          "direction": "towards attack"
+        },
+        {
+          "feature": "L4_DST_PORT",
+          "value": "22 (well-known)",
+          "contribution": 0.290749,
+          "direction": "towards attack"
+        },
+        {
+          "feature": "TCP_WIN_MAX_OUT",
+          "value": "26,847",
+          "contribution": 0.262867,
+          "direction": "towards attack"
+        },
+        {
+          "feature": "NUM_PKTS_128_TO_256_BYTES",
+          "value": "7",
+          "contribution": 0.259276,
+          "direction": "towards attack"
+        },
+        {
+          "feature": "SRC_TO_DST_IAT_MAX",
+          "value": "156",
+          "contribution": 0.200189,
+          "direction": "towards attack"
+        }
+      ],
+      "rest": -0.025553,
+      "additivity_error": 9.5367431640625e-07
+    },
+    "tactic": {
+      "predicted": "Impact",
+      "confidence": 0.883124
+    },
+    "tactic_contributions": {
+      "space": "margin",
+      "base_value": 0.205428,
+      "output": 1.071681,
+      "items": [
+        {
+          "feature": "TCP_WIN_MAX_IN",
+          "value": "26,883",
+          "contribution": 0.603896,
+          "direction": "towards this tactic"
+        },
+        {
+          "feature": "MIN_TTL",
+          "value": "63",
+          "contribution": 0.548244,
+          "direction": "towards this tactic"
+        },
+        {
+          "feature": "NUM_PKTS_UP_TO_128_BYTES",
+          "value": "35",
+          "contribution": -0.481345,
+          "direction": "against this tactic"
+        },
+        {
+          "feature": "LONGEST_FLOW_PKT",
+          "value": "1,028",
+          "contribution": 0.325797,
+          "direction": "towards this tactic"
+        },
+        {
+          "feature": "NUM_PKTS_128_TO_256_BYTES",
+          "value": "7",
+          "contribution": 0.298844,
+          "direction": "towards this tactic"
+        },
+        {
+          "feature": "DURATION_IN",
+          "value": "409",
+          "contribution": -0.290644,
+          "direction": "against this tactic"
+        },
+        {
+          "feature": "L7_PROTO",
+          "value": "92",
+          "contribution": -0.240236,
+          "direction": "against this tactic"
+        },
+        {
+          "feature": "MIN_IP_PKT_LEN",
+          "value": "52",
+          "contribution": 0.179032,
+          "direction": "towards this tactic"
+        }
+      ],
+      "rest": -0.077333,
+      "additivity_error": 9.5367431640625e-07
+    },
+    "caveats": [
+      "This attack class was never in training (Phase 2 holdout)."
+    ],
+    "summary": "Stage 1 (xgboost_temporal_full) flagged the TCP flow 13.58.98.64:50748 -> 172.31.69.25:22 (score 0.964, threshold 0.500, probability of attack). Predicted tactic: Impact (confidence 0.883). Strongest evidence for attack (log-odds): TCP_WIN_MAX_IN = 26,883 (+2.591); MAX_TTL = 63 (+0.608); NUM_PKTS_UP_TO_128_BYTES = 35 (+0.331). Strongest evidence against (log-odds): L7_PROTO = 92 (-1.290). Caveat: This attack class was never in training (Phase 2 holdout)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "ho-xgboost_temporal_full-158876",
+    "flow": {
+      "src": "13.58.98.64",
+      "dst": "172.31.69.25",
+      "protocol": "6 (TCP)",
+      "start_ms": 1518636009352.0,
+      "src_port": 37100.0,
+      "dst_port": 22.0,
+      "dataset": "CSE-CIC-IDS2018"
+    },
+    "model": {
+      "stage": 1,
+      "name": "xgboost_temporal_full",
+      "feature_set": "full",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 1.0,
+      "attack": "SSH-Bruteforce",
+      "tactic": "Credential Access"
+    },
+    "decision": {
+      "score": 0.982889,
+      "score_kind": "probability of attack",
+      "threshold": 0.5,
+      "operating_point": "default",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "log-odds",
+      "base_value": 0.063059,
+      "output": 4.050766,
+      "items": [
+        {
+          "feature": "TCP_WIN_MAX_IN",
+          "value": "26,883",
+          "contribution": 2.571062,
+          "direction": "towards attack"
+        },
+        {
+          "feature": "L7_PROTO",
+          "value": "92",
+          "contribution": -1.14454,
+          "direction": "towards benign"
+        },
+        {
+          "feature": "MAX_TTL",
+          "value": "63",
+          "contribution": 0.597508,
+          "direction": "towards attack"
+        },
+        {
+          "feature": "L4_DST_PORT",
+          "value": "22 (well-known)",
+          "contribution": 0.406329,
+          "direction": "towards attack"
+        },
+        {
+          "feature": "L4_SRC_PORT",
+          "value": "37100 (registered)",
+          "contribution": 0.372372,
+          "direction": "towards attack"
+        },
+        {
+          "feature": "NUM_PKTS_UP_TO_128_BYTES",
+          "value": "33",
+          "contribution": 0.328068,
+          "direction": "towards attack"
+        },
+        {
+          "feature": "NUM_PKTS_128_TO_256_BYTES",
+          "value": "7",
+          "contribution": 0.274684,
+          "direction": "towards attack"
+        },
+        {
+          "feature": "TCP_WIN_MAX_OUT",
+          "value": "26,847",
+          "contribution": 0.26584,
+          "direction": "towards attack"
+        }
+      ],
+      "rest": 0.316386,
+      "additivity_error": 9.5367431640625e-07
+    },
+    "tactic": {
+      "predicted": "Impact",
+      "confidence": 0.92836
+    },
+    "tactic_contributions": {
+      "space": "margin",
+      "base_value": 0.205428,
+      "output": 1.303499,
+      "items": [
+        {
+          "feature": "TCP_WIN_MAX_IN",
+          "value": "26,883",
+          "contribution": 0.602953,
+          "direction": "towards this tactic"
+        },
+        {
+          "feature": "MIN_TTL",
+          "value": "63",
+          "contribution": 0.506049,
+          "direction": "towards this tactic"
+        },
+        {
+          "feature": "NUM_PKTS_UP_TO_128_BYTES",
+          "value": "33",
+          "contribution": -0.480445,
+          "direction": "against this tactic"
+        },
+        {
+          "feature": "NUM_PKTS_128_TO_256_BYTES",
+          "value": "7",
+          "contribution": 0.357455,
+          "direction": "towards this tactic"
+        },
+        {
+          "feature": "LONGEST_FLOW_PKT",
+          "value": "1,028",
+          "contribution": 0.317452,
+          "direction": "towards this tactic"
+        },
+        {
+          "feature": "DURATION_IN",
+          "value": "364",
+          "contribution": -0.258819,
+          "direction": "against this tactic"
+        },
+        {
+          "feature": "L7_PROTO",
+          "value": "92",
+          "contribution": -0.231238,
+          "direction": "against this tactic"
+        },
+        {
+          "feature": "MIN_IP_PKT_LEN",
+          "value": "52",
+          "contribution": 0.170084,
+          "direction": "towards this tactic"
+        }
+      ],
+      "rest": 0.114581,
+      "additivity_error": 9.5367431640625e-07
+    },
+    "caveats": [
+      "This attack class was never in training (Phase 2 holdout)."
+    ],
+    "summary": "Stage 1 (xgboost_temporal_full) flagged the TCP flow 13.58.98.64:37100 -> 172.31.69.25:22 (score 0.983, threshold 0.500, probability of attack). Predicted tactic: Impact (confidence 0.928). Strongest evidence for attack (log-odds): TCP_WIN_MAX_IN = 26,883 (+2.571); MAX_TTL = 63 (+0.598); L4_DST_PORT = 22 (well-known) (+0.406). Strongest evidence against (log-odds): L7_PROTO = 92 (-1.145). Caveat: This attack class was never in training (Phase 2 holdout)."
+  }
+]

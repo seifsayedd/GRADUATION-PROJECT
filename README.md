@@ -161,6 +161,25 @@ python scripts/evaluate_phase3.py --only figures report                         
 
 Predictions are cached in `data/interim/phase3/` (git-ignored). The results, figures and **[`report.md`](reports/phase3/report.md)** go to `reports/phase3/`. The written findings are in [`docs/phase3-findings.md`](docs/phase3-findings.md).
 
+## Phase 4: explainability
+
+Needs the Phase 2 models and the Phase 3 results (Stage 2 thresholds come from `reports/phase3/models.json`).
+
+```bash
+python scripts/explain_phase4.py                 # ~20 min: every step below, then figures and report.md
+python scripts/explain_phase4.py --only lab      # just the real lab conversations (~1 min)
+```
+
+| What | How |
+|---|---|
+| Stage 1 | Exact TreeSHAP (XGBoost built-in; `shap` for Random Forest), summed back from the 189 model columns to the 53 original features. Every explanation is checked to add up to the model's real output |
+| Stage 2 | Attention weights per window, each checked by removing that earlier flow and measuring the change in attack probability |
+| Stage 3 | Each feature's share of the reconstruction error |
+| Trust checks | Deletion test (top-k features vs random k), stability across near-identical flows |
+| Explanation object | One JSON object per alert ([schema](docs/schema/explanation.schema.json)) with flow, model, decision, top features, attention and caveats, plus a template summary with no LLM |
+
+Results are in **[`reports/phase4/report.md`](reports/phase4/report.md)**, with example objects in `reports/phase4/examples/` and every lab conversation explained in `reports/phase4/lab/`. The written findings are in [`docs/phase4-findings.md`](docs/phase4-findings.md).
+
 An interactive map of the whole project (loop, data, models, roadmap) is in [`docs/visual/sentinelai-map.html`](docs/visual/sentinelai-map.html). Open it in any browser.
 
 ---

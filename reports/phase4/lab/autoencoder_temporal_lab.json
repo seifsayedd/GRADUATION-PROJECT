@@ -1,0 +1,4970 @@
+[
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-0",
+    "flow": {
+      "src": "192.168.50.20",
+      "dst": "192.168.60.10",
+      "protocol": "1 (ICMP)",
+      "start_ms": 1794461438718.0,
+      "src_port": 0.0,
+      "dst_port": 0.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.059723,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.059723,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "25.09",
+          "contribution": 0.020405,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "8",
+          "contribution": 0.009026,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "2048",
+          "contribution": 0.008726,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L4_SRC_PORT",
+          "value": "0 (none)",
+          "contribution": 0.003238,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L4_DST_PORT",
+          "value": "0 (none)",
+          "contribution": 0.003221,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "SRC_TO_DST_AVG_THROUGHPUT",
+          "value": "200.7",
+          "contribution": 0.002999,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "25.09",
+          "contribution": 0.002833,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "1 (ICMP)",
+          "contribution": 0.002702,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.006574,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 1 (ICMP) flow 192.168.50.20:0 -> 192.168.60.10:0 (score 0.060, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 25.09 (+0.020); ICMP_IPV4_TYPE = 8 (+0.009); ICMP_TYPE = 2048 (+0.009). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-1",
+    "flow": {
+      "src": "192.168.50.20",
+      "dst": "192.168.60.10",
+      "protocol": "1 (ICMP)",
+      "start_ms": 1794461627001.0,
+      "src_port": 0.0,
+      "dst_port": 0.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.094445,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.094445,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "104.2",
+          "contribution": 0.032414,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "8",
+          "contribution": 0.011522,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "2048",
+          "contribution": 0.010783,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DURATION_IN",
+          "value": "4,029",
+          "contribution": 0.007527,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "1 (ICMP)",
+          "contribution": 0.006361,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "104.3",
+          "contribution": 0.005787,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L4_DST_PORT",
+          "value": "0 (none)",
+          "contribution": 0.005539,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "5",
+          "contribution": 0.004839,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.009671,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 1 (ICMP) flow 192.168.50.20:0 -> 192.168.60.10:0 (score 0.094, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 104.2 (+0.032); ICMP_IPV4_TYPE = 8 (+0.012); ICMP_TYPE = 2048 (+0.011). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-2",
+    "flow": {
+      "src": "192.168.50.1",
+      "dst": "224.0.0.251",
+      "protocol": "17 (UDP)",
+      "start_ms": 1794461857446.0,
+      "src_port": 5353.0,
+      "dst_port": 5353.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.142147,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.142147,
+      "items": [
+        {
+          "feature": "FLOW_DURATION_MILLISECONDS",
+          "value": "0",
+          "contribution": 0.056196,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "SRC_TO_DST_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.055926,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "IN_BYTES",
+          "value": "73",
+          "contribution": 0.011645,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "17 (UDP)",
+          "contribution": 0.005938,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DURATION_IN",
+          "value": "0",
+          "contribution": 0.00266,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.002537,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "0",
+          "contribution": 0.002007,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.001172,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.004065,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 17 (UDP) flow 192.168.50.1:5353 -> 224.0.0.251:5353 (score 0.142, threshold 0.019, reconstruction error). Most abnormal features (squared error): FLOW_DURATION_MILLISECONDS = 0 (+0.056); SRC_TO_DST_AVG_THROUGHPUT = 0 (+0.056); IN_BYTES = 73 (+0.012). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-3",
+    "flow": {
+      "src": "192.168.60.1",
+      "dst": "224.0.0.251",
+      "protocol": "17 (UDP)",
+      "start_ms": 1794461875694.0,
+      "src_port": 5353.0,
+      "dst_port": 5353.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.142147,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.142147,
+      "items": [
+        {
+          "feature": "FLOW_DURATION_MILLISECONDS",
+          "value": "0",
+          "contribution": 0.056196,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "SRC_TO_DST_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.055926,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "IN_BYTES",
+          "value": "73",
+          "contribution": 0.011645,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "17 (UDP)",
+          "contribution": 0.005938,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DURATION_IN",
+          "value": "0",
+          "contribution": 0.00266,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.002537,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "0",
+          "contribution": 0.002007,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.001172,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.004065,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 17 (UDP) flow 192.168.60.1:5353 -> 224.0.0.251:5353 (score 0.142, threshold 0.019, reconstruction error). Most abnormal features (squared error): FLOW_DURATION_MILLISECONDS = 0 (+0.056); SRC_TO_DST_AVG_THROUGHPUT = 0 (+0.056); IN_BYTES = 73 (+0.012). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-4",
+    "flow": {
+      "src": "192.168.50.20",
+      "dst": "224.0.0.251",
+      "protocol": "17 (UDP)",
+      "start_ms": 1794463342572.0,
+      "src_port": 5353.0,
+      "dst_port": 5353.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.155703,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.155703,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.059518,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "FLOW_DURATION_MILLISECONDS",
+          "value": "0",
+          "contribution": 0.059488,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "IN_BYTES",
+          "value": "134",
+          "contribution": 0.01553,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "17 (UDP)",
+          "contribution": 0.007925,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DURATION_IN",
+          "value": "0",
+          "contribution": 0.003992,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.001927,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.001705,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "0",
+          "contribution": 0.00154,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.004078,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 17 (UDP) flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.156, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_AVG_THROUGHPUT = 0 (+0.060); FLOW_DURATION_MILLISECONDS = 0 (+0.059); IN_BYTES = 134 (+0.016). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-5",
+    "flow": {
+      "src": "192.168.50.20",
+      "dst": "224.0.0.22",
+      "protocol": "2 (IGMP)",
+      "start_ms": 1794463342578.0,
+      "src_port": 0.0,
+      "dst_port": 0.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.132523,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.132523,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "99.38",
+          "contribution": 0.085292,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "2 (IGMP)",
+          "contribution": 0.012938,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.010311,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "0",
+          "contribution": 0.006665,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.004042,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "0",
+          "contribution": 0.003356,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.002902,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L4_SRC_PORT",
+          "value": "0 (none)",
+          "contribution": 0.002581,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.004437,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 2 (IGMP) flow 192.168.50.20:0 -> 224.0.0.22:0 (score 0.133, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 99.38 (+0.085); PROTOCOL = 2 (IGMP) (+0.013); DST_TO_SRC_SECOND_BYTES = 0 (+0.010). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-6",
+    "flow": {
+      "src": "192.168.50.20",
+      "dst": "224.0.0.251",
+      "protocol": "17 (UDP)",
+      "start_ms": 1794463787835.0,
+      "src_port": 5353.0,
+      "dst_port": 5353.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.155703,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.155703,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.059518,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "FLOW_DURATION_MILLISECONDS",
+          "value": "0",
+          "contribution": 0.059488,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "IN_BYTES",
+          "value": "134",
+          "contribution": 0.01553,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "17 (UDP)",
+          "contribution": 0.007925,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DURATION_IN",
+          "value": "0",
+          "contribution": 0.003992,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.001927,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.001705,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "0",
+          "contribution": 0.00154,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.004078,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 17 (UDP) flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.156, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_AVG_THROUGHPUT = 0 (+0.060); FLOW_DURATION_MILLISECONDS = 0 (+0.059); IN_BYTES = 134 (+0.016). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-7",
+    "flow": {
+      "src": "192.168.50.20",
+      "dst": "224.0.0.22",
+      "protocol": "2 (IGMP)",
+      "start_ms": 1794463787842.0,
+      "src_port": 0.0,
+      "dst_port": 0.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.132963,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.132963,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "100.3",
+          "contribution": 0.085589,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "2 (IGMP)",
+          "contribution": 0.012948,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.010379,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "0",
+          "contribution": 0.006688,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.004044,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "0",
+          "contribution": 0.003357,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.00292,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L4_SRC_PORT",
+          "value": "0 (none)",
+          "contribution": 0.002588,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.00445,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 2 (IGMP) flow 192.168.50.20:0 -> 224.0.0.22:0 (score 0.133, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 100.3 (+0.086); PROTOCOL = 2 (IGMP) (+0.013); DST_TO_SRC_SECOND_BYTES = 0 (+0.010). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-8",
+    "flow": {
+      "src": "192.168.50.20",
+      "dst": "224.0.0.251",
+      "protocol": "17 (UDP)",
+      "start_ms": 1794464129014.0,
+      "src_port": 5353.0,
+      "dst_port": 5353.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.155703,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.155703,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.059518,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "FLOW_DURATION_MILLISECONDS",
+          "value": "0",
+          "contribution": 0.059488,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "IN_BYTES",
+          "value": "134",
+          "contribution": 0.01553,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "17 (UDP)",
+          "contribution": 0.007925,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DURATION_IN",
+          "value": "0",
+          "contribution": 0.003992,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.001927,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.001705,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "0",
+          "contribution": 0.00154,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.004078,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 17 (UDP) flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.156, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_AVG_THROUGHPUT = 0 (+0.060); FLOW_DURATION_MILLISECONDS = 0 (+0.059); IN_BYTES = 134 (+0.016). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-9",
+    "flow": {
+      "src": "192.168.50.20",
+      "dst": "224.0.0.22",
+      "protocol": "2 (IGMP)",
+      "start_ms": 1794464129020.0,
+      "src_port": 0.0,
+      "dst_port": 0.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.141843,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.141843,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "119.1",
+          "contribution": 0.091526,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "2 (IGMP)",
+          "contribution": 0.013166,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.011743,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "0",
+          "contribution": 0.00719,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.004122,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "0",
+          "contribution": 0.003413,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.003278,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L4_SRC_PORT",
+          "value": "0 (none)",
+          "contribution": 0.002692,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.004712,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 2 (IGMP) flow 192.168.50.20:0 -> 224.0.0.22:0 (score 0.142, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 119.1 (+0.092); PROTOCOL = 2 (IGMP) (+0.013); DST_TO_SRC_SECOND_BYTES = 0 (+0.012). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-10",
+    "flow": {
+      "src": "192.168.50.20",
+      "dst": "224.0.0.251",
+      "protocol": "17 (UDP)",
+      "start_ms": 1794464520215.0,
+      "src_port": 5353.0,
+      "dst_port": 5353.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.538629,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.538629,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "134,000",
+          "contribution": 0.316218,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.095881,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.059075,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "0",
+          "contribution": 0.03057,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "0",
+          "contribution": 0.017268,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.00491,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "0",
+          "contribution": 0.00425,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L4_DST_PORT",
+          "value": "5353 (registered)",
+          "contribution": 0.003975,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.006482,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 17 (UDP) flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.539, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 134,000 (+0.316); DST_TO_SRC_SECOND_BYTES = 0 (+0.096); DST_TO_SRC_AVG_THROUGHPUT = 0 (+0.059). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-11",
+    "flow": {
+      "src": "192.168.50.20",
+      "dst": "224.0.0.22",
+      "protocol": "2 (IGMP)",
+      "start_ms": 1794464520223.0,
+      "src_port": 0.0,
+      "dst_port": 0.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.123377,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.123377,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "82.52",
+          "contribution": 0.079108,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "2 (IGMP)",
+          "contribution": 0.01272,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.008929,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "0",
+          "contribution": 0.006174,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.00399,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "0",
+          "contribution": 0.003321,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.002528,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L4_SRC_PORT",
+          "value": "0 (none)",
+          "contribution": 0.002438,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.00417,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 2 (IGMP) flow 192.168.50.20:0 -> 224.0.0.22:0 (score 0.123, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 82.52 (+0.079); PROTOCOL = 2 (IGMP) (+0.013); DST_TO_SRC_SECOND_BYTES = 0 (+0.009). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-12",
+    "flow": {
+      "src": "192.168.50.20",
+      "dst": "192.168.60.10",
+      "protocol": "1 (ICMP)",
+      "start_ms": 1794464795401.0,
+      "src_port": 0.0,
+      "dst_port": 0.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 1.0,
+      "attack": "Discovery",
+      "tactic": "Reconnaissance/Discovery"
+    },
+    "decision": {
+      "score": 0.099774,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.099774,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "110.9",
+          "contribution": 0.033779,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "8",
+          "contribution": 0.011772,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "2048",
+          "contribution": 0.011082,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DURATION_IN",
+          "value": "3,029",
+          "contribution": 0.008625,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "1 (ICMP)",
+          "contribution": 0.00689,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "111",
+          "contribution": 0.006371,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L4_DST_PORT",
+          "value": "0 (none)",
+          "contribution": 0.00608,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "4",
+          "contribution": 0.00535,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.009824,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 1 (ICMP) flow 192.168.50.20:0 -> 192.168.60.10:0 (score 0.100, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 110.9 (+0.034); ICMP_IPV4_TYPE = 8 (+0.012); ICMP_TYPE = 2048 (+0.011). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-13",
+    "flow": {
+      "src": "192.168.50.20",
+      "dst": "224.0.0.251",
+      "protocol": "17 (UDP)",
+      "start_ms": 1794464892418.0,
+      "src_port": 5353.0,
+      "dst_port": 5353.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.155703,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.155703,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.059518,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "FLOW_DURATION_MILLISECONDS",
+          "value": "0",
+          "contribution": 0.059488,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "IN_BYTES",
+          "value": "134",
+          "contribution": 0.01553,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "17 (UDP)",
+          "contribution": 0.007925,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DURATION_IN",
+          "value": "0",
+          "contribution": 0.003992,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.001927,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.001705,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "0",
+          "contribution": 0.00154,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.004078,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 17 (UDP) flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.156, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_AVG_THROUGHPUT = 0 (+0.060); FLOW_DURATION_MILLISECONDS = 0 (+0.059); IN_BYTES = 134 (+0.016). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-14",
+    "flow": {
+      "src": "192.168.50.20",
+      "dst": "224.0.0.22",
+      "protocol": "2 (IGMP)",
+      "start_ms": 1794464892424.0,
+      "src_port": 0.0,
+      "dst_port": 0.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.13729,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.13729,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "109.1",
+          "contribution": 0.088485,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "2 (IGMP)",
+          "contribution": 0.013054,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.011041,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "0",
+          "contribution": 0.006933,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.004081,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "0",
+          "contribution": 0.003383,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.003095,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L4_SRC_PORT",
+          "value": "0 (none)",
+          "contribution": 0.00264,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.004578,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 2 (IGMP) flow 192.168.50.20:0 -> 224.0.0.22:0 (score 0.137, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 109.1 (+0.088); PROTOCOL = 2 (IGMP) (+0.013); DST_TO_SRC_SECOND_BYTES = 0 (+0.011). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-15",
+    "flow": {
+      "src": "192.168.50.20",
+      "dst": "224.0.0.251",
+      "protocol": "17 (UDP)",
+      "start_ms": 1794465320568.0,
+      "src_port": 5353.0,
+      "dst_port": 5353.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.500582,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.500582,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "67,000",
+          "contribution": 0.29695,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.090699,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.052185,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "0",
+          "contribution": 0.027159,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "0",
+          "contribution": 0.015726,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.004868,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "0",
+          "contribution": 0.004141,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L4_DST_PORT",
+          "value": "5353 (registered)",
+          "contribution": 0.003285,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.005571,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 17 (UDP) flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.501, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 67,000 (+0.297); DST_TO_SRC_SECOND_BYTES = 0 (+0.091); DST_TO_SRC_AVG_THROUGHPUT = 0 (+0.052). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-16",
+    "flow": {
+      "src": "192.168.50.20",
+      "dst": "224.0.0.22",
+      "protocol": "2 (IGMP)",
+      "start_ms": 1794465320575.0,
+      "src_port": 0.0,
+      "dst_port": 0.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.147746,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.147746,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "133.1",
+          "contribution": 0.095452,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "2 (IGMP)",
+          "contribution": 0.01331,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.012664,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "0",
+          "contribution": 0.007523,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.004177,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.003517,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "0",
+          "contribution": 0.003453,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L4_SRC_PORT",
+          "value": "0 (none)",
+          "contribution": 0.00276,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.00489,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 2 (IGMP) flow 192.168.50.20:0 -> 224.0.0.22:0 (score 0.148, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 133.1 (+0.095); PROTOCOL = 2 (IGMP) (+0.013); DST_TO_SRC_SECOND_BYTES = 0 (+0.013). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-17",
+    "flow": {
+      "src": "192.168.50.1",
+      "dst": "224.0.0.251",
+      "protocol": "17 (UDP)",
+      "start_ms": 1794465457502.0,
+      "src_port": 5353.0,
+      "dst_port": 5353.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.142147,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.142147,
+      "items": [
+        {
+          "feature": "FLOW_DURATION_MILLISECONDS",
+          "value": "0",
+          "contribution": 0.056196,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "SRC_TO_DST_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.055926,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "IN_BYTES",
+          "value": "73",
+          "contribution": 0.011645,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "17 (UDP)",
+          "contribution": 0.005938,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DURATION_IN",
+          "value": "0",
+          "contribution": 0.00266,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.002537,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "0",
+          "contribution": 0.002007,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.001172,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.004065,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 17 (UDP) flow 192.168.50.1:5353 -> 224.0.0.251:5353 (score 0.142, threshold 0.019, reconstruction error). Most abnormal features (squared error): FLOW_DURATION_MILLISECONDS = 0 (+0.056); SRC_TO_DST_AVG_THROUGHPUT = 0 (+0.056); IN_BYTES = 73 (+0.012). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-18",
+    "flow": {
+      "src": "192.168.60.1",
+      "dst": "224.0.0.251",
+      "protocol": "17 (UDP)",
+      "start_ms": 1794465475713.0,
+      "src_port": 5353.0,
+      "dst_port": 5353.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.142147,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.142147,
+      "items": [
+        {
+          "feature": "FLOW_DURATION_MILLISECONDS",
+          "value": "0",
+          "contribution": 0.056196,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "SRC_TO_DST_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.055926,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "IN_BYTES",
+          "value": "73",
+          "contribution": 0.011645,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "17 (UDP)",
+          "contribution": 0.005938,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DURATION_IN",
+          "value": "0",
+          "contribution": 0.00266,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.002537,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "0",
+          "contribution": 0.002007,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.001172,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.004065,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 17 (UDP) flow 192.168.60.1:5353 -> 224.0.0.251:5353 (score 0.142, threshold 0.019, reconstruction error). Most abnormal features (squared error): FLOW_DURATION_MILLISECONDS = 0 (+0.056); SRC_TO_DST_AVG_THROUGHPUT = 0 (+0.056); IN_BYTES = 73 (+0.012). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-19",
+    "flow": {
+      "src": "192.168.50.20",
+      "dst": "224.0.0.251",
+      "protocol": "17 (UDP)",
+      "start_ms": 1794465688680.0,
+      "src_port": 5353.0,
+      "dst_port": 5353.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.155703,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.155703,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.059518,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "FLOW_DURATION_MILLISECONDS",
+          "value": "0",
+          "contribution": 0.059488,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "IN_BYTES",
+          "value": "134",
+          "contribution": 0.01553,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "17 (UDP)",
+          "contribution": 0.007925,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DURATION_IN",
+          "value": "0",
+          "contribution": 0.003992,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.001927,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.001705,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "0",
+          "contribution": 0.00154,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.004078,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 17 (UDP) flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.156, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_AVG_THROUGHPUT = 0 (+0.060); FLOW_DURATION_MILLISECONDS = 0 (+0.059); IN_BYTES = 134 (+0.016). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-20",
+    "flow": {
+      "src": "192.168.50.20",
+      "dst": "224.0.0.22",
+      "protocol": "2 (IGMP)",
+      "start_ms": 1794465688692.0,
+      "src_port": 0.0,
+      "dst_port": 0.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.128851,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.128851,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "92.33",
+          "contribution": 0.082814,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "2 (IGMP)",
+          "contribution": 0.012851,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.009752,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "0",
+          "contribution": 0.006468,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.004021,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "0",
+          "contribution": 0.003341,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.002751,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L4_SRC_PORT",
+          "value": "0 (none)",
+          "contribution": 0.002523,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.00433,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 2 (IGMP) flow 192.168.50.20:0 -> 224.0.0.22:0 (score 0.129, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 92.33 (+0.083); PROTOCOL = 2 (IGMP) (+0.013); DST_TO_SRC_SECOND_BYTES = 0 (+0.010). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-21",
+    "flow": {
+      "src": "192.168.50.20",
+      "dst": "224.0.0.251",
+      "protocol": "17 (UDP)",
+      "start_ms": 1794466094808.0,
+      "src_port": 5353.0,
+      "dst_port": 5353.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.155703,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.155703,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.059518,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "FLOW_DURATION_MILLISECONDS",
+          "value": "0",
+          "contribution": 0.059488,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "IN_BYTES",
+          "value": "134",
+          "contribution": 0.01553,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "17 (UDP)",
+          "contribution": 0.007925,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DURATION_IN",
+          "value": "0",
+          "contribution": 0.003992,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.001927,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.001705,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "0",
+          "contribution": 0.00154,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.004078,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 17 (UDP) flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.156, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_AVG_THROUGHPUT = 0 (+0.060); FLOW_DURATION_MILLISECONDS = 0 (+0.059); IN_BYTES = 134 (+0.016). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-22",
+    "flow": {
+      "src": "192.168.50.20",
+      "dst": "224.0.0.22",
+      "protocol": "2 (IGMP)",
+      "start_ms": 1794466094816.0,
+      "src_port": 0.0,
+      "dst_port": 0.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.151734,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.151734,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "143.2",
+          "contribution": 0.098095,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "2 (IGMP)",
+          "contribution": 0.013405,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.013292,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "0",
+          "contribution": 0.007747,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.004216,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.00368,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "0",
+          "contribution": 0.003481,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L4_SRC_PORT",
+          "value": "0 (none)",
+          "contribution": 0.002805,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.005012,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 2 (IGMP) flow 192.168.50.20:0 -> 224.0.0.22:0 (score 0.152, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 143.2 (+0.098); PROTOCOL = 2 (IGMP) (+0.013); DST_TO_SRC_SECOND_BYTES = 0 (+0.013). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-23",
+    "flow": {
+      "src": "192.168.50.20",
+      "dst": "224.0.0.251",
+      "protocol": "17 (UDP)",
+      "start_ms": 1794466421895.0,
+      "src_port": 5353.0,
+      "dst_port": 5353.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.155703,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.155703,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.059518,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "FLOW_DURATION_MILLISECONDS",
+          "value": "0",
+          "contribution": 0.059488,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "IN_BYTES",
+          "value": "134",
+          "contribution": 0.01553,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "17 (UDP)",
+          "contribution": 0.007925,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DURATION_IN",
+          "value": "0",
+          "contribution": 0.003992,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.001927,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.001705,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "0",
+          "contribution": 0.00154,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.004078,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 17 (UDP) flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.156, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_AVG_THROUGHPUT = 0 (+0.060); FLOW_DURATION_MILLISECONDS = 0 (+0.059); IN_BYTES = 134 (+0.016). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-24",
+    "flow": {
+      "src": "192.168.50.20",
+      "dst": "224.0.0.22",
+      "protocol": "2 (IGMP)",
+      "start_ms": 1794466421903.0,
+      "src_port": 0.0,
+      "dst_port": 0.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.127367,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.127367,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "89.59",
+          "contribution": 0.081812,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "2 (IGMP)",
+          "contribution": 0.012815,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.009528,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "0",
+          "contribution": 0.006388,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.004012,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "0",
+          "contribution": 0.003336,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.00269,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L4_SRC_PORT",
+          "value": "0 (none)",
+          "contribution": 0.0025,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.004286,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 2 (IGMP) flow 192.168.50.20:0 -> 224.0.0.22:0 (score 0.127, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 89.59 (+0.082); PROTOCOL = 2 (IGMP) (+0.013); DST_TO_SRC_SECOND_BYTES = 0 (+0.010). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-25",
+    "flow": {
+      "src": "192.168.50.1",
+      "dst": "192.168.50.255",
+      "protocol": "17 (UDP)",
+      "start_ms": 1794466695488.0,
+      "src_port": 8612.0,
+      "dst_port": 8612.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.042573,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.042573,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "17.92",
+          "contribution": 0.02982,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.005151,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "0",
+          "contribution": 0.002098,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "0",
+          "contribution": 0.001087,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "0",
+          "contribution": 0.000967,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.000951,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L4_SRC_PORT",
+          "value": "8612 (registered)",
+          "contribution": 0.00051,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DURATION_IN",
+          "value": "9,824",
+          "contribution": 0.000502,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.001487,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 17 (UDP) flow 192.168.50.1:8612 -> 192.168.50.255:8612 (score 0.043, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 17.92 (+0.030); DST_TO_SRC_SECOND_BYTES = 0 (+0.005); OUT_BYTES = 0 (+0.002). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-26",
+    "flow": {
+      "src": "192.168.50.1",
+      "dst": "192.168.50.255",
+      "protocol": "17 (UDP)",
+      "start_ms": 1794466695488.0,
+      "src_port": 8612.0,
+      "dst_port": 8610.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.042573,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.042573,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "17.92",
+          "contribution": 0.02982,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.005151,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "0",
+          "contribution": 0.002098,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "0",
+          "contribution": 0.001087,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "0",
+          "contribution": 0.000967,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.000951,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L4_SRC_PORT",
+          "value": "8612 (registered)",
+          "contribution": 0.00051,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DURATION_IN",
+          "value": "9,824",
+          "contribution": 0.000502,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.001487,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 17 (UDP) flow 192.168.50.1:8612 -> 192.168.50.255:8610 (score 0.043, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 17.92 (+0.030); DST_TO_SRC_SECOND_BYTES = 0 (+0.005); OUT_BYTES = 0 (+0.002). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-27",
+    "flow": {
+      "src": "192.168.60.1",
+      "dst": "192.168.60.255",
+      "protocol": "17 (UDP)",
+      "start_ms": 1794466695488.0,
+      "src_port": 8612.0,
+      "dst_port": 8612.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.042573,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.042573,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "17.92",
+          "contribution": 0.02982,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.005151,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "0",
+          "contribution": 0.002098,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "0",
+          "contribution": 0.001087,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "0",
+          "contribution": 0.000967,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.000951,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L4_SRC_PORT",
+          "value": "8612 (registered)",
+          "contribution": 0.00051,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DURATION_IN",
+          "value": "9,824",
+          "contribution": 0.000502,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.001487,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 17 (UDP) flow 192.168.60.1:8612 -> 192.168.60.255:8612 (score 0.043, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 17.92 (+0.030); DST_TO_SRC_SECOND_BYTES = 0 (+0.005); OUT_BYTES = 0 (+0.002). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-28",
+    "flow": {
+      "src": "192.168.60.1",
+      "dst": "192.168.60.255",
+      "protocol": "17 (UDP)",
+      "start_ms": 1794466695488.0,
+      "src_port": 8612.0,
+      "dst_port": 8610.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.042573,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.042573,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "17.92",
+          "contribution": 0.02982,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.005151,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "0",
+          "contribution": 0.002098,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "0",
+          "contribution": 0.001087,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "0",
+          "contribution": 0.000967,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.000951,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L4_SRC_PORT",
+          "value": "8612 (registered)",
+          "contribution": 0.00051,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DURATION_IN",
+          "value": "9,824",
+          "contribution": 0.000502,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.001487,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 17 (UDP) flow 192.168.60.1:8612 -> 192.168.60.255:8610 (score 0.043, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 17.92 (+0.030); DST_TO_SRC_SECOND_BYTES = 0 (+0.005); OUT_BYTES = 0 (+0.002). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-29",
+    "flow": {
+      "src": "192.168.50.1",
+      "dst": "224.0.0.251",
+      "protocol": "17 (UDP)",
+      "start_ms": 1794466697803.0,
+      "src_port": 5353.0,
+      "dst_port": 5353.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.065156,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.065156,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "19.58",
+          "contribution": 0.041918,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.009667,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "0",
+          "contribution": 0.003236,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "0",
+          "contribution": 0.001992,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DURATION_OUT",
+          "value": "0",
+          "contribution": 0.001628,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.001388,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "0",
+          "contribution": 0.001343,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L4_SRC_PORT",
+          "value": "5353 (registered)",
+          "contribution": 0.001153,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.002831,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 17 (UDP) flow 192.168.50.1:5353 -> 224.0.0.251:5353 (score 0.065, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 19.58 (+0.042); DST_TO_SRC_SECOND_BYTES = 0 (+0.010); OUT_BYTES = 0 (+0.003). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-30",
+    "flow": {
+      "src": "192.168.60.1",
+      "dst": "224.0.0.251",
+      "protocol": "17 (UDP)",
+      "start_ms": 1794466697803.0,
+      "src_port": 5353.0,
+      "dst_port": 5353.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.065156,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.065156,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "19.58",
+          "contribution": 0.041918,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.009667,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "0",
+          "contribution": 0.003236,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "0",
+          "contribution": 0.001992,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DURATION_OUT",
+          "value": "0",
+          "contribution": 0.001628,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.001388,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "0",
+          "contribution": 0.001343,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L4_SRC_PORT",
+          "value": "5353 (registered)",
+          "contribution": 0.001153,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.002831,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 17 (UDP) flow 192.168.60.1:5353 -> 224.0.0.251:5353 (score 0.065, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 19.58 (+0.042); DST_TO_SRC_SECOND_BYTES = 0 (+0.010); OUT_BYTES = 0 (+0.003). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-31",
+    "flow": {
+      "src": "192.168.50.1",
+      "dst": "239.255.255.250",
+      "protocol": "17 (UDP)",
+      "start_ms": 1794466704290.0,
+      "src_port": 41500.0,
+      "dst_port": 3702.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.441847,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.441847,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "4,327",
+          "contribution": 0.278005,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.079383,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "0",
+          "contribution": 0.027437,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "0",
+          "contribution": 0.020207,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.013729,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "IN_BYTES",
+          "value": "10,795",
+          "contribution": 0.004506,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.004197,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "0",
+          "contribution": 0.003998,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.010386,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 17 (UDP) flow 192.168.50.1:41500 -> 239.255.255.250:3702 (score 0.442, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 4,327 (+0.278); DST_TO_SRC_SECOND_BYTES = 0 (+0.079); OUT_BYTES = 0 (+0.027). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-32",
+    "flow": {
+      "src": "192.168.60.1",
+      "dst": "239.255.255.250",
+      "protocol": "17 (UDP)",
+      "start_ms": 1794466704291.0,
+      "src_port": 51239.0,
+      "dst_port": 3702.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.432129,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.432129,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "3,886",
+          "contribution": 0.274105,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.07594,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "0",
+          "contribution": 0.027039,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "0",
+          "contribution": 0.018801,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.013884,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "IN_BYTES",
+          "value": "9,525",
+          "contribution": 0.004556,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.00401,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "0",
+          "contribution": 0.003761,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.010033,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 17 (UDP) flow 192.168.60.1:51239 -> 239.255.255.250:3702 (score 0.432, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 3,886 (+0.274); DST_TO_SRC_SECOND_BYTES = 0 (+0.076); OUT_BYTES = 0 (+0.027). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-33",
+    "flow": {
+      "src": "192.168.60.1",
+      "dst": "224.0.0.22",
+      "protocol": "2 (IGMP)",
+      "start_ms": 1794466704292.0,
+      "src_port": 0.0,
+      "dst_port": 0.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.144177,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.144177,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "164.9",
+          "contribution": 0.091474,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "2 (IGMP)",
+          "contribution": 0.013766,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.012842,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "0",
+          "contribution": 0.005874,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.004711,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.004184,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "0",
+          "contribution": 0.00351,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "IN_PKTS",
+          "value": "2",
+          "contribution": 0.003196,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.004618,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 2 (IGMP) flow 192.168.60.1:0 -> 224.0.0.22:0 (score 0.144, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 164.9 (+0.091); PROTOCOL = 2 (IGMP) (+0.014); DST_TO_SRC_SECOND_BYTES = 0 (+0.013). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-34",
+    "flow": {
+      "src": "192.168.50.1",
+      "dst": "224.0.0.22",
+      "protocol": "2 (IGMP)",
+      "start_ms": 1794466704293.0,
+      "src_port": 0.0,
+      "dst_port": 0.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.382905,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.382905,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "5,333",
+          "contribution": 0.244697,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.050062,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.019038,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "2 (IGMP)",
+          "contribution": 0.017565,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "0",
+          "contribution": 0.016596,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.006878,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "IN_PKTS",
+          "value": "2",
+          "contribution": 0.006524,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L4_SRC_PORT",
+          "value": "0 (none)",
+          "contribution": 0.005891,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.015654,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 2 (IGMP) flow 192.168.50.1:0 -> 224.0.0.22:0 (score 0.383, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 5,333 (+0.245); DST_TO_SRC_SECOND_BYTES = 0 (+0.050); DST_TO_SRC_AVG_THROUGHPUT = 0 (+0.019). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-35",
+    "flow": {
+      "src": "192.168.50.20",
+      "dst": "224.0.0.251",
+      "protocol": "17 (UDP)",
+      "start_ms": 1794466794027.0,
+      "src_port": 5353.0,
+      "dst_port": 5353.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.155703,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.155703,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.059518,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "FLOW_DURATION_MILLISECONDS",
+          "value": "0",
+          "contribution": 0.059488,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "IN_BYTES",
+          "value": "134",
+          "contribution": 0.01553,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "17 (UDP)",
+          "contribution": 0.007925,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DURATION_IN",
+          "value": "0",
+          "contribution": 0.003992,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.001927,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.001705,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "0",
+          "contribution": 0.00154,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.004078,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 17 (UDP) flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.156, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_AVG_THROUGHPUT = 0 (+0.060); FLOW_DURATION_MILLISECONDS = 0 (+0.059); IN_BYTES = 134 (+0.016). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-36",
+    "flow": {
+      "src": "192.168.50.20",
+      "dst": "224.0.0.22",
+      "protocol": "2 (IGMP)",
+      "start_ms": 1794466794034.0,
+      "src_port": 0.0,
+      "dst_port": 0.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.155803,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.155803,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "154.3",
+          "contribution": 0.100787,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.013931,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "2 (IGMP)",
+          "contribution": 0.013503,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "0",
+          "contribution": 0.007975,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.004255,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.003853,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "0",
+          "contribution": 0.003511,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L4_SRC_PORT",
+          "value": "0 (none)",
+          "contribution": 0.002851,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.005137,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 2 (IGMP) flow 192.168.50.20:0 -> 224.0.0.22:0 (score 0.156, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 154.3 (+0.101); DST_TO_SRC_SECOND_BYTES = 0 (+0.014); PROTOCOL = 2 (IGMP) (+0.014). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-37",
+    "flow": {
+      "src": "192.168.50.1",
+      "dst": "224.0.0.251",
+      "protocol": "17 (UDP)",
+      "start_ms": 1794466830364.0,
+      "src_port": 5353.0,
+      "dst_port": 5353.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.12145,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.12145,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "151.9",
+          "contribution": 0.078658,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.0192,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "0",
+          "contribution": 0.007223,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.004512,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "0",
+          "contribution": 0.00258,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.001859,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "0",
+          "contribution": 0.001783,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "IN_BYTES",
+          "value": "159",
+          "contribution": 0.001432,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.004203,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 17 (UDP) flow 192.168.50.1:5353 -> 224.0.0.251:5353 (score 0.121, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 151.9 (+0.079); DST_TO_SRC_SECOND_BYTES = 0 (+0.019); OUT_BYTES = 0 (+0.007). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-38",
+    "flow": {
+      "src": "192.168.60.1",
+      "dst": "224.0.0.251",
+      "protocol": "17 (UDP)",
+      "start_ms": 1794466830364.0,
+      "src_port": 5353.0,
+      "dst_port": 5353.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.12145,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.12145,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "151.9",
+          "contribution": 0.078658,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.0192,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "0",
+          "contribution": 0.007223,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.004512,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "0",
+          "contribution": 0.00258,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.001859,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "0",
+          "contribution": 0.001783,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "IN_BYTES",
+          "value": "159",
+          "contribution": 0.001432,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.004203,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 17 (UDP) flow 192.168.60.1:5353 -> 224.0.0.251:5353 (score 0.121, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 151.9 (+0.079); DST_TO_SRC_SECOND_BYTES = 0 (+0.019); OUT_BYTES = 0 (+0.007). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-39",
+    "flow": {
+      "src": "192.168.50.1",
+      "dst": "224.0.0.251",
+      "protocol": "17 (UDP)",
+      "start_ms": 1794466958436.0,
+      "src_port": 5353.0,
+      "dst_port": 5353.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.125029,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.125029,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "163.1",
+          "contribution": 0.08079,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.019913,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "0",
+          "contribution": 0.007411,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.004801,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "0",
+          "contribution": 0.002675,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.001897,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "0",
+          "contribution": 0.00181,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "IN_BYTES",
+          "value": "159",
+          "contribution": 0.001446,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.004285,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 17 (UDP) flow 192.168.50.1:5353 -> 224.0.0.251:5353 (score 0.125, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 163.1 (+0.081); DST_TO_SRC_SECOND_BYTES = 0 (+0.020); OUT_BYTES = 0 (+0.007). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-40",
+    "flow": {
+      "src": "192.168.60.1",
+      "dst": "224.0.0.251",
+      "protocol": "17 (UDP)",
+      "start_ms": 1794466958436.0,
+      "src_port": 5353.0,
+      "dst_port": 5353.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.125029,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.125029,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "163.1",
+          "contribution": 0.08079,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.019913,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "0",
+          "contribution": 0.007411,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.004801,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "0",
+          "contribution": 0.002675,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.001897,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "0",
+          "contribution": 0.00181,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "IN_BYTES",
+          "value": "159",
+          "contribution": 0.001446,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.004285,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 17 (UDP) flow 192.168.60.1:5353 -> 224.0.0.251:5353 (score 0.125, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 163.1 (+0.081); DST_TO_SRC_SECOND_BYTES = 0 (+0.020); OUT_BYTES = 0 (+0.007). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-41",
+    "flow": {
+      "src": "192.168.50.20",
+      "dst": "224.0.0.251",
+      "protocol": "17 (UDP)",
+      "start_ms": 1794467137090.0,
+      "src_port": 5353.0,
+      "dst_port": 5353.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.500582,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.500582,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "67,000",
+          "contribution": 0.29695,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.090699,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.052185,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "0",
+          "contribution": 0.027159,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "0",
+          "contribution": 0.015726,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.004868,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "0",
+          "contribution": 0.004141,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L4_DST_PORT",
+          "value": "5353 (registered)",
+          "contribution": 0.003285,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.005571,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 17 (UDP) flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.501, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 67,000 (+0.297); DST_TO_SRC_SECOND_BYTES = 0 (+0.091); DST_TO_SRC_AVG_THROUGHPUT = 0 (+0.052). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-42",
+    "flow": {
+      "src": "192.168.50.20",
+      "dst": "224.0.0.22",
+      "protocol": "2 (IGMP)",
+      "start_ms": 1794467137095.0,
+      "src_port": 0.0,
+      "dst_port": 0.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.121634,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.121634,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "79.56",
+          "contribution": 0.077924,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "2 (IGMP)",
+          "contribution": 0.012678,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.00867,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "0",
+          "contribution": 0.00608,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.00398,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "0",
+          "contribution": 0.003315,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.002457,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L4_SRC_PORT",
+          "value": "0 (none)",
+          "contribution": 0.00241,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.00412,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 2 (IGMP) flow 192.168.50.20:0 -> 224.0.0.22:0 (score 0.122, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 79.56 (+0.078); PROTOCOL = 2 (IGMP) (+0.013); DST_TO_SRC_SECOND_BYTES = 0 (+0.009). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-43",
+    "flow": {
+      "src": "192.168.50.1",
+      "dst": "224.0.0.251",
+      "protocol": "17 (UDP)",
+      "start_ms": 1794467214502.0,
+      "src_port": 5353.0,
+      "dst_port": 5353.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.128496,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.128496,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "174.5",
+          "contribution": 0.082849,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.020605,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "0",
+          "contribution": 0.007592,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.005085,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "0",
+          "contribution": 0.002768,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.001934,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "0",
+          "contribution": 0.001837,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "IN_BYTES",
+          "value": "159",
+          "contribution": 0.00146,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.004366,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 17 (UDP) flow 192.168.50.1:5353 -> 224.0.0.251:5353 (score 0.128, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 174.5 (+0.083); DST_TO_SRC_SECOND_BYTES = 0 (+0.021); OUT_BYTES = 0 (+0.008). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-44",
+    "flow": {
+      "src": "192.168.60.1",
+      "dst": "224.0.0.251",
+      "protocol": "17 (UDP)",
+      "start_ms": 1794467214502.0,
+      "src_port": 5353.0,
+      "dst_port": 5353.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.128496,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.128496,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "174.5",
+          "contribution": 0.082849,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.020605,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "0",
+          "contribution": 0.007592,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.005085,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "0",
+          "contribution": 0.002768,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.001934,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "0",
+          "contribution": 0.001837,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "IN_BYTES",
+          "value": "159",
+          "contribution": 0.00146,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.004366,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 17 (UDP) flow 192.168.60.1:5353 -> 224.0.0.251:5353 (score 0.128, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 174.5 (+0.083); DST_TO_SRC_SECOND_BYTES = 0 (+0.021); OUT_BYTES = 0 (+0.008). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-45",
+    "flow": {
+      "src": "192.168.50.20",
+      "dst": "192.168.60.10",
+      "protocol": "1 (ICMP)",
+      "start_ms": 1794467461328.0,
+      "src_port": 0.0,
+      "dst_port": 0.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.09888,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.09888,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "55.99",
+          "contribution": 0.025976,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "8",
+          "contribution": 0.016954,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "2048",
+          "contribution": 0.01592,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L4_DST_PORT",
+          "value": "0 (none)",
+          "contribution": 0.010675,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L4_SRC_PORT",
+          "value": "0 (none)",
+          "contribution": 0.009197,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "1 (ICMP)",
+          "contribution": 0.005832,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "IN_PKTS",
+          "value": "74",
+          "contribution": 0.002886,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DURATION_IN",
+          "value": "301,608",
+          "contribution": 0.002529,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.008911,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 1 (ICMP) flow 192.168.50.20:0 -> 192.168.60.10:0 (score 0.099, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 55.99 (+0.026); ICMP_IPV4_TYPE = 8 (+0.017); ICMP_TYPE = 2048 (+0.016). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-46",
+    "flow": {
+      "src": "192.168.50.20",
+      "dst": "192.168.50.1",
+      "protocol": "1 (ICMP)",
+      "start_ms": 1794467465356.0,
+      "src_port": 0.0,
+      "dst_port": 0.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.119711,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.119711,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "87.62",
+          "contribution": 0.028234,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "8",
+          "contribution": 0.019735,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "2048",
+          "contribution": 0.018284,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L4_DST_PORT",
+          "value": "0 (none)",
+          "contribution": 0.015726,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L4_SRC_PORT",
+          "value": "0 (none)",
+          "contribution": 0.012272,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "1 (ICMP)",
+          "contribution": 0.00873,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DURATION_IN",
+          "value": "317,764",
+          "contribution": 0.00374,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "IN_PKTS",
+          "value": "79",
+          "contribution": 0.003428,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.009561,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 1 (ICMP) flow 192.168.50.20:0 -> 192.168.50.1:0 (score 0.120, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 87.62 (+0.028); ICMP_IPV4_TYPE = 8 (+0.020); ICMP_TYPE = 2048 (+0.018). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-47",
+    "flow": {
+      "src": "192.168.50.20",
+      "dst": "192.168.60.1",
+      "protocol": "1 (ICMP)",
+      "start_ms": 1794467469421.0,
+      "src_port": 0.0,
+      "dst_port": 0.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.117182,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.117182,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "78.63",
+          "contribution": 0.027057,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "8",
+          "contribution": 0.01911,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "2048",
+          "contribution": 0.01771,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L4_DST_PORT",
+          "value": "0 (none)",
+          "contribution": 0.015827,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L4_SRC_PORT",
+          "value": "0 (none)",
+          "contribution": 0.012444,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "1 (ICMP)",
+          "contribution": 0.008859,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DURATION_IN",
+          "value": "301,621",
+          "contribution": 0.003513,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "IN_PKTS",
+          "value": "63",
+          "contribution": 0.003321,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.00934,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 1 (ICMP) flow 192.168.50.20:0 -> 192.168.60.1:0 (score 0.117, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 78.63 (+0.027); ICMP_IPV4_TYPE = 8 (+0.019); ICMP_TYPE = 2048 (+0.018). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-48",
+    "flow": {
+      "src": "192.168.50.20",
+      "dst": "224.0.0.251",
+      "protocol": "17 (UDP)",
+      "start_ms": 1794467545217.0,
+      "src_port": 5353.0,
+      "dst_port": 5353.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.155703,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.155703,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.059518,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "FLOW_DURATION_MILLISECONDS",
+          "value": "0",
+          "contribution": 0.059488,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "IN_BYTES",
+          "value": "134",
+          "contribution": 0.01553,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "17 (UDP)",
+          "contribution": 0.007925,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DURATION_IN",
+          "value": "0",
+          "contribution": 0.003992,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.001927,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.001705,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "0",
+          "contribution": 0.00154,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.004078,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 17 (UDP) flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.156, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_AVG_THROUGHPUT = 0 (+0.060); FLOW_DURATION_MILLISECONDS = 0 (+0.059); IN_BYTES = 134 (+0.016). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-49",
+    "flow": {
+      "src": "192.168.50.20",
+      "dst": "224.0.0.22",
+      "protocol": "2 (IGMP)",
+      "start_ms": 1794467545225.0,
+      "src_port": 0.0,
+      "dst_port": 0.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.139932,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.139932,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "114.9",
+          "contribution": 0.090251,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "2 (IGMP)",
+          "contribution": 0.013119,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.011448,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "0",
+          "contribution": 0.007083,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.004105,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "0",
+          "contribution": 0.0034,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.003201,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L4_SRC_PORT",
+          "value": "0 (none)",
+          "contribution": 0.00267,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.004656,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 2 (IGMP) flow 192.168.50.20:0 -> 224.0.0.22:0 (score 0.140, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 114.9 (+0.090); PROTOCOL = 2 (IGMP) (+0.013); DST_TO_SRC_SECOND_BYTES = 0 (+0.011). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-50",
+    "flow": {
+      "src": "192.168.60.1",
+      "dst": "224.0.0.251",
+      "protocol": "17 (UDP)",
+      "start_ms": 1794467726559.0,
+      "src_port": 5353.0,
+      "dst_port": 5353.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.131724,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.131724,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "185.7",
+          "contribution": 0.084761,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.02125,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "0",
+          "contribution": 0.00776,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.005352,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "0",
+          "contribution": 0.002854,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.001969,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "0",
+          "contribution": 0.001862,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "IN_BYTES",
+          "value": "159",
+          "contribution": 0.001472,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.004443,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 17 (UDP) flow 192.168.60.1:5353 -> 224.0.0.251:5353 (score 0.132, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 185.7 (+0.085); DST_TO_SRC_SECOND_BYTES = 0 (+0.021); OUT_BYTES = 0 (+0.008). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-51",
+    "flow": {
+      "src": "192.168.50.1",
+      "dst": "224.0.0.251",
+      "protocol": "17 (UDP)",
+      "start_ms": 1794467726560.0,
+      "src_port": 5353.0,
+      "dst_port": 5353.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.131785,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.131785,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "186",
+          "contribution": 0.084797,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.021262,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "0",
+          "contribution": 0.007763,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.005357,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "0",
+          "contribution": 0.002856,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.001969,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "0",
+          "contribution": 0.001863,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "IN_BYTES",
+          "value": "159",
+          "contribution": 0.001473,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.004444,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 17 (UDP) flow 192.168.50.1:5353 -> 224.0.0.251:5353 (score 0.132, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 186 (+0.085); DST_TO_SRC_SECOND_BYTES = 0 (+0.021); OUT_BYTES = 0 (+0.008). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-52",
+    "flow": {
+      "src": "192.168.50.20",
+      "dst": "224.0.0.251",
+      "protocol": "17 (UDP)",
+      "start_ms": 1794467851290.0,
+      "src_port": 5353.0,
+      "dst_port": 5353.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.155703,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.155703,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.059518,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "FLOW_DURATION_MILLISECONDS",
+          "value": "0",
+          "contribution": 0.059488,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "IN_BYTES",
+          "value": "134",
+          "contribution": 0.01553,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "17 (UDP)",
+          "contribution": 0.007925,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DURATION_IN",
+          "value": "0",
+          "contribution": 0.003992,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.001927,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.001705,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_BYTES",
+          "value": "0",
+          "contribution": 0.00154,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.004078,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 17 (UDP) flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.156, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_AVG_THROUGHPUT = 0 (+0.060); FLOW_DURATION_MILLISECONDS = 0 (+0.059); IN_BYTES = 134 (+0.016). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "lab-ae-53",
+    "flow": {
+      "src": "192.168.50.20",
+      "dst": "224.0.0.22",
+      "protocol": "2 (IGMP)",
+      "start_ms": 1794467851299.0,
+      "src_port": 0.0,
+      "dst_port": 0.0,
+      "dataset": "lab"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_lab",
+      "feature_set": "lab",
+      "git_commit": "1346e03"
+    },
+    "ground_truth": {
+      "label": 0.0,
+      "attack": "Benign",
+      "tactic": "Benign"
+    },
+    "decision": {
+      "score": 0.142993,
+      "score_kind": "reconstruction error",
+      "threshold": 0.019438,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.142993,
+      "items": [
+        {
+          "feature": "SRC_TO_DST_SECOND_BYTES",
+          "value": "121.8",
+          "contribution": 0.092292,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "2 (IGMP)",
+          "contribution": 0.013194,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_SECOND_BYTES",
+          "value": "0",
+          "contribution": 0.011922,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "OUT_PKTS",
+          "value": "0",
+          "contribution": 0.007255,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_IPV4_TYPE",
+          "value": "0",
+          "contribution": 0.004133,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "0",
+          "contribution": 0.00342,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DST_TO_SRC_AVG_THROUGHPUT",
+          "value": "0",
+          "contribution": 0.003324,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L4_SRC_PORT",
+          "value": "0 (none)",
+          "contribution": 0.002706,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.004747,
+      "additivity_error": 1.1920928955078125e-07
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_lab) flagged the 2 (IGMP) flow 192.168.50.20:0 -> 224.0.0.22:0 (score 0.143, threshold 0.019, reconstruction error). Most abnormal features (squared error): SRC_TO_DST_SECOND_BYTES = 121.8 (+0.092); PROTOCOL = 2 (IGMP) (+0.013); DST_TO_SRC_SECOND_BYTES = 0 (+0.012). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  }
+]
