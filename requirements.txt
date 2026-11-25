@@ -3,4 +3,10 @@ numpy>=1.24
 pyarrow>=14
 scikit-learn>=1.3
 joblib>=1.3
-pytest>=7,<8.4   # 8.4+ crashes on Python 3.10.0rc2 (the local interpreter); lift once on a final Python release
+pyyaml>=6
+xgboost>=2.0
+# PyTorch: install the CUDA build first for GPU training, e.g.
+#   pip install torch --index-url https://download.pytorch.org/whl/cu128
+# (a plain `pip install torch` gives the CPU build, which also works, slower)
+torch>=2.2
+pytest>=7

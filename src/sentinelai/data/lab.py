@@ -79,7 +79,8 @@ def dedupe_vantage(df: pd.DataFrame, prefer: str = "ens33", tol_s: float = 0.05)
     d = df.copy()
     if "synth_group" in d:
         key.append("synth_group")
-    d["_k"] = d[key].astype(str).agg("|".join, axis=1)
+    # explicit "" for missing values: pandas 2 and 3 stringify NaN differently
+    d["_k"] = d[key].apply(lambda col: col.map(lambda v: "" if pd.isna(v) else str(v))).agg("|".join, axis=1)
     pref, other = d[d.capture_interface == prefer], d[d.capture_interface != prefer]
     drop = []
     used = set()

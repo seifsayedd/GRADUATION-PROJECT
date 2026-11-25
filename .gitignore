@@ -1,6 +1,6 @@
 __pycache__/
 *.pyc
-.venv/
+.venv*/
 venv/
 .ipynb_checkpoints/
 .DS_Store
@@ -16,8 +16,9 @@ data/external/
 
 # Derived data and model artifacts (rebuild from scripts)
 data/interim/
-models/
+/models/
 *.joblib
 .pytest_cache/
 *.egg-info/
 .env
+reports/**/*.npz
