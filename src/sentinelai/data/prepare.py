@@ -23,7 +23,7 @@ import pandas as pd
 import pyarrow.dataset as ds
 import yaml
 
-from .bigflow import sample_bigflow
+from .bigflow import list_files, sample_bigflow
 from .preprocess import clean
 from .sources import infer_source
 from .split import make_splits
@@ -101,23 +101,44 @@ def select_hosts(df: pd.DataFrame, max_rows: int, seed: int, host_col: str = "IP
     return df[keep]
 
 
+def cap_time_window(df: pd.DataFrame, max_rows: int, time_col: str = "FLOW_START_MILLISECONDS") -> pd.DataFrame:
+    """If ``df`` is still over ``max_rows``, keep one contiguous stretch of time.
+
+    The stretch holds ``max_rows`` rows and is centred on the median attack
+    time, so attack flows and the benign traffic around them stay together.
+    Within the stretch every flow is kept, so per-host order is intact (only
+    hosts' histories before the stretch start are cut).
+    """
+    if len(df) <= max_rows:
+        return df
+    d = df.sort_values(time_col, kind="stable")
+    t = d[time_col].to_numpy()
+    centre = np.median(t[d.Label.to_numpy() == 1]) if (d.Label == 1).any() else np.median(t)
+    mid = int(np.searchsorted(t, centre))
+    lo = min(max(0, mid - max_rows // 2), len(d) - max_rows)
+    return d.iloc[lo:lo + max_rows]
+
+
 def build_sequence_dataset(cfg: dict, out_dir: Path | None = None, bigflow_dir: Path | None = None) -> dict:
     d, s2 = cfg["data"], cfg["stage2"]
     out = Path(out_dir or ROOT / d["interim_dir"]) / "sequences"
     out.mkdir(parents=True, exist_ok=True)
-    dataset = ds.dataset(Path(bigflow_dir or ROOT / d["bigflow_dir"]), format="parquet")
+    files = list_files(Path(bigflow_dir or ROOT / d["bigflow_dir"]))
     meta = {"git_commit": git_commit(), "seed": cfg["seed"], "slices": {}}
     for sl in s2["slices"]:
         lo, hi = _ms(sl["start"]), _ms(sl["end"])
-        t = dataset.to_table(filter=(ds.field("FLOW_START_MILLISECONDS") >= lo)
-                             & (ds.field("FLOW_START_MILLISECONDS") < hi))
-        df = t.to_pandas()
+        # Files are read one by one: BigFlow's parts don't share one schema (the same
+        # column is int64 in some files and float64 in others), so a single dataset scan fails.
+        flt = (ds.field("FLOW_START_MILLISECONDS") >= lo) & (ds.field("FLOW_START_MILLISECONDS") < hi)
+        parts = [ds.dataset(f, format="parquet").to_table(filter=flt).to_pandas() for f in files]
+        df = pd.concat([p for p in parts if len(p)], ignore_index=True)
         held = df.Attack.isin(d["holdout_attacks"])
         if held.any():
             raise ValueError(f"slice {sl['name']} contains held-out classes "
                              f"{sorted(df.Attack[held].unique())}; pick another day")
         n_raw = len(df)
         df = select_hosts(df, s2["max_rows_per_slice"], cfg["seed"])
+        df = cap_time_window(df, s2["max_rows_per_slice"])   # days with few, very busy hosts
         df, rep = clean(df, drop_duplicates=False)   # duplicates are real repeated flows in a sequence
         df = annotate(df).assign(slice=sl["name"])
         df = df.sort_values(["IPV4_SRC_ADDR", "FLOW_START_MILLISECONDS"], kind="stable")

@@ -22,3 +22,13 @@ def test_select_hosts_keeps_attack_hosts_whole(labeled_df):
     kept = set(out.IPV4_SRC_ADDR)
     for h in kept:                                          # whole hosts only
         assert (out.IPV4_SRC_ADDR == h).sum() == (df.IPV4_SRC_ADDR == h).sum()
+
+
+def test_cap_time_window_is_contiguous_and_keeps_attacks():
+    from sentinelai.data.prepare import cap_time_window
+    df = pd.DataFrame({"FLOW_START_MILLISECONDS": range(1000), "Label": [0] * 600 + [1] * 50 + [0] * 350})
+    out = cap_time_window(df, 200)
+    t = out.FLOW_START_MILLISECONDS
+    assert len(out) == 200 and t.max() - t.min() == 199          # one unbroken stretch
+    assert out.Label.sum() == 50                                   # centred on the attacks
+    assert cap_time_window(df, 5000) is df
