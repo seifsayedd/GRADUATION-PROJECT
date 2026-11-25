@@ -33,11 +33,16 @@ Full design: [`docs/project-overview.md`](docs/project-overview.md)
 ├── docs/
 │   ├── project-overview.md            full SentinelAI architecture and evaluation plan
 │   ├── lab-architecture.md            cyber-range topology, tooling, lessons learned
-│   └── ai-team-data-requirements.md   data-collection spec from the AI team
+│   ├── ai-team-data-requirements.md   data-collection spec from the AI team
+│   └── feature-mapping.md             lab (Argus/nfdump) → BigFlow NetFlow-v3 features, with gaps
 ├── scripts/
 │   ├── merge_sessions.py              flows + nfdump + manifest → one labeled CSV
 │   ├── augment_flows.py               flagged jitter-based synthetic augmentation
-│   └── validate_dataset.py            consistency and labeling checks
+│   ├── validate_dataset.py            consistency and labeling checks
+│   └── build_bigflow_sample.py        class-stratified BigFlow sample → data/interim/
+├── src/sentinelai/data/               Phase 1 data layer (loaders, mapping, preprocessing, splits)
+├── tests/                             pytest suite
+├── pyproject.toml
 └── requirements.txt
 ```
 
@@ -51,7 +56,8 @@ Full design: [`docs/project-overview.md`](docs/project-overview.md)
 | First labeled dataset (v1) | ✅ 68 real flows, 96 features, ATT&CK-labeled |
 | Large-scale training data | 🔄 BigFlow-NIDS selected (~66.9M flows) |
 | 5-hour benign/attack capture session | 🔄 Planned |
-| Detection models, XAI, GenAI reports, dashboard | ⏳ AI / Data Science workstreams |
+| Phase 1 data layer (loaders, feature mapping, preprocessing, splits) | ✅ `src/sentinelai/data`, 47 tests |
+| Detection models, XAI, GenAI reports, dashboard | ⏳ Phases 2–6 |
 
 ## Quick start
 
@@ -70,6 +76,39 @@ python scripts/augment_flows.py data/processed/combined_sessions_full.csv augmen
 ```
 
 > **Data integrity:** every flow in `combined_sessions_full.csv` is genuinely captured traffic matched 1:1 to a collector record. Synthetic rows exist only in the augmented file and are always flagged with `is_synthetic = 1`. Exclude them from evaluation.
+
+## Phase 1: data layer
+
+```bash
+python -m venv .venv && .venv/Scripts/activate      # Windows; use .venv/bin/activate on Linux/macOS
+pip install -r requirements.txt && pip install -e .
+python -m pytest                                    # 47 tests; lab tests read data/processed (read-only)
+```
+
+**BigFlow-NIDS.** Download it from [Mendeley](https://data.mendeley.com/datasets/nv729tbdgz/1) into `data/external/bigflow/` (git-ignored). Check the headers first, then build a training sample:
+
+```bash
+python scripts/build_bigflow_sample.py data/external/bigflow data/interim/x.parquet --check-only
+python scripts/build_bigflow_sample.py data/external/bigflow data/interim/bigflow_sample.parquet --per-class 50000
+```
+
+**Typical use:**
+
+```python
+from sentinelai.data import (load_bigflow, clean, make_splits, resample_train,
+                             FlowPreprocessor, lab_to_bigflow, available_features)
+
+df, report = clean(load_bigflow("data/interim/bigflow_sample.parquet"))
+splits = make_splits(df, label_col="Attack", holdout_attacks=["<category>"])  # split FIRST
+splits = resample_train(splits, strategy="undersample")                     # train only
+pp = FlowPreprocessor(features=available_features()).fit(splits.train)      # lab-compatible feature set
+X_train, X_test = pp.transform(splits.train), pp.transform(splits.test)
+
+lab = lab_to_bigflow("data/processed/combined_sessions_full.csv")           # 54 real conversations, eval only
+X_lab = pp.transform(lab)
+```
+
+Rules the code enforces: synthetic rows never reach val/test/holdout (`assert_no_synthetic`). Resampling only touches train. Scalers and encoders are fitted on train only. Lab features the sensor didn't measure stay NaN and can't be fed to a model. Details and the full gap list: [`docs/feature-mapping.md`](docs/feature-mapping.md).
 
 ---
 
