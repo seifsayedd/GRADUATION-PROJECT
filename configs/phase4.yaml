@@ -14,7 +14,7 @@ phase4:
   # Caveats copied into every explanation. Each one restates a measured result (Phase 2/3).
   caveats:
     stage1:
-      - "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+      - "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
       - "SHAP values explain this model's output, not the attacker's intent."
     holdout:
       - "This attack class was never in training (Phase 2 holdout)."

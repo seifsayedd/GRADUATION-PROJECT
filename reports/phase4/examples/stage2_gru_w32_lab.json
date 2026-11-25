@@ -15,7 +15,7 @@
       "stage": 2,
       "name": "gru_w32_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 1.0,
@@ -82,7 +82,7 @@
       "stage": 2,
       "name": "gru_w32_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 1.0,
@@ -150,7 +150,7 @@
       "stage": 2,
       "name": "gru_w32_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -218,7 +218,7 @@
       "stage": 2,
       "name": "gru_w32_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 1.0,
@@ -285,7 +285,7 @@
       "stage": 2,
       "name": "gru_w32_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 1.0,

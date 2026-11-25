@@ -15,7 +15,7 @@
       "stage": 1,
       "name": "xgboost_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 1.0,
@@ -148,10 +148,10 @@
       "additivity_error": 2.86102294921875e-06
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent."
     ],
-    "summary": "Stage 1 (xgboost_temporal_lab) flagged the UDP flow 175.45.176.1:47439 -> 149.171.126.14:53 (score 0.999, threshold 0.500, probability of attack). Predicted tactic: Other (confidence 0.999). Strongest evidence for attack (log-odds): FLOW_DURATION_MILLISECONDS = 0 (+2.968); OUT_BYTES = 0 (+1.561); IN_PKTS = 2 (+1.334). Strongest evidence against (log-odds): PROTOCOL = 17 (UDP) (-0.720). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (xgboost_temporal_lab) flagged the UDP flow 175.45.176.1:47439 -> 149.171.126.14:53 (score 0.999, threshold 0.500, probability of attack). Predicted tactic: Other (confidence 0.999). Strongest evidence for attack (log-odds): FLOW_DURATION_MILLISECONDS = 0 (+2.968); OUT_BYTES = 0 (+1.561); IN_PKTS = 2 (+1.334). Strongest evidence against (log-odds): PROTOCOL = 17 (UDP) (-0.720). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -169,7 +169,7 @@
       "stage": 1,
       "name": "xgboost_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -302,10 +302,10 @@
       "additivity_error": 2.86102294921875e-06
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent."
     ],
-    "summary": "Stage 1 (xgboost_temporal_lab) flagged the UDP flow 192.168.1.169:52970 -> 192.168.1.1:53 (score 0.552, threshold 0.500, probability of attack). Predicted tactic: Credential Access (confidence 0.934). Strongest evidence for attack (log-odds): L4_DST_PORT = 53 (well-known) (+0.688); OUT_BYTES = 804 (+0.548); IN_PKTS = 4 (+0.523). Strongest evidence against (log-odds): OUT_PKTS = 12 (-1.078); PROTOCOL = 17 (UDP) (-0.988). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (xgboost_temporal_lab) flagged the UDP flow 192.168.1.169:52970 -> 192.168.1.1:53 (score 0.552, threshold 0.500, probability of attack). Predicted tactic: Credential Access (confidence 0.934). Strongest evidence for attack (log-odds): L4_DST_PORT = 53 (well-known) (+0.688); OUT_BYTES = 804 (+0.548); IN_PKTS = 4 (+0.523). Strongest evidence against (log-odds): OUT_PKTS = 12 (-1.078); PROTOCOL = 17 (UDP) (-0.988). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -323,7 +323,7 @@
       "stage": 1,
       "name": "xgboost_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 1.0,
@@ -456,10 +456,10 @@
       "additivity_error": 2.86102294921875e-06
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent."
     ],
-    "summary": "Stage 1 (xgboost_temporal_lab) flagged the TCP flow 172.31.69.26:63132 -> 18.219.211.138:8080 (score 0.999, threshold 0.500, probability of attack). Predicted tactic: Command and Control (confidence 1.000). Strongest evidence for attack (log-odds): IN_BYTES = 538 (+1.416); OUT_BYTES = 341 (+1.291); DST_TO_SRC_AVG_THROUGHPUT = 209,846 (+1.174). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (xgboost_temporal_lab) flagged the TCP flow 172.31.69.26:63132 -> 18.219.211.138:8080 (score 0.999, threshold 0.500, probability of attack). Predicted tactic: Command and Control (confidence 1.000). Strongest evidence for attack (log-odds): IN_BYTES = 538 (+1.416); OUT_BYTES = 341 (+1.291); DST_TO_SRC_AVG_THROUGHPUT = 209,846 (+1.174). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -477,7 +477,7 @@
       "stage": 1,
       "name": "xgboost_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 1.0,
@@ -610,10 +610,10 @@
       "additivity_error": 2.86102294921875e-06
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent."
     ],
-    "summary": "Stage 1 (xgboost_temporal_lab) flagged the TCP flow 18.218.55.126:61792 -> 172.31.69.28:80 (score 1.000, threshold 0.500, probability of attack). Predicted tactic: Impact (confidence 1.000). Strongest evidence for attack (log-odds): OUT_BYTES = 1,147 (+2.231); L4_DST_PORT = 80 (well-known) (+1.541); IN_BYTES = 551 (+1.095). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (xgboost_temporal_lab) flagged the TCP flow 18.218.55.126:61792 -> 172.31.69.28:80 (score 1.000, threshold 0.500, probability of attack). Predicted tactic: Impact (confidence 1.000). Strongest evidence for attack (log-odds): OUT_BYTES = 1,147 (+2.231); L4_DST_PORT = 80 (well-known) (+1.541); IN_BYTES = 551 (+1.095). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -631,7 +631,7 @@
       "stage": 1,
       "name": "xgboost_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 1.0,
@@ -764,10 +764,10 @@
       "additivity_error": 2.86102294921875e-06
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent."
     ],
-    "summary": "Stage 1 (xgboost_temporal_lab) flagged the TCP flow 192.168.1.39:35990 -> 192.168.1.195:80 (score 0.982, threshold 0.500, probability of attack). Predicted tactic: Initial Access (confidence 0.992). Strongest evidence for attack (log-odds): L4_DST_PORT = 80 (well-known) (+0.977); IN_BYTES = 601 (+0.636); IN_PKTS = 6 (+0.547). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (xgboost_temporal_lab) flagged the TCP flow 192.168.1.39:35990 -> 192.168.1.195:80 (score 0.982, threshold 0.500, probability of attack). Predicted tactic: Initial Access (confidence 0.992). Strongest evidence for attack (log-odds): L4_DST_PORT = 80 (well-known) (+0.977); IN_BYTES = 601 (+0.636); IN_PKTS = 6 (+0.547). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -785,7 +785,7 @@
       "stage": 1,
       "name": "xgboost_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 1.0,
@@ -918,10 +918,10 @@
       "additivity_error": 2.86102294921875e-06
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent."
     ],
-    "summary": "Stage 1 (xgboost_temporal_lab) flagged the TCP flow 192.168.1.35:44760 -> 192.168.1.195:80 (score 0.994, threshold 0.500, probability of attack). Predicted tactic: Credential Access (confidence 0.998). Strongest evidence for attack (log-odds): IN_BYTES = 523 (+1.297); L4_DST_PORT = 80 (well-known) (+0.912); OUT_BYTES = 679 (+0.528). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (xgboost_temporal_lab) flagged the TCP flow 192.168.1.35:44760 -> 192.168.1.195:80 (score 0.994, threshold 0.500, probability of attack). Predicted tactic: Credential Access (confidence 0.998). Strongest evidence for attack (log-odds): IN_BYTES = 523 (+1.297); L4_DST_PORT = 80 (well-known) (+0.912); OUT_BYTES = 679 (+0.528). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -939,7 +939,7 @@
       "stage": 1,
       "name": "xgboost_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 1.0,
@@ -1073,10 +1073,10 @@
       "additivity_error": 2.86102294921875e-06
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent."
     ],
-    "summary": "Stage 1 (xgboost_temporal_lab) flagged the TCP flow 192.168.100.149:35063 -> 192.168.100.3:46899 (score 0.846, threshold 0.500, probability of attack). Predicted tactic: Reconnaissance/Discovery (confidence 0.999). Strongest evidence for attack (log-odds): DST_TO_SRC_AVG_THROUGHPUT = 5,161 (+0.646); FLOW_DURATION_MILLISECONDS = 61 (+0.488); SRC_TO_DST_AVG_THROUGHPUT = 5,677 (+0.339). Strongest evidence against (log-odds): L4_DST_PORT = 46899 (registered) (-0.455). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (xgboost_temporal_lab) flagged the TCP flow 192.168.100.149:35063 -> 192.168.100.3:46899 (score 0.846, threshold 0.500, probability of attack). Predicted tactic: Reconnaissance/Discovery (confidence 0.999). Strongest evidence for attack (log-odds): DST_TO_SRC_AVG_THROUGHPUT = 5,161 (+0.646); FLOW_DURATION_MILLISECONDS = 61 (+0.488); SRC_TO_DST_AVG_THROUGHPUT = 5,677 (+0.339). Strongest evidence against (log-odds): L4_DST_PORT = 46899 (registered) (-0.455). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -1094,7 +1094,7 @@
       "stage": 1,
       "name": "xgboost_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 1.0,
@@ -1227,9 +1227,9 @@
       "additivity_error": 2.86102294921875e-06
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent."
     ],
-    "summary": "Stage 1 (xgboost_temporal_lab) flagged the TCP flow 192.168.100.3:44049 -> 192.168.100.150:4433 (score 0.998, threshold 0.500, probability of attack). Predicted tactic: Exfiltration (confidence 0.991). Strongest evidence for attack (log-odds): FLOW_DURATION_MILLISECONDS = 0 (+3.999); IN_BYTES = 60 (+1.107); SRC_TO_DST_AVG_THROUGHPUT = 480,000 (+0.585). Strongest evidence against (log-odds): L4_DST_PORT = 4433 (registered) (-1.205). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (xgboost_temporal_lab) flagged the TCP flow 192.168.100.3:44049 -> 192.168.100.150:4433 (score 0.998, threshold 0.500, probability of attack). Predicted tactic: Exfiltration (confidence 0.991). Strongest evidence for attack (log-odds): FLOW_DURATION_MILLISECONDS = 0 (+3.999); IN_BYTES = 60 (+1.107); SRC_TO_DST_AVG_THROUGHPUT = 480,000 (+0.585). Strongest evidence against (log-odds): L4_DST_PORT = 4433 (registered) (-1.205). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   }
 ]

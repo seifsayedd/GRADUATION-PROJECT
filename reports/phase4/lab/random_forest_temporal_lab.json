@@ -15,7 +15,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -87,11 +87,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the ICMP flow 192.168.50.20 -> 192.168.60.10 (score 0.309, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_BYTES = 840 (+0.038); OUT_BYTES = 840 (+0.023). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.086); PROTOCOL = 1 (ICMP) (-0.058). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the ICMP flow 192.168.50.20 -> 192.168.60.10 (score 0.309, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_BYTES = 840 (+0.038); OUT_BYTES = 840 (+0.023). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.086); PROTOCOL = 1 (ICMP) (-0.058). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -109,7 +109,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -181,11 +181,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the ICMP flow 192.168.50.20 -> 192.168.60.10 (score 0.332, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_BYTES = 420 (+0.036); IN_PKTS = 5 (+0.022); OUT_PKTS = 5 (+0.020). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.090); PROTOCOL = 1 (ICMP) (-0.082). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the ICMP flow 192.168.50.20 -> 192.168.60.10 (score 0.332, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_BYTES = 420 (+0.036); IN_PKTS = 5 (+0.022); OUT_PKTS = 5 (+0.020). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.090); PROTOCOL = 1 (ICMP) (-0.082). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -203,7 +203,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -337,11 +337,11 @@
       "additivity_error": 8.326672684688674e-15
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) flagged the UDP flow 192.168.50.1:5353 -> 224.0.0.251:5353 (score 0.593, threshold 0.500, probability of attack). Predicted tactic: Reconnaissance/Discovery (confidence 0.719). Strongest evidence for attack (probability): FLOW_DURATION_MILLISECONDS = 0 (+0.241); L4_SRC_PORT = 5353 (registered) (+0.050); OUT_BYTES = 0 (+0.013). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.094); IN_BYTES = 73 (-0.052). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) flagged the UDP flow 192.168.50.1:5353 -> 224.0.0.251:5353 (score 0.593, threshold 0.500, probability of attack). Predicted tactic: Reconnaissance/Discovery (confidence 0.719). Strongest evidence for attack (probability): FLOW_DURATION_MILLISECONDS = 0 (+0.241); L4_SRC_PORT = 5353 (registered) (+0.050); OUT_BYTES = 0 (+0.013). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.094); IN_BYTES = 73 (-0.052). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -359,7 +359,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -493,11 +493,11 @@
       "additivity_error": 8.326672684688674e-15
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) flagged the UDP flow 192.168.60.1:5353 -> 224.0.0.251:5353 (score 0.593, threshold 0.500, probability of attack). Predicted tactic: Reconnaissance/Discovery (confidence 0.719). Strongest evidence for attack (probability): FLOW_DURATION_MILLISECONDS = 0 (+0.241); L4_SRC_PORT = 5353 (registered) (+0.050); OUT_BYTES = 0 (+0.013). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.094); IN_BYTES = 73 (-0.052). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) flagged the UDP flow 192.168.60.1:5353 -> 224.0.0.251:5353 (score 0.593, threshold 0.500, probability of attack). Predicted tactic: Reconnaissance/Discovery (confidence 0.719). Strongest evidence for attack (probability): FLOW_DURATION_MILLISECONDS = 0 (+0.241); L4_SRC_PORT = 5353 (registered) (+0.050); OUT_BYTES = 0 (+0.013). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.094); IN_BYTES = 73 (-0.052). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -515,7 +515,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -648,11 +648,11 @@
       "additivity_error": 8.326672684688674e-15
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) flagged the UDP flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.642, threshold 0.500, probability of attack). Predicted tactic: Other (confidence 0.349). Strongest evidence for attack (probability): FLOW_DURATION_MILLISECONDS = 0 (+0.226); L4_SRC_PORT = 5353 (registered) (+0.052); IN_PKTS = 2 (+0.034). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.123); SRC_TO_DST_AVG_THROUGHPUT = 0 (-0.042). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) flagged the UDP flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.642, threshold 0.500, probability of attack). Predicted tactic: Other (confidence 0.349). Strongest evidence for attack (probability): FLOW_DURATION_MILLISECONDS = 0 (+0.226); L4_SRC_PORT = 5353 (registered) (+0.052); IN_PKTS = 2 (+0.034). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.123); SRC_TO_DST_AVG_THROUGHPUT = 0 (-0.042). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -670,7 +670,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -742,11 +742,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the IGMP flow 192.168.50.20 -> 224.0.0.22 (score 0.208, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_PKTS = 4 (+0.043). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.162); L4_SRC_PORT = 0 (none) (-0.065). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the IGMP flow 192.168.50.20 -> 224.0.0.22 (score 0.208, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_PKTS = 4 (+0.043). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.162); L4_SRC_PORT = 0 (none) (-0.065). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -764,7 +764,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -897,11 +897,11 @@
       "additivity_error": 8.326672684688674e-15
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) flagged the UDP flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.642, threshold 0.500, probability of attack). Predicted tactic: Other (confidence 0.349). Strongest evidence for attack (probability): FLOW_DURATION_MILLISECONDS = 0 (+0.226); L4_SRC_PORT = 5353 (registered) (+0.052); IN_PKTS = 2 (+0.034). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.123); SRC_TO_DST_AVG_THROUGHPUT = 0 (-0.042). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) flagged the UDP flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.642, threshold 0.500, probability of attack). Predicted tactic: Other (confidence 0.349). Strongest evidence for attack (probability): FLOW_DURATION_MILLISECONDS = 0 (+0.226); L4_SRC_PORT = 5353 (registered) (+0.052); IN_PKTS = 2 (+0.034). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.123); SRC_TO_DST_AVG_THROUGHPUT = 0 (-0.042). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -919,7 +919,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -991,11 +991,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the IGMP flow 192.168.50.20 -> 224.0.0.22 (score 0.208, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_PKTS = 4 (+0.044). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.162); L4_SRC_PORT = 0 (none) (-0.065). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the IGMP flow 192.168.50.20 -> 224.0.0.22 (score 0.208, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_PKTS = 4 (+0.044). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.162); L4_SRC_PORT = 0 (none) (-0.065). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -1013,7 +1013,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -1146,11 +1146,11 @@
       "additivity_error": 8.326672684688674e-15
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) flagged the UDP flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.642, threshold 0.500, probability of attack). Predicted tactic: Other (confidence 0.349). Strongest evidence for attack (probability): FLOW_DURATION_MILLISECONDS = 0 (+0.226); L4_SRC_PORT = 5353 (registered) (+0.052); IN_PKTS = 2 (+0.034). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.123); SRC_TO_DST_AVG_THROUGHPUT = 0 (-0.042). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) flagged the UDP flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.642, threshold 0.500, probability of attack). Predicted tactic: Other (confidence 0.349). Strongest evidence for attack (probability): FLOW_DURATION_MILLISECONDS = 0 (+0.226); L4_SRC_PORT = 5353 (registered) (+0.052); IN_PKTS = 2 (+0.034). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.123); SRC_TO_DST_AVG_THROUGHPUT = 0 (-0.042). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -1168,7 +1168,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -1240,11 +1240,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the IGMP flow 192.168.50.20 -> 224.0.0.22 (score 0.190, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_PKTS = 4 (+0.043). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.164); L4_SRC_PORT = 0 (none) (-0.065). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the IGMP flow 192.168.50.20 -> 224.0.0.22 (score 0.190, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_PKTS = 4 (+0.043). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.164); L4_SRC_PORT = 0 (none) (-0.065). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -1262,7 +1262,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -1334,11 +1334,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.160, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_PKTS = 2 (+0.055); L4_SRC_PORT = 5353 (registered) (+0.051). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.177); FLOW_DURATION_MILLISECONDS = 1 (-0.092). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.160, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_PKTS = 2 (+0.055); L4_SRC_PORT = 5353 (registered) (+0.051). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.177); FLOW_DURATION_MILLISECONDS = 1 (-0.092). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -1356,7 +1356,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -1428,11 +1428,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the IGMP flow 192.168.50.20 -> 224.0.0.22 (score 0.206, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_PKTS = 4 (+0.040). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.162); L4_SRC_PORT = 0 (none) (-0.064). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the IGMP flow 192.168.50.20 -> 224.0.0.22 (score 0.206, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_PKTS = 4 (+0.040). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.162); L4_SRC_PORT = 0 (none) (-0.064). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -1450,7 +1450,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 1.0,
@@ -1522,11 +1522,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the ICMP flow 192.168.50.20 -> 192.168.60.10 (score 0.413, threshold 0.500, probability of attack). Strongest evidence for attack (probability): OUT_PKTS = 4 (+0.037); IN_BYTES = 336 (+0.030); DURATION_OUT = 3,028 (+0.027). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.088); PROTOCOL = 1 (ICMP) (-0.084). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the ICMP flow 192.168.50.20 -> 192.168.60.10 (score 0.413, threshold 0.500, probability of attack). Strongest evidence for attack (probability): OUT_PKTS = 4 (+0.037); IN_BYTES = 336 (+0.030); DURATION_OUT = 3,028 (+0.027). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.088); PROTOCOL = 1 (ICMP) (-0.084). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -1544,7 +1544,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -1677,11 +1677,11 @@
       "additivity_error": 8.326672684688674e-15
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) flagged the UDP flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.642, threshold 0.500, probability of attack). Predicted tactic: Other (confidence 0.349). Strongest evidence for attack (probability): FLOW_DURATION_MILLISECONDS = 0 (+0.226); L4_SRC_PORT = 5353 (registered) (+0.052); IN_PKTS = 2 (+0.034). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.123); SRC_TO_DST_AVG_THROUGHPUT = 0 (-0.042). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) flagged the UDP flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.642, threshold 0.500, probability of attack). Predicted tactic: Other (confidence 0.349). Strongest evidence for attack (probability): FLOW_DURATION_MILLISECONDS = 0 (+0.226); L4_SRC_PORT = 5353 (registered) (+0.052); IN_PKTS = 2 (+0.034). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.123); SRC_TO_DST_AVG_THROUGHPUT = 0 (-0.042). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -1699,7 +1699,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -1771,11 +1771,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the IGMP flow 192.168.50.20 -> 224.0.0.22 (score 0.197, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_PKTS = 4 (+0.044). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.166); L4_SRC_PORT = 0 (none) (-0.064). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the IGMP flow 192.168.50.20 -> 224.0.0.22 (score 0.197, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_PKTS = 4 (+0.044). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.166); L4_SRC_PORT = 0 (none) (-0.064). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -1793,7 +1793,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -1865,11 +1865,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.208, threshold 0.500, probability of attack). Strongest evidence for attack (probability): L4_SRC_PORT = 5353 (registered) (+0.056); IN_PKTS = 2 (+0.043). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.189); PROTOCOL = 17 (UDP) (-0.067). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.208, threshold 0.500, probability of attack). Strongest evidence for attack (probability): L4_SRC_PORT = 5353 (registered) (+0.056); IN_PKTS = 2 (+0.043). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.189); PROTOCOL = 17 (UDP) (-0.067). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -1887,7 +1887,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -1959,11 +1959,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the IGMP flow 192.168.50.20 -> 224.0.0.22 (score 0.181, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_PKTS = 4 (+0.042). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.165); PROTOCOL = 2 (IGMP) (-0.063). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the IGMP flow 192.168.50.20 -> 224.0.0.22 (score 0.181, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_PKTS = 4 (+0.042). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.165); PROTOCOL = 2 (IGMP) (-0.063). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -1981,7 +1981,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -2115,11 +2115,11 @@
       "additivity_error": 8.326672684688674e-15
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) flagged the UDP flow 192.168.50.1:5353 -> 224.0.0.251:5353 (score 0.593, threshold 0.500, probability of attack). Predicted tactic: Reconnaissance/Discovery (confidence 0.719). Strongest evidence for attack (probability): FLOW_DURATION_MILLISECONDS = 0 (+0.241); L4_SRC_PORT = 5353 (registered) (+0.050); OUT_BYTES = 0 (+0.013). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.094); IN_BYTES = 73 (-0.052). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) flagged the UDP flow 192.168.50.1:5353 -> 224.0.0.251:5353 (score 0.593, threshold 0.500, probability of attack). Predicted tactic: Reconnaissance/Discovery (confidence 0.719). Strongest evidence for attack (probability): FLOW_DURATION_MILLISECONDS = 0 (+0.241); L4_SRC_PORT = 5353 (registered) (+0.050); OUT_BYTES = 0 (+0.013). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.094); IN_BYTES = 73 (-0.052). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -2137,7 +2137,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -2271,11 +2271,11 @@
       "additivity_error": 8.326672684688674e-15
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) flagged the UDP flow 192.168.60.1:5353 -> 224.0.0.251:5353 (score 0.593, threshold 0.500, probability of attack). Predicted tactic: Reconnaissance/Discovery (confidence 0.719). Strongest evidence for attack (probability): FLOW_DURATION_MILLISECONDS = 0 (+0.241); L4_SRC_PORT = 5353 (registered) (+0.050); OUT_BYTES = 0 (+0.013). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.094); IN_BYTES = 73 (-0.052). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) flagged the UDP flow 192.168.60.1:5353 -> 224.0.0.251:5353 (score 0.593, threshold 0.500, probability of attack). Predicted tactic: Reconnaissance/Discovery (confidence 0.719). Strongest evidence for attack (probability): FLOW_DURATION_MILLISECONDS = 0 (+0.241); L4_SRC_PORT = 5353 (registered) (+0.050); OUT_BYTES = 0 (+0.013). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.094); IN_BYTES = 73 (-0.052). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -2293,7 +2293,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -2426,11 +2426,11 @@
       "additivity_error": 8.326672684688674e-15
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) flagged the UDP flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.642, threshold 0.500, probability of attack). Predicted tactic: Other (confidence 0.349). Strongest evidence for attack (probability): FLOW_DURATION_MILLISECONDS = 0 (+0.226); L4_SRC_PORT = 5353 (registered) (+0.052); IN_PKTS = 2 (+0.034). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.123); SRC_TO_DST_AVG_THROUGHPUT = 0 (-0.042). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) flagged the UDP flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.642, threshold 0.500, probability of attack). Predicted tactic: Other (confidence 0.349). Strongest evidence for attack (probability): FLOW_DURATION_MILLISECONDS = 0 (+0.226); L4_SRC_PORT = 5353 (registered) (+0.052); IN_PKTS = 2 (+0.034). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.123); SRC_TO_DST_AVG_THROUGHPUT = 0 (-0.042). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -2448,7 +2448,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -2520,11 +2520,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the IGMP flow 192.168.50.20 -> 224.0.0.22 (score 0.201, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_PKTS = 4 (+0.042). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.162); L4_SRC_PORT = 0 (none) (-0.067). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the IGMP flow 192.168.50.20 -> 224.0.0.22 (score 0.201, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_PKTS = 4 (+0.042). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.162); L4_SRC_PORT = 0 (none) (-0.067). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -2542,7 +2542,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -2675,11 +2675,11 @@
       "additivity_error": 8.326672684688674e-15
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) flagged the UDP flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.642, threshold 0.500, probability of attack). Predicted tactic: Other (confidence 0.349). Strongest evidence for attack (probability): FLOW_DURATION_MILLISECONDS = 0 (+0.226); L4_SRC_PORT = 5353 (registered) (+0.052); IN_PKTS = 2 (+0.034). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.123); SRC_TO_DST_AVG_THROUGHPUT = 0 (-0.042). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) flagged the UDP flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.642, threshold 0.500, probability of attack). Predicted tactic: Other (confidence 0.349). Strongest evidence for attack (probability): FLOW_DURATION_MILLISECONDS = 0 (+0.226); L4_SRC_PORT = 5353 (registered) (+0.052); IN_PKTS = 2 (+0.034). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.123); SRC_TO_DST_AVG_THROUGHPUT = 0 (-0.042). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -2697,7 +2697,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -2769,11 +2769,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the IGMP flow 192.168.50.20 -> 224.0.0.22 (score 0.179, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_PKTS = 4 (+0.041). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.164); PROTOCOL = 2 (IGMP) (-0.064). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the IGMP flow 192.168.50.20 -> 224.0.0.22 (score 0.179, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_PKTS = 4 (+0.041). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.164); PROTOCOL = 2 (IGMP) (-0.064). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -2791,7 +2791,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -2924,11 +2924,11 @@
       "additivity_error": 8.326672684688674e-15
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) flagged the UDP flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.642, threshold 0.500, probability of attack). Predicted tactic: Other (confidence 0.349). Strongest evidence for attack (probability): FLOW_DURATION_MILLISECONDS = 0 (+0.226); L4_SRC_PORT = 5353 (registered) (+0.052); IN_PKTS = 2 (+0.034). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.123); SRC_TO_DST_AVG_THROUGHPUT = 0 (-0.042). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) flagged the UDP flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.642, threshold 0.500, probability of attack). Predicted tactic: Other (confidence 0.349). Strongest evidence for attack (probability): FLOW_DURATION_MILLISECONDS = 0 (+0.226); L4_SRC_PORT = 5353 (registered) (+0.052); IN_PKTS = 2 (+0.034). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.123); SRC_TO_DST_AVG_THROUGHPUT = 0 (-0.042). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -2946,7 +2946,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -3018,11 +3018,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the IGMP flow 192.168.50.20 -> 224.0.0.22 (score 0.205, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_PKTS = 4 (+0.041). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.161); L4_SRC_PORT = 0 (none) (-0.065). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the IGMP flow 192.168.50.20 -> 224.0.0.22 (score 0.205, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_PKTS = 4 (+0.041). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.161); L4_SRC_PORT = 0 (none) (-0.065). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -3040,7 +3040,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -3112,11 +3112,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.50.1:8612 -> 192.168.50.255:8612 (score 0.427, threshold 0.500, probability of attack). Strongest evidence for attack (probability): L4_SRC_PORT = 8612 (registered) (+0.058); IN_PKTS = 4 (+0.056); DURATION_IN = 9,824 (+0.046). Strongest evidence against (probability): L4_DST_PORT = 8612 (registered) (-0.244); PROTOCOL = 17 (UDP) (-0.073). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.50.1:8612 -> 192.168.50.255:8612 (score 0.427, threshold 0.500, probability of attack). Strongest evidence for attack (probability): L4_SRC_PORT = 8612 (registered) (+0.058); IN_PKTS = 4 (+0.056); DURATION_IN = 9,824 (+0.046). Strongest evidence against (probability): L4_DST_PORT = 8612 (registered) (-0.244); PROTOCOL = 17 (UDP) (-0.073). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -3134,7 +3134,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -3206,11 +3206,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.50.1:8612 -> 192.168.50.255:8610 (score 0.427, threshold 0.500, probability of attack). Strongest evidence for attack (probability): L4_SRC_PORT = 8612 (registered) (+0.058); IN_PKTS = 4 (+0.056); DURATION_IN = 9,824 (+0.046). Strongest evidence against (probability): L4_DST_PORT = 8610 (registered) (-0.244); PROTOCOL = 17 (UDP) (-0.073). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.50.1:8612 -> 192.168.50.255:8610 (score 0.427, threshold 0.500, probability of attack). Strongest evidence for attack (probability): L4_SRC_PORT = 8612 (registered) (+0.058); IN_PKTS = 4 (+0.056); DURATION_IN = 9,824 (+0.046). Strongest evidence against (probability): L4_DST_PORT = 8610 (registered) (-0.244); PROTOCOL = 17 (UDP) (-0.073). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -3228,7 +3228,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -3300,11 +3300,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.60.1:8612 -> 192.168.60.255:8612 (score 0.427, threshold 0.500, probability of attack). Strongest evidence for attack (probability): L4_SRC_PORT = 8612 (registered) (+0.058); IN_PKTS = 4 (+0.056); DURATION_IN = 9,824 (+0.046). Strongest evidence against (probability): L4_DST_PORT = 8612 (registered) (-0.244); PROTOCOL = 17 (UDP) (-0.073). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.60.1:8612 -> 192.168.60.255:8612 (score 0.427, threshold 0.500, probability of attack). Strongest evidence for attack (probability): L4_SRC_PORT = 8612 (registered) (+0.058); IN_PKTS = 4 (+0.056); DURATION_IN = 9,824 (+0.046). Strongest evidence against (probability): L4_DST_PORT = 8612 (registered) (-0.244); PROTOCOL = 17 (UDP) (-0.073). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -3322,7 +3322,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -3394,11 +3394,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.60.1:8612 -> 192.168.60.255:8610 (score 0.427, threshold 0.500, probability of attack). Strongest evidence for attack (probability): L4_SRC_PORT = 8612 (registered) (+0.058); IN_PKTS = 4 (+0.056); DURATION_IN = 9,824 (+0.046). Strongest evidence against (probability): L4_DST_PORT = 8610 (registered) (-0.244); PROTOCOL = 17 (UDP) (-0.073). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.60.1:8612 -> 192.168.60.255:8610 (score 0.427, threshold 0.500, probability of attack). Strongest evidence for attack (probability): L4_SRC_PORT = 8612 (registered) (+0.058); IN_PKTS = 4 (+0.056); DURATION_IN = 9,824 (+0.046). Strongest evidence against (probability): L4_DST_PORT = 8610 (registered) (-0.244); PROTOCOL = 17 (UDP) (-0.073). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -3416,7 +3416,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -3488,11 +3488,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.50.1:5353 -> 224.0.0.251:5353 (score 0.448, threshold 0.500, probability of attack). Strongest evidence for attack (probability): L4_SRC_PORT = 5353 (registered) (+0.083); IN_BYTES = 1,363 (+0.034); IN_PKTS = 17 (+0.032). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.228); PROTOCOL = 17 (UDP) (-0.023). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.50.1:5353 -> 224.0.0.251:5353 (score 0.448, threshold 0.500, probability of attack). Strongest evidence for attack (probability): L4_SRC_PORT = 5353 (registered) (+0.083); IN_BYTES = 1,363 (+0.034); IN_PKTS = 17 (+0.032). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.228); PROTOCOL = 17 (UDP) (-0.023). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -3510,7 +3510,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -3582,11 +3582,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.60.1:5353 -> 224.0.0.251:5353 (score 0.448, threshold 0.500, probability of attack). Strongest evidence for attack (probability): L4_SRC_PORT = 5353 (registered) (+0.083); IN_BYTES = 1,363 (+0.034); IN_PKTS = 17 (+0.032). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.228); PROTOCOL = 17 (UDP) (-0.023). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.60.1:5353 -> 224.0.0.251:5353 (score 0.448, threshold 0.500, probability of attack). Strongest evidence for attack (probability): L4_SRC_PORT = 5353 (registered) (+0.083); IN_BYTES = 1,363 (+0.034); IN_PKTS = 17 (+0.032). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.228); PROTOCOL = 17 (UDP) (-0.023). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -3604,7 +3604,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -3737,11 +3737,11 @@
       "additivity_error": 8.326672684688674e-15
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) flagged the UDP flow 192.168.50.1:41500 -> 239.255.255.250:3702 (score 0.535, threshold 0.500, probability of attack). Predicted tactic: Other (confidence 0.614). Strongest evidence for attack (probability): L4_SRC_PORT = 41500 (registered) (+0.084); IN_BYTES = 10,795 (+0.062); IN_PKTS = 17 (+0.043). Strongest evidence against (probability): L4_DST_PORT = 3702 (registered) (-0.190); PROTOCOL = 17 (UDP) (-0.011). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) flagged the UDP flow 192.168.50.1:41500 -> 239.255.255.250:3702 (score 0.535, threshold 0.500, probability of attack). Predicted tactic: Other (confidence 0.614). Strongest evidence for attack (probability): L4_SRC_PORT = 41500 (registered) (+0.084); IN_BYTES = 10,795 (+0.062); IN_PKTS = 17 (+0.043). Strongest evidence against (probability): L4_DST_PORT = 3702 (registered) (-0.190); PROTOCOL = 17 (UDP) (-0.011). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -3759,7 +3759,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -3831,11 +3831,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.60.1:51239 -> 239.255.255.250:3702 (score 0.214, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_BYTES = 9,525 (+0.026); SRC_TO_DST_AVG_THROUGHPUT = 3.109e+04 (+0.015). Strongest evidence against (probability): L4_DST_PORT = 3702 (registered) (-0.206); PROTOCOL = 17 (UDP) (-0.058). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.60.1:51239 -> 239.255.255.250:3702 (score 0.214, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_BYTES = 9,525 (+0.026); SRC_TO_DST_AVG_THROUGHPUT = 3.109e+04 (+0.015). Strongest evidence against (probability): L4_DST_PORT = 3702 (registered) (-0.206); PROTOCOL = 17 (UDP) (-0.058). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -3853,7 +3853,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -3925,11 +3925,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the IGMP flow 192.168.60.1 -> 224.0.0.22 (score 0.109, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_PKTS = 2 (+0.023). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.161); PROTOCOL = 2 (IGMP) (-0.071). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the IGMP flow 192.168.60.1 -> 224.0.0.22 (score 0.109, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_PKTS = 2 (+0.023). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.161); PROTOCOL = 2 (IGMP) (-0.071). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -3947,7 +3947,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -4019,11 +4019,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the IGMP flow 192.168.50.1 -> 224.0.0.22 (score 0.077, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_PKTS = 2 (+0.028). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.150); PROTOCOL = 2 (IGMP) (-0.069). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the IGMP flow 192.168.50.1 -> 224.0.0.22 (score 0.077, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_PKTS = 2 (+0.028). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.150); PROTOCOL = 2 (IGMP) (-0.069). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -4041,7 +4041,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -4174,11 +4174,11 @@
       "additivity_error": 8.326672684688674e-15
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) flagged the UDP flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.642, threshold 0.500, probability of attack). Predicted tactic: Other (confidence 0.349). Strongest evidence for attack (probability): FLOW_DURATION_MILLISECONDS = 0 (+0.226); L4_SRC_PORT = 5353 (registered) (+0.052); IN_PKTS = 2 (+0.034). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.123); SRC_TO_DST_AVG_THROUGHPUT = 0 (-0.042). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) flagged the UDP flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.642, threshold 0.500, probability of attack). Predicted tactic: Other (confidence 0.349). Strongest evidence for attack (probability): FLOW_DURATION_MILLISECONDS = 0 (+0.226); L4_SRC_PORT = 5353 (registered) (+0.052); IN_PKTS = 2 (+0.034). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.123); SRC_TO_DST_AVG_THROUGHPUT = 0 (-0.042). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -4196,7 +4196,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -4268,11 +4268,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the IGMP flow 192.168.50.20 -> 224.0.0.22 (score 0.191, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_PKTS = 4 (+0.042). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.164); PROTOCOL = 2 (IGMP) (-0.064). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the IGMP flow 192.168.50.20 -> 224.0.0.22 (score 0.191, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_PKTS = 4 (+0.042). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.164); PROTOCOL = 2 (IGMP) (-0.064). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -4290,7 +4290,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -4362,11 +4362,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.50.1:5353 -> 224.0.0.251:5353 (score 0.097, threshold 0.500, probability of attack). Strongest evidence for attack (probability): L4_SRC_PORT = 5353 (registered) (+0.060). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.215); PROTOCOL = 17 (UDP) (-0.079). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.50.1:5353 -> 224.0.0.251:5353 (score 0.097, threshold 0.500, probability of attack). Strongest evidence for attack (probability): L4_SRC_PORT = 5353 (registered) (+0.060). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.215); PROTOCOL = 17 (UDP) (-0.079). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -4384,7 +4384,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -4456,11 +4456,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.60.1:5353 -> 224.0.0.251:5353 (score 0.097, threshold 0.500, probability of attack). Strongest evidence for attack (probability): L4_SRC_PORT = 5353 (registered) (+0.060). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.215); PROTOCOL = 17 (UDP) (-0.079). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.60.1:5353 -> 224.0.0.251:5353 (score 0.097, threshold 0.500, probability of attack). Strongest evidence for attack (probability): L4_SRC_PORT = 5353 (registered) (+0.060). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.215); PROTOCOL = 17 (UDP) (-0.079). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -4478,7 +4478,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -4550,11 +4550,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.50.1:5353 -> 224.0.0.251:5353 (score 0.111, threshold 0.500, probability of attack). Strongest evidence for attack (probability): L4_SRC_PORT = 5353 (registered) (+0.061). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.214); PROTOCOL = 17 (UDP) (-0.073). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.50.1:5353 -> 224.0.0.251:5353 (score 0.111, threshold 0.500, probability of attack). Strongest evidence for attack (probability): L4_SRC_PORT = 5353 (registered) (+0.061). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.214); PROTOCOL = 17 (UDP) (-0.073). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -4572,7 +4572,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -4644,11 +4644,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.60.1:5353 -> 224.0.0.251:5353 (score 0.111, threshold 0.500, probability of attack). Strongest evidence for attack (probability): L4_SRC_PORT = 5353 (registered) (+0.061). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.214); PROTOCOL = 17 (UDP) (-0.073). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.60.1:5353 -> 224.0.0.251:5353 (score 0.111, threshold 0.500, probability of attack). Strongest evidence for attack (probability): L4_SRC_PORT = 5353 (registered) (+0.061). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.214); PROTOCOL = 17 (UDP) (-0.073). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -4666,7 +4666,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -4738,11 +4738,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.208, threshold 0.500, probability of attack). Strongest evidence for attack (probability): L4_SRC_PORT = 5353 (registered) (+0.056); IN_PKTS = 2 (+0.043). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.189); PROTOCOL = 17 (UDP) (-0.067). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.208, threshold 0.500, probability of attack). Strongest evidence for attack (probability): L4_SRC_PORT = 5353 (registered) (+0.056); IN_PKTS = 2 (+0.043). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.189); PROTOCOL = 17 (UDP) (-0.067). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -4760,7 +4760,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -4832,11 +4832,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the IGMP flow 192.168.50.20 -> 224.0.0.22 (score 0.217, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_PKTS = 4 (+0.040); DURATION_IN = 2,011 (+0.010). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.159); L4_SRC_PORT = 0 (none) (-0.064). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the IGMP flow 192.168.50.20 -> 224.0.0.22 (score 0.217, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_PKTS = 4 (+0.040); DURATION_IN = 2,011 (+0.010). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.159); L4_SRC_PORT = 0 (none) (-0.064). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -4854,7 +4854,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -4926,11 +4926,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.50.1:5353 -> 224.0.0.251:5353 (score 0.116, threshold 0.500, probability of attack). Strongest evidence for attack (probability): L4_SRC_PORT = 5353 (registered) (+0.062). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.213); PROTOCOL = 17 (UDP) (-0.074). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.50.1:5353 -> 224.0.0.251:5353 (score 0.116, threshold 0.500, probability of attack). Strongest evidence for attack (probability): L4_SRC_PORT = 5353 (registered) (+0.062). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.213); PROTOCOL = 17 (UDP) (-0.074). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -4948,7 +4948,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -5020,11 +5020,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.60.1:5353 -> 224.0.0.251:5353 (score 0.116, threshold 0.500, probability of attack). Strongest evidence for attack (probability): L4_SRC_PORT = 5353 (registered) (+0.062). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.213); PROTOCOL = 17 (UDP) (-0.074). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.60.1:5353 -> 224.0.0.251:5353 (score 0.116, threshold 0.500, probability of attack). Strongest evidence for attack (probability): L4_SRC_PORT = 5353 (registered) (+0.062). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.213); PROTOCOL = 17 (UDP) (-0.074). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -5042,7 +5042,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -5114,11 +5114,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the ICMP flow 192.168.50.20 -> 192.168.60.10 (score 0.408, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_BYTES = 16,888 (+0.063); IN_PKTS = 74 (+0.029). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.058); PROTOCOL = 1 (ICMP) (-0.023). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the ICMP flow 192.168.50.20 -> 192.168.60.10 (score 0.408, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_BYTES = 16,888 (+0.063); IN_PKTS = 74 (+0.029). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.058); PROTOCOL = 1 (ICMP) (-0.023). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -5136,7 +5136,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -5208,11 +5208,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the ICMP flow 192.168.50.20 -> 192.168.50.1 (score 0.406, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_BYTES = 27,844 (+0.054); IN_PKTS = 79 (+0.037). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.061); PROTOCOL = 1 (ICMP) (-0.026). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the ICMP flow 192.168.50.20 -> 192.168.50.1 (score 0.406, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_BYTES = 27,844 (+0.054); IN_PKTS = 79 (+0.037). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.061); PROTOCOL = 1 (ICMP) (-0.026). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -5230,7 +5230,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -5302,11 +5302,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the ICMP flow 192.168.50.20 -> 192.168.60.1 (score 0.350, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_BYTES = 23,716 (+0.052); IN_PKTS = 63 (+0.017). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.063); OUT_PKTS = 63 (-0.035). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the ICMP flow 192.168.50.20 -> 192.168.60.1 (score 0.350, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_BYTES = 23,716 (+0.052); IN_PKTS = 63 (+0.017). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.063); OUT_PKTS = 63 (-0.035). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -5324,7 +5324,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -5457,11 +5457,11 @@
       "additivity_error": 8.326672684688674e-15
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) flagged the UDP flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.642, threshold 0.500, probability of attack). Predicted tactic: Other (confidence 0.349). Strongest evidence for attack (probability): FLOW_DURATION_MILLISECONDS = 0 (+0.226); L4_SRC_PORT = 5353 (registered) (+0.052); IN_PKTS = 2 (+0.034). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.123); SRC_TO_DST_AVG_THROUGHPUT = 0 (-0.042). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) flagged the UDP flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.642, threshold 0.500, probability of attack). Predicted tactic: Other (confidence 0.349). Strongest evidence for attack (probability): FLOW_DURATION_MILLISECONDS = 0 (+0.226); L4_SRC_PORT = 5353 (registered) (+0.052); IN_PKTS = 2 (+0.034). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.123); SRC_TO_DST_AVG_THROUGHPUT = 0 (-0.042). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -5479,7 +5479,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -5551,11 +5551,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the IGMP flow 192.168.50.20 -> 224.0.0.22 (score 0.191, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_PKTS = 4 (+0.044). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.166); L4_SRC_PORT = 0 (none) (-0.065). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the IGMP flow 192.168.50.20 -> 224.0.0.22 (score 0.191, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_PKTS = 4 (+0.044). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.166); L4_SRC_PORT = 0 (none) (-0.065). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -5573,7 +5573,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -5645,11 +5645,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.60.1:5353 -> 224.0.0.251:5353 (score 0.114, threshold 0.500, probability of attack). Strongest evidence for attack (probability): L4_SRC_PORT = 5353 (registered) (+0.061). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.214); PROTOCOL = 17 (UDP) (-0.074). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.60.1:5353 -> 224.0.0.251:5353 (score 0.114, threshold 0.500, probability of attack). Strongest evidence for attack (probability): L4_SRC_PORT = 5353 (registered) (+0.061). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.214); PROTOCOL = 17 (UDP) (-0.074). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -5667,7 +5667,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -5739,11 +5739,11 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.50.1:5353 -> 224.0.0.251:5353 (score 0.114, threshold 0.500, probability of attack). Strongest evidence for attack (probability): L4_SRC_PORT = 5353 (registered) (+0.061). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.214); PROTOCOL = 17 (UDP) (-0.074). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the UDP flow 192.168.50.1:5353 -> 224.0.0.251:5353 (score 0.114, threshold 0.500, probability of attack). Strongest evidence for attack (probability): L4_SRC_PORT = 5353 (registered) (+0.061). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.214); PROTOCOL = 17 (UDP) (-0.074). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -5761,7 +5761,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -5894,11 +5894,11 @@
       "additivity_error": 8.326672684688674e-15
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) flagged the UDP flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.642, threshold 0.500, probability of attack). Predicted tactic: Other (confidence 0.349). Strongest evidence for attack (probability): FLOW_DURATION_MILLISECONDS = 0 (+0.226); L4_SRC_PORT = 5353 (registered) (+0.052); IN_PKTS = 2 (+0.034). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.123); SRC_TO_DST_AVG_THROUGHPUT = 0 (-0.042). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) flagged the UDP flow 192.168.50.20:5353 -> 224.0.0.251:5353 (score 0.642, threshold 0.500, probability of attack). Predicted tactic: Other (confidence 0.349). Strongest evidence for attack (probability): FLOW_DURATION_MILLISECONDS = 0 (+0.226); L4_SRC_PORT = 5353 (registered) (+0.052); IN_PKTS = 2 (+0.034). Strongest evidence against (probability): L4_DST_PORT = 5353 (registered) (-0.123); SRC_TO_DST_AVG_THROUGHPUT = 0 (-0.042). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   },
   {
     "schema_version": "1.0",
@@ -5916,7 +5916,7 @@
       "stage": 1,
       "name": "random_forest_temporal_lab",
       "feature_set": "lab",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 0.0,
@@ -5988,10 +5988,10 @@
       "additivity_error": 2.2037927038809357e-14
     },
     "caveats": [
-      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out).",
+      "Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out).",
       "SHAP values explain this model's output, not the attacker's intent.",
       "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     ],
-    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the IGMP flow 192.168.50.20 -> 224.0.0.22 (score 0.190, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_PKTS = 4 (+0.043). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.164); L4_SRC_PORT = 0 (none) (-0.064). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.43-0.81 (Phase 3, leave-one-source-out)."
+    "summary": "Stage 1 (random_forest_temporal_lab) did not flag the IGMP flow 192.168.50.20 -> 224.0.0.22 (score 0.190, threshold 0.500, probability of attack). Strongest evidence for attack (probability): IN_PKTS = 4 (+0.043). Strongest evidence against (probability): L4_DST_PORT = 0 (none) (-0.164); L4_SRC_PORT = 0 (none) (-0.064). Caveat: Trained on BigFlow benchmark traffic; on a network left out of training its F1 fell to 0.45-0.79 (Phase 3, leave-one-source-out)."
   }
 ]

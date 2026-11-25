@@ -15,7 +15,7 @@
       "stage": 3,
       "name": "autoencoder_temporal_full",
       "feature_set": "full",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 1.0,
@@ -107,7 +107,7 @@
       "stage": 3,
       "name": "autoencoder_temporal_full",
       "feature_set": "full",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 1.0,
@@ -199,7 +199,7 @@
       "stage": 3,
       "name": "autoencoder_temporal_full",
       "feature_set": "full",
-      "git_commit": "52c7f1e"
+      "git_commit": "89c3999"
     },
     "ground_truth": {
       "label": 1.0,

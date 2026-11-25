@@ -1,5 +1,5 @@
 {
-  "git_commit": "52c7f1e",
+  "git_commit": "89c3999",
   "stage1": {
     "xgboost_temporal_full": {
       "rows": 1200,
@@ -593,22 +593,22 @@
         "rows": 320,
         "base_mean_p_attack": 0.9481936442352736,
         "k=1": {
-          "mean_drop_top": 0.20739858388102267,
-          "mean_drop_random": 0.03078913206377617,
+          "mean_drop_top": 0.20739858388102275,
+          "mean_drop_random": 0.03078913206377622,
           "share_top_beats_random": 0.978125,
           "share_flipped_to_benign_top": 0.171875,
           "share_flipped_to_benign_random": 0.003125
         },
         "k=3": {
           "mean_drop_top": 0.4729044807412389,
-          "mean_drop_random": 0.09707276126987543,
+          "mean_drop_random": 0.09707276126987552,
           "share_top_beats_random": 1.0,
           "share_flipped_to_benign_top": 0.49375,
           "share_flipped_to_benign_random": 0.0125
         },
         "k=5": {
-          "mean_drop_top": 0.5640811203780606,
-          "mean_drop_random": 0.1486327623399229,
+          "mean_drop_top": 0.5640811203780607,
+          "mean_drop_random": 0.14863276233992295,
           "share_top_beats_random": 1.0,
           "share_flipped_to_benign_top": 0.840625,
           "share_flipped_to_benign_random": 0.0125
@@ -925,7 +925,7 @@
       },
       "additivity": {
         "binary": 4.451994328746878e-14,
-        "tactic": 1.887379141862766e-14,
+        "tactic": 1.8762769116165146e-14,
         "space": {
           "binary": "probability",
           "tactic": "probability"
