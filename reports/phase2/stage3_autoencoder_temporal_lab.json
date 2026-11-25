@@ -1,0 +1,189 @@
+{
+  "stage": 3,
+  "split": "temporal",
+  "feature_set": "lab",
+  "fit_seconds": 10.9,
+  "threshold": 0.019437765702605247,
+  "history": [
+    {
+      "epoch": 1,
+      "train_mse": 0.07455436082868173,
+      "val_mse": 0.016122661530971527
+    },
+    {
+      "epoch": 2,
+      "train_mse": 0.008822809670143185,
+      "val_mse": 0.005295253358781338
+    },
+    {
+      "epoch": 3,
+      "train_mse": 0.004326909107629384,
+      "val_mse": 0.003385007381439209
+    },
+    {
+      "epoch": 4,
+      "train_mse": 0.002944423081943552,
+      "val_mse": 0.002379152225330472
+    },
+    {
+      "epoch": 5,
+      "train_mse": 0.0022246491341187174,
+      "val_mse": 0.001904997043311596
+    },
+    {
+      "epoch": 6,
+      "train_mse": 0.0018433651730594205,
+      "val_mse": 0.0016140964580699801
+    },
+    {
+      "epoch": 7,
+      "train_mse": 0.001588535676139379,
+      "val_mse": 0.001387365977279842
+    },
+    {
+      "epoch": 8,
+      "train_mse": 0.0013899987134025113,
+      "val_mse": 0.0012248344719409943
+    },
+    {
+      "epoch": 9,
+      "train_mse": 0.0012243868394262304,
+      "val_mse": 0.0010939231142401695
+    },
+    {
+      "epoch": 10,
+      "train_mse": 0.0010852670655746852,
+      "val_mse": 0.0009962547337636352
+    },
+    {
+      "epoch": 11,
+      "train_mse": 0.0009768114083906708,
+      "val_mse": 0.0009191145654767752
+    },
+    {
+      "epoch": 12,
+      "train_mse": 0.0008988922586447779,
+      "val_mse": 0.0008299498003907502
+    },
+    {
+      "epoch": 13,
+      "train_mse": 0.0008296887305900179,
+      "val_mse": 0.0007783857872709632
+    },
+    {
+      "epoch": 14,
+      "train_mse": 0.0007760059820459791,
+      "val_mse": 0.0007398384623229504
+    },
+    {
+      "epoch": 15,
+      "train_mse": 0.0007330050194225205,
+      "val_mse": 0.0006952252006158233
+    },
+    {
+      "epoch": 16,
+      "train_mse": 0.0006960848613775066,
+      "val_mse": 0.0006630691350437701
+    },
+    {
+      "epoch": 17,
+      "train_mse": 0.0006659350662921746,
+      "val_mse": 0.0006357423844747245
+    },
+    {
+      "epoch": 18,
+      "train_mse": 0.000637072676375553,
+      "val_mse": 0.00061599793843925
+    },
+    {
+      "epoch": 19,
+      "train_mse": 0.0006130225252230959,
+      "val_mse": 0.000597984588239342
+    },
+    {
+      "epoch": 20,
+      "train_mse": 0.0005887937393042784,
+      "val_mse": 0.0005746815004386008
+    }
+  ],
+  "train_benign_rows": 692821,
+  "val_benign_fpr": 0.010002559577534991,
+  "test": {
+    "n": 371915,
+    "positives": 223453,
+    "precision": 0.5966764418377322,
+    "recall": 0.013658353210742304,
+    "f1": 0.026705400581008714,
+    "fpr": 0.01389581172286511,
+    "fnr": 0.9863416467892577,
+    "tp": 3052,
+    "fp": 2063,
+    "tn": 146399,
+    "fn": 220401,
+    "roc_auc": 0.5781530102628075,
+    "pr_auc": 0.6762177683087836
+  },
+  "test_per_source": {
+    "BoT-IoT": {
+      "benign_n": 208,
+      "benign_fpr": 0.20192307692307693,
+      "attack_n": 39261,
+      "attack_detected": 0.0004075291001248058
+    },
+    "CSE-CIC-IDS2018": {
+      "benign_n": 71748,
+      "benign_fpr": 0.00737302781959079,
+      "attack_n": 101828,
+      "attack_detected": 0.019886475232745414
+    },
+    "ToN-IoT": {
+      "benign_n": 67346,
+      "benign_fpr": 0.0067116087072728895,
+      "attack_n": 67203,
+      "attack_detected": 0.0007440144041188638
+    },
+    "UNSW-NB15": {
+      "benign_n": 9160,
+      "benign_fpr": 0.11353711790393013,
+      "attack_n": 15161,
+      "attack_detected": 0.0633863201635776
+    }
+  },
+  "test_per_tactic_detected": {
+    "Benign": 0.01389581172286511,
+    "Command and Control": 0.0034379028792436614,
+    "Credential Access": 6.882549296259335e-05,
+    "Exfiltration": 0.0,
+    "Impact": 0.020942243826804815,
+    "Initial Access": 0.013810658578856152,
+    "Other": 0.057666214382632294,
+    "Reconnaissance/Discovery": 0.007014495210646774
+  },
+  "holdout": {
+    "Backdoor": {
+      "n": 76535,
+      "detected_rate": 0.0022734696544064806,
+      "expected_tactic": "Command and Control"
+    },
+    "DoS_attacks-Slowloris": {
+      "n": 18020,
+      "detected_rate": 0.0013318534961154272,
+      "expected_tactic": "Impact"
+    },
+    "SSH-Bruteforce": {
+      "n": 73626,
+      "detected_rate": 0.0,
+      "expected_tactic": "Credential Access"
+    }
+  },
+  "git_commit": "4d26e06",
+  "model": {
+    "split": "temporal",
+    "feature_set": "lab",
+    "threshold": 0.019437765702605247,
+    "saved_at": "2026-11-25T11:28:05",
+    "file": "stage3\\autoencoder_temporal_lab\\model.joblib",
+    "size_mb": 0.04,
+    "commit_allowed": true
+  }
+}

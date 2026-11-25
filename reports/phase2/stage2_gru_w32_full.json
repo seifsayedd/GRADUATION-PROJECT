@@ -1,0 +1,540 @@
+{
+  "stage": 2,
+  "cell": "gru",
+  "window": 32,
+  "feature_set": "full",
+  "fit_seconds": 1388.6,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.09131886827178089,
+      "val_macro_f1": 0.7852697847052511
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.06982700755632172,
+      "val_macro_f1": 0.7858686622199685
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.06618716897433077,
+      "val_macro_f1": 0.7864401954622651
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.06374169587810281,
+      "val_macro_f1": 0.7876827945891186
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.06158925984603268,
+      "val_macro_f1": 0.7933311525338949
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.05993243529918952,
+      "val_macro_f1": 0.7944762114446471
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.05832059080048004,
+      "val_macro_f1": 0.7928146443099551
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.05678426660964104,
+      "val_macro_f1": 0.7958777869020286
+    }
+  ],
+  "rows": {
+    "train": 4151575,
+    "val": 961612,
+    "test": 876077
+  },
+  "split": "5-min time blocks per day",
+  "train_tactics_missing_from": {
+    "val": [],
+    "test": []
+  },
+  "class_counts": {
+    "train": {
+      "Benign": 2745649,
+      "Impact": 863363,
+      "Credential Access": 246114,
+      "Command and Control": 150901,
+      "Reconnaissance/Discovery": 145548
+    },
+    "val": {
+      "Benign": 726186,
+      "Impact": 137222,
+      "Credential Access": 59806,
+      "Command and Control": 37945,
+      "Reconnaissance/Discovery": 453
+    },
+    "test": {
+      "Benign": 538949,
+      "Impact": 167569,
+      "Reconnaissance/Discovery": 104476,
+      "Credential Access": 46226,
+      "Command and Control": 18857
+    }
+  },
+  "val": {
+    "binary": {
+      "n": 961612,
+      "positives": 235426,
+      "precision": 0.9264200918311513,
+      "recall": 0.9924349901879996,
+      "f1": 0.9582919766707408,
+      "fpr": 0.025554059152889205,
+      "fnr": 0.007565009812000374,
+      "tp": 233645,
+      "fp": 18557,
+      "tn": 707629,
+      "fn": 1781,
+      "roc_auc": 0.9991774511307111,
+      "pr_auc": 0.9979956546667628
+    },
+    "tactic": {
+      "n": 961612,
+      "macro_f1": 0.7958777869020286,
+      "weighted_f1": 0.9855055842320449,
+      "per_class": {
+        "Benign": {
+          "precision": 0.9974894630749496,
+          "recall": 0.9744459408471108,
+          "f1-score": 0.9858330616691604,
+          "support": 726186.0
+        },
+        "Command and Control": {
+          "precision": 0.9999207020511736,
+          "recall": 0.9969429437343523,
+          "f1-score": 0.9984296026498806,
+          "support": 37945.0
+        },
+        "Credential Access": {
+          "precision": 0.9270348295772025,
+          "recall": 0.9986790623014413,
+          "f1-score": 0.9615242204227507,
+          "support": 59806.0
+        },
+        "Impact": {
+          "precision": 0.9979277505070397,
+          "recall": 0.9896518051041379,
+          "f1-score": 0.9937725479865059,
+          "support": 137222.0
+        },
+        "Reconnaissance/Discovery": {
+          "precision": 0.020565738201760716,
+          "recall": 0.6291390728476821,
+          "f1-score": 0.03982950178184613,
+          "support": 453.0
+        },
+        "accuracy": 0.9788480177036061,
+        "macro avg": {
+          "precision": 0.7885876966824252,
+          "recall": 0.9177717649669448,
+          "f1-score": 0.7958777869020286,
+          "support": 961612.0
+        },
+        "weighted avg": {
+          "precision": 0.9928059106469695,
+          "recall": 0.9788480177036061,
+          "f1-score": 0.9855055842320449,
+          "support": 961612.0
+        }
+      },
+      "labels": [
+        "Benign",
+        "Command and Control",
+        "Credential Access",
+        "Impact",
+        "Reconnaissance/Discovery"
+      ],
+      "confusion": [
+        [
+          707629,
+          3,
+          4701,
+          280,
+          13573
+        ],
+        [
+          116,
+          37829,
+          0,
+          0,
+          0
+        ],
+        [
+          77,
+          0,
+          59727,
+          2,
+          0
+        ],
+        [
+          1420,
+          0,
+          0,
+          135802,
+          0
+        ],
+        [
+          168,
+          0,
+          0,
+          0,
+          285
+        ]
+      ]
+    }
+  },
+  "test": {
+    "binary": {
+      "n": 876077,
+      "positives": 337128,
+      "precision": 0.8992201017847616,
+      "recall": 0.9449615576279633,
+      "f1": 0.9215235643363875,
+      "fpr": 0.06624745569617904,
+      "fnr": 0.055038442372036735,
+      "tp": 318573,
+      "fp": 35704,
+      "tn": 503245,
+      "fn": 18555,
+      "roc_auc": 0.9878277957701643,
+      "pr_auc": 0.9823196296729182
+    },
+    "tactic": {
+      "n": 876077,
+      "macro_f1": 0.9391578323867644,
+      "weighted_f1": 0.9387455568423124,
+      "per_class": {
+        "Benign": {
+          "precision": 0.964440398620161,
+          "recall": 0.9337525443038209,
+          "f1-score": 0.9488484080588339,
+          "support": 538949.0
+        },
+        "Command and Control": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 18857.0
+        },
+        "Credential Access": {
+          "precision": 0.9179147753404387,
+          "recall": 0.9930342231644529,
+          "f1-score": 0.9539980256663376,
+          "support": 46226.0
+        },
+        "Impact": {
+          "precision": 0.985810637646191,
+          "recall": 0.9411585675154712,
+          "f1-score": 0.9629672597604015,
+          "support": 167569.0
+        },
+        "Reconnaissance/Discovery": {
+          "precision": 0.7606432170419032,
+          "recall": 0.9132145181668517,
+          "f1-score": 0.8299754684482489,
+          "support": 104476.0
+        },
+        "accuracy": 0.9372737784464151,
+        "macro avg": {
+          "precision": 0.9257618057297389,
+          "recall": 0.9562319706301194,
+          "f1-score": 0.9391578323867644,
+          "support": 876077.0
+        },
+        "weighted avg": {
+          "precision": 0.9425347090315448,
+          "recall": 0.9372737784464151,
+          "f1-score": 0.9387455568423124,
+          "support": 876077.0
+        }
+      },
+      "labels": [
+        "Benign",
+        "Command and Control",
+        "Credential Access",
+        "Impact",
+        "Reconnaissance/Discovery"
+      ],
+      "confusion": [
+        [
+          503245,
+          0,
+          3584,
+          2269,
+          29851
+        ],
+        [
+          0,
+          18857,
+          0,
+          0,
+          0
+        ],
+        [
+          321,
+          0,
+          45904,
+          1,
+          0
+        ],
+        [
+          9167,
+          0,
+          521,
+          157709,
+          172
+        ],
+        [
+          9067,
+          0,
+          0,
+          0,
+          95409
+        ]
+      ]
+    }
+  },
+  "test_per_slice": {
+    "cic_bot": {
+      "binary": {
+        "n": 211008,
+        "positives": 18857,
+        "precision": 0.9995759342698118,
+        "recall": 1.0,
+        "f1": 0.9997879221674354,
+        "fpr": 4.1633923320721725e-05,
+        "fnr": 0.0,
+        "tp": 18857,
+        "fp": 8,
+        "tn": 192143,
+        "fn": 0,
+        "roc_auc": 0.9999999999999999,
+        "pr_auc": 1.0
+      },
+      "tactic": {
+        "Benign": {
+          "precision": 1.0,
+          "recall": 0.9999583660766793,
+          "f1-score": 0.9999791826049848,
+          "support": 192151.0
+        },
+        "Command and Control": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 18857.0
+        },
+        "Credential Access": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "Impact": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "Reconnaissance/Discovery": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "accuracy": 0.9999620867455262,
+        "macro avg": {
+          "precision": 0.4,
+          "recall": 0.39999167321533585,
+          "f1-score": 0.3999958365209969,
+          "support": 211008.0
+        },
+        "weighted avg": {
+          "precision": 1.0,
+          "recall": 0.9999620867455262,
+          "f1-score": 0.9999810429781355,
+          "support": 211008.0
+        }
+      }
+    },
+    "cic_slowdos": {
+      "binary": {
+        "n": 212681,
+        "positives": 19920,
+        "precision": 0.9997992371009837,
+        "recall": 1.0,
+        "f1": 0.9998996084730448,
+        "fpr": 2.075108554116237e-05,
+        "fnr": 0.0,
+        "tp": 19920,
+        "fp": 4,
+        "tn": 192757,
+        "fn": 0,
+        "roc_auc": 0.9999999999999999,
+        "pr_auc": 1.0
+      },
+      "tactic": {
+        "Benign": {
+          "precision": 1.0,
+          "recall": 0.9999792489144589,
+          "f1-score": 0.9999896243495764,
+          "support": 192761.0
+        },
+        "Credential Access": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "Impact": {
+          "precision": 1.0,
+          "recall": 0.9997991967871486,
+          "f1-score": 0.9998995883120795,
+          "support": 19920.0
+        },
+        "Reconnaissance/Discovery": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "accuracy": 0.9999623849803226,
+        "macro avg": {
+          "precision": 0.5,
+          "recall": 0.49994461142540186,
+          "f1-score": 0.49997230316541397,
+          "support": 212681.0
+        },
+        "weighted avg": {
+          "precision": 1.0,
+          "recall": 0.9999623849803226,
+          "f1-score": 0.9999811914483443,
+          "support": 212681.0
+        }
+      }
+    },
+    "ton_password": {
+      "binary": {
+        "n": 218001,
+        "positives": 193875,
+        "precision": 0.9692386944843066,
+        "recall": 0.9510612508059316,
+        "f1": 0.9600639393513384,
+        "fpr": 0.2425598938904087,
+        "fnr": 0.04893874919406834,
+        "tp": 184387,
+        "fp": 5852,
+        "tn": 18274,
+        "fn": 9488,
+        "roc_auc": 0.9573292883755085,
+        "pr_auc": 0.9940464349542801
+      },
+      "tactic": {
+        "Benign": {
+          "precision": 0.6582378791153375,
+          "recall": 0.7574401061095913,
+          "f1-score": 0.70436324390996,
+          "support": 24126.0
+        },
+        "Credential Access": {
+          "precision": 0.9180249185048897,
+          "recall": 0.9930342231644529,
+          "f1-score": 0.9540575086512382,
+          "support": 46226.0
+        },
+        "Impact": {
+          "precision": 0.9838211039633298,
+          "recall": 0.9332470927673062,
+          "f1-score": 0.9578670040457686,
+          "support": 147649.0
+        },
+        "Reconnaissance/Discovery": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "accuracy": 0.9264682272099669,
+        "macro avg": {
+          "precision": 0.6400209753958892,
+          "recall": 0.6709303555103376,
+          "f1-score": 0.6540719391517418,
+          "support": 218001.0
+        },
+        "weighted avg": {
+          "precision": 0.9338373178720526,
+          "recall": 0.9264682272099669,
+          "f1-score": 0.9290041573104596,
+          "support": 218001.0
+        }
+      }
+    },
+    "ton_scanning": {
+      "binary": {
+        "n": 234387,
+        "positives": 104476,
+        "precision": 0.761754584866945,
+        "recall": 0.9132145181668517,
+        "f1": 0.8306366307541626,
+        "fpr": 0.22969571475856548,
+        "fnr": 0.08678548183314828,
+        "tp": 95409,
+        "fp": 29840,
+        "tn": 100071,
+        "fn": 9067,
+        "roc_auc": 0.9512098524614098,
+        "pr_auc": 0.9519548409538713
+      },
+      "tactic": {
+        "Benign": {
+          "precision": 0.916921695468123,
+          "recall": 0.7703042852414346,
+          "f1-score": 0.8372425736982795,
+          "support": 129911.0
+        },
+        "Impact": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "Reconnaissance/Discovery": {
+          "precision": 0.7617606668369954,
+          "recall": 0.9132145181668517,
+          "f1-score": 0.8306402465567376,
+          "support": 104476.0
+        },
+        "accuracy": 0.8340052989286949,
+        "macro avg": {
+          "precision": 0.5595607874350395,
+          "recall": 0.5611729344694288,
+          "f1-score": 0.5559609400850057,
+          "support": 234387.0
+        },
+        "weighted avg": {
+          "precision": 0.8477599944042172,
+          "recall": 0.8340052989286949,
+          "f1-score": 0.8342996428597955,
+          "support": 234387.0
+        }
+      }
+    }
+  },
+  "git_commit": "81b5fc0",
+  "model": {
+    "cell": "gru",
+    "window": 32,
+    "feature_set": "full",
+    "saved_at": "2026-11-25T13:25:41",
+    "file": "stage2\\gru_w32_full\\model.joblib",
+    "size_mb": 0.17,
+    "commit_allowed": true
+  }
+}
