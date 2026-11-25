@@ -34,13 +34,19 @@ Full design: [`docs/project-overview.md`](docs/project-overview.md)
 │   ├── project-overview.md            full SentinelAI architecture and evaluation plan
 │   ├── lab-architecture.md            cyber-range topology, tooling, lessons learned
 │   ├── ai-team-data-requirements.md   data-collection spec from the AI team
-│   └── feature-mapping.md             lab (Argus/nfdump) → BigFlow NetFlow-v3 features, with gaps
+│   ├── feature-mapping.md             lab (Argus/nfdump) → BigFlow NetFlow-v3 features, with gaps
+│   └── attack-taxonomy.md             BigFlow's 32 attack classes → ATT&CK tactics
 ├── scripts/
 │   ├── merge_sessions.py              flows + nfdump + manifest → one labeled CSV
 │   ├── augment_flows.py               flagged jitter-based synthetic augmentation
 │   ├── validate_dataset.py            consistency and labeling checks
-│   └── build_bigflow_sample.py        class-stratified BigFlow sample → data/interim/
-├── src/sentinelai/data/               Phase 1 data layer (loaders, mapping, preprocessing, splits)
+│   ├── build_bigflow_sample.py        class-stratified BigFlow sample → data/interim/
+│   ├── prepare_training_data.py       Phase 2 training sets (flows + sequences)
+│   └── train_phase2.py                train Stages 1–3, score lab flows, write reports/phase2
+├── configs/phase2.yaml                Phase 2 settings (sampling, splits, model parameters)
+├── reports/phase2/                    training metrics (JSON), summary.md, lab_scores.csv
+├── src/sentinelai/data/               data layer (loaders, mapping, preprocessing, splits, sources, ATT&CK taxonomy)
+├── src/sentinelai/models/             Stage 1–3 detection models and training runs
 ├── tests/                             pytest suite
 ├── pyproject.toml
 └── requirements.txt
@@ -56,8 +62,9 @@ Full design: [`docs/project-overview.md`](docs/project-overview.md)
 | First labeled dataset (v1) | ✅ 68 real flows, 96 features, ATT&CK-labeled |
 | Large-scale training data | 🔄 BigFlow-NIDS selected (~66.9M flows) |
 | 5-hour benign/attack capture session | 🔄 Planned |
-| Phase 1 data layer (loaders, feature mapping, preprocessing, splits) | ✅ `src/sentinelai/data`, 47 tests |
-| Detection models, XAI, GenAI reports, dashboard | ⏳ Phases 2–6 |
+| Phase 1 data layer (loaders, feature mapping, preprocessing, splits) | ✅ `src/sentinelai/data` |
+| Phase 2 detection models (RF/XGBoost, GRU + attention, autoencoder) | ✅ trained on BigFlow; results in [`reports/phase2/summary.md`](reports/phase2/summary.md) |
+| Evaluation, XAI, GenAI reports, dashboard | ⏳ Phases 3–6 |
 
 ## Quick start
 
@@ -82,7 +89,7 @@ python scripts/augment_flows.py data/processed/combined_sessions_full.csv augmen
 ```bash
 python -m venv .venv && .venv/Scripts/activate      # Windows; use .venv/bin/activate on Linux/macOS
 pip install -r requirements.txt && pip install -e .
-python -m pytest                                    # 47 tests; lab tests read data/processed (read-only)
+python -m pytest                                    # lab tests read data/processed (read-only)
 ```
 
 **BigFlow-NIDS.** Download it from [Mendeley](https://data.mendeley.com/datasets/nv729tbdgz/1) into `data/external/bigflow/` (git-ignored). Check the headers first, then build a training sample:
@@ -109,6 +116,27 @@ X_lab = pp.transform(lab)
 ```
 
 Rules the code enforces: synthetic rows never reach val/test/holdout (`assert_no_synthetic`). Resampling only touches train. Scalers and encoders are fitted on train only. Lab features the sensor didn't measure stay NaN and can't be fed to a model. Details and the full gap list: [`docs/feature-mapping.md`](docs/feature-mapping.md).
+
+## Phase 2: detection models
+
+Needs Python ≥ 3.11 and BigFlow v2 Parquet in `data/external/bigflow/`. Install the CUDA build of PyTorch first if you have an NVIDIA GPU (see `requirements.txt`).
+
+```bash
+python scripts/prepare_training_data.py        # ~15 min: 2.6M-row class-capped sample + 4 contiguous days for Stage 2
+python scripts/train_phase2.py --stage 1       # RF + XGBoost × {temporal, stratified} split × {full, lab} features
+python scripts/train_phase2.py --stage 3       # benign-only autoencoder
+python scripts/train_phase2.py --stage 2 --lab # GRU + attention, then score the real lab flows
+```
+
+| Stage | Model | What it does |
+|---|---|---|
+| 1 | Random Forest, XGBoost | Benign vs attack per flow, then ATT&CK tactic for flagged flows ([taxonomy](docs/attack-taxonomy.md)) |
+| 2 | GRU (or LSTM) + attention | Labels each flow from that host's previous 31 flows plus the time gaps between them |
+| 3 | Autoencoder | Trained on benign flows only. Flags flows it reconstructs badly; threshold set for a 1% false-positive rate on benign validation traffic |
+
+Each model is trained twice: on the **full** feature set, and on the **lab** set (the 16 features our lab sensor can fill). Only the lab set can score lab flows. Three attack classes (`SSH-Bruteforce`, `DoS_attacks-Slowloris`, `Backdoor`) are held out of training completely, to test detection of unseen attacks.
+
+Models are saved in `models/` (git-ignored). Metrics go to `reports/phase2/`, and **[`summary.md`](reports/phase2/summary.md)** lists every number, including the weak ones.
 
 ---
 
