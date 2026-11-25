@@ -1,0 +1,625 @@
+{
+  "git_commit": "f9c4462",
+  "stage3_variants": {
+    "full": {
+      "feature_set": "full",
+      "percentile": 99.0,
+      "per_source_thresholds": {
+        "BoT-IoT": 0.3841153383255005,
+        "CSE-CIC-IDS2018": 0.09130759537220001,
+        "ToN-IoT": 0.027798891067504883,
+        "UNSW-NB15": 0.042847830802202225
+      },
+      "per_source_models": {
+        "BoT-IoT": {
+          "benign_train_rows": 971,
+          "benign_val_rows": 208,
+          "threshold": 1.8579450845718384,
+          "epochs_run": 20
+        },
+        "CSE-CIC-IDS2018": {
+          "benign_train_rows": 334823,
+          "benign_val_rows": 71748,
+          "threshold": 0.11025779694318771,
+          "epochs_run": 20
+        },
+        "ToN-IoT": {
+          "benign_train_rows": 314281,
+          "benign_val_rows": 67346,
+          "threshold": 0.054182082414627075,
+          "epochs_run": 20
+        },
+        "UNSW-NB15": {
+          "benign_train_rows": 42746,
+          "benign_val_rows": 9160,
+          "threshold": 0.06438678503036499,
+          "epochs_run": 20
+        }
+      },
+      "variants": {
+        "global": {
+          "val": {
+            "n": 371914,
+            "positives": 223452,
+            "precision": 0.9255041637403432,
+            "recall": 0.08256359307591787,
+            "f1": 0.1516028037767168,
+            "fpr": 0.010002559577534991,
+            "tp": 18449,
+            "fp": 1485,
+            "fn": 205003,
+            "tn": 146977
+          },
+          "test": {
+            "n": 371915,
+            "positives": 223453,
+            "precision": 0.8362191054867741,
+            "recall": 0.08191431755223694,
+            "f1": 0.14921212022401384,
+            "fpr": 0.024147593323544072,
+            "tp": 18304,
+            "fp": 3585,
+            "fn": 205149,
+            "tn": 144877
+          },
+          "test_ci": {
+            "n_groups": 1026,
+            "n_boot": 1000,
+            "recall": {
+              "point": 0.08191431755223694,
+              "lo": 0.04944625057849495,
+              "hi": 0.13165361844389942
+            },
+            "fpr": {
+              "point": 0.024147593323544072,
+              "lo": 0.013027542439204043,
+              "hi": 0.04283113776518627
+            },
+            "precision": {
+              "point": 0.8362191054867741,
+              "lo": 0.7094127388448817,
+              "hi": 0.9107740283516212
+            },
+            "f1": {
+              "point": 0.14921212022401384,
+              "lo": 0.09242900006826932,
+              "hi": 0.22972365482018556
+            }
+          },
+          "test_per_source": {
+            "BoT-IoT": {
+              "benign_n": 208,
+              "benign_fpr": 0.5721153846153846,
+              "attack_n": 39261,
+              "attack_detected": 0.0031328799572094444
+            },
+            "CSE-CIC-IDS2018": {
+              "benign_n": 71748,
+              "benign_fpr": 0.007414840831800189,
+              "attack_n": 101828,
+              "attack_detected": 0.05892288957850493
+            },
+            "ToN-IoT": {
+              "benign_n": 67346,
+              "benign_fpr": 0.04301666023223354,
+              "attack_n": 67203,
+              "attack_detected": 0.035861494278529235
+            },
+            "UNSW-NB15": {
+              "benign_n": 9160,
+              "benign_fpr": 0.004039301310043668,
+              "attack_n": 15161,
+              "attack_detected": 0.6444825539212453
+            }
+          },
+          "holdout": {
+            "Backdoor": {
+              "n": 76535,
+              "detected": 0.8199385901874959
+            },
+            "DoS_attacks-Slowloris": {
+              "n": 18020,
+              "detected": 0.5076581576026638
+            },
+            "SSH-Bruteforce": {
+              "n": 73626,
+              "detected": 0.0
+            }
+          }
+        },
+        "per_source_threshold": {
+          "val": {
+            "n": 371914,
+            "positives": 223452,
+            "precision": 0.9165871991922365,
+            "recall": 0.07312532445446897,
+            "f1": 0.13544485844188678,
+            "fpr": 0.010016031038245476,
+            "tp": 16340,
+            "fp": 1487,
+            "fn": 207112,
+            "tn": 146975
+          },
+          "test": {
+            "n": 371915,
+            "positives": 223453,
+            "precision": 0.6470527297213302,
+            "recall": 0.08385656044000304,
+            "f1": 0.14847154651918293,
+            "fpr": 0.06884589996093277,
+            "tp": 18738,
+            "fp": 10221,
+            "fn": 204715,
+            "tn": 138241
+          },
+          "test_ci": {
+            "n_groups": 1026,
+            "n_boot": 1000,
+            "recall": {
+              "point": 0.08385656044000304,
+              "lo": 0.05731794222123667,
+              "hi": 0.12279935587350956
+            },
+            "fpr": {
+              "point": 0.06884589996093277,
+              "lo": 0.03903203043130662,
+              "hi": 0.11598072503424815
+            },
+            "precision": {
+              "point": 0.6470527297213302,
+              "lo": 0.5262936934166065,
+              "hi": 0.7505776777743122
+            },
+            "f1": {
+              "point": 0.14847154651918293,
+              "lo": 0.10484299127362065,
+              "hi": 0.21011172059809957
+            }
+          },
+          "test_per_source": {
+            "BoT-IoT": {
+              "benign_n": 208,
+              "benign_fpr": 0.11057692307692307,
+              "attack_n": 39261,
+              "attack_detected": 0.0
+            },
+            "CSE-CIC-IDS2018": {
+              "benign_n": 71748,
+              "benign_fpr": 0.001630707476166583,
+              "attack_n": 101828,
+              "attack_detected": 0.008514357544093963
+            },
+            "ToN-IoT": {
+              "benign_n": 67346,
+              "benign_fpr": 0.14866510260446056,
+              "attack_n": 67203,
+              "attack_detected": 0.08188622531732215
+            },
+            "UNSW-NB15": {
+              "benign_n": 9160,
+              "benign_fpr": 0.0075327510917030565,
+              "attack_n": 15161,
+              "attack_detected": 0.8157773233955544
+            }
+          },
+          "holdout": {
+            "Backdoor": {
+              "n": 76535,
+              "detected": 0.93534983994251
+            },
+            "DoS_attacks-Slowloris": {
+              "n": 18020,
+              "detected": 0.2534406215316315
+            },
+            "SSH-Bruteforce": {
+              "n": 73626,
+              "detected": 0.0
+            }
+          }
+        },
+        "per_source_model": {
+          "val": {
+            "n": 371914,
+            "positives": 223452,
+            "precision": 0.9612669636112631,
+            "recall": 0.16515403755616417,
+            "f1": 0.2818788357909129,
+            "fpr": 0.010016031038245476,
+            "tp": 36904,
+            "fp": 1487,
+            "fn": 186548,
+            "tn": 146975
+          },
+          "test": {
+            "n": 371915,
+            "positives": 223453,
+            "precision": 0.7774115267947421,
+            "recall": 0.17204065284422226,
+            "f1": 0.28173380285302835,
+            "fpr": 0.07414018402015331,
+            "tp": 38443,
+            "fp": 11007,
+            "fn": 185010,
+            "tn": 137455
+          },
+          "test_ci": {
+            "n_groups": 1026,
+            "n_boot": 1000,
+            "recall": {
+              "point": 0.17204065284422226,
+              "lo": 0.12174057972117654,
+              "hi": 0.23875689896172922
+            },
+            "fpr": {
+              "point": 0.07414018402015331,
+              "lo": 0.042986702719127114,
+              "hi": 0.12299879989201591
+            },
+            "precision": {
+              "point": 0.7774115267947421,
+              "lo": 0.6926406038131014,
+              "hi": 0.8392821227851355
+            },
+            "f1": {
+              "point": 0.28173380285302835,
+              "lo": 0.20929410869513446,
+              "hi": 0.36831222017251575
+            }
+          },
+          "test_per_source": {
+            "BoT-IoT": {
+              "benign_n": 208,
+              "benign_fpr": 0.12980769230769232,
+              "attack_n": 39261,
+              "attack_detected": 0.013295636891571788
+            },
+            "CSE-CIC-IDS2018": {
+              "benign_n": 71748,
+              "benign_fpr": 0.002648157439928639,
+              "attack_n": 101828,
+              "attack_detected": 0.010537376752955964
+            },
+            "ToN-IoT": {
+              "benign_n": 67346,
+              "benign_fpr": 0.15907403557746563,
+              "attack_n": 67203,
+              "attack_detected": 0.32270880764251597
+            },
+            "UNSW-NB15": {
+              "benign_n": 9160,
+              "benign_fpr": 0.008406113537117904,
+              "attack_n": 15161,
+              "attack_detected": 1.0
+            }
+          },
+          "holdout": {
+            "Backdoor": {
+              "n": 76535,
+              "detected": 0.9393872084667145
+            },
+            "DoS_attacks-Slowloris": {
+              "n": 18020,
+              "detected": 0.15382907880133184
+            },
+            "SSH-Bruteforce": {
+              "n": 73626,
+              "detected": 0.0
+            }
+          }
+        }
+      },
+      "selected_on_val": "per_source_model",
+      "selection_rule": "highest validation recall with validation FPR <= 0.015"
+    },
+    "lab": {
+      "feature_set": "lab",
+      "percentile": 99.0,
+      "per_source_thresholds": {
+        "BoT-IoT": 0.05452445149421692,
+        "CSE-CIC-IDS2018": 0.011641604825854301,
+        "ToN-IoT": 0.0012168576940894127,
+        "UNSW-NB15": 0.03392159938812256
+      },
+      "per_source_models": {
+        "BoT-IoT": {
+          "benign_train_rows": 971,
+          "benign_val_rows": 208,
+          "threshold": 2.042893409729004,
+          "epochs_run": 20
+        },
+        "CSE-CIC-IDS2018": {
+          "benign_train_rows": 334823,
+          "benign_val_rows": 71748,
+          "threshold": 0.025950327515602112,
+          "epochs_run": 20
+        },
+        "ToN-IoT": {
+          "benign_train_rows": 314281,
+          "benign_val_rows": 67346,
+          "threshold": 0.008248946629464626,
+          "epochs_run": 20
+        },
+        "UNSW-NB15": {
+          "benign_train_rows": 42746,
+          "benign_val_rows": 9160,
+          "threshold": 0.07917466014623642,
+          "epochs_run": 20
+        }
+      },
+      "variants": {
+        "global": {
+          "val": {
+            "n": 371914,
+            "positives": 223452,
+            "precision": 0.6392128279883382,
+            "recall": 0.011774340798023737,
+            "f1": 0.02312275891162202,
+            "fpr": 0.010002559577534991,
+            "tp": 2631,
+            "fp": 1485,
+            "fn": 220821,
+            "tn": 146977
+          },
+          "test": {
+            "n": 371915,
+            "positives": 223453,
+            "precision": 0.5966764418377322,
+            "recall": 0.013658353210742304,
+            "f1": 0.026705400581008714,
+            "fpr": 0.01389581172286511,
+            "tp": 3052,
+            "fp": 2063,
+            "fn": 220401,
+            "tn": 146399
+          },
+          "test_ci": {
+            "n_groups": 1026,
+            "n_boot": 1000,
+            "recall": {
+              "point": 0.013658353210742304,
+              "lo": 0.005561522957900759,
+              "hi": 0.027170481616597197
+            },
+            "fpr": {
+              "point": 0.01389581172286511,
+              "lo": 0.008401631918595196,
+              "hi": 0.021025726018243072
+            },
+            "precision": {
+              "point": 0.5966764418377322,
+              "lo": 0.3499460334535914,
+              "hi": 0.764005672681897
+            },
+            "f1": {
+              "point": 0.026705400581008714,
+              "lo": 0.010962657100968214,
+              "hi": 0.05242985760088798
+            }
+          },
+          "test_per_source": {
+            "BoT-IoT": {
+              "benign_n": 208,
+              "benign_fpr": 0.20192307692307693,
+              "attack_n": 39261,
+              "attack_detected": 0.0004075291001248058
+            },
+            "CSE-CIC-IDS2018": {
+              "benign_n": 71748,
+              "benign_fpr": 0.00737302781959079,
+              "attack_n": 101828,
+              "attack_detected": 0.019886475232745414
+            },
+            "ToN-IoT": {
+              "benign_n": 67346,
+              "benign_fpr": 0.0067116087072728895,
+              "attack_n": 67203,
+              "attack_detected": 0.0007440144041188638
+            },
+            "UNSW-NB15": {
+              "benign_n": 9160,
+              "benign_fpr": 0.11353711790393013,
+              "attack_n": 15161,
+              "attack_detected": 0.0633863201635776
+            }
+          },
+          "holdout": {
+            "Backdoor": {
+              "n": 76535,
+              "detected": 0.0022734696544064806
+            },
+            "DoS_attacks-Slowloris": {
+              "n": 18020,
+              "detected": 0.0013318534961154272
+            },
+            "SSH-Bruteforce": {
+              "n": 73626,
+              "detected": 0.0
+            }
+          }
+        },
+        "per_source_threshold": {
+          "val": {
+            "n": 371914,
+            "positives": 223452,
+            "precision": 0.760624597553123,
+            "recall": 0.021145480908651523,
+            "f1": 0.04114706701964609,
+            "fpr": 0.010016031038245476,
+            "tp": 4725,
+            "fp": 1487,
+            "fn": 218727,
+            "tn": 146975
+          },
+          "test": {
+            "n": 371915,
+            "positives": 223453,
+            "precision": 0.4426090038993265,
+            "recall": 0.027938761171253015,
+            "f1": 0.052559795923521835,
+            "fpr": 0.0529563120529159,
+            "tp": 6243,
+            "fp": 7862,
+            "fn": 217210,
+            "tn": 140600
+          },
+          "test_ci": {
+            "n_groups": 1026,
+            "n_boot": 1000,
+            "recall": {
+              "point": 0.027938761171253015,
+              "lo": 0.017188177578073473,
+              "hi": 0.043451603002784764
+            },
+            "fpr": {
+              "point": 0.0529563120529159,
+              "lo": 0.03289202461027865,
+              "hi": 0.07939211669202584
+            },
+            "precision": {
+              "point": 0.4426090038993265,
+              "lo": 0.30386683323181,
+              "hi": 0.5744103980998745
+            },
+            "f1": {
+              "point": 0.052559795923521835,
+              "lo": 0.03252481692536407,
+              "hi": 0.08005570388055593
+            }
+          },
+          "test_per_source": {
+            "BoT-IoT": {
+              "benign_n": 208,
+              "benign_fpr": 0.028846153846153848,
+              "attack_n": 39261,
+              "attack_detected": 7.641170627340109e-05
+            },
+            "CSE-CIC-IDS2018": {
+              "benign_n": 71748,
+              "benign_fpr": 0.010885320845180353,
+              "attack_n": 101828,
+              "attack_detected": 0.021418470361786544
+            },
+            "ToN-IoT": {
+              "benign_n": 67346,
+              "benign_fpr": 0.10456448786861877,
+              "attack_n": 67203,
+              "attack_detected": 0.05169412079817865
+            },
+            "UNSW-NB15": {
+              "benign_n": 9160,
+              "benign_fpr": 0.0036026200873362445,
+              "attack_n": 15161,
+              "attack_detected": 0.0385858452608667
+            }
+          },
+          "holdout": {
+            "Backdoor": {
+              "n": 76535,
+              "detected": 0.08712353825047364
+            },
+            "DoS_attacks-Slowloris": {
+              "n": 18020,
+              "detected": 0.0013318534961154272
+            },
+            "SSH-Bruteforce": {
+              "n": 73626,
+              "detected": 0.0
+            }
+          }
+        },
+        "per_source_model": {
+          "val": {
+            "n": 371914,
+            "positives": 223452,
+            "precision": 0.8525788683024537,
+            "recall": 0.03809766750801067,
+            "f1": 0.07293616693154899,
+            "fpr": 0.009914995082916841,
+            "tp": 8513,
+            "fp": 1472,
+            "fn": 214939,
+            "tn": 146990
+          },
+          "test": {
+            "n": 371915,
+            "positives": 223453,
+            "precision": 0.7237811569211475,
+            "recall": 0.04132412632634156,
+            "f1": 0.07818433519184119,
+            "fpr": 0.023736713771874283,
+            "tp": 9234,
+            "fp": 3524,
+            "fn": 214219,
+            "tn": 144938
+          },
+          "test_ci": {
+            "n_groups": 1026,
+            "n_boot": 1000,
+            "recall": {
+              "point": 0.04132412632634156,
+              "lo": 0.02674745176647725,
+              "hi": 0.061875690593705554
+            },
+            "fpr": {
+              "point": 0.023736713771874283,
+              "lo": 0.014669965818052447,
+              "hi": 0.03502828202779769
+            },
+            "precision": {
+              "point": 0.7237811569211475,
+              "lo": 0.6106292785178394,
+              "hi": 0.8095457971866882
+            },
+            "f1": {
+              "point": 0.07818433519184119,
+              "lo": 0.051501658891641065,
+              "hi": 0.11431775619673094
+            }
+          },
+          "test_per_source": {
+            "BoT-IoT": {
+              "benign_n": 208,
+              "benign_fpr": 0.10576923076923077,
+              "attack_n": 39261,
+              "attack_detected": 0.010926873997096355
+            },
+            "CSE-CIC-IDS2018": {
+              "benign_n": 71748,
+              "benign_fpr": 0.013854044712047722,
+              "attack_n": 101828,
+              "attack_detected": 0.022076442628746515
+            },
+            "ToN-IoT": {
+              "benign_n": 67346,
+              "benign_fpr": 0.03602292638018591,
+              "attack_n": 67203,
+              "attack_detected": 0.02462687677633439
+            },
+            "UNSW-NB15": {
+              "benign_n": 9160,
+              "benign_fpr": 0.008951965065502183,
+              "attack_n": 15161,
+              "attack_detected": 0.32332959567310865
+            }
+          },
+          "holdout": {
+            "Backdoor": {
+              "n": 76535,
+              "detected": 0.9173058078003528
+            },
+            "DoS_attacks-Slowloris": {
+              "n": 18020,
+              "detected": 0.12569367369589346
+            },
+            "SSH-Bruteforce": {
+              "n": 73626,
+              "detected": 0.0
+            }
+          }
+        }
+      },
+      "selected_on_val": "per_source_model",
+      "selection_rule": "highest validation recall with validation FPR <= 0.015"
+    }
+  }
+}

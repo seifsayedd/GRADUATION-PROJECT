@@ -138,6 +138,31 @@ Each model is trained twice: on the **full** feature set, and on the **lab** set
 
 Models are saved in `models/` (git-ignored). Metrics go to `reports/phase2/`, and **[`summary.md`](reports/phase2/summary.md)** lists every number, including the weak ones.
 
+## Phase 3: evaluation
+
+Needs the Phase 2 models in `models/` and the prepared splits in `data/interim/phase2/`. No model is tuned on test: every threshold and choice below is made on validation data.
+
+```bash
+python scripts/evaluate_phase3.py --only predict eval combined lab figures report   # ~5 min: score and evaluate every saved model
+python scripts/evaluate_phase3.py --only loso      # option A: train on 3 source datasets, test on the 4th (~30 min on GPU)
+python scripts/evaluate_phase3.py --only stage3    # option B: per-source Stage 3 variants (~10 min)
+python scripts/evaluate_phase3.py --only figures report                             # rebuild figures and report.md
+```
+
+| What | How |
+|---|---|
+| Confidence intervals | 95% bootstrap that resamples whole (source, 5-minute) blocks, since neighbouring flows are near-copies |
+| Operating points | The Phase 2 default, and a threshold that flags 1% of benign **validation** flows |
+| Per-class / per-source | Detection rate for each of the 32 attack classes and false alarms per source dataset |
+| Unseen attacks | Held-out classes: detection rate and which tactic each is mistaken for |
+| Combined detector | Stage 1 alone vs Stage 1 OR Stage 3, both held to the same validation false-alarm budget |
+| Option A | Leave-one-source-out XGBoost: how it does on a network it has never seen |
+| Option B | Stage 3 with one threshold per source, or one autoencoder per source, chosen on validation |
+
+Predictions are cached in `data/interim/phase3/` (git-ignored). The results, figures and **[`report.md`](reports/phase3/report.md)** go to `reports/phase3/`. The written findings are in [`docs/phase3-findings.md`](docs/phase3-findings.md).
+
+An interactive map of the whole project (loop, data, models, roadmap) is in [`docs/visual/sentinelai-map.html`](docs/visual/sentinelai-map.html). Open it in any browser.
+
 ---
 
 ## My contributions — Seif Eldeen Elsayed (Cybersecurity)
