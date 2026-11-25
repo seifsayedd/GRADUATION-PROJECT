@@ -169,12 +169,15 @@ def write_report(out: Path) -> Path:
               "Checked on BigFlow training flows: the ratio between BigFlow's column and the formula the lab mapping uses "
               "(1.0 = same definition).", "",
               "| Source | SECOND_BYTES = 0 | SECOND_BYTES vs bytes/s (lab formula): median ratio, within 5% | "
-              "AVG_THROUGHPUT vs bits/s over whole flow | AVG_THROUGHPUT vs bits/s over forward duration (lab formula) |",
-              "|---|---|---|---|---|"]
+              "AVG_THROUGHPUT vs bits/s over whole flow (current lab formula) | AVG_THROUGHPUT vs bits/s over forward duration (old lab formula) | "
+              "Reverse throughput vs bits/s over whole flow |",
+              "|---|---|---|---|---|---|"]
         for s, v in un["units"].items():
             a, b, c = (v[k] for k in list(v)[2:5])
+            d = list(v.values())[5] if len(v) > 5 else None
             L.append(f"| {s} | {v['SRC_TO_DST_SECOND_BYTES_zero_share']:.0%} | {a['median_ratio']:.4g}, {a['share_within_5pct']:.0%} | "
-                     f"{b['median_ratio']:.3f}, {b['share_within_5pct']:.0%} | {c['median_ratio']:.3f}, {c['share_within_5pct']:.0%} |")
+                     f"{b['median_ratio']:.3f}, {b['share_within_5pct']:.0%} | {c['median_ratio']:.3f}, {c['share_within_5pct']:.0%} | "
+                     + (f"{d['median_ratio']:.3f}, {d['share_within_5pct']:.0%} |" if d else "— |"))
         L.append("")
     s3 = _load(out, "stage3")
     L += ["## 4. Stage 3 (reconstruction error by feature)", ""]

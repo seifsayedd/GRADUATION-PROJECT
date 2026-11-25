@@ -49,8 +49,11 @@ def main() -> int:
     ap.add_argument("--config", default=str(ROOT / "configs" / "phase3.yaml"))
     ap.add_argument("--only", nargs="+", choices=STEPS)
     ap.add_argument("--force", action="store_true", help="re-score models even if cached predictions exist")
+    ap.add_argument("--feature-sets", nargs="+", choices=["full", "lab"],
+                    help="loso/stage3 only: rerun just these feature sets and keep the others' saved results")
     a = ap.parse_args()
     cfg = config(Path(a.config))
+    only_fs = a.feature_sets
     steps = a.only or STEPS
     out = ROOT / cfg["phase3"]["reports_dir"]
     figs = out / "figures"
@@ -81,10 +84,14 @@ def main() -> int:
     if "lab" in steps:
         save({"lab": E.lab_breakdown(cfg, tables)}, "lab")
     if "loso" in steps:
-        save({"loso": G.run_loso(cfg, tables, log)}, "loso")
+        res = G.run_loso({**cfg, "feature_sets": only_fs or cfg["feature_sets"]}, tables, log)
+        if only_fs and (out / "loso.json").exists():          # keep the other feature sets' runs
+            old = load("loso")["loso"]["runs"]
+            res["runs"] = [r for r in old if r["feature_set"] not in only_fs] + res["runs"]
+        save({"loso": res}, "loso")
     if "stage3" in steps:
-        res = {}
-        for f in cfg["feature_sets"]:
+        res = dict(load("stage3_variants")["stage3_variants"]) if only_fs and (out / "stage3_variants.json").exists() else {}
+        for f in only_fs or cfg["feature_sets"]:
             k = f"stage3_autoencoder_temporal_{f}"
             res[f] = G.run_stage3_variants(cfg, tables[k], f, E._phase2(k)["threshold"], log)
             log(f"  selected on val ({f}): {res[f]['selected_on_val']}")

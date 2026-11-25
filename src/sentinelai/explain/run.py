@@ -179,7 +179,8 @@ def run_units(cfg: dict, out: Path, log=print) -> dict:
                     "SRC_TO_DST_SECOND_BYTES_zero_share": float((g.SRC_TO_DST_SECOND_BYTES == 0).mean()),
                     "SECOND_BYTES vs IN_BYTES / duration_s (lab mapping)": ratio(g.SRC_TO_DST_SECOND_BYTES, g.IN_BYTES / s),
                     "AVG_THROUGHPUT vs IN_BYTES*8 / FLOW_DURATION_s": ratio(g.SRC_TO_DST_AVG_THROUGHPUT, g.IN_BYTES * 8 / s),
-                    "AVG_THROUGHPUT vs IN_BYTES*8 / DURATION_IN_s (lab mapping)": ratio(g.SRC_TO_DST_AVG_THROUGHPUT, g.IN_BYTES * 8 / (g.DURATION_IN / 1000))}
+                    "AVG_THROUGHPUT vs IN_BYTES*8 / DURATION_IN_s (old lab mapping)": ratio(g.SRC_TO_DST_AVG_THROUGHPUT, g.IN_BYTES * 8 / (g.DURATION_IN / 1000)),
+                    "DST_TO_SRC_AVG_THROUGHPUT vs OUT_BYTES*8 / FLOW_DURATION_s": ratio(g.DST_TO_SRC_AVG_THROUGHPUT[g.OUT_BYTES > 0], (g.OUT_BYTES * 8 / s)[g.OUT_BYTES > 0])}
     write_json({"git_commit": git_commit(), "units": res}, out / "units.json")
     return res
 

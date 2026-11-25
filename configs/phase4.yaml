@@ -19,9 +19,9 @@ phase4:
     holdout:
       - "This attack class was never in training (Phase 2 holdout)."
     lab_xgboost:
-      - "On the real lab, this model flagged 47 of 53 benign conversations (Phase 2)."
+      - "On the real lab, this model flagged 14 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     lab_random_forest:
-      - "On the real lab, this model flagged 16 of 53 benign conversations (Phase 2)."
+      - "On the real lab, this model flagged 15 of 53 benign conversations and missed the one attack (Phase 2, after the Phase 4 mapping fix)."
     stage2:
       - "Test windows come from the same capture days as training, so Stage 2 scores are somewhat optimistic (Phase 2)."
       - "Attention shows where the model looked, which is not always what changed its decision; see occlusion_delta."
