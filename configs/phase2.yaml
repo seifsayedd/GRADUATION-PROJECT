@@ -48,6 +48,7 @@ stage2:
   # sampled (whole hosts, so sequences stay intact) until the slice has this many rows.
   max_rows_per_slice: 1500000
   window: 32
+  block_minutes: 5       # whole blocks go to train/val/test (see models/sequence.py)
   cell: gru               # gru or lstm
   hidden: 64
   epochs: 8

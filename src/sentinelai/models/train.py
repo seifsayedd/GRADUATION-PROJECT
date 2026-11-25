@@ -15,7 +15,7 @@ from ..data.taxonomy import TAXONOMY, lab_tactic
 from .autoencoder import Autoencoder
 from .common import binary_metrics, feature_set, load_model, multiclass_metrics, save_model, write_json
 from .flow_classifier import FlowClassifier
-from .sequence import SequenceModel, temporal_split
+from .sequence import SequenceModel, block_split
 
 REPORTS = ROOT / "reports" / "phase2"
 
@@ -93,7 +93,11 @@ def run_stage2(cfg: dict, fset: str, interim: Path | None = None, reports: Path 
                df: pd.DataFrame | None = None) -> dict:
     c = cfg["stage2"]
     df = load_sequences(cfg, interim) if df is None else df
-    parts = temporal_split(df, cfg["data"]["val_size"], cfg["data"]["test_size"])
+    parts = block_split(df, cfg["data"]["val_size"], cfg["data"]["test_size"], c.get("block_minutes", 5), cfg["seed"])
+    missing = {k: sorted(set(parts["train"].tactic) - set(v.tactic)) for k, v in parts.items() if k != "train"}
+    unseen = sorted(set(parts["test"].tactic) - set(parts["train"].tactic))
+    if unseen:
+        raise ValueError(f"test has tactics absent from train: {unseen}; adjust block size or slices")
     m = SequenceModel(feature_set(fset), c["window"], c["hidden"], c["cell"], c["epochs"],
                       c["batch_size"], c["lr"], seed=cfg["seed"]).fit(parts["train"], parts["val"])
     test = parts["test"]
@@ -105,7 +109,8 @@ def run_stage2(cfg: dict, fset: str, interim: Path | None = None, reports: Path 
                          "tactic": multiclass_metrics(g.tactic, p.tactic_pred)["per_class"]}
     res = {"stage": 2, "cell": c["cell"], "window": c["window"], "feature_set": fset,
            "fit_seconds": m.fit_seconds_, "history": m.history_,
-           "rows": {k: len(v) for k, v in parts.items()},
+           "rows": {k: len(v) for k, v in parts.items()}, "split": f"{c.get('block_minutes', 5)}-min time blocks per day",
+           "train_tactics_missing_from": missing,
            "class_counts": {k: v.tactic.value_counts().to_dict() for k, v in parts.items()},
            "val": m.evaluate(parts["val"]), "test": m.evaluate(test), "test_per_slice": per_slice,
            "git_commit": git_commit()}

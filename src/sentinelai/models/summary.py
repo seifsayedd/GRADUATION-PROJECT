@@ -43,7 +43,7 @@ def write_summary(reports: Path) -> Path:
 
     s2 = [r for r in runs.values() if r.get("stage") == 2]
     if s2:
-        L += ["## Stage 2: temporal model (test = latest 15% of each day)", "",
+        L += ["## Stage 2: temporal model (test = random 5-minute blocks, 15% of each day's rows)", "",
               "| Cell | Window | Features | Precision | Recall | F1 | FPR | ROC-AUC | Tactic macro-F1 | Fit s |",
               "|---|---|---|---|---|---|---|---|---|---|"]
         for r in s2:

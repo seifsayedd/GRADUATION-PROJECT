@@ -9,8 +9,12 @@ flow, which is what makes periodic beaconing visible.
 The attention layer returns one weight per time step. Phase 4 uses these
 weights to show which earlier flows drove a decision.
 
-Windows never cross split boundaries: ``temporal_split`` cuts each slice
-by time first, and windows are built inside each part separately.
+Splitting: ``block_split`` cuts every day into fixed time blocks (default
+5 min) and assigns whole blocks at random to train / val / test. Windows
+are built per (host, block), so no window ever spans two splits. A single
+time cut per day was tried first and rejected: attacks happen in bursts, so
+a cut put whole attack classes on one side only (e.g. ToN password traffic
+only in test, DDoS only in train).
 """
 from __future__ import annotations
 
@@ -42,6 +46,35 @@ def temporal_split(df: pd.DataFrame, val_size=0.15, test_size=0.15, by="slice",
     return {k: pd.concat(v) for k, v in parts.items()}
 
 
+def block_split(df: pd.DataFrame, val_size=0.15, test_size=0.15, block_minutes: int = 5, seed: int = 42,
+                by="slice", time_col="FLOW_START_MILLISECONDS", host_col="IPV4_SRC_ADDR"):
+    """Assign whole time blocks to train/val/test, separately inside every slice (day).
+
+    Per slice, blocks are shuffled and filled into test, then val, then train
+    until each holds its share of that slice's **rows**, so every day appears
+    in every split in the right proportion. Adds ``seq_key`` =
+    slice|block|host, which keeps each window inside one host and one block.
+    """
+    rng = np.random.default_rng(seed)
+    block = (df[time_col] // (block_minutes * 60_000)).astype("int64")
+    key = df[by].astype(str) + "|" + block.astype(str)
+    sizes = key.value_counts()
+    slice_of = pd.Series(sizes.index.str.split("|").str[0], index=sizes.index)
+    assign = {}
+    for sl in slice_of.unique():
+        ks = sizes[slice_of == sl]
+        ks = ks.iloc[rng.permutation(len(ks))]
+        frac = ks.cumsum() / ks.sum()
+        part = np.where(frac <= test_size, "test", np.where(frac <= test_size + val_size, "val", "train"))
+        if len(ks) >= 3:                       # every split gets at least one block per slice
+            part[0], part[-1] = "test", "train"
+            if "val" not in part:
+                part[1] = "val"
+        assign.update(dict(zip(ks.index, part)))
+    d = df.assign(seq_key=key + "|" + df[host_col].astype(str), _part=key.map(assign).to_numpy())
+    return {k: d[d._part == k].drop(columns="_part") for k in ("train", "val", "test")}
+
+
 class WindowIndex:
     """Index of per-host windows over a frame sorted by (host, time).
 
@@ -54,11 +87,13 @@ class WindowIndex:
         d = df.sort_values([host_col, time_col], kind="stable")
         self.order = d.index.to_numpy()
         hosts = d[host_col].to_numpy()
-        new_host = np.r_[True, hosts[1:] != hosts[:-1]]
+        new_host = np.ones(len(hosts), dtype=bool)
+        new_host[1:] = hosts[1:] != hosts[:-1]
         host_start = np.maximum.accumulate(np.where(new_host, np.arange(len(d)), 0))
         self.start = np.maximum(np.arange(len(d)) - window + 1, host_start)
         t = d[time_col].to_numpy(dtype="float64")
-        gap = np.r_[0.0, np.diff(t)] / 1000.0
+        gap = np.zeros(len(t))
+        gap[1:] = np.diff(t) / 1000.0
         gap[new_host] = 0.0
         self.log_gap = np.log1p(np.clip(gap, 0, None)).astype("float32")
         self.window = window
@@ -142,7 +177,8 @@ class SequenceModel:
         return self.device or ("cuda" if torch.cuda.is_available() else "cpu")
 
     def _loader(self, df, shuffle, with_y=True):
-        idx = WindowIndex(df, self.window)
+        # seq_key (from block_split) keeps windows inside one host *and* one time block
+        idx = WindowIndex(df, self.window, host_col="seq_key" if "seq_key" in df else "IPV4_SRC_ADDR")
         ordered = df.loc[idx.order]
         X = self.pp_.transform(ordered).to_numpy(dtype="float32")
         y = self.classes_.get_indexer(ordered.tactic) if with_y else None

@@ -10,7 +10,7 @@ from sentinelai.data.taxonomy import BENIGN
 from sentinelai.models.autoencoder import Autoencoder, BenignOnlyError
 from sentinelai.models.common import balanced_weights, load_model, save_model
 from sentinelai.models.flow_classifier import FlowClassifier
-from sentinelai.models.sequence import SequenceModel, WindowIndex, temporal_split
+from sentinelai.models.sequence import SequenceModel, WindowIndex, block_split, temporal_split
 
 
 def split3(df):
@@ -85,6 +85,11 @@ def test_windows_stay_inside_one_host():
     assert idx.log_gap[0] == 0                                 # first flow of a host has no gap
 
 
+def test_window_index_handles_empty_frame():
+    idx = WindowIndex(pd.DataFrame({"IPV4_SRC_ADDR": [], "FLOW_START_MILLISECONDS": []}), window=4)
+    assert len(idx) == 0 and len(idx.log_gap) == 0
+
+
 def test_temporal_split_per_slice_is_ordered():
     df = _seq_df()
     p = temporal_split(df)
@@ -93,9 +98,22 @@ def test_temporal_split_per_slice_is_ordered():
         assert tr.max() < va.min() and va.max() < te.min()
 
 
+def test_block_split_keeps_blocks_whole_and_windows_inside():
+    df = _seq_df(2000)
+    p = block_split(df, block_minutes=5, seed=1)
+    keys = [set(p[k].seq_key) for k in ("train", "val", "test")]
+    assert not (keys[0] & keys[1] or keys[0] & keys[2] or keys[1] & keys[2])
+    assert sum(len(v) for v in p.values()) == len(df)
+    blocks = [set(v.seq_key.str.rsplit("|", n=1).str[0]) for v in p.values()]
+    assert not (blocks[0] & blocks[1] or blocks[0] & blocks[2] or blocks[1] & blocks[2])
+    for part in p.values():                                    # every day is in every split
+        assert set(part.slice) == set(df.slice)
+
+
 def test_sequence_model_fit_predict_attention_pickle():
     df = _seq_df()
-    p = temporal_split(df)
+    p = block_split(df, block_minutes=5)
+    assert all(len(v) for v in p.values())
     m = SequenceModel(window=8, hidden=8, epochs=1, batch_size=64, device="cpu").fit(p["train"], p["val"])
     pred, att = m.predict(p["test"], return_attention=True)
     assert set(pred.index) == set(p["test"].index)
