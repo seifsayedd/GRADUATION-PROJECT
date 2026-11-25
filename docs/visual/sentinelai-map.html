@@ -310,15 +310,18 @@ const PARTS = [
     what: "Block-bootstrap confidence intervals, validation-only thresholds, per-class and per-source results, unseen-network and per-source Stage 3 tests.",
     facts: ["Every Phase 2 test score reproduced exactly from the saved models.", "Thresholds drift: 1% false alarms on validation becomes 6.9% on later flows.", "Central result: models learn each benchmark network, not attacks in general."],
     open: "Combining stages needs a validation set with unseen attacks to be judged fairly.", files: ["src/sentinelai/eval/", "reports/phase3/report.md"] },
-  { id: "xai", alias: ["phase 4", "xai", "shap", "explainability"], name: "Phase 4 · Explainability", status: "running", color: COL.running,
+  { id: "xai", alias: ["phase 4", "xai", "shap", "explainability"], name: "Phase 4 · Explainability", status: "built", color: COL.built,
     what: "TreeSHAP for Stage 1 (summed to the 53 original features), attention checked by removing one flow at a time, per-feature error for Stage 3, one JSON explanation object per alert.",
     gauges: [["Top-3 SHAP drop", .681], ["Random-3 drop", .037], ["Attention = cause", .066], ["Chance", .034]],
     facts: ["SHAP is faithful: removing an alert's top 3 features turns 91% of alerts benign; 3 random features turn 2%.", "Every explanation adds up to the model's real output (max error 7e-6).",
             "Found and fixed a lab mapping bug: flagged lab conversations fell from 48 to 14 (XGBoost) and 54 to 17 (autoencoder), but no model catches the lab attack any more."],
-    open: "Done locally, awaiting review.", files: ["src/sentinelai/explain/", "reports/phase4/report.md", "docs/schema/explanation.schema.json"] },
-  { id: "genai", alias: ["phase 5", "genai", "llm", "rag", "report"], name: "Phase 5 · GenAI reports", status: "planned", color: COL.planned,
-    what: "Incident reports and an analyst chatbot grounded with RAG over PostgreSQL + pgvector; LLM provider behind an interface; keys from environment only.",
-    facts: ["Will read the Phase 4 explanation objects as its factual input."], open: "Not started.", files: [] },
+    open: "Attention is a weak explanation for Stage 2; alerts use remove-one-flow evidence instead.", files: ["src/sentinelai/explain/", "reports/phase4/report.md", "docs/schema/explanation.schema.json"] },
+  { id: "genai", alias: ["phase 5", "genai", "llm", "rag", "report"], name: "Phase 5 · GenAI reports", status: "running", color: COL.running,
+    what: "Incident reports and analyst Q&A grounded in the project's evidence: Phase 4 explanation objects, findings docs and the ATT&CK taxonomy, retrieved by vector search. The LLM is behind an interface (Claude, an offline template, or a test fake); keys come from the environment only.",
+    facts: ["Every output is checked: numbers, IP addresses and citations must appear in the sources given, or it is rejected and not stored.",
+            "Source text is escaped inside source tags and treated as data, never as instructions.",
+            "Runs offline today (template provider, local MiniLM embeddings, in-memory store); PostgreSQL + pgvector schema is ready."],
+    open: "Skeleton, awaiting review. No live Claude call made yet; PostgreSQL not installed on this machine.", files: ["src/sentinelai/genai/", "db/001_init.sql", "docs/phase5-genai.md", ".env.example"] },
   { id: "dash", alias: ["phase 6", "dashboard", "api", "ui", "fastapi", "react"], name: "Phase 6 · API + dashboard", status: "planned", color: COL.planned,
     what: "FastAPI backend and React dashboard: alert stream, attack timeline, ATT&CK matrix, XAI charts.",
     facts: [], open: "Automated response or containment is not scoped in any phase (unverified).", files: [] },
@@ -327,8 +330,8 @@ const PHASES = [
   ["1", "Data layer", "done", ["BigFlow + lab loaders", "lab → BigFlow feature map", "leak-free splits", "pytest suite"]],
   ["2", "Detection models", "done", ["RF / XGBoost", "GRU + attention", "benign-only autoencoder", "lab flows scored"]],
   ["3", "Evaluation", "done", ["block-bootstrap intervals", "validation-only thresholds", "leave-one-source-out", "per-source Stage 3"]],
-  ["4", "Explainability", "now", ["TreeSHAP, checked for additivity", "attention vs remove-one-flow", "per-alert JSON object", "lab mapping fix"]],
-  ["5", "GenAI skeleton", "", ["PostgreSQL + pgvector", "RAG pipeline", "LLM behind an interface"]],
+  ["4", "Explainability", "done", ["TreeSHAP, checked for additivity", "attention vs remove-one-flow", "per-alert JSON object", "lab mapping fix"]],
+  ["5", "GenAI skeleton", "now", ["PostgreSQL + pgvector schema", "grounded RAG reports + Q&A", "LLM behind an interface", "groundedness check"]],
   ["6", "API + dashboard", "", ["FastAPI", "React dashboard skeleton"]]];
 PARTS.forEach(p => p.facts = p.facts.map(f => f.replace("LAB_INPUTS", LAB.inputs)));
 const byId = Object.fromEntries(PARTS.map(p => [p.id, p]));
@@ -561,9 +564,9 @@ document.addEventListener("keydown", e => {
   const ring = new THREE.Mesh(new THREE.TorusGeometry(5, .09, 8, 96), new THREE.MeshBasicMaterial({ color: C(COL.built) })); ring.rotation.x = Math.PI / 2; ev.add(ring);
   const ring2 = new THREE.Mesh(new THREE.TorusGeometry(5.3, .03, 6, 96), new THREE.MeshBasicMaterial({ color: C(COL.built), transparent: true, opacity: .5 })); ring2.rotation.x = Math.PI / 2; ev.add(ring2);
   add("eval", ev, V(TX, 6, 0), V(0, 0, 0));
-  const xai = new THREE.Group(); xai.add(edges(new THREE.Mesh(new THREE.OctahedronGeometry(1.8, 0), solid(COL.running, .45)), COL.running));
+  const xai = new THREE.Group(); xai.add(edges(new THREE.Mesh(new THREE.OctahedronGeometry(1.8, 0), solid(COL.built, .45)), COL.built));
   add("xai", xai, V(TX, 16.2, 0), V(-6, 3, -3));
-  const gen = new THREE.Group(); gen.add(new THREE.Mesh(new THREE.IcosahedronGeometry(2.1, 1), wireM("#8fb2c0")));
+  const gen = new THREE.Group(); gen.add(edges(new THREE.Mesh(new THREE.IcosahedronGeometry(2.1, 1), solid(COL.running, .4)), COL.running));
   add("genai", gen, V(TX, 21.2, 0), V(6, 4, -3));
   const dash = new THREE.Group(); dash.add(new THREE.Mesh(new THREE.PlaneGeometry(8, 4.6, 8, 5), wireM("#8fb2c0")));
   const dashEdge = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(8.2, 4.8, .2)), new THREE.LineBasicMaterial({ color: 0x8fb2c0 })); dash.add(dashEdge);
@@ -630,7 +633,7 @@ document.addEventListener("keydown", e => {
   const labelsEl = $("labels");
   const LBL = { kali: ["Kali · Caldera", 3.4, -1.5], sensor: ["Sensor · nfdump", 6.4, 0], win7: ["Windows 7", 3.4, 1.5], bigflow: ["BigFlow 66.9M", 5.8, 0],
     data: ["Data layer", 2, 0], s1: ["Stage 1 · trees", .8, 7.5], s2: ["Stage 2 · GRU", 1, 7.5], s3: ["Stage 3 · autoencoder", 1.8, 7], eval: ["Phase 3 · eval", .3, -8.5],
-    xai: ["XAI · SHAP", .4, -6], genai: ["GenAI · planned", .4, -5.5], dash: ["Dashboard · planned", 3, 0] };
+    xai: ["XAI · SHAP", .4, -6], genai: ["GenAI · grounded RAG", .4, -6.5], dash: ["Dashboard · planned", 3, 0] };
   const lblEls = {};
   for (const id in LBL) { const d = document.createElement("div"); d.className = "lbl"; d.style.setProperty("--c", byId[id].color); d.textContent = LBL[id][0]; labelsEl.appendChild(d); lblEls[id] = d; }
   const pops = [];
@@ -789,7 +792,7 @@ $("road").innerHTML = PHASES.map(([n, t, st, items]) => `<div class="phase ${st 
 (function boot() {
   const lines = ["SENTINEL·AI BLUE TEAM CONSOLE", "", "› linking cyber range ......... Kali · Ubuntu sensor · Windows 7",
     "› loading BigFlow-NIDS v2 ..... 66,935,021 flows · 4 sources", "› detection stack ............ stage 1 · stage 2 · stage 3 online",
-    "› evaluation ................. phase 3 complete", "› explainability ............. phase 4 in review", "", "all systems nominal. type help, or press T for a tour."];
+    "› evaluation ................. phase 3 complete", "› explainability ............. phase 4 complete", "› genai reports .............. phase 5 skeleton in review", "", "all systems nominal. type help, or press T for a tour."];
   const el = $("bootText"), b = $("boot");
   let skip = false; b.addEventListener("click", () => skip = true);
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) skip = true;

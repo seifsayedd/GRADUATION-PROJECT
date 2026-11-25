@@ -182,6 +182,18 @@ Phase 4 found that the lab's bytes-per-second features didn't match BigFlow's de
 
 Results are in **[`reports/phase4/report.md`](reports/phase4/report.md)**, with example objects in `reports/phase4/examples/` and every lab conversation explained in `reports/phase4/lab/`. The written findings are in [`docs/phase4-findings.md`](docs/phase4-findings.md).
 
+## Phase 5: GenAI layer (skeleton)
+
+Incident reports and analyst Q&A grounded only in the project's own evidence: the Phase 4 explanation objects, the findings docs and the ATT&CK taxonomy. Settings come from environment variables only; copy `.env.example`. By default it runs offline (`SENTINEL_LLM_PROVIDER=template`, no LLM and no key needed). Setting `SENTINEL_LLM_PROVIDER=anthropic` plus `ANTHROPIC_API_KEY` uses Claude through an interchangeable provider class.
+
+```bash
+python scripts/genai_phase5.py ingest
+python scripts/genai_phase5.py report --alert lab-xgboost_temporal_lab-13
+python scripts/genai_phase5.py ask "Why does XGBoost flag benign lab traffic?"
+```
+
+Every report goes through a groundedness check: numbers, IP addresses and citations must come from the sources given to the model, or the report is rejected and not stored. Storage is in memory by default; `docker-compose.yml` and `db/001_init.sql` set up PostgreSQL + pgvector. Details: [`docs/phase5-genai.md`](docs/phase5-genai.md).
+
 An interactive map of the whole project (loop, data, models, roadmap) is in [`docs/visual/sentinelai-map.html`](docs/visual/sentinelai-map.html). Open it in any browser.
 
 ---
