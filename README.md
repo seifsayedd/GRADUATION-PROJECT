@@ -64,7 +64,8 @@ Full design: [`docs/project-overview.md`](docs/project-overview.md)
 | 5-hour benign/attack capture session | 🔄 Planned |
 | Phase 1 data layer (loaders, feature mapping, preprocessing, splits) | ✅ `src/sentinelai/data` |
 | Phase 2 detection models (RF/XGBoost, GRU + attention, autoencoder) | ✅ trained on BigFlow; results in [`reports/phase2/summary.md`](reports/phase2/summary.md) |
-| Evaluation, XAI, GenAI reports, dashboard | ⏳ Phases 3–6 |
+| Phase 3 evaluation · Phase 4 explainability · Phase 5 GenAI skeleton | ✅ see the sections below |
+| Phase 6 API + analyst dashboard | 🔄 skeleton built, in review |
 
 ## Quick start
 
@@ -193,6 +194,18 @@ python scripts/genai_phase5.py ask "Why does XGBoost flag benign lab traffic?"
 ```
 
 Every report goes through a groundedness check: numbers, IP addresses and citations must come from the sources given to the model, or the report is rejected and not stored. Storage is in memory by default; `docker-compose.yml` and `db/001_init.sql` set up PostgreSQL + pgvector. Details: [`docs/phase5-genai.md`](docs/phase5-genai.md).
+
+## Phase 6: API + analyst dashboard (skeleton)
+
+A FastAPI backend (`src/sentinelai/api/`) serves the project's real outputs, and a React + TypeScript dashboard (`dashboard/`) shows them: overview, alert list with a replay of lab capture v1, alert detail with SHAP or attention charts and a **Generate report** button, lab timeline, ATT&CK matrix, model results and an Ask page. It needs the Phase 5 knowledge base (`python scripts/genai_phase5.py ingest`) and Node.js 18+ to build.
+
+```bash
+pip install -r requirements.txt                   # adds fastapi, uvicorn, httpx
+cd dashboard && npm install && npm run build && cd ..
+python scripts/serve_phase6.py                    # http://127.0.0.1:8000 (dashboard) and /docs (API)
+```
+
+For development, run `python scripts/serve_phase6.py` and `cd dashboard && npm run dev` (http://127.0.0.1:5173, which forwards `/api` to the backend). Tests: `pytest tests/test_api.py` and `cd dashboard && npm test`. There is no login, so the server binds to 127.0.0.1 only. Details: [`docs/phase6-dashboard.md`](docs/phase6-dashboard.md).
 
 An interactive map of the whole project (loop, data, models, roadmap) is in [`docs/visual/sentinelai-map.html`](docs/visual/sentinelai-map.html). Open it in any browser.
 

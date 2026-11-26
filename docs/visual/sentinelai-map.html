@@ -316,23 +316,27 @@ const PARTS = [
     facts: ["SHAP is faithful: removing an alert's top 3 features turns 91% of alerts benign; 3 random features turn 2%.", "Every explanation adds up to the model's real output (max error 7e-6).",
             "Found and fixed a lab mapping bug: flagged lab conversations fell from 48 to 14 (XGBoost) and 54 to 17 (autoencoder), but no model catches the lab attack any more."],
     open: "Attention is a weak explanation for Stage 2; alerts use remove-one-flow evidence instead.", files: ["src/sentinelai/explain/", "reports/phase4/report.md", "docs/schema/explanation.schema.json"] },
-  { id: "genai", alias: ["phase 5", "genai", "llm", "rag", "report"], name: "Phase 5 · GenAI reports", status: "running", color: COL.running,
+  { id: "genai", alias: ["phase 5", "genai", "llm", "rag", "report"], name: "Phase 5 · GenAI reports", status: "built", color: COL.built,
     what: "Incident reports and analyst Q&A grounded in the project's evidence: Phase 4 explanation objects, findings docs and the ATT&CK taxonomy, retrieved by vector search. The LLM is behind an interface (Claude, an offline template, or a test fake); keys come from the environment only.",
     facts: ["Every output is checked: numbers, IP addresses and citations must appear in the sources given, or it is rejected and not stored.",
             "Source text is escaped inside source tags and treated as data, never as instructions.",
             "Runs offline today (template provider, local MiniLM embeddings, in-memory store); PostgreSQL + pgvector schema is ready."],
-    open: "Skeleton, awaiting review. No live Claude call made yet; PostgreSQL not installed on this machine.", files: ["src/sentinelai/genai/", "db/001_init.sql", "docs/phase5-genai.md", ".env.example"] },
-  { id: "dash", alias: ["phase 6", "dashboard", "api", "ui", "fastapi", "react"], name: "Phase 6 · API + dashboard", status: "planned", color: COL.planned,
-    what: "FastAPI backend and React dashboard: alert stream, attack timeline, ATT&CK matrix, XAI charts.",
-    facts: [], open: "Automated response or containment is not scoped in any phase (unverified).", files: [] },
+    open: "No live Claude call made yet; PostgreSQL not installed on this machine.", files: ["src/sentinelai/genai/", "db/001_init.sql", "docs/phase5-genai.md", ".env.example"] },
+  { id: "dash", alias: ["phase 6", "dashboard", "api", "ui", "fastapi", "react"], name: "Phase 6 · API + dashboard", status: "running", color: COL.running,
+    what: "FastAPI backend over the project's real outputs and a React + TypeScript analyst dashboard: overview, alerts with a lab-capture replay, alert detail with SHAP or attention charts, lab timeline, ATT&CK matrix, model results and grounded Q&A.",
+    facts: ["Every panel names the report file or explanation object it reads; the alert stream is a replay of lab capture v1, not live traffic.",
+            "Reports and answers go through the Phase 5 groundedness check; a rejected one returns HTTP 422 and is not stored.",
+            "Local only: no login, bound to 127.0.0.1, browser calls allowed only from the dashboard's origin."],
+    open: "Skeleton, awaiting review. No login yet; no live scoring of new flows. Automated response or containment is not scoped in any phase.",
+    files: ["src/sentinelai/api/", "dashboard/", "scripts/serve_phase6.py", "docs/phase6-dashboard.md"] },
 ];
 const PHASES = [
   ["1", "Data layer", "done", ["BigFlow + lab loaders", "lab → BigFlow feature map", "leak-free splits", "pytest suite"]],
   ["2", "Detection models", "done", ["RF / XGBoost", "GRU + attention", "benign-only autoencoder", "lab flows scored"]],
   ["3", "Evaluation", "done", ["block-bootstrap intervals", "validation-only thresholds", "leave-one-source-out", "per-source Stage 3"]],
   ["4", "Explainability", "done", ["TreeSHAP, checked for additivity", "attention vs remove-one-flow", "per-alert JSON object", "lab mapping fix"]],
-  ["5", "GenAI skeleton", "now", ["PostgreSQL + pgvector schema", "grounded RAG reports + Q&A", "LLM behind an interface", "groundedness check"]],
-  ["6", "API + dashboard", "", ["FastAPI", "React dashboard skeleton"]]];
+  ["5", "GenAI skeleton", "done", ["PostgreSQL + pgvector schema", "grounded RAG reports + Q&A", "LLM behind an interface", "groundedness check"]],
+  ["6", "API + dashboard", "now", ["FastAPI over real outputs", "React + TypeScript dashboard", "lab replay, ATT&CK matrix, XAI charts", "grounded reports in the UI"]]];
 PARTS.forEach(p => p.facts = p.facts.map(f => f.replace("LAB_INPUTS", LAB.inputs)));
 const byId = Object.fromEntries(PARTS.map(p => [p.id, p]));
 const STATUS = { built: "online", running: "in review", planned: "planned" };
@@ -633,7 +637,7 @@ document.addEventListener("keydown", e => {
   const labelsEl = $("labels");
   const LBL = { kali: ["Kali · Caldera", 3.4, -1.5], sensor: ["Sensor · nfdump", 6.4, 0], win7: ["Windows 7", 3.4, 1.5], bigflow: ["BigFlow 66.9M", 5.8, 0],
     data: ["Data layer", 2, 0], s1: ["Stage 1 · trees", .8, 7.5], s2: ["Stage 2 · GRU", 1, 7.5], s3: ["Stage 3 · autoencoder", 1.8, 7], eval: ["Phase 3 · eval", .3, -8.5],
-    xai: ["XAI · SHAP", .4, -6], genai: ["GenAI · grounded RAG", .4, -6.5], dash: ["Dashboard · planned", 3, 0] };
+    xai: ["XAI · SHAP", .4, -6], genai: ["GenAI · grounded RAG", .4, -6.5], dash: ["Dashboard · API", 3, 0] };
   const lblEls = {};
   for (const id in LBL) { const d = document.createElement("div"); d.className = "lbl"; d.style.setProperty("--c", byId[id].color); d.textContent = LBL[id][0]; labelsEl.appendChild(d); lblEls[id] = d; }
   const pops = [];
