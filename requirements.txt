@@ -17,3 +17,7 @@ anthropic>=2.0
 sentence-transformers>=3.0
 psycopg[binary]>=3.1
 pgvector>=0.3
+# Phase 6 API (httpx is for FastAPI's test client)
+fastapi>=0.110
+uvicorn>=0.29
+httpx>=0.27
