@@ -1,0 +1,278 @@
+[
+  {
+    "schema_version": "1.0",
+    "alert_id": "s3-autoencoder_temporal_full-358829",
+    "flow": {
+      "src": "175.45.176.3",
+      "dst": "149.171.126.11",
+      "protocol": "6 (TCP)",
+      "start_ms": 1424260735003.0,
+      "src_port": 36790.0,
+      "dst_port": 1723.0,
+      "dataset": "UNSW-NB15"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_full",
+      "feature_set": "full",
+      "git_commit": "89c3999"
+    },
+    "ground_truth": {
+      "label": 1.0,
+      "attack": "Fuzzers",
+      "tactic": "Reconnaissance/Discovery"
+    },
+    "decision": {
+      "score": 0.053608,
+      "score_kind": "reconstruction error",
+      "threshold": 0.050273,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.053608,
+      "items": [
+        {
+          "feature": "SERVER_TCP_FLAGS",
+          "value": "FIN|SYN|ACK (0x13)",
+          "contribution": 0.007867,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L7_PROTO",
+          "value": "115",
+          "contribution": 0.00644,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "TCP_FLAGS",
+          "value": "FIN|SYN|ACK (0x13)",
+          "contribution": 0.00555,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "NUM_PKTS_256_TO_512_BYTES",
+          "value": "0",
+          "contribution": 0.004481,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L4_DST_PORT",
+          "value": "1723 (registered)",
+          "contribution": 0.003887,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "CLIENT_TCP_FLAGS",
+          "value": "FIN|SYN|ACK (0x13)",
+          "contribution": 0.003805,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "62464",
+          "contribution": 0.002821,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "MAX_TTL",
+          "value": "255",
+          "contribution": 0.002804,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.015953,
+      "additivity_error": 7.450580596923828e-08
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_full) flagged the TCP flow 175.45.176.3:36790 -> 149.171.126.11:1723 (score 0.054, threshold 0.050, reconstruction error). Most abnormal features (squared error): SERVER_TCP_FLAGS = FIN|SYN|ACK (0x13) (+0.008); L7_PROTO = 115 (+0.006); TCP_FLAGS = FIN|SYN|ACK (0x13) (+0.006). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "s3-autoencoder_temporal_full-361701",
+    "flow": {
+      "src": "175.45.176.0",
+      "dst": "149.171.126.10",
+      "protocol": "17 (UDP)",
+      "start_ms": 1424260251964.0,
+      "src_port": 1043.0,
+      "dst_port": 53.0,
+      "dataset": "UNSW-NB15"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_full",
+      "feature_set": "full",
+      "git_commit": "89c3999"
+    },
+    "ground_truth": {
+      "label": 1.0,
+      "attack": "Generic",
+      "tactic": "Other"
+    },
+    "decision": {
+      "score": 0.077431,
+      "score_kind": "reconstruction error",
+      "threshold": 0.050273,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.077431,
+      "items": [
+        {
+          "feature": "MIN_TTL",
+          "value": "254",
+          "contribution": 0.019125,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "MAX_TTL",
+          "value": "254",
+          "contribution": 0.018377,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "DNS_QUERY_TYPE",
+          "value": "255",
+          "contribution": 0.0089,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L7_PROTO",
+          "value": "5",
+          "contribution": 0.006488,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "SRC_TO_DST_IAT_MIN",
+          "value": "0",
+          "contribution": 0.002677,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "SRC_TO_DST_AVG_THROUGHPUT",
+          "value": "912,000",
+          "contribution": 0.002181,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "FLOW_DURATION_MILLISECONDS",
+          "value": "0",
+          "contribution": 0.002099,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "PROTOCOL",
+          "value": "17 (UDP)",
+          "contribution": 0.001743,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.01584,
+      "additivity_error": 7.450580596923828e-08
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_full) flagged the UDP flow 175.45.176.0:1043 -> 149.171.126.10:53 (score 0.077, threshold 0.050, reconstruction error). Most abnormal features (squared error): MIN_TTL = 254 (+0.019); MAX_TTL = 254 (+0.018); DNS_QUERY_TYPE = 255 (+0.009). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  },
+  {
+    "schema_version": "1.0",
+    "alert_id": "s3-autoencoder_temporal_full-367484",
+    "flow": {
+      "src": "175.45.176.2",
+      "dst": "149.171.126.13",
+      "protocol": "6 (TCP)",
+      "start_ms": 1424259270092.0,
+      "src_port": 63185.0,
+      "dst_port": 25.0,
+      "dataset": "UNSW-NB15"
+    },
+    "model": {
+      "stage": 3,
+      "name": "autoencoder_temporal_full",
+      "feature_set": "full",
+      "git_commit": "89c3999"
+    },
+    "ground_truth": {
+      "label": 1.0,
+      "attack": "Exploits",
+      "tactic": "Initial Access"
+    },
+    "decision": {
+      "score": 0.066197,
+      "score_kind": "reconstruction error",
+      "threshold": 0.050273,
+      "operating_point": "1% of benign validation flagged",
+      "flagged": true
+    },
+    "contributions": {
+      "space": "squared error",
+      "base_value": 0.0,
+      "output": 0.066197,
+      "items": [
+        {
+          "feature": "SHORTEST_FLOW_PKT",
+          "value": "40",
+          "contribution": 0.011137,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "L7_PROTO",
+          "value": "3",
+          "contribution": 0.006493,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "RETRANSMITTED_IN_PKTS",
+          "value": "137",
+          "contribution": 0.005634,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "NUM_PKTS_1024_TO_1514_BYTES",
+          "value": "236",
+          "contribution": 0.004976,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "TCP_FLAGS",
+          "value": "FIN|SYN|PSH|ACK (0x1b)",
+          "contribution": 0.003782,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "SRC_TO_DST_AVG_THROUGHPUT",
+          "value": "630,611",
+          "contribution": 0.003503,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "SERVER_TCP_FLAGS",
+          "value": "FIN|SYN|ACK (0x13)",
+          "contribution": 0.00336,
+          "direction": "abnormal"
+        },
+        {
+          "feature": "ICMP_TYPE",
+          "value": "30978",
+          "contribution": 0.003118,
+          "direction": "abnormal"
+        }
+      ],
+      "rest": 0.024194,
+      "additivity_error": 7.450580596923828e-08
+    },
+    "caveats": [
+      "High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+    ],
+    "summary": "Stage 3 (autoencoder_temporal_full) flagged the TCP flow 175.45.176.2:63185 -> 149.171.126.13:25 (score 0.066, threshold 0.050, reconstruction error). Most abnormal features (squared error): SHORTEST_FLOW_PKT = 40 (+0.011); L7_PROTO = 3 (+0.006); RETRANSMITTED_IN_PKTS = 137 (+0.006). Caveat: High reconstruction error means unusual for the benign traffic seen in training, not necessarily malicious; Stage 3 flagged 8% of test attacks at a 1% validation false-alarm target (Phase 3)."
+  }
+]

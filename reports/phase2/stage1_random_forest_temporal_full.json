@@ -1,0 +1,698 @@
+{
+  "stage": 1,
+  "algo": "random_forest",
+  "split": "temporal",
+  "feature_set": "full",
+  "fit_seconds": 74.8,
+  "n_features": 189,
+  "search": [
+    {
+      "task": "binary",
+      "params": {},
+      "val_score": 0.932845953002611
+    },
+    {
+      "task": "tactic",
+      "params": {},
+      "val_score": 0.8612294825698582
+    }
+  ],
+  "val": {
+    "binary": {
+      "n": 371914,
+      "positives": 223452,
+      "precision": 0.9932069063119162,
+      "recall": 0.8794013926928378,
+      "f1": 0.932845953002611,
+      "fpr": 0.00905282159744581,
+      "fnr": 0.12059860730716217,
+      "tp": 196504,
+      "fp": 1344,
+      "tn": 147118,
+      "fn": 26948,
+      "roc_auc": 0.9861556283739095,
+      "pr_auc": 0.9915782478434813
+    },
+    "tactic_end_to_end": {
+      "n": 371914,
+      "macro_f1": 0.8174693681244292,
+      "weighted_f1": 0.8609250732463984,
+      "per_class": {
+        "Benign": {
+          "precision": 0.845185159652086,
+          "recall": 0.9909471784025542,
+          "f1-score": 0.9122804841750174,
+          "support": 148462.0
+        },
+        "Command and Control": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 11635.0
+        },
+        "Credential Access": {
+          "precision": 0.6532639221864511,
+          "recall": 0.9845830895763791,
+          "f1-score": 0.7854123201932579,
+          "support": 29059.0
+        },
+        "Exfiltration": {
+          "precision": 0.5504587155963303,
+          "recall": 0.9917355371900827,
+          "f1-score": 0.7079646017699115,
+          "support": 242.0
+        },
+        "Impact": {
+          "precision": 0.9977030538087887,
+          "recall": 0.8327536353350375,
+          "f1-score": 0.9077962346465056,
+          "support": 95452.0
+        },
+        "Initial Access": {
+          "precision": 0.9690875337533753,
+          "recall": 0.9329776863084922,
+          "f1-score": 0.9506898454746137,
+          "support": 36928.0
+        },
+        "Other": {
+          "precision": 0.6015963511972634,
+          "recall": 0.8948439620081411,
+          "f1-score": 0.7194872494204282,
+          "support": 2948.0
+        },
+        "Reconnaissance/Discovery": {
+          "precision": 0.8645628464151618,
+          "recall": 0.4098923455115707,
+          "f1-score": 0.5561242093156987,
+          "support": 47188.0
+        },
+        "accuracy": 0.86989196427131,
+        "macro avg": {
+          "precision": 0.810232197826182,
+          "recall": 0.8797166792915322,
+          "f1-score": 0.8174693681244292,
+          "support": 371914.0
+        },
+        "weighted avg": {
+          "precision": 0.8868152327549587,
+          "recall": 0.86989196427131,
+          "f1-score": 0.8609250732463984,
+          "support": 371914.0
+        }
+      },
+      "labels": [
+        "Benign",
+        "Command and Control",
+        "Credential Access",
+        "Exfiltration",
+        "Impact",
+        "Initial Access",
+        "Other",
+        "Reconnaissance/Discovery"
+      ],
+      "confusion": [
+        [
+          147118,
+          0,
+          59,
+          0,
+          105,
+          86,
+          1,
+          1093
+        ],
+        [
+          0,
+          11635,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          311,
+          0,
+          28611,
+          0,
+          2,
+          113,
+          0,
+          22
+        ],
+        [
+          0,
+          0,
+          0,
+          240,
+          0,
+          1,
+          0,
+          1
+        ],
+        [
+          166,
+          0,
+          15013,
+          17,
+          79488,
+          200,
+          2,
+          566
+        ],
+        [
+          300,
+          0,
+          37,
+          0,
+          69,
+          34453,
+          985,
+          1084
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          46,
+          2638,
+          264
+        ],
+        [
+          26171,
+          0,
+          77,
+          179,
+          7,
+          653,
+          759,
+          19342
+        ]
+      ]
+    },
+    "tactic_given_attack": {
+      "n": 223452,
+      "macro_f1": 0.8612294825698582,
+      "weighted_f1": 0.9133522115278605,
+      "per_class": {
+        "Command and Control": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 11635.0
+        },
+        "Credential Access": {
+          "precision": 0.6548644338118023,
+          "recall": 0.9890911593654289,
+          "f1-score": 0.7880025771429354,
+          "support": 29059.0
+        },
+        "Exfiltration": {
+          "precision": 0.5393258426966292,
+          "recall": 0.9917355371900827,
+          "f1-score": 0.6986899563318777,
+          "support": 242.0
+        },
+        "Impact": {
+          "precision": 0.9989710643210279,
+          "recall": 0.8340527175962787,
+          "f1-score": 0.9090929852808514,
+          "support": 95452.0
+        },
+        "Initial Access": {
+          "precision": 0.9694818623889107,
+          "recall": 0.9393955805892548,
+          "f1-score": 0.9542016228854353,
+          "support": 36928.0
+        },
+        "Other": {
+          "precision": 0.6017335766423357,
+          "recall": 0.8948439620081411,
+          "f1-score": 0.7195853791598472,
+          "support": 2948.0
+        },
+        "Reconnaissance/Discovery": {
+          "precision": 0.9546638108437276,
+          "recall": 0.9634440959565992,
+          "f1-score": 0.9590338571880603,
+          "support": 47188.0
+        },
+        "accuracy": 0.9085620177935306,
+        "macro avg": {
+          "precision": 0.8170057986720619,
+          "recall": 0.944651864672255,
+          "f1-score": 0.8612294825698582,
+          "support": 223452.0
+        },
+        "weighted avg": {
+          "precision": 0.9343063439663714,
+          "recall": 0.9085620177935306,
+          "f1-score": 0.9133522115278605,
+          "support": 223452.0
+        }
+      },
+      "labels": [
+        "Command and Control",
+        "Credential Access",
+        "Exfiltration",
+        "Impact",
+        "Initial Access",
+        "Other",
+        "Reconnaissance/Discovery"
+      ],
+      "confusion": [
+        [
+          11635,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          28742,
+          0,
+          3,
+          134,
+          0,
+          180
+        ],
+        [
+          0,
+          0,
+          240,
+          0,
+          1,
+          0,
+          1
+        ],
+        [
+          0,
+          15015,
+          17,
+          79612,
+          231,
+          2,
+          575
+        ],
+        [
+          0,
+          45,
+          0,
+          69,
+          34690,
+          985,
+          1139
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          46,
+          2638,
+          264
+        ],
+        [
+          0,
+          88,
+          188,
+          10,
+          680,
+          759,
+          45463
+        ]
+      ]
+    }
+  },
+  "test": {
+    "binary": {
+      "n": 371915,
+      "positives": 223453,
+      "precision": 0.9551101854144516,
+      "recall": 0.8803864794833813,
+      "f1": 0.9162273184544879,
+      "fpr": 0.0622785628645714,
+      "fnr": 0.11961352051661871,
+      "tp": 196725,
+      "fp": 9246,
+      "tn": 139216,
+      "fn": 26728,
+      "roc_auc": 0.9565646785698795,
+      "pr_auc": 0.9706055401875304
+    },
+    "tactic_end_to_end": {
+      "n": 371915,
+      "macro_f1": 0.8401369972204086,
+      "weighted_f1": 0.8408198503858738,
+      "per_class": {
+        "Benign": {
+          "precision": 0.8389336161596683,
+          "recall": 0.9377214371354285,
+          "f1-score": 0.8855810639746061,
+          "support": 148462.0
+        },
+        "Command and Control": {
+          "precision": 1.0,
+          "recall": 0.9961323592608509,
+          "f1-score": 0.9980624327233585,
+          "support": 11635.0
+        },
+        "Credential Access": {
+          "precision": 0.6055045871559633,
+          "recall": 0.9925324340135586,
+          "f1-score": 0.7521514629948365,
+          "support": 29059.0
+        },
+        "Exfiltration": {
+          "precision": 0.8925925925925926,
+          "recall": 0.9958677685950413,
+          "f1-score": 0.94140625,
+          "support": 242.0
+        },
+        "Impact": {
+          "precision": 0.9835146391496239,
+          "recall": 0.8287743706326673,
+          "f1-score": 0.8995383425816429,
+          "support": 95453.0
+        },
+        "Initial Access": {
+          "precision": 0.8655773583028675,
+          "recall": 0.9424826689774697,
+          "f1-score": 0.9023944410594138,
+          "support": 36928.0
+        },
+        "Other": {
+          "precision": 0.6850746268656717,
+          "recall": 0.9341926729986432,
+          "f1-score": 0.7904707233065442,
+          "support": 2948.0
+        },
+        "Reconnaissance/Discovery": {
+          "precision": 0.8722380122856881,
+          "recall": 0.4032169195558193,
+          "f1-score": 0.551491261122866,
+          "support": 47188.0
+        },
+        "accuracy": 0.8485352835997473,
+        "macro avg": {
+          "precision": 0.8429294290640095,
+          "recall": 0.8788650788961848,
+          "f1-score": 0.8401369972204086,
+          "support": 371915.0
+        },
+        "weighted avg": {
+          "precision": 0.8685273747758591,
+          "recall": 0.8485352835997473,
+          "f1-score": 0.8408198503858738,
+          "support": 371915.0
+        }
+      },
+      "labels": [
+        "Benign",
+        "Command and Control",
+        "Credential Access",
+        "Exfiltration",
+        "Impact",
+        "Initial Access",
+        "Other",
+        "Reconnaissance/Discovery"
+      ],
+      "confusion": [
+        [
+          139216,
+          0,
+          3440,
+          3,
+          1132,
+          3629,
+          26,
+          1016
+        ],
+        [
+          42,
+          11590,
+          0,
+          0,
+          0,
+          0,
+          0,
+          3
+        ],
+        [
+          87,
+          0,
+          28842,
+          0,
+          2,
+          122,
+          0,
+          6
+        ],
+        [
+          0,
+          0,
+          0,
+          241,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          141,
+          0,
+          15178,
+          21,
+          79109,
+          371,
+          4,
+          629
+        ],
+        [
+          214,
+          0,
+          82,
+          0,
+          186,
+          34804,
+          632,
+          1010
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          71,
+          2754,
+          123
+        ],
+        [
+          26244,
+          0,
+          91,
+          5,
+          5,
+          1212,
+          604,
+          19027
+        ]
+      ]
+    },
+    "tactic_given_attack": {
+      "n": 223453,
+      "macro_f1": 0.9053336628928121,
+      "weighted_f1": 0.9116633766325415,
+      "per_class": {
+        "Command and Control": {
+          "precision": 1.0,
+          "recall": 0.9961323592608509,
+          "f1-score": 0.9980624327233585,
+          "support": 11635.0
+        },
+        "Credential Access": {
+          "precision": 0.65243613200515,
+          "recall": 0.9939777693657731,
+          "f1-score": 0.787781262784672,
+          "support": 29059.0
+        },
+        "Exfiltration": {
+          "precision": 0.9026217228464419,
+          "recall": 0.9958677685950413,
+          "f1-score": 0.9469548133595285,
+          "support": 242.0
+        },
+        "Impact": {
+          "precision": 0.9975302419354839,
+          "recall": 0.8293505704378071,
+          "f1-score": 0.9056992328945788,
+          "support": 95453.0
+        },
+        "Initial Access": {
+          "precision": 0.9477033907485646,
+          "recall": 0.9476007365684576,
+          "f1-score": 0.9476520608785138,
+          "support": 36928.0
+        },
+        "Other": {
+          "precision": 0.6895343014521783,
+          "recall": 0.9341926729986432,
+          "f1-score": 0.7934312878133103,
+          "support": 2948.0
+        },
+        "Reconnaissance/Discovery": {
+          "precision": 0.959189746423789,
+          "recall": 0.9563236416037976,
+          "f1-score": 0.9577545497957235,
+          "support": 47188.0
+        },
+        "accuracy": 0.9073630696388055,
+        "macro avg": {
+          "precision": 0.8784307907730867,
+          "recall": 0.9504922169757674,
+          "f1-score": 0.9053336628928121,
+          "support": 223453.0
+        },
+        "weighted avg": {
+          "precision": 0.932283808625635,
+          "recall": 0.9073630696388055,
+          "f1-score": 0.9116633766325415,
+          "support": 223453.0
+        }
+      },
+      "labels": [
+        "Command and Control",
+        "Credential Access",
+        "Exfiltration",
+        "Impact",
+        "Initial Access",
+        "Other",
+        "Reconnaissance/Discovery"
+      ],
+      "confusion": [
+        [
+          11590,
+          0,
+          0,
+          0,
+          0,
+          0,
+          45
+        ],
+        [
+          0,
+          28884,
+          0,
+          2,
+          135,
+          0,
+          38
+        ],
+        [
+          0,
+          0,
+          241,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          15178,
+          21,
+          79164,
+          401,
+          4,
+          685
+        ],
+        [
+          0,
+          86,
+          0,
+          188,
+          34993,
+          632,
+          1029
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          71,
+          2754,
+          123
+        ],
+        [
+          0,
+          123,
+          5,
+          5,
+          1324,
+          604,
+          45127
+        ]
+      ]
+    }
+  },
+  "holdout": {
+    "Backdoor": {
+      "n": 76535,
+      "detected_rate": 0.0401515646436271,
+      "expected_tactic": "Command and Control",
+      "tactic_correct_rate": 0.0,
+      "tactic_pred_counts": {
+        "Benign": 73462,
+        "Reconnaissance/Discovery": 1174,
+        "Initial Access": 800,
+        "Credential Access": 694,
+        "Other": 358,
+        "Impact": 46,
+        "Exfiltration": 1
+      }
+    },
+    "DoS_attacks-Slowloris": {
+      "n": 18020,
+      "detected_rate": 0.899889012208657,
+      "expected_tactic": "Impact",
+      "tactic_correct_rate": 0.5206437291897891,
+      "tactic_pred_counts": {
+        "Impact": 9382,
+        "Initial Access": 6296,
+        "Benign": 1804,
+        "Credential Access": 538
+      }
+    },
+    "SSH-Bruteforce": {
+      "n": 73626,
+      "detected_rate": 1.0,
+      "expected_tactic": "Credential Access",
+      "tactic_correct_rate": 0.00032597180343900254,
+      "tactic_pred_counts": {
+        "Impact": 70208,
+        "Exfiltration": 3394,
+        "Credential Access": 24
+      }
+    }
+  },
+  "train_rows": 1735595,
+  "git_commit": "4d26e06",
+  "model": {
+    "algo": "random_forest",
+    "split": "temporal",
+    "feature_set": "full",
+    "n_features": 189,
+    "saved_at": "2026-11-25T11:14:19",
+    "file": "stage1\\random_forest_temporal_full\\model.joblib",
+    "size_mb": 53.49,
+    "commit_allowed": false
+  }
+}

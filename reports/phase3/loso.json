@@ -1,0 +1,972 @@
+{
+  "git_commit": "52c7f1e",
+  "loso": {
+    "target_fpr": 0.01,
+    "runs": [
+      {
+        "feature_set": "full",
+        "test_source": "BoT-IoT",
+        "train_rows": 1551406,
+        "test_rows": 263127,
+        "fit_seconds": 77.2,
+        "threshold_val": 0.47832274436950684,
+        "default": {
+          "n": 263127,
+          "positives": 261740,
+          "precision": 0.9932930373125654,
+          "recall": 0.3264804768090471,
+          "f1": 0.4914339937314892,
+          "fpr": 0.4160057678442682,
+          "tp": 85453,
+          "fp": 577,
+          "fn": 176287,
+          "tn": 810
+        },
+        "default_ci": {
+          "n_groups": 291,
+          "n_boot": 1000,
+          "recall": {
+            "point": 0.3264804768090471,
+            "lo": 0.2057885423986858,
+            "hi": 0.4628191060061342
+          },
+          "fpr": {
+            "point": 0.4160057678442682,
+            "lo": 0.31861700089304756,
+            "hi": 0.5278959430662217
+          },
+          "precision": {
+            "point": 0.9932930373125654,
+            "lo": 0.9878457246223922,
+            "hi": 0.9961346632388681
+          },
+          "f1": {
+            "point": 0.4914339937314892,
+            "lo": 0.3408168624502622,
+            "hi": 0.6315909827092212
+          }
+        },
+        "val_fpr_0.01": {
+          "n": 263127,
+          "positives": 261740,
+          "precision": 0.9933093333642015,
+          "recall": 0.327848246351341,
+          "f1": 0.49298392262638274,
+          "fpr": 0.4167267483777938,
+          "tp": 85811,
+          "fp": 578,
+          "fn": 175929,
+          "tn": 809
+        },
+        "roc_auc": 0.4559763843203619,
+        "tactics_unseen_in_training": [
+          "Exfiltration"
+        ],
+        "tactic_correct_on_known_attacks": 0.0038173954829408938,
+        "per_class": {
+          "Benign": {
+            "n": 1387,
+            "flagged": 0.4142143253747918,
+            "source": "BoT-IoT"
+          },
+          "DDoS": {
+            "n": 63679,
+            "flagged": 0.3535469580382012,
+            "source": "BoT-IoT"
+          },
+          "DoS": {
+            "n": 97454,
+            "flagged": 0.3673849554029521,
+            "source": "BoT-IoT"
+          },
+          "Reconnaissance": {
+            "n": 98992,
+            "flagged": 0.08075996580930919,
+            "source": "BoT-IoT"
+          },
+          "Theft": {
+            "n": 1615,
+            "flagged": 0.2646638054363376,
+            "source": "BoT-IoT"
+          }
+        },
+        "in_source_baseline": {
+          "note": "Phase 2 temporal model (trained WITH this source), its test rows of this source",
+          "n": 39469,
+          "positives": 39261,
+          "precision": 0.9985021378577847,
+          "recall": 0.9338529329359925,
+          "f1": 0.9650960779152409,
+          "fpr": 0.2644230769230769,
+          "tp": 36664,
+          "fp": 55,
+          "fn": 2597,
+          "tn": 153
+        }
+      },
+      {
+        "feature_set": "full",
+        "test_source": "CSE-CIC-IDS2018",
+        "train_rows": 925578,
+        "test_rows": 1157168,
+        "fit_seconds": 49.7,
+        "threshold_val": 0.11875857412815094,
+        "default": {
+          "n": 1157168,
+          "positives": 678849,
+          "precision": 0.5938295550975876,
+          "recall": 0.6638619192191488,
+          "f1": 0.6268959219117,
+          "fpr": 0.6444360353655196,
+          "tp": 450662,
+          "fp": 308246,
+          "fn": 228187,
+          "tn": 170073
+        },
+        "default_ci": {
+          "n_groups": 1269,
+          "n_boot": 1000,
+          "recall": {
+            "point": 0.6638619192191488,
+            "lo": 0.5591567653533023,
+            "hi": 0.7543169848598666
+          },
+          "fpr": {
+            "point": 0.6444360353655196,
+            "lo": 0.6418580321913401,
+            "hi": 0.6470046784140164
+          },
+          "precision": {
+            "point": 0.5938295550975876,
+            "lo": 0.509497253644135,
+            "hi": 0.6630815441892202
+          },
+          "f1": {
+            "point": 0.6268959219117,
+            "lo": 0.5396448833352213,
+            "hi": 0.7001474451431667
+          }
+        },
+        "val_fpr_0.01": {
+          "n": 1157168,
+          "positives": 678849,
+          "precision": 0.5672472402863679,
+          "recall": 0.8507517872163028,
+          "f1": 0.6806585817157539,
+          "fpr": 0.9211404941053983,
+          "tp": 577532,
+          "fp": 440599,
+          "fn": 101317,
+          "tn": 37720
+        },
+        "roc_auc": 0.5806259754143286,
+        "tactics_unseen_in_training": [
+          "Command and Control"
+        ],
+        "tactic_correct_on_known_attacks": 0.15143668268247293,
+        "per_class": {
+          "Benign": {
+            "n": 478319,
+            "flagged": 0.6419835481614307,
+            "source": "CSE-CIC-IDS2018"
+          },
+          "Bot": {
+            "n": 77568,
+            "flagged": 0.0,
+            "source": "CSE-CIC-IDS2018"
+          },
+          "Brute_Force_-Web": {
+            "n": 1618,
+            "flagged": 0.5092724679029957,
+            "source": "CSE-CIC-IDS2018"
+          },
+          "Brute_Force_-XSS": {
+            "n": 460,
+            "flagged": 0.9531772575250836,
+            "source": "CSE-CIC-IDS2018"
+          },
+          "DDOS_attack-HOIC": {
+            "n": 100000,
+            "flagged": 0.0,
+            "source": "CSE-CIC-IDS2018"
+          },
+          "DDOS_attack-LOIC-UDP": {
+            "n": 1725,
+            "flagged": 0.9906375390102541,
+            "source": "CSE-CIC-IDS2018"
+          },
+          "DDoS_attacks-LOIC-HTTP": {
+            "n": 100000,
+            "flagged": 0.9705461538461538,
+            "source": "CSE-CIC-IDS2018"
+          },
+          "DoS_attacks-GoldenEye": {
+            "n": 30650,
+            "flagged": 0.8056921995783556,
+            "source": "CSE-CIC-IDS2018"
+          },
+          "DoS_attacks-Hulk": {
+            "n": 100000,
+            "flagged": 0.9999846153846154,
+            "source": "CSE-CIC-IDS2018"
+          },
+          "DoS_attacks-SlowHTTPTest": {
+            "n": 100000,
+            "flagged": 1.0,
+            "source": "CSE-CIC-IDS2018"
+          },
+          "FTP-BruteForce": {
+            "n": 86842,
+            "flagged": 1.0,
+            "source": "CSE-CIC-IDS2018"
+          },
+          "Infilteration": {
+            "n": 79546,
+            "flagged": 0.480185668697418,
+            "source": "CSE-CIC-IDS2018"
+          },
+          "SQL_Injection": {
+            "n": 440,
+            "flagged": 1.0,
+            "source": "CSE-CIC-IDS2018"
+          }
+        },
+        "in_source_baseline": {
+          "note": "Phase 2 temporal model (trained WITH this source), its test rows of this source",
+          "n": 173576,
+          "positives": 101828,
+          "precision": 0.9890588196984663,
+          "recall": 0.8948521035471579,
+          "f1": 0.9396000144361895,
+          "fpr": 0.014049172102358254,
+          "tp": 91121,
+          "fp": 1008,
+          "fn": 10707,
+          "tn": 70740
+        }
+      },
+      {
+        "feature_set": "full",
+        "test_source": "ToN-IoT",
+        "train_rows": 1107702,
+        "test_rows": 896991,
+        "fit_seconds": 66.3,
+        "threshold_val": 0.6800507307052612,
+        "default": {
+          "n": 896991,
+          "positives": 448018,
+          "precision": 0.7951292213960497,
+          "recall": 0.6501836979764206,
+          "f1": 0.7153884125810753,
+          "fpr": 0.1671681816055754,
+          "tp": 291294,
+          "fp": 75054,
+          "fn": 156724,
+          "tn": 373919
+        },
+        "default_ci": {
+          "n_groups": 1146,
+          "n_boot": 1000,
+          "recall": {
+            "point": 0.6501836979764206,
+            "lo": 0.5858843248252207,
+            "hi": 0.7159146052942892
+          },
+          "fpr": {
+            "point": 0.1671681816055754,
+            "lo": 0.12736574542862836,
+            "hi": 0.201888972008007
+          },
+          "precision": {
+            "point": 0.7951292213960497,
+            "lo": 0.7404734496195308,
+            "hi": 0.8466164092371794
+          },
+          "f1": {
+            "point": 0.7153884125810753,
+            "lo": 0.6642882825428873,
+            "hi": 0.7660796654344993
+          }
+        },
+        "val_fpr_0.01": {
+          "n": 896991,
+          "positives": 448018,
+          "precision": 0.7982144825305852,
+          "recall": 0.6465990205750661,
+          "f1": 0.7144516596829844,
+          "fpr": 0.16311003111545683,
+          "tp": 289688,
+          "fp": 73232,
+          "fn": 158330,
+          "tn": 375741
+        },
+        "roc_auc": 0.7519414430450402,
+        "tactics_unseen_in_training": [],
+        "tactic_correct_on_known_attacks": 0.04918775584909535,
+        "per_class": {
+          "Benign": {
+            "n": 448973,
+            "flagged": 0.31036377132475723,
+            "source": "ToN-IoT"
+          },
+          "DDoS": {
+            "n": 36321,
+            "flagged": 0.728597732004887,
+            "source": "ToN-IoT"
+          },
+          "DoS": {
+            "n": 2458,
+            "flagged": 0.43263853584138284,
+            "source": "ToN-IoT"
+          },
+          "injection": {
+            "n": 100000,
+            "flagged": 0.673975,
+            "source": "ToN-IoT"
+          },
+          "mitm": {
+            "n": 5268,
+            "flagged": 0.12378352717778306,
+            "source": "ToN-IoT"
+          },
+          "password": {
+            "n": 100000,
+            "flagged": 0.5834423938107066,
+            "source": "ToN-IoT"
+          },
+          "ransomware": {
+            "n": 3971,
+            "flagged": 0.5336061703132379,
+            "source": "ToN-IoT"
+          },
+          "scanning": {
+            "n": 100000,
+            "flagged": 0.22075,
+            "source": "ToN-IoT"
+          },
+          "xss": {
+            "n": 100000,
+            "flagged": 0.498175,
+            "source": "ToN-IoT"
+          }
+        },
+        "in_source_baseline": {
+          "note": "Phase 2 temporal model (trained WITH this source), its test rows of this source",
+          "n": 134549,
+          "positives": 67203,
+          "precision": 0.8537490720118782,
+          "recall": 0.7700549082630239,
+          "f1": 0.8097451063230531,
+          "fpr": 0.1316336530751641,
+          "tp": 51750,
+          "fp": 8865,
+          "fn": 15453,
+          "tn": 58481
+        }
+      },
+      {
+        "feature_set": "full",
+        "test_source": "UNSW-NB15",
+        "train_rows": 1622099,
+        "test_rows": 162138,
+        "fit_seconds": 68.2,
+        "threshold_val": 0.5183413028717041,
+        "default": {
+          "n": 162138,
+          "positives": 101072,
+          "precision": 0.6962396769280215,
+          "recall": 0.49296541079626405,
+          "f1": 0.57722941466099,
+          "fpr": 0.3559755019159598,
+          "tp": 49825,
+          "fp": 21738,
+          "fn": 51247,
+          "tn": 39328
+        },
+        "default_ci": {
+          "n_groups": 295,
+          "n_boot": 1000,
+          "recall": {
+            "point": 0.49296541079626405,
+            "lo": 0.465861840135497,
+            "hi": 0.5178193310198221
+          },
+          "fpr": {
+            "point": 0.3559755019159598,
+            "lo": 0.3499085558046159,
+            "hi": 0.36268338624227153
+          },
+          "precision": {
+            "point": 0.6962396769280215,
+            "lo": 0.6673216901751939,
+            "hi": 0.7218029598439308
+          },
+          "f1": {
+            "point": 0.57722941466099,
+            "lo": 0.553228069896011,
+            "hi": 0.5988074027061823
+          }
+        },
+        "val_fpr_0.01": {
+          "n": 162138,
+          "positives": 101072,
+          "precision": 0.7092300881164222,
+          "recall": 0.49134280512901696,
+          "f1": 0.5805146908406539,
+          "fpr": 0.3334097533815871,
+          "tp": 49661,
+          "fp": 20360,
+          "fn": 51411,
+          "tn": 40706
+        },
+        "roc_auc": 0.47153614479323425,
+        "tactics_unseen_in_training": [
+          "Other"
+        ],
+        "tactic_correct_on_known_attacks": 0.10788371550337136,
+        "per_class": {
+          "Analysis": {
+            "n": 1226,
+            "flagged": 0.9930947897049592,
+            "source": "UNSW-NB15"
+          },
+          "Benign": {
+            "n": 61066,
+            "flagged": 0.35617111329453555,
+            "source": "UNSW-NB15"
+          },
+          "DoS": {
+            "n": 88,
+            "flagged": 0.3893805309734513,
+            "source": "UNSW-NB15"
+          },
+          "Exploits": {
+            "n": 42744,
+            "flagged": 0.49556391383375026,
+            "source": "UNSW-NB15"
+          },
+          "Fuzzers": {
+            "n": 33816,
+            "flagged": 0.29422871311904275,
+            "source": "UNSW-NB15"
+          },
+          "Generic": {
+            "n": 19651,
+            "flagged": 0.8388005950050889,
+            "source": "UNSW-NB15"
+          },
+          "Reconnaissance": {
+            "n": 1008,
+            "flagged": 0.15954198473282444,
+            "source": "UNSW-NB15"
+          },
+          "Shellcode": {
+            "n": 2381,
+            "flagged": 0.45945072697899836,
+            "source": "UNSW-NB15"
+          },
+          "Worms": {
+            "n": 158,
+            "flagged": 0.16585365853658537,
+            "source": "UNSW-NB15"
+          }
+        },
+        "in_source_baseline": {
+          "note": "Phase 2 temporal model (trained WITH this source), its test rows of this source",
+          "n": 24321,
+          "positives": 15161,
+          "precision": 0.9999340369393139,
+          "recall": 0.9998680825803047,
+          "f1": 0.9999010586722074,
+          "fpr": 0.0001091703056768559,
+          "tp": 15159,
+          "fp": 1,
+          "fn": 2,
+          "tn": 9159
+        }
+      },
+      {
+        "feature_set": "lab",
+        "test_source": "BoT-IoT",
+        "train_rows": 1551406,
+        "test_rows": 263127,
+        "fit_seconds": 50.6,
+        "threshold_val": 0.5714085698127747,
+        "default": {
+          "n": 263127,
+          "positives": 261740,
+          "precision": 0.9955036809244245,
+          "recall": 0.6530297241537404,
+          "f1": 0.7886931403944296,
+          "fpr": 0.5565969718817592,
+          "tp": 170924,
+          "fp": 772,
+          "fn": 90816,
+          "tn": 615
+        },
+        "default_ci": {
+          "n_groups": 291,
+          "n_boot": 1000,
+          "recall": {
+            "point": 0.6530297241537404,
+            "lo": 0.5128648812564125,
+            "hi": 0.7880123036949921
+          },
+          "fpr": {
+            "point": 0.5565969718817592,
+            "lo": 0.455907924997152,
+            "hi": 0.6589189284763363
+          },
+          "precision": {
+            "point": 0.9955036809244245,
+            "lo": 0.9930152125230381,
+            "hi": 0.9969902440063487
+          },
+          "f1": {
+            "point": 0.7886931403944296,
+            "lo": 0.6766683992189992,
+            "hi": 0.8795339971682897
+          }
+        },
+        "val_fpr_0.01": {
+          "n": 263127,
+          "positives": 261740,
+          "precision": 0.995421234473442,
+          "recall": 0.6362344311148468,
+          "f1": 0.7762927879841691,
+          "fpr": 0.5522710886806056,
+          "tp": 166528,
+          "fp": 766,
+          "fn": 95212,
+          "tn": 621
+        },
+        "roc_auc": 0.5490307254941681,
+        "tactics_unseen_in_training": [
+          "Exfiltration"
+        ],
+        "tactic_correct_on_known_attacks": 0.07080442095146564,
+        "per_class": {
+          "Benign": {
+            "n": 1387,
+            "flagged": 0.5602443087173792,
+            "source": "BoT-IoT"
+          },
+          "DDoS": {
+            "n": 63679,
+            "flagged": 0.9479217462455886,
+            "source": "BoT-IoT"
+          },
+          "DoS": {
+            "n": 97454,
+            "flagged": 0.8857920909306181,
+            "source": "BoT-IoT"
+          },
+          "Reconnaissance": {
+            "n": 98992,
+            "flagged": 0.24214002642007926,
+            "source": "BoT-IoT"
+          },
+          "Theft": {
+            "n": 1615,
+            "flagged": 0.2727706247019552,
+            "source": "BoT-IoT"
+          }
+        },
+        "in_source_baseline": {
+          "note": "Phase 2 temporal model (trained WITH this source), its test rows of this source",
+          "n": 39469,
+          "positives": 39261,
+          "precision": 0.9973367788207995,
+          "recall": 0.9633733221262831,
+          "f1": 0.980060892660491,
+          "fpr": 0.4855769230769231,
+          "tp": 37823,
+          "fp": 101,
+          "fn": 1438,
+          "tn": 107
+        }
+      },
+      {
+        "feature_set": "lab",
+        "test_source": "CSE-CIC-IDS2018",
+        "train_rows": 925578,
+        "test_rows": 1157168,
+        "fit_seconds": 33.9,
+        "threshold_val": 0.15154485404491425,
+        "default": {
+          "n": 1157168,
+          "positives": 678849,
+          "precision": 0.6541127706710498,
+          "recall": 0.8089869764851977,
+          "f1": 0.7233528864372322,
+          "fpr": 0.6071262065692561,
+          "tp": 549180,
+          "fp": 290400,
+          "fn": 129669,
+          "tn": 187919
+        },
+        "default_ci": {
+          "n_groups": 1269,
+          "n_boot": 1000,
+          "recall": {
+            "point": 0.8089869764851977,
+            "lo": 0.7472783424044033,
+            "hi": 0.8568697217383957
+          },
+          "fpr": {
+            "point": 0.6071262065692561,
+            "lo": 0.6051326070098709,
+            "hi": 0.6092501136111775
+          },
+          "precision": {
+            "point": 0.6541127706710498,
+            "lo": 0.5875558410334354,
+            "hi": 0.711076854839698
+          },
+          "f1": {
+            "point": 0.7233528864372322,
+            "lo": 0.6623118510937027,
+            "hi": 0.7735743268238467
+          }
+        },
+        "val_fpr_0.01": {
+          "n": 1157168,
+          "positives": 678849,
+          "precision": 0.5840179797474861,
+          "recall": 0.8501743392124022,
+          "f1": 0.6923996084152334,
+          "fpr": 0.8594327216773743,
+          "tp": 577140,
+          "fp": 411083,
+          "fn": 101709,
+          "tn": 67236
+        },
+        "roc_auc": 0.6629143291305337,
+        "tactics_unseen_in_training": [
+          "Command and Control"
+        ],
+        "tactic_correct_on_known_attacks": 0.15267071469080182,
+        "per_class": {
+          "Benign": {
+            "n": 478319,
+            "flagged": 0.6037696099322145,
+            "source": "CSE-CIC-IDS2018"
+          },
+          "Bot": {
+            "n": 77568,
+            "flagged": 0.00019833792816200242,
+            "source": "CSE-CIC-IDS2018"
+          },
+          "Brute_Force_-Web": {
+            "n": 1618,
+            "flagged": 0.5639562529719448,
+            "source": "CSE-CIC-IDS2018"
+          },
+          "Brute_Force_-XSS": {
+            "n": 460,
+            "flagged": 1.0,
+            "source": "CSE-CIC-IDS2018"
+          },
+          "DDOS_attack-HOIC": {
+            "n": 100000,
+            "flagged": 1.0,
+            "source": "CSE-CIC-IDS2018"
+          },
+          "DDOS_attack-LOIC-UDP": {
+            "n": 1725,
+            "flagged": 0.0231832367365136,
+            "source": "CSE-CIC-IDS2018"
+          },
+          "DDoS_attacks-LOIC-HTTP": {
+            "n": 100000,
+            "flagged": 0.9962923076923077,
+            "source": "CSE-CIC-IDS2018"
+          },
+          "DoS_attacks-GoldenEye": {
+            "n": 30650,
+            "flagged": 0.9771609276177091,
+            "source": "CSE-CIC-IDS2018"
+          },
+          "DoS_attacks-Hulk": {
+            "n": 100000,
+            "flagged": 0.9766461538461538,
+            "source": "CSE-CIC-IDS2018"
+          },
+          "DoS_attacks-SlowHTTPTest": {
+            "n": 100000,
+            "flagged": 1.0,
+            "source": "CSE-CIC-IDS2018"
+          },
+          "FTP-BruteForce": {
+            "n": 86842,
+            "flagged": 1.0,
+            "source": "CSE-CIC-IDS2018"
+          },
+          "Infilteration": {
+            "n": 79546,
+            "flagged": 0.4114398994294556,
+            "source": "CSE-CIC-IDS2018"
+          },
+          "SQL_Injection": {
+            "n": 440,
+            "flagged": 1.0,
+            "source": "CSE-CIC-IDS2018"
+          }
+        },
+        "in_source_baseline": {
+          "note": "Phase 2 temporal model (trained WITH this source), its test rows of this source",
+          "n": 173576,
+          "positives": 101828,
+          "precision": 0.9792899089488712,
+          "recall": 0.8925148289272106,
+          "f1": 0.9338909640194623,
+          "fpr": 0.026788203155488653,
+          "tp": 90883,
+          "fp": 1922,
+          "fn": 10945,
+          "tn": 69826
+        }
+      },
+      {
+        "feature_set": "lab",
+        "test_source": "ToN-IoT",
+        "train_rows": 1107702,
+        "test_rows": 896991,
+        "fit_seconds": 47.2,
+        "threshold_val": 0.5378959774971008,
+        "default": {
+          "n": 896991,
+          "positives": 448018,
+          "precision": 0.656078629336716,
+          "recall": 0.33940600600868714,
+          "f1": 0.4473741116728867,
+          "fpr": 0.17754074298454472,
+          "tp": 152060,
+          "fp": 79711,
+          "fn": 295958,
+          "tn": 369262
+        },
+        "default_ci": {
+          "n_groups": 1146,
+          "n_boot": 1000,
+          "recall": {
+            "point": 0.33940600600868714,
+            "lo": 0.30201620678630875,
+            "hi": 0.37698228206789325
+          },
+          "fpr": {
+            "point": 0.17754074298454472,
+            "lo": 0.13924312432907343,
+            "hi": 0.21099519651859777
+          },
+          "precision": {
+            "point": 0.656078629336716,
+            "lo": 0.5832920529240243,
+            "hi": 0.729296654072432
+          },
+          "f1": {
+            "point": 0.4473741116728867,
+            "lo": 0.4053934263606215,
+            "hi": 0.49070381082711506
+          }
+        },
+        "val_fpr_0.01": {
+          "n": 896991,
+          "positives": 448018,
+          "precision": 0.6457807267322122,
+          "recall": 0.32194911811578997,
+          "f1": 0.4296830082785452,
+          "fpr": 0.1762177235602141,
+          "tp": 144239,
+          "fp": 79117,
+          "fn": 303779,
+          "tn": 369856
+        },
+        "roc_auc": 0.7010327594788939,
+        "tactics_unseen_in_training": [],
+        "tactic_correct_on_known_attacks": 0.04646688302702123,
+        "per_class": {
+          "Benign": {
+            "n": 448973,
+            "flagged": 0.22354567487354945,
+            "source": "ToN-IoT"
+          },
+          "DDoS": {
+            "n": 36321,
+            "flagged": 0.7017878959957324,
+            "source": "ToN-IoT"
+          },
+          "DoS": {
+            "n": 2458,
+            "flagged": 0.30604982206405695,
+            "source": "ToN-IoT"
+          },
+          "injection": {
+            "n": 100000,
+            "flagged": 0.26081875,
+            "source": "ToN-IoT"
+          },
+          "mitm": {
+            "n": 5268,
+            "flagged": 0.1015903156895324,
+            "source": "ToN-IoT"
+          },
+          "password": {
+            "n": 100000,
+            "flagged": 0.2738842445447504,
+            "source": "ToN-IoT"
+          },
+          "ransomware": {
+            "n": 3971,
+            "flagged": 0.6809381394616717,
+            "source": "ToN-IoT"
+          },
+          "scanning": {
+            "n": 100000,
+            "flagged": 0.2192,
+            "source": "ToN-IoT"
+          },
+          "xss": {
+            "n": 100000,
+            "flagged": 0.265325,
+            "source": "ToN-IoT"
+          }
+        },
+        "in_source_baseline": {
+          "note": "Phase 2 temporal model (trained WITH this source), its test rows of this source",
+          "n": 134549,
+          "positives": 67203,
+          "precision": 0.8582017776598567,
+          "recall": 0.7700995491272711,
+          "f1": 0.8117671970950614,
+          "fpr": 0.12697116384046567,
+          "tp": 51753,
+          "fp": 8551,
+          "fn": 15450,
+          "tn": 58795
+        }
+      },
+      {
+        "feature_set": "lab",
+        "test_source": "UNSW-NB15",
+        "train_rows": 1622099,
+        "test_rows": 162138,
+        "fit_seconds": 42.0,
+        "threshold_val": 0.5454654097557068,
+        "default": {
+          "n": 162138,
+          "positives": 101072,
+          "precision": 0.6360992725227158,
+          "recall": 0.6600839005857211,
+          "f1": 0.6478696802699618,
+          "fpr": 0.6250122817934693,
+          "tp": 66716,
+          "fp": 38167,
+          "fn": 34356,
+          "tn": 22899
+        },
+        "default_ci": {
+          "n_groups": 295,
+          "n_boot": 1000,
+          "recall": {
+            "point": 0.6600839005857211,
+            "lo": 0.6402284478906626,
+            "hi": 0.6815132144862307
+          },
+          "fpr": {
+            "point": 0.6250122817934693,
+            "lo": 0.6197463481600156,
+            "hi": 0.6303910162097269
+          },
+          "precision": {
+            "point": 0.6360992725227158,
+            "lo": 0.6080266250168751,
+            "hi": 0.661498309665178
+          },
+          "f1": {
+            "point": 0.6478696802699618,
+            "lo": 0.6273593199183198,
+            "hi": 0.6657637152387974
+          }
+        },
+        "val_fpr_0.01": {
+          "n": 162138,
+          "positives": 101072,
+          "precision": 0.6444055594440556,
+          "recall": 0.6376345575431376,
+          "f1": 0.6410021782158523,
+          "fpr": 0.5823698948678478,
+          "tp": 64447,
+          "fp": 35563,
+          "fn": 36625,
+          "tn": 25503
+        },
+        "roc_auc": 0.47997243134640116,
+        "tactics_unseen_in_training": [
+          "Other"
+        ],
+        "tactic_correct_on_known_attacks": 0.2317215460384913,
+        "per_class": {
+          "Analysis": {
+            "n": 1226,
+            "flagged": 0.20778405524168236,
+            "source": "UNSW-NB15"
+          },
+          "Benign": {
+            "n": 61066,
+            "flagged": 0.6259667951527977,
+            "source": "UNSW-NB15"
+          },
+          "DoS": {
+            "n": 88,
+            "flagged": 0.6637168141592921,
+            "source": "UNSW-NB15"
+          },
+          "Exploits": {
+            "n": 42744,
+            "flagged": 0.6134396314359242,
+            "source": "UNSW-NB15"
+          },
+          "Fuzzers": {
+            "n": 33816,
+            "flagged": 0.5915057212402466,
+            "source": "UNSW-NB15"
+          },
+          "Generic": {
+            "n": 19651,
+            "flagged": 0.8839348626007986,
+            "source": "UNSW-NB15"
+          },
+          "Reconnaissance": {
+            "n": 1008,
+            "flagged": 0.766412213740458,
+            "source": "UNSW-NB15"
+          },
+          "Shellcode": {
+            "n": 2381,
+            "flagged": 0.6096930533117932,
+            "source": "UNSW-NB15"
+          },
+          "Worms": {
+            "n": 158,
+            "flagged": 0.8146341463414634,
+            "source": "UNSW-NB15"
+          }
+        },
+        "in_source_baseline": {
+          "note": "Phase 2 temporal model (trained WITH this source), its test rows of this source",
+          "n": 24321,
+          "positives": 15161,
+          "precision": 0.9995362088385344,
+          "recall": 0.9950530967614274,
+          "f1": 0.997289614596417,
+          "fpr": 0.0007641921397379913,
+          "tp": 15086,
+          "fp": 7,
+          "fn": 75,
+          "tn": 9153
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+# Phase 3 evaluation settings. Everything from configs/phase2.yaml (data, models,
+# splits) is loaded first; this file adds the `phase3` section.
+base_config: configs/phase2.yaml
+
+phase3:
+  interim_dir: data/interim/phase3      # cached predictions (git-ignored)
+  reports_dir: reports/phase3
+  # Alert threshold chosen on benign VALIDATION flows: flag this share of them.
+  target_fpr: 0.01
+  # Bootstrap: resample whole (source, 5-minute) blocks, not single rows.
+  block_minutes: 5
+  n_boot: 1000
+  # Combined detector: per-model validation FPR targets tried; the pair with the
+  # best validation recall inside the target_fpr budget is chosen.
+  combo_fpr_grid: [0.001, 0.0025, 0.005, 0.0075, 0.01]
+  # Option B: a Stage 3 variant is eligible if its validation benign FPR is within this.
+  stage3_val_fpr_budget: 0.015

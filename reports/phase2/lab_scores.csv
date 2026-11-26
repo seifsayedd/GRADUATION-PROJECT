@@ -1,0 +1,55 @@
+session_id,IPV4_SRC_ADDR,IPV4_DST_ADDR,PROTOCOL,IN_PKTS,OUT_PKTS,Label,tactic,s1_random_forest_p_attack,s1_random_forest_tactic,s1_xgboost_p_attack,s1_xgboost_tactic,s2_p_attack,s2_tactic,s3_anomaly_score,s3_is_anomaly
+S07,192.168.50.20,192.168.60.10,1,10,10,0,Benign,0.3091,Benign,0.2667,Benign,0.0,Benign,0.018,0
+S07,192.168.50.20,192.168.60.10,1,5,5,0,Benign,0.3316,Benign,0.1537,Benign,0.0,Benign,0.0113,0
+S07,192.168.50.1,224.0.0.251,17,1,0,0,Benign,0.593,Reconnaissance/Discovery,0.7058,Reconnaissance/Discovery,0.0094,Benign,0.1525,1
+S07,192.168.60.1,224.0.0.251,17,1,0,0,Benign,0.593,Reconnaissance/Discovery,0.7058,Reconnaissance/Discovery,0.0094,Benign,0.1525,1
+S07,192.168.50.20,224.0.0.251,17,2,0,0,Benign,0.6417,Other,0.9597,Initial Access,0.0,Benign,0.1697,1
+S07,192.168.50.20,224.0.0.22,2,4,0,0,Benign,0.208,Benign,0.0895,Benign,0.0,Benign,0.0141,0
+S07,192.168.50.20,224.0.0.251,17,2,0,0,Benign,0.6417,Other,0.9597,Initial Access,0.0,Benign,0.1697,1
+S07,192.168.50.20,224.0.0.22,2,4,0,0,Benign,0.208,Benign,0.0895,Benign,0.0,Benign,0.0141,0
+S07,192.168.50.20,224.0.0.251,17,2,0,0,Benign,0.6417,Other,0.9597,Initial Access,0.0,Benign,0.1697,1
+S07,192.168.50.20,224.0.0.22,2,4,0,0,Benign,0.1895,Benign,0.0895,Benign,0.0,Benign,0.014,0
+S07,192.168.50.20,224.0.0.251,17,2,0,0,Benign,0.16,Benign,0.0182,Benign,0.0,Benign,0.0012,0
+S07,192.168.50.20,224.0.0.22,2,4,0,0,Benign,0.2058,Benign,0.1179,Benign,0.0,Benign,0.0142,0
+S10,192.168.50.20,192.168.60.10,1,4,4,1,Reconnaissance/Discovery,0.413,Benign,0.2595,Benign,0.0,Benign,0.0099,0
+S07,192.168.50.20,224.0.0.251,17,2,0,0,Benign,0.6417,Other,0.9597,Initial Access,0.0,Benign,0.1697,1
+S07,192.168.50.20,224.0.0.22,2,4,0,0,Benign,0.1974,Benign,0.0895,Benign,0.0,Benign,0.0141,0
+S07,192.168.50.20,224.0.0.251,17,2,0,0,Benign,0.2078,Benign,0.0255,Benign,0.0,Benign,0.0009,0
+S07,192.168.50.20,224.0.0.22,2,4,0,0,Benign,0.181,Benign,0.0895,Benign,0.0,Benign,0.014,0
+S07,192.168.50.1,224.0.0.251,17,1,0,0,Benign,0.593,Reconnaissance/Discovery,0.7058,Reconnaissance/Discovery,1e-04,Benign,0.1525,1
+S07,192.168.60.1,224.0.0.251,17,1,0,0,Benign,0.593,Reconnaissance/Discovery,0.7058,Reconnaissance/Discovery,1e-04,Benign,0.1525,1
+S07,192.168.50.20,224.0.0.251,17,2,0,0,Benign,0.6417,Other,0.9597,Initial Access,0.0,Benign,0.1697,1
+S07,192.168.50.20,224.0.0.22,2,4,0,0,Benign,0.2015,Benign,0.0938,Benign,0.0,Benign,0.0142,0
+S07,192.168.50.20,224.0.0.251,17,2,0,0,Benign,0.6417,Other,0.9597,Initial Access,0.0,Benign,0.1697,1
+S07,192.168.50.20,224.0.0.22,2,4,0,0,Benign,0.1787,Benign,0.0895,Benign,0.0,Benign,0.014,0
+S07,192.168.50.20,224.0.0.251,17,2,0,0,Benign,0.6417,Other,0.9597,Initial Access,0.0,Benign,0.1697,1
+S07,192.168.50.20,224.0.0.22,2,4,0,0,Benign,0.2055,Benign,0.0938,Benign,0.0,Benign,0.0142,0
+S07,192.168.50.1,192.168.50.255,17,4,0,0,Benign,0.4272,Benign,0.457,Benign,0.0,Benign,0.0015,0
+S07,192.168.50.1,192.168.50.255,17,4,0,0,Benign,0.4272,Benign,0.457,Benign,0.0,Benign,0.0015,0
+S07,192.168.60.1,192.168.60.255,17,4,0,0,Benign,0.4272,Benign,0.457,Benign,0.0,Benign,0.0015,0
+S07,192.168.60.1,192.168.60.255,17,4,0,0,Benign,0.4272,Benign,0.457,Benign,0.0,Benign,0.0015,0
+S07,192.168.50.1,224.0.0.251,17,17,0,0,Benign,0.448,Benign,0.1864,Benign,0.0,Benign,0.0054,0
+S07,192.168.60.1,224.0.0.251,17,17,0,0,Benign,0.448,Benign,0.1864,Benign,0.0,Benign,0.0054,0
+S07,192.168.50.1,239.255.255.250,17,17,0,0,Benign,0.5349,Other,0.2347,Benign,0.0,Benign,0.0057,0
+S07,192.168.60.1,239.255.255.250,17,15,0,0,Benign,0.2137,Benign,0.0988,Benign,0.0,Benign,0.0012,0
+S07,192.168.60.1,224.0.0.22,2,2,0,0,Benign,0.1087,Benign,0.0183,Benign,0.0,Benign,0.0141,0
+S07,192.168.50.1,224.0.0.22,2,2,0,0,Benign,0.0773,Benign,0.0238,Benign,1e-04,Benign,0.0152,0
+S07,192.168.50.20,224.0.0.251,17,2,0,0,Benign,0.6417,Other,0.9597,Initial Access,0.0,Benign,0.1697,1
+S07,192.168.50.20,224.0.0.22,2,4,0,0,Benign,0.1911,Benign,0.0895,Benign,0.0,Benign,0.0139,0
+S07,192.168.50.1,224.0.0.251,17,2,0,0,Benign,0.0974,Benign,0.0261,Benign,0.0,Benign,0.0008,0
+S07,192.168.60.1,224.0.0.251,17,2,0,0,Benign,0.0974,Benign,0.0261,Benign,0.0,Benign,0.0008,0
+S07,192.168.50.1,224.0.0.251,17,2,0,0,Benign,0.1107,Benign,0.0247,Benign,0.0,Benign,0.0008,0
+S07,192.168.60.1,224.0.0.251,17,2,0,0,Benign,0.1107,Benign,0.0247,Benign,0.0,Benign,0.0008,0
+S07,192.168.50.20,224.0.0.251,17,2,0,0,Benign,0.2078,Benign,0.0255,Benign,0.0,Benign,0.0009,0
+S07,192.168.50.20,224.0.0.22,2,4,0,0,Benign,0.2172,Benign,0.1179,Benign,0.0,Benign,0.0142,0
+S07,192.168.50.1,224.0.0.251,17,2,0,0,Benign,0.1161,Benign,0.0248,Benign,0.0,Benign,0.0008,0
+S07,192.168.60.1,224.0.0.251,17,2,0,0,Benign,0.1161,Benign,0.0248,Benign,0.0,Benign,0.0008,0
+S14,192.168.50.20,192.168.60.10,1,74,74,0,Benign,0.4082,Benign,0.1087,Benign,0.0,Benign,0.0812,1
+S14,192.168.50.20,192.168.50.1,1,79,79,0,Benign,0.4061,Benign,0.0865,Benign,0.0,Benign,0.0858,1
+S14,192.168.50.20,192.168.60.1,1,63,63,0,Benign,0.3501,Benign,0.0724,Benign,0.0,Benign,0.0754,1
+S07,192.168.50.20,224.0.0.251,17,2,0,0,Benign,0.6417,Other,0.9597,Initial Access,0.0,Benign,0.1697,1
+S07,192.168.50.20,224.0.0.22,2,4,0,0,Benign,0.1913,Benign,0.0895,Benign,0.0,Benign,0.014,0
+S07,192.168.60.1,224.0.0.251,17,2,0,0,Benign,0.1139,Benign,0.0248,Benign,0.0,Benign,0.0008,0
+S07,192.168.50.1,224.0.0.251,17,2,0,0,Benign,0.1139,Benign,0.0248,Benign,0.0,Benign,0.0008,0
+S07,192.168.50.20,224.0.0.251,17,2,0,0,Benign,0.6417,Other,0.9597,Initial Access,0.0,Benign,0.1697,1
+S07,192.168.50.20,224.0.0.22,2,4,0,0,Benign,0.1895,Benign,0.0895,Benign,0.0,Benign,0.014,0

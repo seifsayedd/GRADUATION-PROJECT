@@ -1,0 +1,246 @@
+{
+  "git_commit": "89c3999",
+  "holdout": {
+    "xgboost_temporal_full": {
+      "Backdoor": {
+        "rows": 400,
+        "detected": 0.0625,
+        "binary_mean_shap_all": {
+          "LONGEST_FLOW_PKT": -1.096648,
+          "TCP_WIN_MAX_IN": -0.804319,
+          "MAX_TTL": -0.438043,
+          "DST_TO_SRC_SECOND_BYTES": -0.203764,
+          "SERVER_TCP_FLAGS": -0.162293,
+          "L4_DST_PORT": -0.145191,
+          "DST_TO_SRC_AVG_THROUGHPUT": 0.129197,
+          "ICMP_IPV4_TYPE": -0.123849,
+          "SRC_TO_DST_SECOND_BYTES": -0.106871,
+          "SRC_TO_DST_IAT_STDDEV": -0.09191
+        },
+        "binary_mean_shap_missed": {
+          "LONGEST_FLOW_PKT": -1.149221,
+          "TCP_WIN_MAX_IN": -0.860281,
+          "MAX_TTL": -0.522746,
+          "DST_TO_SRC_SECOND_BYTES": -0.224251,
+          "SERVER_TCP_FLAGS": -0.175621,
+          "L4_DST_PORT": -0.160846,
+          "MIN_TTL": -0.144432,
+          "ICMP_IPV4_TYPE": -0.131012,
+          "DST_TO_SRC_AVG_THROUGHPUT": 0.125146,
+          "SRC_TO_DST_SECOND_BYTES": -0.12481
+        },
+        "tactic_given": {
+          "Reconnaissance/Discovery": 16,
+          "Initial Access": 5,
+          "Other": 3,
+          "Impact": 1
+        },
+        "tactic_mean_shap_flagged": {
+          "TCP_WIN_MAX_IN": -0.818765,
+          "IN_BYTES": 0.76786,
+          "LONGEST_FLOW_PKT": 0.511746,
+          "MIN_TTL": 0.317155,
+          "L7_PROTO": 0.214352,
+          "MAX_TTL": 0.212728,
+          "L4_DST_PORT": 0.075456,
+          "MIN_IP_PKT_LEN": 0.063458,
+          "SHORTEST_FLOW_PKT": 0.058554,
+          "TCP_FLAGS": 0.051682
+        }
+      },
+      "DoS_attacks-Slowloris": {
+        "rows": 400,
+        "detected": 1.0,
+        "binary_mean_shap_all": {
+          "L7_PROTO": 2.130759,
+          "TCP_WIN_MAX_IN": 0.950118,
+          "L4_DST_PORT": 0.362094,
+          "MAX_TTL": 0.295691,
+          "TCP_WIN_MAX_OUT": 0.213848,
+          "L4_SRC_PORT": 0.197877,
+          "DURATION_IN": 0.182926,
+          "SRC_TO_DST_AVG_THROUGHPUT": 0.156898,
+          "LONGEST_FLOW_PKT": 0.124804,
+          "IN_BYTES": 0.118332
+        },
+        "binary_mean_shap_missed": null,
+        "tactic_given": {
+          "Impact": 263,
+          "Initial Access": 137
+        },
+        "tactic_mean_shap_flagged": {
+          "SRC_TO_DST_IAT_AVG": 0.883916,
+          "MIN_IP_PKT_LEN": 0.452633,
+          "DST_TO_SRC_AVG_THROUGHPUT": 0.212309,
+          "FLOW_DURATION_MILLISECONDS": 0.188807,
+          "SRC_TO_DST_AVG_THROUGHPUT": 0.176362,
+          "MAX_TTL": 0.159076,
+          "DURATION_IN": 0.127946,
+          "OUT_BYTES": 0.111337,
+          "L7_PROTO": 0.105097,
+          "TCP_WIN_MAX_IN": 0.104469
+        }
+      },
+      "SSH-Bruteforce": {
+        "rows": 400,
+        "detected": 1.0,
+        "binary_mean_shap_all": {
+          "TCP_WIN_MAX_IN": 2.580978,
+          "L7_PROTO": -1.20843,
+          "MAX_TTL": 0.602207,
+          "L4_DST_PORT": 0.355921,
+          "NUM_PKTS_UP_TO_128_BYTES": 0.329342,
+          "NUM_PKTS_128_TO_256_BYTES": 0.267221,
+          "TCP_WIN_MAX_OUT": 0.26417,
+          "L4_SRC_PORT": 0.211313,
+          "SRC_TO_DST_IAT_MAX": 0.198148,
+          "SRC_TO_DST_IAT_AVG": 0.131612
+        },
+        "binary_mean_shap_missed": null,
+        "tactic_given": {
+          "Impact": 400
+        },
+        "tactic_mean_shap_flagged": {
+          "TCP_WIN_MAX_IN": 0.607136,
+          "MIN_TTL": 0.527503,
+          "NUM_PKTS_UP_TO_128_BYTES": -0.478407,
+          "NUM_PKTS_128_TO_256_BYTES": 0.327658,
+          "LONGEST_FLOW_PKT": 0.321246,
+          "DURATION_IN": -0.276301,
+          "L7_PROTO": -0.235661,
+          "MIN_IP_PKT_LEN": 0.169386,
+          "DST_TO_SRC_IAT_MAX": -0.153724,
+          "MAX_TTL": 0.147389
+        }
+      }
+    },
+    "xgboost_temporal_lab": {
+      "Backdoor": {
+        "rows": 400,
+        "detected": 0.9175,
+        "binary_mean_shap_all": {
+          "FLOW_DURATION_MILLISECONDS": 0.445837,
+          "ICMP_TYPE": 0.402874,
+          "L4_DST_PORT": -0.383529,
+          "IN_BYTES": 0.321639,
+          "PROTOCOL": 0.298121,
+          "DURATION_OUT": -0.240099,
+          "OUT_PKTS": 0.131244,
+          "OUT_BYTES": 0.123343,
+          "DST_TO_SRC_AVG_THROUGHPUT": -0.109281,
+          "IN_PKTS": -0.042591
+        },
+        "binary_mean_shap_missed": {
+          "IN_BYTES": -1.140925,
+          "DST_TO_SRC_AVG_THROUGHPUT": -0.309393,
+          "SRC_TO_DST_AVG_THROUGHPUT": -0.300827,
+          "OUT_BYTES": -0.270572,
+          "PROTOCOL": 0.260202,
+          "DURATION_OUT": -0.170721,
+          "IN_PKTS": -0.137727,
+          "L4_SRC_PORT": -0.102209,
+          "L4_DST_PORT": 0.090811,
+          "DURATION_IN": -0.069012
+        },
+        "tactic_given": {
+          "Reconnaissance/Discovery": 238,
+          "Initial Access": 108,
+          "Credential Access": 18,
+          "Other": 2,
+          "Impact": 1
+        },
+        "tactic_mean_shap_flagged": {
+          "SRC_TO_DST_AVG_THROUGHPUT": 0.334823,
+          "L4_DST_PORT": 0.32416,
+          "ICMP_IPV4_TYPE": 0.167949,
+          "IN_PKTS": 0.163438,
+          "L4_SRC_PORT": 0.125899,
+          "DURATION_OUT": 0.122761,
+          "OUT_PKTS": 0.089008,
+          "DST_TO_SRC_AVG_THROUGHPUT": 0.08706,
+          "ICMP_TYPE": 0.073114,
+          "IN_BYTES": 0.060786
+        }
+      },
+      "DoS_attacks-Slowloris": {
+        "rows": 400,
+        "detected": 0.8975,
+        "binary_mean_shap_all": {
+          "L4_DST_PORT": 1.140615,
+          "PROTOCOL": 0.731018,
+          "IN_BYTES": 0.579799,
+          "L4_SRC_PORT": 0.446406,
+          "OUT_BYTES": 0.320888,
+          "SRC_TO_DST_AVG_THROUGHPUT": 0.30306,
+          "OUT_PKTS": 0.297181,
+          "IN_PKTS": 0.284277,
+          "ICMP_TYPE": -0.164157,
+          "FLOW_DURATION_MILLISECONDS": -0.092766
+        },
+        "binary_mean_shap_missed": {
+          "ICMP_TYPE": -1.059624,
+          "L4_DST_PORT": 0.924791,
+          "ICMP_IPV4_TYPE": -0.386448,
+          "IN_PKTS": -0.384595,
+          "OUT_BYTES": -0.369603,
+          "DST_TO_SRC_AVG_THROUGHPUT": -0.284131,
+          "L4_SRC_PORT": 0.257298,
+          "SRC_TO_DST_AVG_THROUGHPUT": -0.252102,
+          "PROTOCOL": 0.23243,
+          "DURATION_IN": -0.192854
+        },
+        "tactic_given": {
+          "Impact": 211,
+          "Initial Access": 139,
+          "Credential Access": 7,
+          "Reconnaissance/Discovery": 2
+        },
+        "tactic_mean_shap_flagged": {
+          "DST_TO_SRC_AVG_THROUGHPUT": 0.524149,
+          "OUT_BYTES": 0.522841,
+          "SRC_TO_DST_AVG_THROUGHPUT": 0.336888,
+          "L4_DST_PORT": 0.312678,
+          "DURATION_IN": 0.284882,
+          "FLOW_DURATION_MILLISECONDS": 0.260363,
+          "IN_BYTES": -0.158292,
+          "IN_PKTS": 0.144981,
+          "OUT_PKTS": 0.137989,
+          "DURATION_OUT": 0.127016
+        }
+      },
+      "SSH-Bruteforce": {
+        "rows": 400,
+        "detected": 1.0,
+        "binary_mean_shap_all": {
+          "IN_BYTES": 1.443562,
+          "OUT_PKTS": -1.239075,
+          "L4_DST_PORT": 0.730872,
+          "DST_TO_SRC_AVG_THROUGHPUT": -0.428518,
+          "OUT_BYTES": 0.346697,
+          "L4_SRC_PORT": 0.304762,
+          "IN_PKTS": -0.182126,
+          "DURATION_OUT": 0.120554,
+          "PROTOCOL": 0.113814,
+          "FLOW_DURATION_MILLISECONDS": 0.07775
+        },
+        "binary_mean_shap_missed": null,
+        "tactic_given": {
+          "Credential Access": 399,
+          "Initial Access": 1
+        },
+        "tactic_mean_shap_flagged": {
+          "IN_BYTES": -1.645047,
+          "IN_PKTS": 0.726203,
+          "OUT_BYTES": 0.593338,
+          "ICMP_TYPE": 0.471921,
+          "L4_DST_PORT": 0.262095,
+          "ICMP_IPV4_TYPE": 0.136043,
+          "SRC_TO_DST_AVG_THROUGHPUT": 0.108451,
+          "OUT_PKTS": 0.101499,
+          "FLOW_DURATION_MILLISECONDS": 0.096153,
+          "DURATION_OUT": -0.063792
+        }
+      }
+    }
+  }
+}

@@ -33,11 +33,22 @@ Full design: [`docs/project-overview.md`](docs/project-overview.md)
 ├── docs/
 │   ├── project-overview.md            full SentinelAI architecture and evaluation plan
 │   ├── lab-architecture.md            cyber-range topology, tooling, lessons learned
-│   └── ai-team-data-requirements.md   data-collection spec from the AI team
+│   ├── ai-team-data-requirements.md   data-collection spec from the AI team
+│   ├── feature-mapping.md             lab (Argus/nfdump) → BigFlow NetFlow-v3 features, with gaps
+│   └── attack-taxonomy.md             BigFlow's 32 attack classes → ATT&CK tactics
 ├── scripts/
 │   ├── merge_sessions.py              flows + nfdump + manifest → one labeled CSV
 │   ├── augment_flows.py               flagged jitter-based synthetic augmentation
-│   └── validate_dataset.py            consistency and labeling checks
+│   ├── validate_dataset.py            consistency and labeling checks
+│   ├── build_bigflow_sample.py        class-stratified BigFlow sample → data/interim/
+│   ├── prepare_training_data.py       Phase 2 training sets (flows + sequences)
+│   └── train_phase2.py                train Stages 1–3, score lab flows, write reports/phase2
+├── configs/phase2.yaml                Phase 2 settings (sampling, splits, model parameters)
+├── reports/phase2/                    training metrics (JSON), summary.md, lab_scores.csv
+├── src/sentinelai/data/               data layer (loaders, mapping, preprocessing, splits, sources, ATT&CK taxonomy)
+├── src/sentinelai/models/             Stage 1–3 detection models and training runs
+├── tests/                             pytest suite
+├── pyproject.toml
 └── requirements.txt
 ```
 
@@ -51,7 +62,9 @@ Full design: [`docs/project-overview.md`](docs/project-overview.md)
 | First labeled dataset (v1) | ✅ 68 real flows, 96 features, ATT&CK-labeled |
 | Large-scale training data | 🔄 BigFlow-NIDS selected (~66.9M flows) |
 | 5-hour benign/attack capture session | 🔄 Planned |
-| Detection models, XAI, GenAI reports, dashboard | ⏳ AI / Data Science workstreams |
+| Phase 1 data layer (loaders, feature mapping, preprocessing, splits) | ✅ `src/sentinelai/data` |
+| Phase 2 detection models (RF/XGBoost, GRU + attention, autoencoder) | ✅ trained on BigFlow; results in [`reports/phase2/summary.md`](reports/phase2/summary.md) |
+| Evaluation, XAI, GenAI reports, dashboard | ⏳ Phases 3–6 |
 
 ## Quick start
 
@@ -70,6 +83,118 @@ python scripts/augment_flows.py data/processed/combined_sessions_full.csv augmen
 ```
 
 > **Data integrity:** every flow in `combined_sessions_full.csv` is genuinely captured traffic matched 1:1 to a collector record. Synthetic rows exist only in the augmented file and are always flagged with `is_synthetic = 1`. Exclude them from evaluation.
+
+## Phase 1: data layer
+
+```bash
+python -m venv .venv && .venv/Scripts/activate      # Windows; use .venv/bin/activate on Linux/macOS
+pip install -r requirements.txt && pip install -e .
+python -m pytest                                    # lab tests read data/processed (read-only)
+```
+
+**BigFlow-NIDS.** Download it from [Mendeley](https://data.mendeley.com/datasets/nv729tbdgz/1) into `data/external/bigflow/` (git-ignored). Check the headers first, then build a training sample:
+
+```bash
+python scripts/build_bigflow_sample.py data/external/bigflow data/interim/x.parquet --check-only
+python scripts/build_bigflow_sample.py data/external/bigflow data/interim/bigflow_sample.parquet --per-class 50000
+```
+
+**Typical use:**
+
+```python
+from sentinelai.data import (load_bigflow, clean, make_splits, resample_train,
+                             FlowPreprocessor, lab_to_bigflow, available_features)
+
+df, report = clean(load_bigflow("data/interim/bigflow_sample.parquet"))
+splits = make_splits(df, label_col="Attack", holdout_attacks=["<category>"])  # split FIRST
+splits = resample_train(splits, strategy="undersample")                     # train only
+pp = FlowPreprocessor(features=available_features()).fit(splits.train)      # lab-compatible feature set
+X_train, X_test = pp.transform(splits.train), pp.transform(splits.test)
+
+lab = lab_to_bigflow("data/processed/combined_sessions_full.csv")           # 54 real conversations, eval only
+X_lab = pp.transform(lab)
+```
+
+Rules the code enforces: synthetic rows never reach val/test/holdout (`assert_no_synthetic`). Resampling only touches train. Scalers and encoders are fitted on train only. Lab features the sensor didn't measure stay NaN and can't be fed to a model. Details and the full gap list: [`docs/feature-mapping.md`](docs/feature-mapping.md).
+
+## Phase 2: detection models
+
+Needs Python ≥ 3.11 and BigFlow v2 Parquet in `data/external/bigflow/`. Install the CUDA build of PyTorch first if you have an NVIDIA GPU (see `requirements.txt`).
+
+```bash
+python scripts/prepare_training_data.py        # ~15 min: 2.6M-row class-capped sample + 4 contiguous days for Stage 2
+python scripts/train_phase2.py --stage 1       # RF + XGBoost × {temporal, stratified} split × {full, lab} features
+python scripts/train_phase2.py --stage 3       # benign-only autoencoder
+python scripts/train_phase2.py --stage 2 --lab # GRU + attention, then score the real lab flows
+```
+
+| Stage | Model | What it does |
+|---|---|---|
+| 1 | Random Forest, XGBoost | Benign vs attack per flow, then ATT&CK tactic for flagged flows ([taxonomy](docs/attack-taxonomy.md)) |
+| 2 | GRU (or LSTM) + attention | Labels each flow from that host's previous 31 flows plus the time gaps between them |
+| 3 | Autoencoder | Trained on benign flows only. Flags flows it reconstructs badly; threshold set for a 1% false-positive rate on benign validation traffic |
+
+Each model is trained twice: on the **full** feature set, and on the **lab** set (the 14 model inputs our lab sensor can fill; 16 before the Phase 4 mapping fix). Only the lab set can score lab flows. Three attack classes (`SSH-Bruteforce`, `DoS_attacks-Slowloris`, `Backdoor`) are held out of training completely, to test detection of unseen attacks.
+
+Models are saved in `models/` (git-ignored). Metrics go to `reports/phase2/`, and **[`summary.md`](reports/phase2/summary.md)** lists every number, including the weak ones.
+
+## Phase 3: evaluation
+
+Needs the Phase 2 models in `models/` and the prepared splits in `data/interim/phase2/`. No model is tuned on test: every threshold and choice below is made on validation data.
+
+```bash
+python scripts/evaluate_phase3.py --only predict eval combined lab figures report   # ~5 min: score and evaluate every saved model
+python scripts/evaluate_phase3.py --only loso      # option A: train on 3 source datasets, test on the 4th (~30 min on GPU)
+python scripts/evaluate_phase3.py --only stage3    # option B: per-source Stage 3 variants (~10 min)
+python scripts/evaluate_phase3.py --only figures report                             # rebuild figures and report.md
+```
+
+| What | How |
+|---|---|
+| Confidence intervals | 95% bootstrap that resamples whole (source, 5-minute) blocks, since neighbouring flows are near-copies |
+| Operating points | The Phase 2 default, and a threshold that flags 1% of benign **validation** flows |
+| Per-class / per-source | Detection rate for each of the 32 attack classes and false alarms per source dataset |
+| Unseen attacks | Held-out classes: detection rate and which tactic each is mistaken for |
+| Combined detector | Stage 1 alone vs Stage 1 OR Stage 3, both held to the same validation false-alarm budget |
+| Option A | Leave-one-source-out XGBoost: how it does on a network it has never seen |
+| Option B | Stage 3 with one threshold per source, or one autoencoder per source, chosen on validation |
+
+Predictions are cached in `data/interim/phase3/` (git-ignored). The results, figures and **[`report.md`](reports/phase3/report.md)** go to `reports/phase3/`. The written findings are in [`docs/phase3-findings.md`](docs/phase3-findings.md).
+
+## Phase 4: explainability
+
+Needs the Phase 2 models and the Phase 3 results (Stage 2 thresholds come from `reports/phase3/models.json`).
+
+```bash
+python scripts/explain_phase4.py                 # ~20 min: every step below, then figures and report.md
+python scripts/explain_phase4.py --only lab      # just the real lab conversations (~1 min)
+```
+
+| What | How |
+|---|---|
+| Stage 1 | Exact TreeSHAP (XGBoost built-in; `shap` for Random Forest), summed back from the 189 model columns to the 53 original features. Every explanation is checked to add up to the model's real output |
+| Stage 2 | Attention weights per window, each checked by removing that earlier flow and measuring the change in attack probability |
+| Stage 3 | Each feature's share of the reconstruction error |
+| Trust checks | Deletion test (top-k features vs random k), stability across near-identical flows |
+| Explanation object | One JSON object per alert ([schema](docs/schema/explanation.schema.json)) with flow, model, decision, top features, attention and caveats, plus a template summary with no LLM |
+
+Phase 4 found that the lab's bytes-per-second features didn't match BigFlow's definition, and that lab throughput was divided by the wrong duration. The mapping was fixed and the lab-feature models were retrained (`python scripts/train_phase2.py --stage 1 --feature-set lab`, then `--stage 3` and `--stage 2 --lab` the same way). Phases 3 and 4 were rerun for the lab set (`python scripts/evaluate_phase3.py --force --only predict eval combined lab`, then `--only loso stage3 figures report --feature-sets lab`).
+
+Results are in **[`reports/phase4/report.md`](reports/phase4/report.md)**, with example objects in `reports/phase4/examples/` and every lab conversation explained in `reports/phase4/lab/`. The written findings are in [`docs/phase4-findings.md`](docs/phase4-findings.md).
+
+## Phase 5: GenAI layer (skeleton)
+
+Incident reports and analyst Q&A grounded only in the project's own evidence: the Phase 4 explanation objects, the findings docs and the ATT&CK taxonomy. Settings come from environment variables only; copy `.env.example`. By default it runs offline (`SENTINEL_LLM_PROVIDER=template`, no LLM and no key needed). Setting `SENTINEL_LLM_PROVIDER=anthropic` plus `ANTHROPIC_API_KEY` uses Claude through an interchangeable provider class.
+
+```bash
+python scripts/genai_phase5.py ingest
+python scripts/genai_phase5.py report --alert lab-xgboost_temporal_lab-13
+python scripts/genai_phase5.py ask "Why does XGBoost flag benign lab traffic?"
+```
+
+Every report goes through a groundedness check: numbers, IP addresses and citations must come from the sources given to the model, or the report is rejected and not stored. Storage is in memory by default; `docker-compose.yml` and `db/001_init.sql` set up PostgreSQL + pgvector. Details: [`docs/phase5-genai.md`](docs/phase5-genai.md).
+
+An interactive map of the whole project (loop, data, models, roadmap) is in [`docs/visual/sentinelai-map.html`](docs/visual/sentinelai-map.html). Open it in any browser.
 
 ---
 

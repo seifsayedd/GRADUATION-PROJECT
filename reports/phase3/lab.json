@@ -1,0 +1,218 @@
+{
+  "git_commit": "52c7f1e",
+  "lab": {
+    "rows": 54,
+    "attacks": 1,
+    "target_fpr": 0.01,
+    "models": {
+      "stage1_random_forest_temporal_lab": {
+        "default": {
+          "n": 54,
+          "positives": 1,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "fpr": 0.2830188679245283,
+          "tp": 0,
+          "fp": 15,
+          "fn": 1,
+          "tn": 38,
+          "flagged_by_protocol": [
+            {
+              "PROTOCOL": 1,
+              "n": 6,
+              "flagged": 0
+            },
+            {
+              "PROTOCOL": 2,
+              "n": 15,
+              "flagged": 0
+            },
+            {
+              "PROTOCOL": 17,
+              "n": 33,
+              "flagged": 15
+            }
+          ],
+          "flagged_by_dst_port": {
+            "5353.0": 14,
+            "3702.0": 1
+          },
+          "attack_flagged": false
+        },
+        "val_fpr_0.01": {
+          "n": 54,
+          "positives": 1,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "fpr": 0.2830188679245283,
+          "tp": 0,
+          "fp": 15,
+          "fn": 1,
+          "tn": 38,
+          "flagged_by_protocol": [
+            {
+              "PROTOCOL": 1,
+              "n": 6,
+              "flagged": 0
+            },
+            {
+              "PROTOCOL": 2,
+              "n": 15,
+              "flagged": 0
+            },
+            {
+              "PROTOCOL": 17,
+              "n": 33,
+              "flagged": 15
+            }
+          ],
+          "flagged_by_dst_port": {
+            "5353.0": 14,
+            "3702.0": 1
+          },
+          "attack_flagged": false
+        }
+      },
+      "stage1_xgboost_temporal_lab": {
+        "default": {
+          "n": 54,
+          "positives": 1,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "fpr": 0.2641509433962264,
+          "tp": 0,
+          "fp": 14,
+          "fn": 1,
+          "tn": 39,
+          "flagged_by_protocol": [
+            {
+              "PROTOCOL": 1,
+              "n": 6,
+              "flagged": 0
+            },
+            {
+              "PROTOCOL": 2,
+              "n": 15,
+              "flagged": 0
+            },
+            {
+              "PROTOCOL": 17,
+              "n": 33,
+              "flagged": 14
+            }
+          ],
+          "flagged_by_dst_port": {
+            "5353.0": 14
+          },
+          "attack_flagged": false
+        },
+        "val_fpr_0.01": {
+          "n": 54,
+          "positives": 1,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "fpr": 0.2641509433962264,
+          "tp": 0,
+          "fp": 14,
+          "fn": 1,
+          "tn": 39,
+          "flagged_by_protocol": [
+            {
+              "PROTOCOL": 1,
+              "n": 6,
+              "flagged": 0
+            },
+            {
+              "PROTOCOL": 2,
+              "n": 15,
+              "flagged": 0
+            },
+            {
+              "PROTOCOL": 17,
+              "n": 33,
+              "flagged": 14
+            }
+          ],
+          "flagged_by_dst_port": {
+            "5353.0": 14
+          },
+          "attack_flagged": false
+        }
+      },
+      "stage3_autoencoder_temporal_lab": {
+        "default": {
+          "n": 54,
+          "positives": 1,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "fpr": 0.32075471698113206,
+          "tp": 0,
+          "fp": 17,
+          "fn": 1,
+          "tn": 36,
+          "flagged_by_protocol": [
+            {
+              "PROTOCOL": 1,
+              "n": 6,
+              "flagged": 3
+            },
+            {
+              "PROTOCOL": 2,
+              "n": 15,
+              "flagged": 0
+            },
+            {
+              "PROTOCOL": 17,
+              "n": 33,
+              "flagged": 14
+            }
+          ],
+          "flagged_by_dst_port": {
+            "5353.0": 14,
+            "0.0": 3
+          },
+          "attack_flagged": false
+        },
+        "val_fpr_0.01": {
+          "n": 54,
+          "positives": 1,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "fpr": 0.32075471698113206,
+          "tp": 0,
+          "fp": 17,
+          "fn": 1,
+          "tn": 36,
+          "flagged_by_protocol": [
+            {
+              "PROTOCOL": 1,
+              "n": 6,
+              "flagged": 3
+            },
+            {
+              "PROTOCOL": 2,
+              "n": 15,
+              "flagged": 0
+            },
+            {
+              "PROTOCOL": 17,
+              "n": 33,
+              "flagged": 14
+            }
+          ],
+          "flagged_by_dst_port": {
+            "5353.0": 14,
+            "0.0": 3
+          },
+          "attack_flagged": false
+        }
+      }
+    }
+  }
+}

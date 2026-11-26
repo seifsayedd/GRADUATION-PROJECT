@@ -1,0 +1,808 @@
+<meta charset="utf-8">
+<title>SentinelAI Project Map</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one-screen holographic command console. The 3D model fills the screen; HUD panels float
+   over it: systems + layers (left), inspector (right), command line + event log (bottom),
+   view controls (top). Panels collapse into drawers on phones. Deliberately dark, single theme. */
+:root {
+  --bg: #02070d; --glass: rgba(6, 22, 34, .72); --glass-2: rgba(10, 34, 52, .82);
+  --line: rgba(94, 231, 255, .22); --line-2: rgba(94, 231, 255, .5);
+  --holo: #5ee7ff; --holo-dim: #3aa9c2; --ink: #d9f6ff; --muted: #7fa4b4;
+  --amber: #ffb547; --red: #ff5a5f; --green: #4ff0a0; --violet: #b996ff; --grey: #6b8794;
+  --f-display: "Rajdhani", "Segoe UI", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.5 var(--f-body); overflow: hidden;
+  padding-left: max(0px, env(safe-area-inset-left, 0px)); padding-right: max(0px, env(safe-area-inset-right, 0px)); }
+button, input, select { font: inherit; color: inherit; }
+.app { position: relative; height: 100%; width: 100%; overflow: hidden;
+  background: radial-gradient(120% 80% at 50% 10%, #0b2638 0%, #04111b 45%, var(--bg) 80%); }
+#gl { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; cursor: crosshair; }
+.scan { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen; opacity: .35;
+  background: repeating-linear-gradient(to bottom, rgba(94,231,255,.05) 0 1px, transparent 1px 3px); }
+.vignette { position: absolute; inset: 0; pointer-events: none; box-shadow: inset 0 0 160px 40px rgba(0,0,0,.75); }
+.labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.lbl { position: absolute; transform: translate(-50%, -100%); font: 500 11px var(--f-mono); color: var(--ink); letter-spacing: .03em;
+  padding: 2px 7px; border: 1px solid var(--line-2); border-left: 2px solid var(--c, var(--holo)); background: rgba(2, 12, 20, .7);
+  white-space: nowrap; text-transform: uppercase; }
+.lbl.dim { opacity: .28; }
+.pop { position: absolute; transform: translate(-50%, -100%); pointer-events: none; font: 500 12px var(--f-mono);
+  padding: 6px 10px; border: 1px solid var(--c); color: var(--ink); background: rgba(2, 12, 20, .9); white-space: nowrap;
+  box-shadow: 0 0 18px -4px var(--c); animation: popin .25s ease-out; }
+@keyframes popin { from { opacity: 0; transform: translate(-50%, -80%); } }
+
+/* ---------- HUD frame pieces ---------- */
+.panel { position: absolute; background: var(--glass); border: 1px solid var(--line); backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px); min-width: 0; }
+.panel::before, .panel::after { content: ""; position: absolute; width: 12px; height: 12px; border: 2px solid var(--holo); pointer-events: none; }
+.panel::before { top: -2px; left: -2px; border-right: 0; border-bottom: 0; }
+.panel::after { bottom: -2px; right: -2px; border-left: 0; border-top: 0; }
+.ph { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 8px 12px; border-bottom: 1px solid var(--line);
+  font: 600 13px/1 var(--f-display); letter-spacing: .18em; text-transform: uppercase; color: var(--holo); }
+.ph small { font: 400 10.5px var(--f-mono); letter-spacing: .06em; color: var(--muted); text-transform: none; }
+.pb { padding: 10px 12px; display: grid; gap: 10px; }
+.k { font: 500 10.5px var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+
+.top { top: max(10px, env(safe-area-inset-top, 0px)); left: 12px; right: 12px; display: flex; justify-content: space-between; gap: 12px;
+  align-items: flex-start; pointer-events: none; position: absolute; flex-wrap: wrap; }
+.brand { pointer-events: none; display: grid; gap: 2px; }
+.brand h1 { margin: 0; font: 700 clamp(26px, 3.4vw, 40px)/1 var(--f-display); letter-spacing: .22em; color: var(--holo);
+  text-shadow: 0 0 18px rgba(94, 231, 255, .55); }
+.brand .sub { font: 500 11px var(--f-mono); letter-spacing: .16em; color: var(--muted); text-transform: uppercase; }
+.sys { display: flex; gap: 6px; flex-wrap: wrap; pointer-events: auto; justify-content: flex-end; }
+.btn { border: 1px solid var(--line-2); background: rgba(4, 20, 32, .78); padding: 6px 10px; cursor: pointer;
+  font: 500 11.5px var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink); }
+.btn:hover { border-color: var(--holo); color: var(--holo); box-shadow: 0 0 12px -4px var(--holo); }
+.btn[aria-pressed="true"] { background: rgba(94, 231, 255, .16); border-color: var(--holo); color: var(--holo); }
+.btn.warn { border-color: rgba(255, 90, 95, .6); }
+.btn.warn:hover { color: var(--red); border-color: var(--red); box-shadow: 0 0 12px -4px var(--red); }
+.btn:focus-visible, .tog:focus-within, input:focus-visible, .part:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+
+.left { top: 96px; left: 12px; width: 250px; bottom: 150px; display: flex; flex-direction: column; }
+.left .scroll { overflow: auto; flex: 1; }
+.right { top: 96px; right: 12px; width: 340px; bottom: 150px; display: flex; flex-direction: column; }
+.right .scroll { overflow: auto; flex: 1; }
+.bottom { left: 12px; right: 12px; bottom: max(10px, env(safe-area-inset-bottom, 0px)); height: 128px; display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); }
+.console { display: flex; flex-direction: column; min-width: 0; border-right: 1px solid var(--line); }
+.log { flex: 1; overflow: auto; padding: 6px 12px; font: 12px/1.55 var(--f-mono); color: var(--muted); }
+.log .t { color: var(--holo-dim); margin-right: 8px; }
+.log .ok { color: var(--green); } .log .al { color: var(--amber); } .log .bad { color: var(--red); } .log .me { color: var(--ink); }
+.cmd { display: flex; align-items: center; gap: 8px; border-top: 1px solid var(--line); padding: 6px 12px; }
+.cmd span { color: var(--holo); font: 600 13px var(--f-mono); }
+.cmd input { flex: 1; min-width: 0; background: transparent; border: 0; outline: none; color: var(--ink); font: 13px var(--f-mono); caret-color: var(--holo); }
+.ctrl { padding: 8px 12px; display: grid; gap: 7px; align-content: start; min-width: 0; overflow: auto; }
+.ctrl .row { display: grid; grid-template-columns: 88px minmax(0, 1fr) 40px; gap: 8px; align-items: center; font: 11.5px var(--f-mono); color: var(--muted); }
+.ctrl .btns { display: flex; flex-wrap: wrap; gap: 5px; }
+input[type=range] { width: 100%; accent-color: var(--holo); }
+
+.tog { display: flex; align-items: center; gap: 8px; font: 12px var(--f-mono); cursor: pointer; padding: 2px 0; }
+.tog input { accent-color: var(--holo); }
+.tog i { width: 8px; height: 8px; display: inline-block; background: var(--c); box-shadow: 0 0 8px var(--c); }
+.tog .n { margin-left: auto; color: var(--muted); font-size: 10.5px; }
+.seg { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px; }
+.seg .btn { text-align: center; }
+
+.chip { display: inline-flex; align-items: center; gap: 6px; font: 500 10.5px/1 var(--f-mono); letter-spacing: .1em; padding: 4px 8px;
+  border: 1px solid currentColor; text-transform: uppercase; }
+.chip::before { content: ""; width: 6px; height: 6px; background: currentColor; box-shadow: 0 0 6px currentColor; }
+.c-built { color: var(--green); } .c-running { color: var(--amber); } .c-planned { color: var(--muted); }
+.insp h2 { margin: 0; font: 700 22px/1.1 var(--f-display); letter-spacing: .06em; text-transform: uppercase; }
+.insp p { margin: 0; font-size: 13.5px; }
+.gauges { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.gauge { display: grid; justify-items: center; gap: 2px; border: 1px solid var(--line); padding: 6px 4px; }
+.gauge svg { width: 78px; height: 78px; }
+.gauge .gl { font: 10.5px var(--f-mono); color: var(--muted); text-align: center; text-transform: uppercase; letter-spacing: .06em; }
+.facts { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; font-size: 13px; }
+.facts li { padding-left: 14px; position: relative; }
+.facts li::before { content: ""; position: absolute; left: 0; top: .6em; width: 6px; height: 1px; background: var(--holo); }
+.facts li.open::before { background: var(--amber); }
+.files code { font: 11.5px var(--f-mono); color: var(--holo); background: rgba(94,231,255,.08); padding: 1px 5px; margin: 0 4px 4px 0; display: inline-block; overflow-wrap: anywhere; }
+.partlist { display: flex; flex-wrap: wrap; gap: 4px; }
+.part { border: 1px solid var(--line); border-left: 3px solid var(--c); background: rgba(4, 20, 32, .6); padding: 3px 7px; cursor: pointer;
+  font: 11px var(--f-mono); color: var(--ink); }
+.part[aria-pressed="true"] { background: rgba(94, 231, 255, .16); }
+
+/* overlays */
+.overlay { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(1, 6, 11, .72); z-index: 20; padding: 16px; }
+.sheet { position: relative; width: min(1040px, 100%); max-height: 100%; overflow: auto; }
+.sheet .pb { gap: 14px; }
+.grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.card { border: 1px solid var(--line); padding: 12px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.card h3 { margin: 0; font: 600 16px var(--f-display); letter-spacing: .06em; text-transform: uppercase; color: var(--holo); }
+.card p { margin: 0; font-size: 12.5px; color: var(--muted); }
+.card svg { width: 100%; height: auto; }
+.card svg text { font: 11px var(--f-mono); fill: var(--ink); }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 12px; font: 11px var(--f-mono); color: var(--muted); }
+.legend i { display: inline-block; width: 9px; height: 9px; margin-right: 5px; }
+.road { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }
+.phase { border-top: 3px solid var(--grey); padding-top: 8px; display: grid; gap: 5px; align-content: start; }
+.phase.done { border-color: var(--green); } .phase.now { border-color: var(--amber); }
+.phase h3 { margin: 0; font: 600 15px var(--f-display); letter-spacing: .04em; text-transform: uppercase; }
+.phase ul { margin: 0; padding-left: 16px; font-size: 12.5px; color: var(--muted); }
+.helpgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 20px; font: 12.5px var(--f-mono); }
+.helpgrid b { color: var(--holo); font-weight: 500; }
+
+.boot { position: absolute; inset: 0; z-index: 30; display: grid; place-items: center; background: var(--bg); transition: opacity .6s; }
+.boot pre { margin: 0; font: 13px/1.7 var(--f-mono); color: var(--holo); min-width: min(520px, 90vw); text-shadow: 0 0 10px rgba(94,231,255,.5); white-space: pre-wrap; }
+.boot.out { opacity: 0; pointer-events: none; }
+.drawers { display: none; }
+.fallback { position: absolute; inset: 0; display: grid; place-items: center; color: var(--muted); padding: 24px; text-align: center; }
+
+@media (max-width: 1100px) { .left { width: 220px; } .right { width: 300px; } }
+@media (max-width: 860px) {
+  .left, .right { top: auto; bottom: 150px; left: 8px; right: 8px; width: auto; max-height: 52vh; z-index: 10; }
+  .left:not(.open), .right:not(.open) { display: none; }
+  .drawers { display: flex; gap: 6px; position: absolute; top: 72px; left: 8px; right: 8px; justify-content: space-between; pointer-events: auto; }
+  .bottom { left: 8px; right: 8px; grid-template-columns: minmax(0, 1fr); height: 138px; }
+  .ctrl { display: none; }
+  .grid3 { grid-template-columns: minmax(0, 1fr); }
+  .road { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .helpgrid { grid-template-columns: minmax(0, 1fr); }
+  .top .sys .opt { display: none; }
+}
+</style>
+
+<div class="app" id="app">
+  <canvas id="gl" aria-label="3D model of SentinelAI. Drag to orbit, scroll or pinch to zoom, select a part to inspect it."></canvas>
+  <div class="labels" id="labels"></div>
+  <div class="scan"></div><div class="vignette"></div>
+
+  <div class="top">
+    <div class="brand">
+      <h1>SENTINEL·AI</h1>
+      <div class="sub" id="status">Blue Team console · ECU FCIS graduation project</div>
+    </div>
+    <div class="sys">
+      <button class="btn" id="bTour" title="Guided tour (T)">Tour</button>
+      <button class="btn warn" id="bReplay" title="Replay the real S10 attack (P)">Replay attack</button>
+      <button class="btn" id="bAnalytics" title="Analytics (A)">Analytics</button>
+      <button class="btn opt" id="bRoad" title="Mission roadmap (M)">Mission</button>
+      <button class="btn opt" id="bVoice" aria-pressed="false" title="Speak narration (V)">Voice</button>
+      <button class="btn opt" id="bFull" title="Fullscreen (F)">Fullscreen</button>
+      <button class="btn" id="bHelp" title="Commands (?)">?</button>
+    </div>
+  </div>
+  <div class="drawers">
+    <button class="btn" id="dLeft">Systems</button>
+    <button class="btn" id="dRight">Inspector</button>
+  </div>
+
+  <aside class="panel left" id="left" aria-label="Systems and layers">
+    <div class="ph">Systems <small id="vis">all online</small></div>
+    <div class="scroll"><div class="pb">
+      <div class="k">Layers</div>
+      <div id="layers"></div>
+      <div class="k">Parts (select · double-click isolates)</div>
+      <div class="partlist" id="parts"></div>
+      <div class="k">Render mode</div>
+      <div class="seg" id="modes">
+        <button class="btn" data-mode="holo" aria-pressed="true">Hologram</button>
+        <button class="btn" data-mode="solid" aria-pressed="false">Solid</button>
+        <button class="btn" data-mode="xray" aria-pressed="false">X-ray</button>
+        <button class="btn" data-mode="status" aria-pressed="false">Status</button>
+      </div>
+      <div class="k">Camera</div>
+      <div class="seg" id="cams">
+        <button class="btn" data-cam="overview">Overview</button>
+        <button class="btn" data-cam="lab">Lab range</button>
+        <button class="btn" data-cam="tower">Detection</button>
+        <button class="btn" data-cam="top">Top-down</button>
+        <button class="btn" data-cam="side">Side</button>
+        <button class="btn" data-cam="data">Data</button>
+      </div>
+    </div></div>
+  </aside>
+
+  <aside class="panel right" id="right" aria-label="Inspector">
+    <div class="ph">Inspector <small id="inspId">—</small></div>
+    <div class="scroll"><div class="pb insp" id="detail" aria-live="polite"></div></div>
+  </aside>
+
+  <section class="panel bottom" aria-label="Command console">
+    <div class="console">
+      <div class="log" id="log" aria-live="polite"></div>
+      <form class="cmd" id="cmdForm" autocomplete="off">
+        <span>&gt;</span><input id="cmd" placeholder="type a command, e.g. isolate stage 2 · replay attack · help" aria-label="Command">
+      </form>
+    </div>
+    <div class="ctrl">
+      <div class="row"><span>Explode</span><input type="range" id="rExplode" min="0" max="100" value="0" aria-label="Explode"><span class="mono" id="vExplode">0%</span></div>
+      <div class="row"><span>Flow speed</span><input type="range" id="rSpeed" min="0" max="300" value="100" aria-label="Packet speed"><span class="mono" id="vSpeed">1.0×</span></div>
+      <div class="row"><span>Orbit</span><input type="range" id="rOrbit" min="0" max="100" value="35" aria-label="Auto-rotate speed"><span class="mono" id="vOrbit">35</span></div>
+      <div class="btns">
+        <button class="btn" id="bPause" aria-pressed="false">Pause</button>
+        <button class="btn" id="bShowAll">Show all</button>
+        <button class="btn" id="bReset">Reset</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="overlay" id="ovAnalytics" hidden role="dialog" aria-label="Analytics">
+    <div class="panel sheet"><div class="ph">Analytics · measured, not estimated <button class="btn" data-close>Close</button></div><div class="pb">
+      <div class="grid3">
+        <div class="card"><h3>Unseen networks</h3><p>Stage 1 XGBoost (all features): F1 when the source dataset was in training vs. trained on the other three only.</p>
+          <svg id="cLoso" viewBox="0 0 320 210"></svg><div class="legend"><span><i style="background:var(--holo)"></i>seen</span><span><i style="background:var(--red)"></i>never seen</span></div></div>
+        <div class="card"><h3>Real lab</h3><p id="labNote"></p><svg id="cLab" viewBox="0 0 320 210"></svg></div>
+        <div class="card"><h3>Never-seen attacks</h3><p>Share caught, time-ordered split, all features. Stage 3 = per-source autoencoders (chosen on validation).</p>
+          <svg id="cHold" viewBox="0 0 320 210"></svg><div class="legend"><span><i style="background:var(--holo)"></i>Stage 1 XGBoost</span><span><i style="background:var(--violet)"></i>Stage 3</span></div></div>
+        <div class="card"><h3>Are the explanations true?</h3><p>Phase 4. Setting an alert's top-3 SHAP features to benign values vs. 3 random ones (mean drop in attack probability, XGBoost, all features); and how often the GRU's most-attended flow is the one that mattered.</p>
+          <svg id="cXai" viewBox="0 0 320 210"></svg></div>
+        <div class="card" style="grid-column: span 2"><h3>Sources</h3><p>Every number comes from the repository: <span class="mono">reports/phase2/summary.md</span>, <span class="mono">reports/phase3/report.md</span>, <span class="mono">reports/phase4/report.md</span>, <span class="mono">data/README.md</span>, <span class="mono">docs/lab-architecture.md</span>, <span class="mono">docs/feature-mapping.md</span>. The 3D scene is an illustration: positions, sizes and moving packets show structure, not measured traffic. The GRU ring's sweep is decorative. Anything marked unverified is in the design document without code in the repository.</p></div>
+      </div>
+    </div></div>
+  </div>
+  <div class="overlay" id="ovRoad" hidden role="dialog" aria-label="Mission roadmap">
+    <div class="panel sheet"><div class="ph">Mission · six phases <button class="btn" data-close>Close</button></div><div class="pb"><div class="road" id="road"></div></div></div>
+  </div>
+  <div class="overlay" id="ovHelp" hidden role="dialog" aria-label="Commands">
+    <div class="panel sheet"><div class="ph">Commands &amp; shortcuts <button class="btn" data-close>Close</button></div><div class="pb">
+      <div class="helpgrid" id="helpgrid"></div>
+    </div></div>
+  </div>
+  <div class="boot" id="boot"><pre id="bootText"></pre></div>
+  <div class="fallback" id="fallback" hidden>3D could not start (WebGL unavailable). The inspector, analytics and command line still work.</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+/* =====================================================================================
+   DATA — every number below is copied from the repository reports (see Analytics → Sources)
+   ===================================================================================== */
+const COL = { built: "#4ff0a0", running: "#ffb547", planned: "#6b8794", red: "#ff5a5f", holo: "#5ee7ff", violet: "#b996ff", grey: "#8fb2c0", teal: "#38d6c4" };
+const LAB = { // real lab results for the lab-feature models after the Phase 4 mapping fix (reports/phase2/summary.md)
+  rows: 54, benign: 53, inputs: 14,
+  // [model, benign conversations flagged, caught the S10 attack, flagged before the fix]
+  models: [["Stage 1 RF", 15, false, 17], ["Stage 1 XGBoost", 14, false, 48], ["Stage 2 GRU", 0, false, 0], ["Stage 3 AE", 17, false, 54]],
+};
+const GROUPS = {
+  lab: { name: "Lab range", color: COL.red, parts: ["kali", "sensor", "win7"] },
+  data: { name: "Data", color: COL.violet, parts: ["bigflow", "data"] },
+  detect: { name: "Detection tower", color: COL.built, parts: ["s1", "s2", "s3", "eval"] },
+  future: { name: "XAI / GenAI / UI", color: COL.running, parts: ["xai", "genai", "dash"] },
+};
+const PARTS = [
+  { id: "kali", alias: ["red team", "attacker", "caldera"], name: "Red Team · Kali", status: "built", color: COL.red,
+    what: "MITRE Caldera 5.x with a Sandcat agent runs ATT&CK-mapped abilities one at a time, with manual approval. 192.168.50.20 on VMnet2.",
+    facts: ["The agent runs on Kali: current Sandcat builds do not start on Windows 7.", "One technique so far produced network traffic: T1016.001, a ping across the gateway (session S10)."],
+    open: "The LLM-based campaign planner is in the design document only (unverified: no code in this repo). This repo holds no attack code.", files: ["docs/lab-architecture.md"] },
+  { id: "sensor", alias: ["gateway", "ubuntu", "nfdump"], name: "Sensor · Ubuntu gateway", status: "built", color: COL.holo,
+    what: "Dual-homed gateway routing VMnet2 ↔ VMnet3. Captures every attacker↔target flow on both interfaces (ens33 .50.1, ens37 .60.1).",
+    facts: ["fprobe → nfcapd → nfdump is the working collector.", "Argus was the planned sensor; a source build crashed on every run.", "One real ping appears as 4 records: 2 directions × 2 interfaces."],
+    open: "A planned 5-hour capture (≈3 h benign, short authorized attack window, benign) has not happened yet.", files: ["docs/lab-architecture.md", "data/raw/"] },
+  { id: "win7", alias: ["target", "victim", "windows"], name: "Target · Windows 7", status: "built", color: COL.grey,
+    what: "Victim host, 192.168.60.10 on VMnet3, reachable only through the gateway.",
+    facts: ["Kali's own NAT adapter leaves the lab unmonitored; a Caldera ping to an outside address was recorded as a zero-flow session (S09), not padded with invented data."],
+    open: "No TCP application traffic yet: lab v1 is ICMP, UDP and IGMP only.", files: ["data/README.md"] },
+  { id: "bigflow", alias: ["bigflow", "dataset", "corpus"], name: "BigFlow-NIDS v2", status: "built", color: COL.violet,
+    what: "Public NetFlow-v3 corpus (CC BY 4.0): 66,935,021 flows, 53 features, 32 classes, merged from four benchmark datasets.",
+    facts: ["Source recovered from capture date: UNSW-NB15, CSE-CIC-IDS2018, BoT-IoT, ToN-IoT (the four stacked disks).", "Training sample 2,647,605 flows (≤100k per class, ≤1M benign).", "167,302 exact duplicates removed, though the dataset says it has none."],
+    open: "Held out of all training: SSH-Bruteforce, DoS_attacks-Slowloris, Backdoor.", files: ["data/interim/phase2/flows/meta.json", "src/sentinelai/data/sources.py"] },
+  { id: "data", alias: ["data layer", "phase 1", "mapping", "preprocess"], name: "Phase 1 · Data layer", status: "built", color: COL.teal,
+    what: "Loaders, lab → BigFlow feature mapping, train-only preprocessing, leak-free splits (split before resampling; synthetic rows never in val/test).",
+    facts: ["Lab v1: 68 real flows → 54 two-way conversations, 1 attack.", "53 BigFlow features; LAB_INPUTS model inputs can be filled from lab flows (the 'lab' feature set).", "Phase 4 found the lab's bytes-per-second features did not match BigFlow's definition; they were removed and throughput now divides by whole-flow duration, as BigFlow does."],
+    open: "Lab data is a pipeline proof, not a training corpus.", files: ["src/sentinelai/data/", "docs/feature-mapping.md"] },
+  { id: "s1", alias: ["stage 1", "stage1", "xgboost", "random forest", "rf"], name: "Stage 1 · RF / XGBoost", status: "built", color: COL.built,
+    what: "Per flow: benign or attack, then which ATT&CK tactic (8 classes). Trained on GPU.",
+    gauges: [["F1 later flows", .910], ["Recall", .871], ["FPR", .067, true], ["Tactic F1", .832]],
+    facts: ["Time-ordered split, XGBoost, all features: F1 0.910 [0.825, 0.957].", "Almost blind to ToN-IoT scanning on later flows (0.4% caught) and CIC Infilteration (11%).", "Leans on TTL and TCP window size, likely testbed fingerprints (Phase 4 interpretation).", "With lab features (no TTL or TCP fields) it catches 90% of unseen Backdoor flows; with all features only 5%."],
+    open: "On an unseen network, F1 falls to 0.49–0.72 (all features).", files: ["src/sentinelai/models/flow_classifier.py"] },
+  { id: "s2", alias: ["stage 2", "stage2", "gru", "sequence", "attention"], name: "Stage 2 · GRU + attention", status: "built", color: COL.built,
+    what: "Labels each flow from its host's previous 31 flows and the time gaps between them, over four whole capture days.",
+    gauges: [["F1", .922], ["Recall", .945], ["FPR", .066, true], ["Tactic F1", .939]],
+    facts: ["Bot beaconing and slow DoS: recall 1.00, almost no false alarms.", "ToN-IoT days: 23–44% false alarms (only 9–11 hosts).", "Attention picks the flow that mattered only 6.6% of the time (chance 3.4%), so alerts use remove-one-flow evidence."],
+    open: "Test blocks share days with training, so these numbers are somewhat optimistic.", files: ["src/sentinelai/models/sequence.py"] },
+  { id: "s3", alias: ["stage 3", "stage3", "autoencoder", "ae", "anomaly"], name: "Stage 3 · Autoencoder", status: "built", color: COL.built,
+    what: "Trained on benign flows only (inputs → 64 → 16 → 64 → inputs). Flags flows it reconstructs badly at a 1% benign-validation threshold.",
+    gauges: [["Recall global", .082], ["Recall per-source", .172], ["Backdoor caught", .939], ["FPR per-source", .074, true]],
+    facts: ["The weakest stage overall: ROC-AUC 0.58 with one global model.", "One autoencoder per source (chosen on validation) doubles recall and catches 94% of unseen Backdoor flows.", "Cost: test false alarms rise from 2.4% to 7.4%, mostly ToN-IoT."],
+    open: "Combining with Stage 1 under the same 1% budget did not help.", files: ["src/sentinelai/models/autoencoder.py"] },
+  { id: "eval", alias: ["phase 3", "evaluation", "eval", "ring"], name: "Phase 3 · Evaluation", status: "built", color: COL.built,
+    what: "Block-bootstrap confidence intervals, validation-only thresholds, per-class and per-source results, unseen-network and per-source Stage 3 tests.",
+    facts: ["Every Phase 2 test score reproduced exactly from the saved models.", "Thresholds drift: 1% false alarms on validation becomes 6.9% on later flows.", "Central result: models learn each benchmark network, not attacks in general."],
+    open: "Combining stages needs a validation set with unseen attacks to be judged fairly.", files: ["src/sentinelai/eval/", "reports/phase3/report.md"] },
+  { id: "xai", alias: ["phase 4", "xai", "shap", "explainability"], name: "Phase 4 · Explainability", status: "built", color: COL.built,
+    what: "TreeSHAP for Stage 1 (summed to the 53 original features), attention checked by removing one flow at a time, per-feature error for Stage 3, one JSON explanation object per alert.",
+    gauges: [["Top-3 SHAP drop", .681], ["Random-3 drop", .037], ["Attention = cause", .066], ["Chance", .034]],
+    facts: ["SHAP is faithful: removing an alert's top 3 features turns 91% of alerts benign; 3 random features turn 2%.", "Every explanation adds up to the model's real output (max error 7e-6).",
+            "Found and fixed a lab mapping bug: flagged lab conversations fell from 48 to 14 (XGBoost) and 54 to 17 (autoencoder), but no model catches the lab attack any more."],
+    open: "Attention is a weak explanation for Stage 2; alerts use remove-one-flow evidence instead.", files: ["src/sentinelai/explain/", "reports/phase4/report.md", "docs/schema/explanation.schema.json"] },
+  { id: "genai", alias: ["phase 5", "genai", "llm", "rag", "report"], name: "Phase 5 · GenAI reports", status: "running", color: COL.running,
+    what: "Incident reports and analyst Q&A grounded in the project's evidence: Phase 4 explanation objects, findings docs and the ATT&CK taxonomy, retrieved by vector search. The LLM is behind an interface (Claude, an offline template, or a test fake); keys come from the environment only.",
+    facts: ["Every output is checked: numbers, IP addresses and citations must appear in the sources given, or it is rejected and not stored.",
+            "Source text is escaped inside source tags and treated as data, never as instructions.",
+            "Runs offline today (template provider, local MiniLM embeddings, in-memory store); PostgreSQL + pgvector schema is ready."],
+    open: "Skeleton, awaiting review. No live Claude call made yet; PostgreSQL not installed on this machine.", files: ["src/sentinelai/genai/", "db/001_init.sql", "docs/phase5-genai.md", ".env.example"] },
+  { id: "dash", alias: ["phase 6", "dashboard", "api", "ui", "fastapi", "react"], name: "Phase 6 · API + dashboard", status: "planned", color: COL.planned,
+    what: "FastAPI backend and React dashboard: alert stream, attack timeline, ATT&CK matrix, XAI charts.",
+    facts: [], open: "Automated response or containment is not scoped in any phase (unverified).", files: [] },
+];
+const PHASES = [
+  ["1", "Data layer", "done", ["BigFlow + lab loaders", "lab → BigFlow feature map", "leak-free splits", "pytest suite"]],
+  ["2", "Detection models", "done", ["RF / XGBoost", "GRU + attention", "benign-only autoencoder", "lab flows scored"]],
+  ["3", "Evaluation", "done", ["block-bootstrap intervals", "validation-only thresholds", "leave-one-source-out", "per-source Stage 3"]],
+  ["4", "Explainability", "done", ["TreeSHAP, checked for additivity", "attention vs remove-one-flow", "per-alert JSON object", "lab mapping fix"]],
+  ["5", "GenAI skeleton", "now", ["PostgreSQL + pgvector schema", "grounded RAG reports + Q&A", "LLM behind an interface", "groundedness check"]],
+  ["6", "API + dashboard", "", ["FastAPI", "React dashboard skeleton"]]];
+PARTS.forEach(p => p.facts = p.facts.map(f => f.replace("LAB_INPUTS", LAB.inputs)));
+const byId = Object.fromEntries(PARTS.map(p => [p.id, p]));
+const STATUS = { built: "online", running: "in review", planned: "planned" };
+
+/* =====================================================================================
+   HUD: log, inspector, layers, overlays
+   ===================================================================================== */
+const $ = id => document.getElementById(id);
+const logEl = $("log");
+function log(msg, cls = "") {
+  const t = new Date().toTimeString().slice(0, 8);
+  const d = document.createElement("div");
+  d.innerHTML = `<span class="t">${t}</span><span class="${cls}">${msg}</span>`;
+  logEl.appendChild(d);
+  while (logEl.children.length > 120) logEl.firstChild.remove();
+  logEl.scrollTop = logEl.scrollHeight;
+}
+let voice = false;
+function say(text) {
+  if (!voice) return;
+  try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.rate = 1.04; u.pitch = .9; speechSynthesis.speak(u); } catch (e) {}
+}
+function gauge(label, v, bad) {
+  const r = 30, c = 2 * Math.PI * r, col = bad ? "var(--red)" : "var(--holo)";
+  return `<div class="gauge"><svg viewBox="0 0 80 80" aria-hidden="true">
+    <circle cx="40" cy="40" r="${r}" fill="none" stroke="rgba(94,231,255,.14)" stroke-width="6"/>
+    <circle cx="40" cy="40" r="${r}" fill="none" stroke="${col}" stroke-width="6" stroke-dasharray="${(v * c).toFixed(1)} ${c.toFixed(1)}" transform="rotate(-90 40 40)" style="filter:drop-shadow(0 0 4px ${col})"/>
+    <text x="40" y="45" text-anchor="middle" style="font:600 15px var(--f-mono);fill:var(--ink)">${v.toFixed(3)}</text></svg>
+    <div class="gl">${label}</div></div>`;
+}
+let selected = null;
+function select(id, fly = false, quiet = false) {
+  const p = byId[id]; if (!p) return;
+  selected = id;
+  document.querySelectorAll(".part").forEach(b => b.setAttribute("aria-pressed", b.dataset.id === id));
+  $("inspId").textContent = id.toUpperCase();
+  const st = p.status === "built" ? "c-built" : p.status === "running" ? "c-running" : "c-planned";
+  $("detail").innerHTML = `
+    <h2 style="color:${p.color}">${p.name}</h2>
+    <div><span class="chip ${st}">${STATUS[p.status]}</span></div>
+    <p>${p.what}</p>
+    ${p.gauges ? `<div class="gauges">${p.gauges.map(g => gauge(...g)).join("")}</div>` : ""}
+    <ul class="facts">${p.facts.map(f => `<li>${f}</li>`).join("")}<li class="open">${p.open}</li></ul>
+    ${p.files.length ? `<div class="files"><div class="k" style="margin-bottom:4px">files</div>${p.files.map(f => `<code>${f}</code>`).join("")}</div>` : ""}`;
+  if (!quiet) log(`target acquired: <span class="me">${p.name}</span>`);
+  if (window.__scene) window.__scene.focus(id, fly);
+}
+$("parts").innerHTML = PARTS.map(p => `<button class="part" data-id="${p.id}" style="--c:${p.color}" aria-pressed="false">${p.name}</button>`).join("");
+$("parts").addEventListener("click", e => { const b = e.target.closest(".part"); if (b) select(b.dataset.id, true); });
+$("parts").addEventListener("dblclick", e => { const b = e.target.closest(".part"); if (b) run(`isolate ${b.dataset.id}`); });
+
+const EXTRA_LAYERS = { packets: ["Packet flows", COL.holo], labels: ["Labels", COL.grey], grid: ["Grid + radar", COL.teal], rings: ["Holo rings", COL.violet] };
+$("layers").innerHTML = Object.entries(GROUPS).map(([k, g]) => `<label class="tog"><input type="checkbox" checked data-layer="${k}"><i style="--c:${g.color}"></i>${g.name}<span class="n">${g.parts.length}</span></label>`).join("")
+  + Object.entries(EXTRA_LAYERS).map(([k, [n, c]]) => `<label class="tog"><input type="checkbox" checked data-layer="${k}"><i style="--c:${c}"></i>${n}</label>`).join("");
+$("layers").addEventListener("change", e => { const k = e.target.dataset.layer; if (k) run(`${e.target.checked ? "show" : "hide"} ${k}`, true); });
+
+function openOverlay(id) { document.querySelectorAll(".overlay").forEach(o => o.hidden = o.id !== id); }
+document.querySelectorAll("[data-close]").forEach(b => b.onclick = () => b.closest(".overlay").hidden = true);
+document.querySelectorAll(".overlay").forEach(o => o.addEventListener("click", e => { if (e.target === o) o.hidden = true; }));
+$("bAnalytics").onclick = () => run("analytics");
+$("bRoad").onclick = () => run("mission");
+$("bHelp").onclick = () => run("help");
+$("bTour").onclick = () => run("tour");
+$("bReplay").onclick = () => run("replay attack");
+$("bVoice").onclick = () => run(voice ? "voice off" : "voice on");
+$("bFull").onclick = () => run("fullscreen");
+$("dLeft").onclick = () => { $("left").classList.toggle("open"); $("right").classList.remove("open"); };
+$("dRight").onclick = () => { $("right").classList.toggle("open"); $("left").classList.remove("open"); };
+document.querySelectorAll("#modes .btn").forEach(b => b.onclick = () => run(`mode ${b.dataset.mode}`));
+document.querySelectorAll("#cams .btn").forEach(b => b.onclick = () => run(`view ${b.dataset.cam}`));
+$("bPause").onclick = () => run(paused ? "resume" : "pause");
+$("bShowAll").onclick = () => run("show all");
+$("bReset").onclick = () => run("reset");
+$("rExplode").oninput = e => run(`explode ${e.target.value}`, true);
+$("rSpeed").oninput = e => run(`speed ${e.target.value / 100}`, true);
+$("rOrbit").oninput = e => { orbitSpeed = e.target.value / 100; $("vOrbit").textContent = e.target.value; };
+
+/* =====================================================================================
+   COMMANDS
+   ===================================================================================== */
+let paused = false, speed = 1, explode = 0, orbitSpeed = .35;
+const HELP = [
+  ["help / ?", "this list"], ["select &lt;part&gt;", "inspect, e.g. select gru"], ["focus &lt;part&gt;", "fly the camera to a part"],
+  ["isolate &lt;part&gt;", "hide everything else (double-click a part)"], ["show / hide &lt;part|layer&gt;", "layers: lab data detect future packets labels grid rings · show all"],
+  ["mode holo|solid|xray|status", "render mode (1-4)"], ["view overview|lab|tower|top|side|data", "camera preset"],
+  ["explode 0-100", "pull the parts apart (E toggles)"], ["speed 0-3", "packet speed"], ["pause / resume", "freeze time (Space)"],
+  ["tour", "guided tour with narration (T)"], ["replay attack", "walk the real S10 ping through the pipeline (P)"],
+  ["replay falsealarm", "a benign lab flow the models flag"], ["analytics / mission", "charts / roadmap (A / M)"],
+  ["voice on|off", "speak narration (V)"], ["fullscreen", "(F)"], ["reset", "restore everything (R)"], ["clear", "clear this log"]];
+$("helpgrid").innerHTML = HELP.map(([a, b]) => `<div><b>${a}</b></div><div>${b}</div>`).join("");
+
+function findPart(q) {
+  q = (q || "").toLowerCase().trim();
+  if (!q) return null;
+  return PARTS.find(p => p.id === q) || PARTS.find(p => p.alias.some(a => a === q)) || PARTS.find(p => p.alias.some(a => q.includes(a) || a.includes(q)))
+    || PARTS.find(p => p.name.toLowerCase().includes(q));
+}
+function run(input, silent = false) {
+  const raw = input.trim(); if (!raw) return;
+  if (!silent) log(`&gt; ${raw.replace(/</g, "&lt;")}`, "me");
+  const [cmd, ...rest] = raw.toLowerCase().split(/\s+/); const arg = rest.join(" ");
+  const S = window.__scene;
+  switch (cmd) {
+    case "help": case "?": openOverlay("ovHelp"); break;
+    case "clear": logEl.innerHTML = ""; break;
+    case "select": case "inspect": case "focus": case "goto": {
+      const p = findPart(arg); if (!p) return log(`no part matches "${arg}"`, "bad");
+      select(p.id, cmd !== "select"); break; }
+    case "isolate": {
+      const p = findPart(arg); if (!p) return log(`no part matches "${arg}"`, "bad");
+      S && S.isolate(p.id); select(p.id, true, true); log(`isolated ${p.name}. "show all" restores.`, "al"); break; }
+    case "show": case "hide": {
+      const on = cmd === "show";
+      if (arg === "all") { S && S.showAll(); document.querySelectorAll("[data-layer]").forEach(c => c.checked = true); log("all systems visible", "ok"); break; }
+      if (GROUPS[arg] || EXTRA_LAYERS[arg]) { S && S.setLayer(arg, on); const c = document.querySelector(`[data-layer="${arg}"]`); if (c) c.checked = on; if (!silent) log(`${on ? "showing" : "hiding"} ${arg}`); break; }
+      const p = findPart(arg); if (!p) return log(`nothing called "${arg}"`, "bad");
+      S && S.setPart(p.id, on); log(`${on ? "showing" : "hiding"} ${p.name}`); break; }
+    case "mode": {
+      const m = { "1": "holo", "2": "solid", "3": "xray", "4": "status", hologram: "holo" }[arg] || arg;
+      if (!["holo", "solid", "xray", "status"].includes(m)) return log("modes: holo, solid, xray, status", "bad");
+      S && S.setMode(m); document.querySelectorAll("#modes .btn").forEach(b => b.setAttribute("aria-pressed", b.dataset.mode === m));
+      log(`render mode: ${m}${m === "status" ? " (green online · amber in review · grey planned)" : ""}`); break; }
+    case "view": case "camera": {
+      if (!S || !S.view(arg)) return log("views: overview, lab, tower, top, side, data", "bad");
+      log(`camera → ${arg}`); break; }
+    case "explode": {
+      explode = Math.max(0, Math.min(100, arg === "" ? (explode > 0 ? 0 : 100) : +arg || 0)) / 100;
+      $("rExplode").value = explode * 100; $("vExplode").textContent = Math.round(explode * 100) + "%";
+      if (!silent) log(`explode ${Math.round(explode * 100)}%`); break; }
+    case "speed": { speed = Math.max(0, Math.min(3, parseFloat(arg) || 0)); $("rSpeed").value = speed * 100; $("vSpeed").textContent = speed.toFixed(1) + "×"; if (!silent) log(`packet speed ${speed.toFixed(1)}×`); break; }
+    case "pause": paused = true; $("bPause").setAttribute("aria-pressed", true); $("bPause").textContent = "Resume"; log("time frozen", "al"); break;
+    case "resume": case "play": paused = false; $("bPause").setAttribute("aria-pressed", false); $("bPause").textContent = "Pause"; log("time resumed", "ok"); break;
+    case "tour": S ? S.tour() : log("tour needs WebGL", "bad"); break;
+    case "replay": case "simulate": S ? S.replay(arg.includes("false") ? "falsealarm" : "attack") : log("replay needs WebGL", "bad"); break;
+    case "analytics": case "charts": openOverlay("ovAnalytics"); break;
+    case "mission": case "roadmap": openOverlay("ovRoad"); break;
+    case "voice": voice = arg !== "off"; $("bVoice").setAttribute("aria-pressed", voice); log(`voice ${voice ? "on" : "off"}`); if (voice) say("Voice online."); break;
+    case "fullscreen": try { document.fullscreenElement ? document.exitFullscreen() : $("app").requestFullscreen().catch(() => log("fullscreen is not available here", "bad")); } catch (e) { log("fullscreen is not available here", "bad"); } break;
+    case "reset": S && S.reset(); run("show all", true); run("mode holo", true); run("explode 0", true); run("speed 1", true); paused = false; log("console reset", "ok"); break;
+    default: { const p = findPart(raw); if (p) { select(p.id, true); break; } log(`unknown command "${cmd}". Type help.`, "bad"); }
+  }
+}
+$("cmdForm").addEventListener("submit", e => { e.preventDefault(); const v = $("cmd").value; $("cmd").value = ""; run(v); });
+document.addEventListener("keydown", e => {
+  if (e.target.tagName === "INPUT" && e.target.type !== "range" && e.target.type !== "checkbox") { if (e.key === "Escape") e.target.blur(); return; }
+  const k = e.key.toLowerCase();
+  const map = { e: "explode", t: "tour", p: "replay attack", a: "analytics", m: "mission", v: voice ? "voice off" : "voice on", f: "fullscreen", r: "reset", "?": "help", "1": "mode holo", "2": "mode solid", "3": "mode xray", "4": "mode status", h: document.querySelector('[data-layer="labels"]').checked ? "hide labels" : "show labels" };
+  if (e.key === "Escape") { document.querySelectorAll(".overlay").forEach(o => o.hidden = true); return; }
+  if (e.key === "/") { e.preventDefault(); $("cmd").focus(); return; }
+  if (e.key === " ") { e.preventDefault(); run(paused ? "resume" : "pause"); return; }
+  if (map[k]) run(map[k]);
+});
+
+/* =====================================================================================
+   3D SCENE
+   ===================================================================================== */
+(function () {
+  const canvas = $("gl"), app = $("app");
+  let R;
+  try { if (!window.THREE) throw 0; R = new THREE.WebGLRenderer({ canvas, antialias: true }); }
+  catch (e) { $("fallback").hidden = false; canvas.hidden = true; return; }
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce) orbitSpeed = 0;
+  R.setPixelRatio(Math.min(devicePixelRatio, 2));
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.Fog(0x02070d, 60, 130);
+  const cam = new THREE.PerspectiveCamera(42, 1, .1, 400);
+  scene.add(new THREE.AmbientLight(0x9fd8ff, .55));
+  const sun = new THREE.DirectionalLight(0xffffff, .7); sun.position.set(10, 30, 20); scene.add(sun);
+  const pl1 = new THREE.PointLight(0x5ee7ff, 1.3, 50); pl1.position.set(-16, 9, 4); scene.add(pl1);
+  const pl2 = new THREE.PointLight(0x4ff0a0, 1.1, 50); pl2.position.set(11, 12, 6); scene.add(pl2);
+  const C = c => new THREE.Color(c), V = (x, y, z) => new THREE.Vector3(x, y, z);
+  const ADD = THREE.AdditiveBlending;
+
+  // ---- environment: grid, radar, holo rings
+  const env = { grid: new THREE.Group(), rings: new THREE.Group() };
+  const grid = new THREE.GridHelper(110, 55, 0x1a5a72, 0x0b2a38); grid.material.transparent = true; grid.material.opacity = .55; env.grid.add(grid);
+  const radarDisk = new THREE.Mesh(new THREE.RingGeometry(0, 34, 64, 1, 0, Math.PI / 5), new THREE.MeshBasicMaterial({ color: 0x5ee7ff, transparent: true, opacity: .07, side: THREE.DoubleSide, blending: ADD, depthWrite: false }));
+  radarDisk.rotation.x = -Math.PI / 2; radarDisk.position.y = .02; env.grid.add(radarDisk);
+  [12, 22, 34].forEach(r => { const m = new THREE.Mesh(new THREE.RingGeometry(r - .05, r + .05, 96), new THREE.MeshBasicMaterial({ color: 0x5ee7ff, transparent: true, opacity: .18, side: THREE.DoubleSide, blending: ADD, depthWrite: false })); m.rotation.x = -Math.PI / 2; m.position.y = .03; env.grid.add(m); });
+  scene.add(env.grid, env.rings);
+
+  // ---- parts
+  const objs = {};
+  const solid = (c, e = .35) => new THREE.MeshStandardMaterial({ color: C(c), emissive: C(c), emissiveIntensity: e, metalness: .35, roughness: .45 });
+  const wireM = c => new THREE.MeshBasicMaterial({ color: C(c), wireframe: true, transparent: true, opacity: .55 });
+  function edges(mesh, c, o = .9) { const l = new THREE.LineSegments(new THREE.EdgesGeometry(mesh.geometry), new THREE.LineBasicMaterial({ color: C(c), transparent: true, opacity: o })); l.userData.edge = true; mesh.add(l); return mesh; }
+  function add(id, group, base, ex) {
+    group.position.copy(base); scene.add(group);
+    group.traverse(o => { if (o.isMesh) { o.userData.id = id; o.userData.orig = o.material; } });
+    objs[id] = { group, base: base.clone(), ex: ex || V(0, 0, 0), color: byId[id].color, status: byId[id].status, shown: true };
+  }
+  const plat = new THREE.Mesh(new THREE.BoxGeometry(17, .5, 9), new THREE.MeshStandardMaterial({ color: 0x0a2030, metalness: .2, roughness: .8, transparent: true, opacity: .9 }));
+  plat.position.set(-17, .25, 0); edges(plat, 0x2f8fb0); const platG = new THREE.Group(); platG.add(plat); scene.add(platG);
+  function vm(color, h) {
+    const g = new THREE.Group();
+    const body = edges(new THREE.Mesh(new THREE.BoxGeometry(2.6, h, 2.6), solid(color, .25)), color); body.position.y = h / 2; g.add(body);
+    for (let i = 0; i < 3; i++) { const led = new THREE.Mesh(new THREE.BoxGeometry(1.6, .08, .05), new THREE.MeshBasicMaterial({ color: C(color) })); led.position.set(0, h * .3 + i * .35, 1.33); g.add(led); }
+    return g;
+  }
+  add("kali", vm(COL.red, 2.6), V(-23, .5, 0), V(-3, 0, 2));
+  add("sensor", vm(COL.holo, 4.2), V(-17, .5, 0), V(0, 2, 0));
+  add("win7", vm(COL.grey, 2.6), V(-11, .5, 0), V(3, 0, 2));
+  [-1, 1].forEach(s => { const r = new THREE.Mesh(new THREE.TorusGeometry(.55, .07, 8, 24), new THREE.MeshBasicMaterial({ color: C(COL.holo) })); r.rotation.y = Math.PI / 2; r.position.set(s * 1.32, 2.2, 0); objs.sensor.group.add(r); r.userData.id = "sensor"; r.userData.orig = r.material; });
+  const bf = new THREE.Group(); let yy = 0;
+  [["#5ee7ff", 1.248814], ["#4ff0a0", .971223], ["#ffb547", .263127], ["#b996ff", .164441]].forEach(([c, m]) => {
+    const h = .6 + m * 1.6, d = edges(new THREE.Mesh(new THREE.CylinderGeometry(2.4, 2.4, h, 40), solid(c, .3)), c, .6);
+    d.position.y = yy + h / 2; yy += h + .15; bf.add(d); });
+  add("bigflow", bf, V(-5, 0, -11), V(-3, 2, -4));
+  const dl = new THREE.Group(); const hex = edges(new THREE.Mesh(new THREE.CylinderGeometry(2.6, 2.6, 1.2, 6), solid(COL.teal, .35)), COL.teal); hex.position.y = .6; dl.add(hex);
+  add("data", dl, V(-3, .4, 2), V(0, 2, 4));
+  const TX = 11;
+  const spine = new THREE.Mesh(new THREE.CylinderGeometry(.16, .16, 25, 12), new THREE.MeshBasicMaterial({ color: 0x1a5a72 })); spine.position.set(TX, 12.5, 0); env.rings.add(spine);
+  const s1 = new THREE.Group(); s1.add(edges(new THREE.Mesh(new THREE.CylinderGeometry(3.6, 3.6, .3, 48), solid(0x0f3a2a, .2)), COL.built));
+  for (let i = 0; i < 26; i++) { const a = i / 26 * Math.PI * 2, r = i % 2 ? 2.7 : 1.8, h = .9 + (i % 5) * .18;
+    const t = new THREE.Mesh(new THREE.ConeGeometry(.32, h, 6), solid(COL.built, .45)); t.position.set(Math.cos(a) * r, .15 + h / 2, Math.sin(a) * r); s1.add(t); }
+  add("s1", s1, V(TX, 2, 0), V(7, -.5, 5));
+  const s2 = new THREE.Group(), slots = []; s2.add(edges(new THREE.Mesh(new THREE.CylinderGeometry(3.6, 3.6, .3, 48), solid(0x0f3a2a, .2)), COL.built));
+  for (let i = 0; i < 32; i++) { const a = i / 32 * Math.PI * 2; const b = new THREE.Mesh(new THREE.BoxGeometry(.34, .8, .34), solid(COL.built, .3)); b.position.set(Math.cos(a) * 3, .55, Math.sin(a) * 3); b.rotation.y = -a; s2.add(b); slots.push(b); }
+  const core2 = new THREE.Mesh(new THREE.SphereGeometry(.9, 24, 16), solid(COL.holo, .6)); core2.position.y = .8; s2.add(core2);
+  add("s2", s2, V(TX, 6.4, 0), V(-7, .5, 5));
+  const s3 = new THREE.Group();
+  const enc = edges(new THREE.Mesh(new THREE.CylinderGeometry(2.4, .6, 1.6, 32, 1, true), solid(COL.built, .3)), COL.built);
+  const dec = edges(new THREE.Mesh(new THREE.CylinderGeometry(.6, 2.4, 1.6, 32, 1, true), solid(COL.built, .3)), COL.built);
+  enc.position.y = 2.4; dec.position.y = .8; enc.material.side = dec.material.side = THREE.DoubleSide;
+  const neck = new THREE.Mesh(new THREE.SphereGeometry(.62, 20, 14), solid(COL.violet, .7)); neck.position.y = 1.6; s3.add(enc, dec, neck);
+  add("s3", s3, V(TX, 10.4, 0), V(7, 1, -5));
+  const ev = new THREE.Group();
+  const ring = new THREE.Mesh(new THREE.TorusGeometry(5, .09, 8, 96), new THREE.MeshBasicMaterial({ color: C(COL.built) })); ring.rotation.x = Math.PI / 2; ev.add(ring);
+  const ring2 = new THREE.Mesh(new THREE.TorusGeometry(5.3, .03, 6, 96), new THREE.MeshBasicMaterial({ color: C(COL.built), transparent: true, opacity: .5 })); ring2.rotation.x = Math.PI / 2; ev.add(ring2);
+  add("eval", ev, V(TX, 6, 0), V(0, 0, 0));
+  const xai = new THREE.Group(); xai.add(edges(new THREE.Mesh(new THREE.OctahedronGeometry(1.8, 0), solid(COL.built, .45)), COL.built));
+  add("xai", xai, V(TX, 16.2, 0), V(-6, 3, -3));
+  const gen = new THREE.Group(); gen.add(edges(new THREE.Mesh(new THREE.IcosahedronGeometry(2.1, 1), solid(COL.running, .4)), COL.running));
+  add("genai", gen, V(TX, 21.2, 0), V(6, 4, -3));
+  const dash = new THREE.Group(); dash.add(new THREE.Mesh(new THREE.PlaneGeometry(8, 4.6, 8, 5), wireM("#8fb2c0")));
+  const dashEdge = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(8.2, 4.8, .2)), new THREE.LineBasicMaterial({ color: 0x8fb2c0 })); dash.add(dashEdge);
+  add("dash", dash, V(TX + 11, 12, -6), V(5, 2, -3)); dash.rotation.y = -.55;
+
+  // holo arcs around the tower
+  const arcs = [];
+  [[6.2, 3, .9, 0], [6.8, 9, 1.4, 2], [7.4, 14, .6, 4]].forEach(([r, y, len, off]) => {
+    const m = new THREE.Mesh(new THREE.RingGeometry(r, r + .12, 64, 1, off, len * Math.PI), new THREE.MeshBasicMaterial({ color: 0x5ee7ff, transparent: true, opacity: .45, side: THREE.DoubleSide, blending: ADD, depthWrite: false }));
+    m.rotation.x = -Math.PI / 2; m.position.set(TX, y, 0); env.rings.add(m); arcs.push(m); });
+
+  // ---- render modes
+  const holoCache = new Map();
+  function holoMat(color) { if (!holoCache.has(color)) holoCache.set(color, new THREE.MeshBasicMaterial({ color: C(color), wireframe: true, transparent: true, opacity: .6, blending: ADD, depthWrite: false })); return holoCache.get(color); }
+  const xrayCache = new Map();
+  function xrayMat(m) { if (!xrayCache.has(m)) { const x = m.clone(); x.transparent = true; x.opacity = .18; x.depthWrite = false; x.blending = ADD; xrayCache.set(m, x); } return xrayCache.get(m); }
+  const stCol = { built: COL.built, running: COL.running, planned: COL.planned };
+  let mode = "holo";
+  function setMode(m) {
+    mode = m;
+    for (const id in objs) objs[id].group.traverse(o => {
+      if (!o.isMesh || !o.userData.orig) return;
+      o.material = m === "solid" ? o.userData.orig : m === "xray" ? xrayMat(o.userData.orig) : m === "holo" ? holoMat(objs[id].color) : holoMat(stCol[objs[id].status]);
+    });
+  }
+
+  // ---- visibility
+  const layerOn = { lab: true, data: true, detect: true, future: true, packets: true, labels: true, grid: true, rings: true };
+  function applyVis() {
+    for (const [g, def] of Object.entries(GROUPS)) for (const id of def.parts) objs[id].group.visible = layerOn[g] && objs[id].shown;
+    platG.visible = layerOn.lab;
+    env.grid.visible = layerOn.grid; env.rings.visible = layerOn.rings && layerOn.detect;
+    paths.forEach(p => { const on = layerOn.packets && p.needs.every(n => objs[n].group.visible); p.line.visible = on; p.pk.forEach(k => k.m.visible = on); });
+    labelsEl.style.display = layerOn.labels ? "" : "none";
+    const hidden = PARTS.filter(p => !objs[p.id].group.visible).length;
+    $("vis").textContent = hidden ? `${hidden} hidden` : "all online";
+  }
+
+  // ---- packet paths
+  const paths = [];
+  function path(pts, color, n, sp, needs, dashed) {
+    const curve = new THREE.CatmullRomCurve3(pts);
+    const geo = new THREE.BufferGeometry().setFromPoints(curve.getPoints(80));
+    const mat = dashed ? new THREE.LineDashedMaterial({ color: C(color), dashSize: .5, gapSize: .4, transparent: true, opacity: .45 }) : new THREE.LineBasicMaterial({ color: C(color), transparent: true, opacity: .35, blending: ADD });
+    const line = new THREE.Line(geo, mat); if (dashed) line.computeLineDistances(); scene.add(line);
+    const pk = [];
+    for (let i = 0; i < n; i++) { const m = new THREE.Mesh(new THREE.SphereGeometry(dashed ? .12 : .17, 8, 6), new THREE.MeshBasicMaterial({ color: C(color), transparent: true, opacity: dashed ? .45 : 1, blending: ADD })); scene.add(m); pk.push({ m, o: i / n }); }
+    paths.push({ curve, pk, sp, needs, line });
+    return curve;
+  }
+  const P = {
+    k2s: path([V(-23, 2, 0), V(-20, 3.2, 0), V(-17, 2.6, 0)], COL.red, 3, .11, ["kali", "sensor"]),
+    s2w: path([V(-17, 2.6, 0), V(-14, 3.2, 0), V(-11, 2, 0)], COL.red, 3, .11, ["sensor", "win7"]),
+    back: path([V(-11, 1.6, .6), V(-17, 2.2, .8), V(-23, 1.6, .6)], COL.holo, 4, .08, ["kali", "win7"]),
+    s2d: path([V(-17, 4.7, 0), V(-11, 6, 1.5), V(-3, 1.6, 2)], COL.teal, 6, .09, ["sensor", "data"]),
+    b2d: path([V(-5, 4, -11), V(-4, 4, -5), V(-3, 1.6, 2)], COL.violet, 8, .07, ["bigflow", "data"]),
+    d2t: path([V(-3, 1.6, 2), V(4, 2.4, 2), V(TX, 2.4, 0)], COL.teal, 8, .1, ["data", "s1"]),
+    up: path([V(TX + 4.2, 2.6, 0), V(TX + 4.4, 7, 0), V(TX + 3.8, 12, 0)], COL.built, 5, .06, ["s1", "s3"]),
+    plan: path([V(TX + 3.8, 12, 0), V(TX + 3, 16.2, 0), V(TX + 2, 21.2, 0)], "#8fb2c0", 4, .04, ["s3", "genai"], true),
+    ui: path([V(TX + 2.5, 19, 0), V(TX + 8, 15, -3), V(TX + 11, 12, -6)], "#8fb2c0", 3, .04, ["genai", "dash"], true),
+  };
+
+  // ---- labels
+  const labelsEl = $("labels");
+  const LBL = { kali: ["Kali · Caldera", 3.4, -1.5], sensor: ["Sensor · nfdump", 6.4, 0], win7: ["Windows 7", 3.4, 1.5], bigflow: ["BigFlow 66.9M", 5.8, 0],
+    data: ["Data layer", 2, 0], s1: ["Stage 1 · trees", .8, 7.5], s2: ["Stage 2 · GRU", 1, 7.5], s3: ["Stage 3 · autoencoder", 1.8, 7], eval: ["Phase 3 · eval", .3, -8.5],
+    xai: ["XAI · SHAP", .4, -6], genai: ["GenAI · grounded RAG", .4, -6.5], dash: ["Dashboard · planned", 3, 0] };
+  const lblEls = {};
+  for (const id in LBL) { const d = document.createElement("div"); d.className = "lbl"; d.style.setProperty("--c", byId[id].color); d.textContent = LBL[id][0]; labelsEl.appendChild(d); lblEls[id] = d; }
+  const pops = [];
+  function popup(id, text, color, ms = 2600) {
+    const d = document.createElement("div"); d.className = "pop"; d.style.setProperty("--c", color); d.innerHTML = text; labelsEl.appendChild(d);
+    const p = { id, d, until: performance.now() + ms }; pops.push(p);
+  }
+
+  // ---- camera
+  const VIEWS = { overview: { th: .5, ph: 1.12, r: 56, t: V(-1, 8.5, 0) }, lab: { th: .2, ph: 1.05, r: 26, t: V(-17, 2.5, 0) },
+    tower: { th: .9, ph: 1.15, r: 34, t: V(TX, 10, 0) }, top: { th: 0, ph: .08, r: 70, t: V(-2, 0, 0) }, side: { th: Math.PI / 2, ph: 1.45, r: 60, t: V(-2, 8, 0) },
+    data: { th: -.4, ph: 1.0, r: 28, t: V(-4, 2, -4) } };
+  let th = VIEWS.overview.th, ph = VIEWS.overview.ph, r = VIEWS.overview.r; const tgt = VIEWS.overview.t.clone();
+  let goal = null;
+  function flyTo(v) { goal = { t: v.t.clone(), r: v.r, th: v.th, ph: v.ph }; }
+  function resize() { const w = app.clientWidth, h = app.clientHeight; R.setSize(w, h, false); cam.aspect = w / h; cam.fov = w < 700 ? 58 : 42; cam.updateProjectionMatrix(); }
+  new ResizeObserver(resize).observe(app); resize();
+
+  let drag = null, moved = 0; const ptrs = new Map(); let pinch0 = 0;
+  canvas.addEventListener("pointerdown", e => { canvas.setPointerCapture(e.pointerId); ptrs.set(e.pointerId, [e.clientX, e.clientY]); drag = [e.clientX, e.clientY]; moved = 0; goal = null;
+    if (ptrs.size === 2) { const [a, b] = [...ptrs.values()]; pinch0 = Math.hypot(a[0] - b[0], a[1] - b[1]); } });
+  canvas.addEventListener("pointermove", e => {
+    if (!ptrs.has(e.pointerId)) { canvas.style.cursor = hit(e) ? "pointer" : "crosshair"; return; }
+    ptrs.set(e.pointerId, [e.clientX, e.clientY]);
+    if (ptrs.size === 2) { const [a, b] = [...ptrs.values()]; const d = Math.hypot(a[0] - b[0], a[1] - b[1]); if (pinch0) r = Math.min(120, Math.max(12, r * pinch0 / d)); pinch0 = d; moved += 10; return; }
+    const dx = e.clientX - drag[0], dy = e.clientY - drag[1]; drag = [e.clientX, e.clientY]; moved += Math.abs(dx) + Math.abs(dy);
+    th -= dx * .006; ph = Math.min(1.52, Math.max(.06, ph - dy * .005)); });
+  let lastUp = 0;
+  const up = e => { ptrs.delete(e.pointerId); if (moved < 6 && e.type === "pointerup") { const id = hit(e); const now = performance.now();
+      if (id) { if (now - lastUp < 320) run(`isolate ${id}`); else select(id); } lastUp = now; }
+    if (!ptrs.size) drag = null; pinch0 = 0; };
+  canvas.addEventListener("pointerup", up); canvas.addEventListener("pointercancel", up);
+  canvas.addEventListener("wheel", e => { e.preventDefault(); goal = null; r = Math.min(120, Math.max(12, r * (1 + Math.sign(e.deltaY) * .08))); }, { passive: false });
+  const ray = new THREE.Raycaster(), mouse = new THREE.Vector2();
+  function hit(e) {
+    const b = canvas.getBoundingClientRect(); mouse.set((e.clientX - b.left) / b.width * 2 - 1, -(e.clientY - b.top) / b.height * 2 + 1);
+    ray.setFromCamera(mouse, cam);
+    const ms = []; for (const id in objs) if (objs[id].group.visible) objs[id].group.traverse(m => m.isMesh && ms.push(m));
+    const h = ray.intersectObjects(ms, false)[0]; return h && h.object.userData.id;
+  }
+
+  // ---- scripted sequences
+  let seq = null;   // {steps, i, t}
+  function sequence(steps) { seq = { steps, i: -1, until: 0 }; }
+  function tour() {
+    log("tour started. Any command stops it.", "ok");
+    const order = ["kali", "sensor", "win7", "bigflow", "data", "s1", "s2", "s3", "eval", "xai", "genai", "dash"];
+    sequence(order.map(id => ({ ms: 6500, go() { select(id, true, true); const p = byId[id]; log(`<span class="me">${p.name}</span> · ${p.what}`); say(`${p.name.replace("·", ",")}. ${p.what}`); } }))
+      .concat([{ ms: 500, go() { flyTo(VIEWS.overview); log("tour complete", "ok"); } }]));
+  }
+  const runner = { m: null, curve: null, t: 0, dur: 1 };
+  function rideOn(curve, dur, color) {
+    if (!runner.m) { runner.m = new THREE.Mesh(new THREE.SphereGeometry(.45, 16, 12), new THREE.MeshBasicMaterial({ color: C(color), blending: ADD, transparent: true })); scene.add(runner.m);
+      runner.glow = new THREE.Mesh(new THREE.SphereGeometry(1.1, 16, 12), new THREE.MeshBasicMaterial({ color: C(color), transparent: true, opacity: .25, blending: ADD, depthWrite: false })); runner.m.add(runner.glow); }
+    runner.m.material.color = C(color); runner.glow.material.color = C(color); runner.m.visible = true;
+    Object.assign(runner, { curve, t: 0, dur });
+  }
+  function replay(kind) {
+    run("show all", true); explode = 0; $("rExplode").value = 0; $("vExplode").textContent = "0%";
+    const s = LAB.models;
+    if (kind === "attack") {
+      log("REPLAY · session S10 · Kali → Windows 7 ping across the gateway (ATT&CK T1016.001)", "al"); say("Replaying session S10, the real lab attack.");
+      sequence([
+        { ms: 2600, go() { flyTo(VIEWS.lab); rideOn(P.k2s, 2.4, COL.red); popup("kali", "S10 · ICMP echo · T1016.001", COL.red); log("Caldera ability runs on Kali: ping 192.168.60.10"); } },
+        { ms: 2600, go() { rideOn(P.s2w, 2.4, COL.red); popup("sensor", "captured on ens33 + ens37 · 4 records", COL.holo); log("sensor captures both directions on both interfaces: 4 records"); } },
+        { ms: 3000, go() { flyTo(VIEWS.data); rideOn(P.s2d, 2.8, COL.teal); popup("data", `paired → 1 conversation · ${LAB.inputs} inputs`, COL.teal); log(`data layer pairs the records into 1 conversation and fills ${LAB.inputs} lab model inputs`); } },
+        { ms: 3000, go() { flyTo(VIEWS.tower); rideOn(P.d2t, 2.6, COL.teal); } },
+        { ms: 2800, go() { popup("s1", `RF: ${s[0][2] ? "ALERT" : "missed"} · XGB: ${s[1][2] ? "ALERT" : "missed"}`, s[1][2] ? COL.red : COL.grey); log(`Stage 1: Random Forest ${s[0][2] ? "flags it" : "misses it"}; XGBoost ${s[1][2] ? "flags it" : "misses it"}`, s[1][2] ? "ok" : "bad"); } },
+        { ms: 2800, go() { rideOn(P.up, 2.6, COL.built); popup("s2", `GRU: ${s[2][2] ? "ALERT" : "missed"}`, s[2][2] ? COL.red : COL.grey); log(`Stage 2 GRU ${s[2][2] ? "flags it" : "misses it"}`, s[2][2] ? "ok" : "bad"); } },
+        { ms: 3200, go() { popup("s3", `Autoencoder: ${s[3][2] ? "ANOMALY" : "normal"}`, s[3][2] ? COL.red : COL.grey); log(`Stage 3 autoencoder ${s[3][2] ? "flags it as anomalous" : "sees nothing unusual"}`, s[3][2] ? "ok" : "bad"); } },
+        { ms: 5200, go() { flyTo(VIEWS.overview); const n = s.filter(m => m[2]).length;
+          log(`verdict: caught by ${n} of 4 models. The same models flag ${s.map(m => m[1]).join(" / ")} of the ${LAB.benign} benign lab conversations. Before the Phase 4 mapping fix they flagged ${s.map(m => m[3]).join(" / ")} and "caught" the attack only because a broken feature made almost everything look like one. With one attack, this is a demonstration, not an accuracy claim.`, "al");
+          say(n ? `Replay complete. ${n} of 4 models catch the attack.` : "Replay complete. No model catches this attack. The models do not transfer to the lab yet."); if (runner.m) runner.m.visible = false; } }]);
+    } else {
+      log("REPLAY · benign lab conversation the models flag (multicast / connectivity traffic)", "al");
+      sequence([
+        { ms: 2800, go() { flyTo(VIEWS.lab); rideOn(P.back, 2.6, COL.holo); popup("win7", "benign lab traffic (mDNS, IGMP, SSDP, pings)", COL.holo); } },
+        { ms: 3000, go() { flyTo(VIEWS.data); rideOn(P.s2d, 2.8, COL.teal); popup("data", "mapped to BigFlow features", COL.teal); } },
+        { ms: 3000, go() { flyTo(VIEWS.tower); rideOn(P.d2t, 2.6, COL.teal); } },
+        { ms: 3600, go() { popup("s1", `XGBoost flags ${s[1][1]} of ${LAB.benign} benign`, COL.running); log(`Stage 1 XGBoost flags ${s[1][1]} of ${LAB.benign} benign lab conversations; Random Forest ${s[0][1]}`, "al"); } },
+        { ms: 4200, go() { popup("xai", "why: zero-duration one-way mDNS flows", COL.running); select("xai", false, true); log("Phase 4 SHAP: the flagged lab flows are UDP, mostly single-packet one-way mDNS (port 5353) with 0 ms duration and no reply bytes; flow duration alone pushes them +3.6 log-odds towards attack (XGBoost).", "al"); } },
+        { ms: 1500, go() { flyTo(VIEWS.overview); if (runner.m) runner.m.visible = false; } }]);
+    }
+  }
+
+  // ---- public API for the command line
+  window.__scene = {
+    focus(id, fly) { if (!fly || !objs[id]) return; const p = objs[id].group.position; goal = { t: V(p.x, p.y + 1.5, p.z), r: 26 }; },
+    isolate(id) { for (const k in objs) objs[k].shown = k === id; for (const g in GROUPS) layerOn[g] = true; applyVis(); },
+    showAll() { for (const k in objs) objs[k].shown = true; for (const k in layerOn) layerOn[k] = true; applyVis(); },
+    setLayer(k, on) { layerOn[k] = on; applyVis(); },
+    setPart(id, on) { objs[id].shown = on; applyVis(); },
+    setMode, view(n) { if (!VIEWS[n]) return false; flyTo(VIEWS[n]); return true; }, tour, replay,
+    reset() { seq = null; flyTo(VIEWS.overview); if (runner.m) runner.m.visible = false; },
+  };
+
+  // ---- loop
+  const tmp = V(0, 0, 0), right = V(0, 0, 0);
+  let last = performance.now(), T = 0;
+  function loop(now) {
+    const dt = Math.min(.05, (now - last) / 1000); last = now;
+    const step = paused ? 0 : dt; T += step;
+    if (!drag && !goal && orbitSpeed > 0 && !paused) th += dt * .12 * orbitSpeed;
+    if (goal) { tgt.lerp(goal.t, .06); r += (goal.r - r) * .06; if (goal.th !== undefined) { th += (goal.th - th) * .06; ph += (goal.ph - ph) * .06; }
+      if (tgt.distanceTo(goal.t) < .05 && Math.abs(goal.r - r) < .1) goal = null; }
+    for (const id in objs) { const o = objs[id]; const e = o.cur = (o.cur || 0) + (explode - (o.cur || 0)) * .08; o.group.position.copy(o.base).addScaledVector(o.ex, e); }
+    const mo = reduce ? .25 : 1;
+    objs.s1.group.rotation.y += step * .25 * mo; objs.s3.group.rotation.y -= step * .3 * mo;
+    objs.xai.group.rotation.y += step * .5 * mo; objs.genai.group.rotation.x += step * .2 * mo; objs.genai.group.rotation.y += step * .3 * mo;
+    const sweep = Math.floor((T * 8 * mo) % 32);
+    slots.forEach((b, i) => { const d = (i - sweep + 32) % 32, on = d < 6; b.scale.y = on ? 1.8 - d * .12 : 1; });
+    objs.eval.group.position.y = objs.eval.base.y + Math.sin(T * .6 * mo) * 4.6; objs.eval.group.rotation.y += step * .5;
+    neck.scale.setScalar(1 + Math.sin(T * 2.4) * .15);
+    radarDisk.rotation.z -= step * .6; arcs.forEach((a, i) => a.rotation.z += step * (i % 2 ? -.4 : .3));
+    for (const p of paths) for (const k of p.pk) { const u = (k.o + T * p.sp * speed * mo) % 1; p.curve.getPointAt(u, tmp); k.m.position.copy(tmp); }
+    if (runner.m && runner.m.visible && runner.curve) { runner.t = Math.min(1, runner.t + dt / runner.dur); runner.curve.getPointAt(runner.t, tmp); runner.m.position.copy(tmp); runner.glow.scale.setScalar(1 + Math.sin(now / 120) * .15); }
+    if (seq && now >= seq.until) { seq.i++; if (seq.i >= seq.steps.length) seq = null; else { const s = seq.steps[seq.i]; s.go(); seq.until = now + s.ms; } }
+    for (const id in objs) objs[id].group.scale.setScalar(id === selected ? 1.06 + Math.sin(now / 300) * .03 : 1);
+    cam.position.set(tgt.x + r * Math.sin(ph) * Math.sin(th), tgt.y + r * Math.cos(ph), tgt.z + r * Math.sin(ph) * Math.cos(th)); cam.lookAt(tgt);
+    R.render(scene, cam);
+    const w = app.clientWidth, h = app.clientHeight; right.setFromMatrixColumn(cam.matrixWorld, 0);
+    const place = (id, el, dy, dx) => { const o = objs[id].group; tmp.copy(o.position).addScaledVector(right, dx); tmp.y += dy; tmp.project(cam);
+      if (tmp.z > 1 || !o.visible) { el.style.display = "none"; return; } el.style.display = ""; el.style.left = ((tmp.x + 1) / 2 * w) + "px"; el.style.top = ((1 - tmp.y) / 2 * h) + "px"; };
+    for (const id in lblEls) { place(id, lblEls[id], LBL[id][1], LBL[id][2]); lblEls[id].classList.toggle("dim", !!selected && selected !== id); }
+    for (let i = pops.length - 1; i >= 0; i--) { const p = pops[i]; if (now > p.until) { p.d.remove(); pops.splice(i, 1); continue; } place(p.id, p.d, (LBL[p.id] || ["", 2])[1] + 2.2, 0); }
+    requestAnimationFrame(loop);
+  }
+  // any typed command interrupts a running sequence
+  $("cmdForm").addEventListener("submit", () => { if (seq) { seq = null; if (runner.m) runner.m.visible = false; } }, true);
+  setMode("holo"); applyVis();
+  requestAnimationFrame(loop);
+})();
+
+/* =====================================================================================
+   charts + roadmap + boot
+   ===================================================================================== */
+const NS = "http://www.w3.org/2000/svg";
+const mk = (t, a, p) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); p && p.appendChild(e); return e; };
+const txt = (p, x, y, s, a = {}) => { const e = mk("text", { x, y, ...a }, p); e.textContent = s; return e; };
+function bars(id, rows, colors, max = 1, fmt = v => v.toFixed(2)) {
+  const s = $(id), L = 118, W = 300, top = 8, rh = (190 - top) / rows.length;
+  [0, .5, 1].forEach(t => { mk("line", { x1: L + t * (W - L), x2: L + t * (W - L), y1: top, y2: top + rh * rows.length, stroke: "rgba(94,231,255,.18)" }, s);
+    txt(s, L + t * (W - L), 205, fmt(t * max), { "text-anchor": "middle", fill: "var(--muted)" }); });
+  rows.forEach(([name, ...vals], i) => { const y = top + i * rh; txt(s, 0, y + rh / 2 + 4, name); const bh = (rh - 10) / vals.length;
+    vals.forEach((v, j) => { const w = Math.max(1.5, v / max * (W - L)); mk("rect", { x: L, y: y + 4 + j * bh, width: w, height: bh - 2, fill: colors[j] }, s);
+      const t = txt(s, L + w + 4, y + 4 + j * bh + bh - 4, fmt(v)); if (L + w + 34 > 320) { t.setAttribute("x", L + w - 4); t.setAttribute("text-anchor", "end"); t.setAttribute("fill", "#02070d"); } }); });
+}
+bars("cLoso", [["BoT-IoT", .965, .491], ["CIC-IDS2018", .940, .627], ["ToN-IoT", .810, .715], ["UNSW-NB15", 1.000, .577]], ["#5ee7ff", "#ff5a5f"]);
+bars("cLab", LAB.models.map(([n, fp]) => [n, fp]), ["#ff5a5f"], LAB.benign, v => Math.round(v) + "");
+$("labNote").textContent = `Lab-feature models on ${LAB.rows} real lab conversations: benign ones flagged (of ${LAB.benign}). One attack (S10), so these are false-alarm counts, not precision or recall. ${LAB.models.filter(m => !m[2]).map(m => m[0]).join(", ") || "No model"} missed the attack.`;
+bars("cHold", [["Backdoor (C2)", .050, .939], ["Slowloris", 1.0, .154], ["SSH-Brute", 1.0, 0]], ["#5ee7ff", "#b996ff"]);
+bars("cXai", [["SHAP top-3", .681], ["random 3", .037], ["attention=cause", .066], ["chance", .034]], ["#ffb547"]);
+$("road").innerHTML = PHASES.map(([n, t, st, items]) => `<div class="phase ${st === "done" ? "done" : st === "now" ? "now" : ""}"><span class="k">Phase ${n}</span><h3>${t}</h3>
+  <span class="chip ${st === "done" ? "c-built" : st === "now" ? "c-running" : "c-planned"}">${st === "done" ? "done" : st === "now" ? "in review" : "planned"}</span><ul>${items.map(i => `<li>${i}</li>`).join("")}</ul></div>`).join("");
+
+(function boot() {
+  const lines = ["SENTINEL·AI BLUE TEAM CONSOLE", "", "› linking cyber range ......... Kali · Ubuntu sensor · Windows 7",
+    "› loading BigFlow-NIDS v2 ..... 66,935,021 flows · 4 sources", "› detection stack ............ stage 1 · stage 2 · stage 3 online",
+    "› evaluation ................. phase 3 complete", "› explainability ............. phase 4 complete", "› genai reports .............. phase 5 skeleton in review", "", "all systems nominal. type help, or press T for a tour."];
+  const el = $("bootText"), b = $("boot");
+  let skip = false; b.addEventListener("click", () => skip = true);
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) skip = true;
+  let i = 0;
+  const tick = () => {
+    if (skip || i >= lines.length) { el.textContent = lines.join("\n"); setTimeout(() => { b.classList.add("out"); setTimeout(() => b.hidden = true, 650); }, skip ? 200 : 700); finish(); return; }
+    el.textContent += (i ? "\n" : "") + lines[i++]; setTimeout(tick, 170);
+  };
+  let done = false;
+  function finish() { if (done) return; done = true; log("console online. Type <span class=\"me\">help</span> for commands, or press T for a tour.", "ok"); select("s1", false, true); }
+  tick();
+})();
+</script>
